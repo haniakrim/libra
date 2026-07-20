@@ -70,8 +70,8 @@
   "d1_databases": [
     {
       "binding": "DATABASE",
-      "database_name": "libra",
-      "database_id": "67910497-d3de-4085-ba2f-70c7d4ba5983"
+      "database_name": "libra-auth",
+      "database_id": "65130247-5f4b-40f7-bbda-d7a1c8516609"
     }
   ],
   // docker run --name libra -e POSTGRES_PASSWORD=postgres -d postgres
@@ -85,11 +85,11 @@
   "kv_namespaces": [
     {
       "binding": "KV",
-      "id": "0251e67dd0194dbab2d78c47e6d2cce9"
+      "id": "bea3e204621c4ea1aa92052b8a415c45"
     },
     {
       "binding": "CACHE",
-      "id": "69f9a5f9a5b9411a8d55ee35273837c4"
+      "id": "974adfbf070445808d000205e2f478ba"
     }
   ],
   // R2 incremental cache
