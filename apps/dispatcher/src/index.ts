@@ -18,15 +18,14 @@
  *
  */
 
+import { log } from '@libra/common'
 import { Scalar } from '@scalar/hono-api-reference'
 import { Hono } from 'hono'
+import { extractSubdomain, isValidWorkerSubdomain } from './config/domains'
 import { openApiApp } from './openapi'
 import { dispatchRoute } from './routes/dispatch'
-import { isValidWorkerSubdomain, extractSubdomain } from './config/domains'
-import { handleCustomDomainRequest } from './utils/custom-domain'
-import { log } from '@libra/common'
-
 import type { CloudflareBindings, ContextVariables } from './types'
+import { handleCustomDomainRequest } from './utils/custom-domain'
 
 // Use shared type definitions
 type Bindings = CloudflareBindings
@@ -38,12 +37,17 @@ const app = new Hono<{ Bindings: Bindings; Variables: Variables }>()
 /**
  * Handle worker forwarding for libra.sh subdomains
  */
-async function handleLibraSubdomainWorker(request: Request, env: Bindings, subdomain: string, requestId: string): Promise<Response> {
+async function handleLibraSubdomainWorker(
+  request: Request,
+  env: Bindings,
+  subdomain: string,
+  requestId: string
+): Promise<Response> {
   try {
     log.dispatcher('info', 'Dispatching to worker', {
       workerName: subdomain,
       requestId,
-      operation: 'worker_dispatch'
+      operation: 'worker_dispatch',
     })
 
     const userWorker = env.dispatcher.get(subdomain)
@@ -53,53 +57,59 @@ async function handleLibraSubdomainWorker(request: Request, env: Bindings, subdo
       workerName: subdomain,
       responseStatus: response.status,
       requestId,
-      operation: 'worker_dispatch'
+      operation: 'worker_dispatch',
     })
 
     return response
-
   } catch (error) {
     if (error instanceof Error && error.message.startsWith('Worker not found')) {
       log.dispatcher('warn', 'Worker not found', {
         workerName: subdomain,
         requestId,
-        operation: 'worker_dispatch'
+        operation: 'worker_dispatch',
       })
 
-      return new Response(JSON.stringify({
-        error: 'Worker not found',
-        message: `Worker '${subdomain}' is not deployed or does not exist`,
-        workerName: subdomain,
-        requestId,
-        suggestion: 'Please check if the worker is deployed correctly'
-      }), {
-        status: 404,
-        headers: { 'Content-Type': 'application/json' }
-      })
+      return new Response(
+        JSON.stringify({
+          error: 'Worker not found',
+          message: `Worker '${subdomain}' is not deployed or does not exist`,
+          workerName: subdomain,
+          requestId,
+          suggestion: 'Please check if the worker is deployed correctly',
+        }),
+        {
+          status: 404,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
     }
 
-    log.dispatcher('error', 'Worker dispatch failed', {
-      workerName: subdomain,
-      requestId,
-      operation: 'worker_dispatch'
-    }, error instanceof Error ? error : undefined)
+    log.dispatcher(
+      'error',
+      'Worker dispatch failed',
+      {
+        workerName: subdomain,
+        requestId,
+        operation: 'worker_dispatch',
+      },
+      error instanceof Error ? error : undefined
+    )
 
     const errorMessage = error instanceof Error ? error.message : 'Worker dispatch failed'
-    return new Response(JSON.stringify({
-      error: 'Worker dispatch failed',
-      message: errorMessage,
-      workerName: subdomain,
-      requestId
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    })
+    return new Response(
+      JSON.stringify({
+        error: 'Worker dispatch failed',
+        message: errorMessage,
+        workerName: subdomain,
+        requestId,
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
   }
 }
-
-
-
-
 
 // Priority 1: Dispatcher's own routes (for libra.sh root domain)
 // Integrate OpenAPI application routes
@@ -139,7 +149,7 @@ app.all('*', async (c) => {
     pathname,
     method: c.req.method,
     requestId,
-    operation: 'domain_routing'
+    operation: 'domain_routing',
   })
 
   try {
@@ -156,17 +166,20 @@ app.all('*', async (c) => {
             domain: 'libra.sh',
             description: 'Cloudflare Workers dispatcher for Libra platform',
             timestamp: new Date().toISOString(),
-            requestId
+            requestId,
           })
         }
         // Other paths for root domain, return 404 (let previous routes handle)
-        return c.json({
-          error: 'Not found',
-          message: 'The requested resource was not found on this server',
-          path: pathname,
-          hostname,
-          requestId
-        }, 404)
+        return c.json(
+          {
+            error: 'Not found',
+            message: 'The requested resource was not found on this server',
+            path: pathname,
+            hostname,
+            requestId,
+          },
+          404
+        )
       }
 
       // Handle subdomain routing
@@ -175,15 +188,18 @@ app.all('*', async (c) => {
         log.dispatcher('warn', 'No valid subdomain found for libra.sh domain', {
           hostname,
           requestId,
-          operation: 'libra_domain_routing'
+          operation: 'libra_domain_routing',
         })
 
-        return c.json({
-          error: 'Invalid subdomain',
-          message: 'No valid subdomain found for libra.sh domain',
-          hostname,
-          requestId
-        }, 400)
+        return c.json(
+          {
+            error: 'Invalid subdomain',
+            message: 'No valid subdomain found for libra.sh domain',
+            hostname,
+            requestId,
+          },
+          400
+        )
       }
 
       // Validate if subdomain is valid
@@ -194,16 +210,19 @@ app.all('*', async (c) => {
           hostname,
           requestId,
           operation: 'libra_domain_routing',
-          validationError: validation.error
+          validationError: validation.error,
         })
 
-        return c.json({
-          error: 'Invalid worker name',
-          message: validation.error,
-          subdomain,
-          hostname,
-          requestId
-        }, 400)
+        return c.json(
+          {
+            error: 'Invalid worker name',
+            message: validation.error,
+            subdomain,
+            hostname,
+            requestId,
+          },
+          400
+        )
       }
 
       // Forward to worker
@@ -214,7 +233,7 @@ app.all('*', async (c) => {
     log.dispatcher('info', 'Processing custom domain request', {
       hostname,
       requestId,
-      operation: 'custom_domain_routing'
+      operation: 'custom_domain_routing',
     })
 
     const result = await handleCustomDomainRequest(c, hostname)
@@ -223,7 +242,7 @@ app.all('*', async (c) => {
       log.dispatcher('info', 'Custom domain request handled successfully', {
         hostname,
         requestId,
-        operation: 'custom_domain_routing'
+        operation: 'custom_domain_routing',
       })
       return result.response
     }
@@ -232,32 +251,45 @@ app.all('*', async (c) => {
       hostname,
       requestId,
       operation: 'custom_domain_routing',
-      error: result.error
+      error: result.error,
     })
 
-    return result.response || c.json({
-      error: 'Custom domain not configured',
-      message: result.error || 'Domain is not configured or verified',
-      hostname,
-      requestId
-    }, 404)
-
+    return (
+      result.response ||
+      c.json(
+        {
+          error: 'Custom domain not configured',
+          message: result.error || 'Domain is not configured or verified',
+          hostname,
+          requestId,
+        },
+        404
+      )
+    )
   } catch (error) {
-    log.dispatcher('error', 'Domain routing failed', {
-      hostname,
-      pathname,
-      requestId,
-      operation: 'domain_routing'
-    }, error instanceof Error ? error : undefined)
+    log.dispatcher(
+      'error',
+      'Domain routing failed',
+      {
+        hostname,
+        pathname,
+        requestId,
+        operation: 'domain_routing',
+      },
+      error instanceof Error ? error : undefined
+    )
 
     const errorMessage = error instanceof Error ? error.message : 'Internal server error'
-    return c.json({
-      error: 'Internal server error',
-      message: errorMessage,
-      hostname,
-      requestId,
-      timestamp: new Date().toISOString()
-    }, 500)
+    return c.json(
+      {
+        error: 'Internal server error',
+        message: errorMessage,
+        hostname,
+        requestId,
+        timestamp: new Date().toISOString(),
+      },
+      500
+    )
   }
 })
 

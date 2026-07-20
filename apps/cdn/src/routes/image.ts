@@ -20,11 +20,11 @@
 
 import { createRoute } from '@hono/zod-openapi'
 import { log } from '@libra/common'
+import { cacheConfig, getConfig } from '../config'
+import { createPublicCorsMiddleware } from '../middleware/cors'
 import { imageParamsSchema, notFoundResponseSchema } from '../schemas/image'
 import type { AppContext } from '../types'
 import { CommonErrors, withErrorHandling } from '../utils/error-handler'
-import { getConfig, cacheConfig } from '../config'
-import { createPublicCorsMiddleware } from '../middleware/cors'
 
 // Define the image retrieval route with OpenAPI specification
 export const imageRoute = createRoute({
@@ -34,7 +34,7 @@ export const imageRoute = createRoute({
   description: 'Retrieve an uploaded image from R2 storage using its unique key',
   tags: ['Images'],
   request: {
-    params: imageParamsSchema
+    params: imageParamsSchema,
   },
   responses: {
     200: {
@@ -44,77 +44,81 @@ export const imageRoute = createRoute({
           schema: {
             type: 'string',
             format: 'binary',
-            description: 'The image file content'
-          }
-        }
+            description: 'The image file content',
+          },
+        },
       },
       headers: {
         'Content-Type': {
           description: 'MIME type of the image',
           schema: {
             type: 'string',
-            example: 'image/jpeg'
-          }
+            example: 'image/jpeg',
+          },
         },
         'Cache-Control': {
           description: 'Cache control header',
           schema: {
             type: 'string',
-            example: 'public, max-age=2592000'
-          }
-        }
-      }
+            example: 'public, max-age=2592000',
+          },
+        },
+      },
     },
     404: {
       description: 'Image not found',
       content: {
         'application/json': {
-          schema: notFoundResponseSchema
-        }
-      }
-    }
-  }
+          schema: notFoundResponseSchema,
+        },
+      },
+    },
+  },
 })
 
 // Image route handler implementation
 export const imageHandler = withErrorHandling(async (c: AppContext) => {
-    const key = c.req.param('key')
-    log.cdn('info', 'Image retrieval request started', {
-      operation: 'image_retrieve',
-      imageKey: key
-    })
+  const key = c.req.param('key')
+  log.cdn('info', 'Image retrieval request started', {
+    operation: 'image_retrieve',
+    imageKey: key,
+  })
 
-    const config = getConfig(c)
-    const bucket = c.env.BUCKET || c.env.R2
-    
-    if (!bucket) {
-      throw CommonErrors.storageError('bucket not configured')
-    }
+  const config = getConfig(c)
+  const bucket = c.env.BUCKET || c.env.R2
 
-    const object = await bucket.get(key)
-    if (!object) {
-      log.cdn('warn', 'Image not found in storage', {
-        operation: 'image_retrieve',
-        imageKey: key
-      })
-      throw CommonErrors.notFound('Image')
-    }
+  if (!key) {
+    throw CommonErrors.invalidRequest('image key required')
+  }
 
-    const data = await object.arrayBuffer()
-    const contentType = object.httpMetadata?.contentType ?? 'application/octet-stream'
+  if (!bucket) {
+    throw CommonErrors.storageError('bucket not configured')
+  }
 
-    const cacheHeaders = cacheConfig.getCacheHeaders(config, true)
-
-    log.cdn('info', 'Image retrieval completed successfully', {
+  const object = await bucket.get(key)
+  if (!object) {
+    log.cdn('warn', 'Image not found in storage', {
       operation: 'image_retrieve',
       imageKey: key,
-      contentType,
-      size: data.byteLength,
-      cacheMaxAge: config.CACHE_MAX_AGE
     })
+    throw CommonErrors.notFound('Image')
+  }
 
-    return c.body(data, 200, {
-      'Content-Type': contentType,
-      ...cacheHeaders
-    })
+  const data = await object.arrayBuffer()
+  const contentType = object.httpMetadata?.contentType ?? 'application/octet-stream'
+
+  const cacheHeaders = cacheConfig.getCacheHeaders(config, true)
+
+  log.cdn('info', 'Image retrieval completed successfully', {
+    operation: 'image_retrieve',
+    imageKey: key,
+    contentType,
+    size: data.byteLength,
+    cacheMaxAge: config.CACHE_MAX_AGE,
+  })
+
+  return c.body(data, 200, {
+    'Content-Type': contentType,
+    ...cacheHeaders,
+  })
 })

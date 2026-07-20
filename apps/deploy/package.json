@@ -19,6 +19,7 @@
     "@libra/middleware": "*",
     "@libra/sandbox": "*",
     "@libra/templates": "*",
+    "@libra/better-auth-cloudflare": "*",
     "@libra/typescript-config": "*",
     "hono": "^4.9.8",
     "@scalar/hono-api-reference": "^0.9.19",

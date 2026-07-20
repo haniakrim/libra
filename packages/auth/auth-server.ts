@@ -121,6 +121,10 @@ async function authBuilder() {
           ],
         }),
         plugins: plugins ,
+        rateLimit: {
+          window: 60,
+          max: 100,
+        },
       }
     )
   )
@@ -175,6 +179,10 @@ export const auth = betterAuth({
           },
         },
       }),
+      rateLimit: {
+        window: 60,
+        max: 100,
+      },
       plugins: [
         admin({
           defaultRole: 'user',

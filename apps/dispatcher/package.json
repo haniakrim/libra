@@ -11,16 +11,17 @@
     "update": "bun update"
   },
   "dependencies": {
-    "drizzle-orm": "^0.44.5",
-    "@libra/db": "*",
-    "@libra/common": "*",
-    "@libra/middleware": "*",
+    "@hono/zod-openapi": "^0.19.10",
     "@libra/better-auth-cloudflare": "*",
+    "@libra/common": "*",
+    "@libra/db": "*",
+    "@libra/middleware": "*",
+    "@scalar/hono-api-reference": "^0.9.19",
+    "@trigger.dev/sdk": "^4.5.5",
+    "drizzle-orm": "^0.44.5",
     "hono": "^4.9.8",
     "pg": "^8.16.3",
-    "zod": "^4.1.11",
-    "@hono/zod-openapi": "^0.19.10",
-    "@scalar/hono-api-reference": "^0.9.19"
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "wrangler": "4.27.0",
