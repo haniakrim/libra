@@ -18,13 +18,12 @@
  *
  */
 
-import { env } from '@/env.mjs'
 import { anthropic } from '@ai-sdk/anthropic'
 import { createAzure } from '@ai-sdk/azure'
 import { xai } from '@ai-sdk/xai'
 import { createOpenRouter, openrouter } from '@openrouter/ai-sdk-provider'
 import { customProvider } from 'ai'
-import { createOpenAI } from '@ai-sdk/openai'
+import { env } from '@/env.mjs'
 
 /**
  * Define the configuration type, ensuring the baseURL type is correct.
@@ -77,31 +76,19 @@ const openrouterConfig = {
 const openrouterProvider = createOpenRouter(openrouterConfig)
 
 /**
- * Databricks Claude configuration using OpenAI-compatible endpoint
- */
-const databricksClaude = createOpenAI({
-  baseURL: env.DATABRICKS_BASE_URL,
-  apiKey: env.DATABRICKS_TOKEN,
-})
-
-/**
  * Provider separation architecture:
  * - Azure OpenAI: All OpenAI models (gpt-4, etc.)
  * - OpenRouter: Claude and Gemini models
- * - Databricks: Claude models via OpenAI-compatible endpoint
  * - XAI: Grok models (kept for compatibility)
  */
 export const myProvider = customProvider({
   languageModels: {
-
     // Azure OpenAI models
     'chat-model-reasoning-azure': azure(env.AZURE_DEPLOYMENT_NAME || 'o4-mini'),
     'chat-model-reasoning-azure-mini': azure('gpt-4.1-mini'),
     'chat-model-reasoning-azure-nano': azure('gpt-4.1-nano'),
-    // Databricks Claude models
-    'chat-model-databricks-claude': databricksClaude('databricks-claude-3-7-sonnet'),
-    'chat-model-reasoning-anthropic': openrouterProvider('anthropic/claude-sonnet-4'),
-    'chat-model-reasoning-google': openrouterProvider('google/gemini-2.5-pro-preview'),
+    'chat-model-reasoning-anthropic': openrouterProvider('anthropic/claude-sonnet-4') as any,
+    'chat-model-reasoning-google': openrouterProvider('google/gemini-2.5-pro-preview') as any,
 
     // XAI models (kept for compatibility)
     'chat-model-reasoning-xai': xai('grok-3-fast-beta'),

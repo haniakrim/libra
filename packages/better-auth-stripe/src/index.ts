@@ -3,10 +3,11 @@ import {
     type BetterAuthPlugin,
     logger,
 } from "better-auth";
-import {createAuthEndpoint, createAuthMiddleware} from "better-auth/plugins";
 import Stripe from "stripe";
 import * as z from "zod/v4";
 import {
+    createAuthEndpoint,
+    createAuthMiddleware,
     sessionMiddleware,
     APIError,
     originCheck,

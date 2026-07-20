@@ -2,6 +2,7 @@
   "extends": "../../tooling/typescript-config/base.json",
   "compilerOptions": {
     "baseUrl": "../..",
+    "checkJs": false,
     "paths": {
       "@/*": ["./apps/web/*"],
       "@libra/ui/*": ["../../packages/ui/src/*"],

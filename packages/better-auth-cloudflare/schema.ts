@@ -18,15 +18,14 @@
  *
  */
 
-import type { AuthPluginSchema } from "better-auth";
-import type { FieldAttribute, FieldType } from "better-auth/db";
+import type { BetterAuthPluginDBSchema, DBFieldAttribute, DBFieldType } from "better-auth/db";
 import type { CloudflarePluginOptions } from "./types";
 
 /**
  * Type for geolocation database fields
  */
 type GeolocationFields = {
-    [x: string]: FieldAttribute<FieldType>;
+    [x: string]: DBFieldAttribute<DBFieldType>;
 };
 
 /**
@@ -59,5 +58,5 @@ export const schema = (options: CloudflarePluginOptions) => {
                     ? geolocationFields
                     : {},
         },
-    } satisfies AuthPluginSchema;
+    } satisfies BetterAuthPluginDBSchema;
 };

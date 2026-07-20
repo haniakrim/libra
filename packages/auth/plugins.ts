@@ -24,6 +24,7 @@ import {stripePlugin} from './plugins/stripe-plugin'
 import {organizationPlugin} from './plugins/organization-plugin'
 import {emailHarmony} from "better-auth-harmony";
 import {admin, bearer} from "better-auth/plugins";
+import {authRoles} from './admin-roles';
 import {getAdminUserIds} from './env.mjs';
 
 // Re-export utility functions for backward compatibility
@@ -35,6 +36,7 @@ export const plugins = [
         defaultRole: 'user',
         adminRoles: ["admin", "superadmin"],
         adminUserIds: getAdminUserIds(), // Configured via ADMIN_USER_IDS environment variable
+        roles: authRoles,
     }),
     captchaPlugin,
     emailOTPPlugin,

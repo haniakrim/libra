@@ -18,11 +18,19 @@
  *
  */
 
-import type { AuthPluginSchema } from "better-auth";
+import type { BetterAuthPluginDBSchema, DBFieldAttribute } from "better-auth/db";
 import type { StripeOptions } from "./types";
 import { mergeSchema } from "better-auth/db";
 
-export const subscriptions = {
+type StripeSchema = {
+    [model: string]: {
+        fields: {
+            [field: string]: DBFieldAttribute;
+        };
+    };
+};
+
+export const subscriptions: StripeSchema = {
     subscription: {
         fields: {
             plan: {
@@ -64,9 +72,9 @@ export const subscriptions = {
             },
         },
     },
-} satisfies AuthPluginSchema;
+};
 
-export const user = {
+export const user: StripeSchema = {
     user: {
         fields: {
             stripeCustomerId: {
@@ -75,21 +83,19 @@ export const user = {
             },
         },
     },
-} satisfies AuthPluginSchema;
+};
 
 export const getSchema = (options: StripeOptions) => {
+    const schema: BetterAuthPluginDBSchema = {
+        ...(options.subscription?.enabled ? subscriptions : {}),
+        ...user,
+    };
     if (
         options.schema &&
         !options.subscription?.enabled &&
         "subscription" in options.schema
     ) {
-        delete options.schema.subscription;
+        delete (options.schema as any).subscription;
     }
-    return mergeSchema(
-        {
-            ...(options.subscription?.enabled ? subscriptions : {}),
-            ...user,
-        },
-        options.schema,
-    );
+    return mergeSchema(schema as any, options.schema as any) as any;
 };

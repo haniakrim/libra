@@ -18,8 +18,12 @@
  *
  */
 
-import { getSubscriptionUsage, PLAN_TYPES } from '@libra/auth/utils/subscription-limits'
+import { and, eq } from 'drizzle-orm'
 import { log, tryCatch } from '@libra/common'
+import { getDbAsync } from '../index'
+import { subscriptionLimit } from '../schema/project-schema'
+
+const FREE_PLAN = 'libra free'
 
 /**
  * Check if organization has premium membership (non-free plan)
@@ -33,15 +37,25 @@ export async function hasPremiumMembership(organizationId: string): Promise<bool
             operation: 'hasPremiumMembership',
         });
 
-        // Get subscription usage information
-        const usage = await getSubscriptionUsage(organizationId);
+        const db = await getDbAsync();
 
-        // Check if the plan is not the free plan
-        const isPremium = usage.plan !== PLAN_TYPES.FREE;
+        const activeLimit = await db
+            .select({ planName: subscriptionLimit.planName })
+            .from(subscriptionLimit)
+            .where(
+                and(
+                    eq(subscriptionLimit.organizationId, organizationId),
+                    eq(subscriptionLimit.isActive, true)
+                )
+            )
+            .limit(1)
+            .then((rows) => rows[0]);
+
+        const isPremium = activeLimit ? activeLimit.planName !== FREE_PLAN : false;
 
         log.subscription('info', 'Premium membership check completed', {
             organizationId,
-            plan: usage.plan,
+            plan: activeLimit?.planName ?? 'none',
             isPremium,
             operation: 'hasPremiumMembership',
         });

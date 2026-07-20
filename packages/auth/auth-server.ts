@@ -26,6 +26,7 @@ import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { betterAuth, type Session } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { admin, bearer, emailOTP, organization } from 'better-auth/plugins'
+import { authRoles } from './admin-roles'
 import { emailHarmony } from 'better-auth-harmony'
 import { getAuthDb } from './db'
 import { env as envs } from './env.mjs'
@@ -179,6 +180,7 @@ export const auth = betterAuth({
           defaultRole: 'user',
           adminRoles: ['admin', 'superadmin'],
           adminUserIds: getAdminUserIds(), // Configured via ADMIN_USER_IDS environment variable
+          roles: authRoles,
         }),
         organization(),
         emailOTP({
