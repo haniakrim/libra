@@ -16,9 +16,11 @@
 - Dev server verified: `/` and `/login` return HTTP 200.
 
 ### Pre-existing issues (not Phase 2 blockers, tracked)
-- `better-auth-cloudflare` and `better-auth-stripe` type drift from better-auth version bump.
-- Turbopack edge runtime cannot resolve `@/paraglide/server` (paraglide compile artifact not found at edge runtime).
+- `better-auth-cloudflare` and `better-auth-stripe` type drift from better-auth version bump (active: `createAuthEndpoint` / `createAuthMiddleware` no longer exported from `better-auth/plugins` in 1.6.23).
 - `apps/web/build` (Next.js production) blocked on the above.
+
+### Resolved 2026-07-20
+- Paraglide edge-runtime resolution: root cause was tsconfig `extends` path resolution (TS looks in `apps/web/node_modules/@libra/typescript-config`, which did not exist as a symlink), not a missing paraglide compile artifact. Fixed via direct relative extends path. Dev server now compiles middleware in ~185ms; `x-paraglide-locale` and `x-paraglide-request-url` headers appear on responses.
 
 ### Docs
 - Added `01-IMPLEMENTATION-PLAN`, `02-ARCHITECTURE`, `03-DESIGN`, `04-API-REFERENCE`, `05-DATABASE`, `06-USER-GUIDE`, `08-INTEGRATIONS`, `09-TESTING`, `10-CHANGELOG` (in this and prior commits).
