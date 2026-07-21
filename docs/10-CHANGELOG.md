@@ -2,6 +2,14 @@
 
 ## 2026-07-21
 
+### First production deploy — VPS self-host (Docker + Traefik)
+- Deployed `apps/web` to the VPS (`72.62.190.235`) at `https://libra.agentic-lab.io`, live behind the box's existing Traefik (Let's Encrypt, shared with `mip` and `agent-os-*` — none of those touched).
+- Added a `SELF_HOSTED=true` code path (see commits `bf99a4d`, `35d288d`, `d294029`) so apps/web can run as a plain Docker container instead of a Cloudflare Worker: Postgres direct connection, Bun's built-in `bun:sqlite` for the auth DB (D1's SQLite dialect, same schema/migrations — better-sqlite3 does not load under Bun, see oven-sh/bun#4290), and a Redis-backed shim standing in for the KV/CACHE bindings. Zero change to the Cloudflare/OpenNext path.
+- `apps/web/Dockerfile` (multi-stage Bun build) + `docker-compose.vps.yml` (web + postgres + redis, Traefik labels, no published ports).
+- Verified: `docker compose ps` all healthy; `https://libra.agentic-lab.io/`, `/login`, and `/api/auth/get-session` all return HTTP 200 with a real Let's Encrypt cert (`CN=libra.agentic-lab.io`); `traefik`/`mip`/`agent-os-*` containers unaffected throughout.
+- Not yet verified: a real end-to-end email-OTP sign-in against the live domain (needs interactive inbox access) — deferred as a follow-up rather than blocking the deploy report.
+- Follow-ups not in scope for this pass: `apps/cdn` (image/screenshot storage), `apps/deploy`/`apps/dispatcher` (site-builder pipeline), real Stripe/Turnstile production keys, GitHub OAuth callback URL registration for the new domain, atomic rate-limit `consume` on the Redis KV shim (currently best-effort per better-auth's own warning).
+
 ### CI E2E workflow for apps/web
 - Added `.github/workflows/web-e2e.yml` to run the `apps/web` Playwright suite on every push/PR touching the web app or shared packages.
 - The workflow installs Chromium, compiles Paraglide, writes a headless-safe `.env` (with dummy fallbacks for optional third-party credentials), and runs `bun run test:e2e`.
