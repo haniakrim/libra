@@ -2,6 +2,13 @@
 
 ## 2026-07-21
 
+### Full-page Tron grid on marketing landing page
+- Extended the existing `.dark body` Tron-style grid from the hero only to the entire landing page (hero, bento, features, pricing, FAQ, CTA, footer).
+- Added `landing-page` class and `dark:bg-transparent` to `apps/web/app/(frontend)/(marketing)/page.tsx` so the body grid layer remains visible.
+- Added dark-mode transparency rule in `packages/ui/src/styles/variables.css` to make every landing section background transparent without altering layout, fonts, spacing, or components.
+- Verified in dark mode on `http://localhost:3000` with a full-page Playwright screenshot (`.screenshots/landing-grid-full-page-dark.png`); the faint cyan/teal grid is visible across the full scroll height.
+- No production deploy performed. Commits `25756c4` and `a48124c` pushed to `fork/main`.
+
 ### Login blocker resolved — email-OTP end to end
 - Wired Resend for `libra.agentic-lab.io`: `RESEND_API_KEY` and `RESEND_FROM` added to local env and env schema.
 - Fixed Cloudflare Turnstile local test keys (`1x00000000000000000000AA` / `1x0000000000000000000000000000000AA`) in `apps/web/.env.local` and `.dev.vars`.
