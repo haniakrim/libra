@@ -40,7 +40,7 @@ const defaultMockup = (
     alt='Libra AI  UI  screenshot'
     width={1248}
     height={765}
-    className='w-full'
+    className='w-full dark:brightness-[0.72] dark:contrast-[0.95]'
     priority={false}
   />
 )
@@ -64,7 +64,11 @@ export const HeroMockup = memo(({ mockup = defaultMockup }: HeroMockupProps) => 
         </Mockup>
       </MockupFrame>
       <div
-        className='pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-[var(--background-landing)] via-[var(--background-landing)]/80 to-transparent'
+        className='pointer-events-none absolute inset-x-0 top-0 z-[5] hidden h-1/2 bg-gradient-to-b from-[var(--background-landing)]/35 to-transparent dark:block'
+        aria-hidden='true'
+      />
+      <div
+        className='pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-[var(--background-landing)] via-[var(--background-landing)]/80 to-transparent dark:h-2/3 dark:via-[var(--background-landing)]/90'
         aria-hidden='true'
       />
       <Glow variant='top' className='animate-appear-zoom opacity-0 delay-1000 translate-z-0' />

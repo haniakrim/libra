@@ -20,73 +20,61 @@
 
 'use client'
 
-import Image from 'next/image'
 import * as m from '@/paraglide/messages'
 
+const VIEWBOX = '0 0 2000 1500'
+
+const LOGO_PATHS = (
+  <>
+    <path d='M9585 12384 c-16 -2 -73 -9 -125 -15 -801 -88 -1669 -448 -2255 -934 -107 -89 -300 -280 -390 -386 -323 -385 -522 -829 -591 -1324 -24 -173 -15 -373 25 -565 113 -543 445 -1404 907 -2349 74 -151 133 -275 132 -277 -2 -2 -2026 146 -2345 171 -78 6 -83 6 -83 -12 0 -19 173 -1274 185 -1340 4 -24 11 -33 25 -33 20 0 3164 476 3214 486 l28 6 -45 47 c-145 151 -351 413 -504 641 -429 642 -683 1309 -754 1985 -15 142 -15 524 0 640 51 392 214 766 478 1095 84 105 262 284 367 370 295 239 713 443 1108 539 302 74 506 96 883 96 317 0 387 -5 590 -46 779 -156 1447 -685 1820 -1444 130 -262 197 -481 227 -730 16 -139 16 -571 0 -725 -82 -765 -326 -1584 -720 -2412 l-70 -146 122 -30 c243 -61 2492 -611 2510 -614 18 -3 31 46 148 511 71 282 127 515 125 517 -2 2 -468 94 -1037 204 -568 110 -1034 201 -1036 202 -1 2 18 50 43 108 391 911 694 1764 794 2238 53 250 52 618 -2 927 -130 735 -521 1343 -1170 1817 -552 403 -1300 689 -2019 772 -122 14 -493 20 -585 10z' />
+    <path d='M6930 4784 c-486 -34 -872 -105 -1170 -216 -228 -85 -391 -177 -545 -308 -128 -109 -150 -181 -142 -460 5 -184 23 -316 78 -560 31 -140 125 -487 137 -507 5 -9 1260 58 4852 258 2664 148 4848 270 4853 272 18 6 -738 238 -1288 395 -1847 529 -3597 900 -4960 1051 -547 61 -748 73 -1275 76 -267 1 -510 1 -540 -1z' />
+  </>
+)
+
+interface LogoSvgProps {
+  size: number
+  className?: string
+  alt?: string
+}
+
+const LogoSvg = ({ size, className, alt }: LogoSvgProps) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    viewBox={VIEWBOX}
+    width={size}
+    height={size * 0.75}
+    aria-label={alt}
+    className={className}
+  >
+    <g transform='translate(0,1500) scale(0.1,-0.1)' fill='currentColor' stroke='none'>
+      {LOGO_PATHS}
+    </g>
+  </svg>
+)
+
 export const Logo = () => {
-    return (
-        <div className='h-[56px] aspect-square flex items-center justify-center'>
-            <Image
-                src='/logo.svg'
-                alt={m['logo.alt']()}
-                width={56}
-                height={42}
-                className='block dark:hidden object-contain transition-opacity duration-300'
-                priority
-            />
-            <Image
-                src='/logo-dark.svg'
-                alt={m['logo.alt']()}
-                width={56}
-                height={42}
-                className='hidden dark:block object-contain transition-opacity duration-300 text-[var(--brand)]'
-                priority
-            />
-        </div>
-    )
+  return (
+    <div className='h-[56px] aspect-square flex items-center justify-center text-[var(--brand)]'>
+      <LogoSvg size={56} alt={m['logo.alt']()} className='block dark:hidden object-contain transition-opacity duration-300' />
+      <LogoSvg size={56} alt={m['logo.alt']()} className='hidden dark:block object-contain transition-opacity duration-300' />
+    </div>
+  )
 }
 
 export const LogoLarge = () => {
-    return (
-        <div className='h-[112px] aspect-square flex items-center justify-center'>
-            <Image
-                src='/logo.svg'
-                alt={m['logo.alt']()}
-                width={112}
-                height={84}
-                className='block dark:hidden object-contain transition-opacity duration-300'
-                priority
-            />
-            <Image
-                src='/logo-dark.svg'
-                alt={m['logo.alt']()}
-                width={112}
-                height={84}
-                className='hidden dark:block object-contain transition-opacity duration-300 text-[var(--brand)]'
-                priority
-            />
-        </div>
-    )
+  return (
+    <div className='h-[112px] aspect-square flex items-center justify-center text-[var(--brand)]'>
+      <LogoSvg size={112} alt={m['logo.alt']()} className='block dark:hidden object-contain transition-opacity duration-300' />
+      <LogoSvg size={112} alt={m['logo.alt']()} className='hidden dark:block object-contain transition-opacity duration-300' />
+    </div>
+  )
 }
+
 export const LogoHero = () => {
-    return (
-        <div className='h-[84px] aspect-square flex items-center justify-center'>
-            <Image
-                src='/logo.svg'
-                alt={m['logo.alt']()}
-                width={72}
-                height={54}
-                className='block dark:hidden object-contain transition-opacity duration-300'
-                priority
-            />
-            <Image
-                src='/logo-dark.svg'
-                alt={m['logo.alt']()}
-                width={72}
-                height={54}
-                className='hidden dark:block object-contain transition-opacity duration-300 text-[var(--brand)]'
-                priority
-            />
-        </div>
-    )
+  return (
+    <div className='h-[84px] aspect-square flex items-center justify-center text-[var(--brand)]'>
+      <LogoSvg size={72} alt={m['logo.alt']()} className='block dark:hidden object-contain transition-opacity duration-300' />
+      <LogoSvg size={72} alt={m['logo.alt']()} className='hidden dark:block object-contain transition-opacity duration-300' />
+    </div>
+  )
 }

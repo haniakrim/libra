@@ -63,11 +63,7 @@ export function ColourfulText({ text }: { text: string }) {
 
   // Don't render animations until hydrated to prevent mismatch
   if (!isHydrated) {
-    return (
-      <span className='inline-block whitespace-pre font-sans tracking-tight'>
-        {text}
-      </span>
-    )
+    return <span className='inline-block whitespace-pre font-sans tracking-tight'>{text}</span>
   }
 
   return text.split('').map((char, index) => (
