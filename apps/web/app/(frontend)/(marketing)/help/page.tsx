@@ -37,7 +37,7 @@ export default async function HelpPage() {
   }
 
   return (
-    <main className='min-h-screen w-full overflow-hidden bg-[var(--background-landing)] text-[var(--foreground-landing)]'>
+    <main className='nabd-theme dark min-h-screen w-full overflow-hidden bg-[var(--background-landing)] text-[var(--foreground-landing)]'>
       <Navbar isAuthenticated={isAuthenticated} />
       <NabdHero
         eyebrow='Help Center'

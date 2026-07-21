@@ -38,7 +38,7 @@ export default async function SupportPage() {
   }
 
   return (
-    <main className='min-h-screen w-full overflow-hidden bg-[var(--background-landing)] text-[var(--foreground-landing)]'>
+    <main className='nabd-theme dark min-h-screen w-full overflow-hidden bg-[var(--background-landing)] text-[var(--foreground-landing)]'>
       <Navbar isAuthenticated={isAuthenticated} />
       <NabdHero
         eyebrow='Support'
@@ -54,7 +54,7 @@ export default async function SupportPage() {
         <div className='flex flex-col gap-6 md:col-span-2'>
           <div className='glass-1 flex flex-col gap-4 rounded-2xl p-8 shadow-lg'>
             <h3 className='flex items-center gap-2 text-xl font-semibold'>
-              <Clock className='h-5 w-5 text-gold' />
+              <Clock className='h-5 w-5 text-nabd-accent-2' />
               Response times
             </h3>
             <ul className='text-muted-foreground flex flex-col gap-2 text-sm'>

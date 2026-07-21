@@ -92,7 +92,7 @@ export function HelpSearch() {
               id: article.id,
               trigger: (
                 <span className='flex flex-col items-start gap-1'>
-                  <span className='text-xs font-normal text-gold'>{article.category}</span>
+                  <span className='text-xs font-normal text-nabd-accent-2'>{article.category}</span>
                   {article.question}
                 </span>
               ),

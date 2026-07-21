@@ -30,8 +30,8 @@ interface NabdHeroProps {
   actions?: ReactNode
 }
 
-// Shared "Nabd Agentic OS" section header — dark-luxury gold badge/rule over
-// the site's existing Tron-cyan brand color, used by docs/support/help.
+// Shared "Nabd Agentic OS" section header — cyan/pink accent duo over the
+// dedicated Nabd palette, used by docs/support/help.
 export function NabdHero({ eyebrow, title, description, actions }: NabdHeroProps) {
   return (
     <div className='relative overflow-hidden border-b border-border/60'>
@@ -40,7 +40,7 @@ export function NabdHero({ eyebrow, title, description, actions }: NabdHeroProps
         className='pointer-events-none absolute inset-0 opacity-40'
         style={{
           background:
-            'radial-gradient(60% 80% at 15% 0%, color-mix(in oklch, var(--gold) 18%, transparent), transparent), radial-gradient(50% 70% at 85% 20%, color-mix(in oklch, var(--brand) 16%, transparent), transparent)',
+            'radial-gradient(60% 80% at 15% 0%, color-mix(in oklch, var(--nabd-accent-2) 18%, transparent), transparent), radial-gradient(50% 70% at 85% 20%, color-mix(in oklch, var(--nabd-accent) 16%, transparent), transparent)',
         }}
       />
       <div className='relative mx-auto flex max-w-5xl flex-col gap-6 px-4 py-16 text-center md:px-6 md:py-24'>
@@ -48,9 +48,9 @@ export function NabdHero({ eyebrow, title, description, actions }: NabdHeroProps
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className='mx-auto flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase'
+          className='mx-auto flex items-center gap-2 rounded-full border border-nabd-accent-2/30 bg-nabd-accent-2/10 px-4 py-1.5 text-xs font-medium tracking-wide text-nabd-accent-2 uppercase'
         >
-          <span className='inline-block h-1.5 w-1.5 rounded-full bg-gold' />
+          <span className='inline-block h-1.5 w-1.5 rounded-full bg-nabd-accent-2' />
           Nabd Agentic OS
           <span className='text-muted-foreground normal-case'>· {eyebrow}</span>
         </motion.div>

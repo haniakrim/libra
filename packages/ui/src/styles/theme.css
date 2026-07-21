@@ -23,9 +23,13 @@
 @theme inline {
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
-  --color-gold: var(--gold);
-  --color-gold-foreground: var(--gold-foreground);
-  --color-gold-muted: var(--gold-muted);
+  --color-nabd-bg: var(--nabd-bg);
+  --color-nabd-bg-secondary: var(--nabd-bg-secondary);
+  --color-nabd-card: var(--nabd-card);
+  --color-nabd-text: var(--nabd-text);
+  --color-nabd-text-secondary: var(--nabd-text-secondary);
+  --color-nabd-accent: var(--nabd-accent);
+  --color-nabd-accent-2: var(--nabd-accent-2);
   --color-light: var(--light);
   --color-light-foreground: var(--light-foreground);
   --color-background: var(--background);

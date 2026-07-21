@@ -42,11 +42,6 @@
   --brand: oklch(66.5% 0.1804 47.04);
   --brand-foreground: oklch(75.77% 0.159 55.91);
 
-  /* Nabd Agentic OS — luxury gold accent (docs/support/help section) */
-  --gold: oklch(58% 0.13 75);
-  --gold-foreground: oklch(98% 0.01 95);
-  --gold-muted: oklch(75% 0.09 80);
-
   --background: oklch(98% 0.01 95.1);
   --foreground: oklch(34% 0.03 95.72);
 
@@ -113,11 +108,14 @@
   --brand: oklch(85% 0.15 200);
   --brand-foreground: oklch(14% 0.03 240);
 
-  /* Nabd Agentic OS — dark-luxury gold accent, paired with the Tron cyan
-     brand token above (docs/support/help section) */
-  --gold: oklch(80% 0.14 85);
-  --gold-foreground: oklch(16% 0.03 85);
-  --gold-muted: oklch(45% 0.08 85);
+  /* Nabd Agentic OS — dedicated palette for the docs/support/help section */
+  --nabd-bg: #04070d;
+  --nabd-bg-secondary: #070d16;
+  --nabd-card: #0a131f;
+  --nabd-text: #d7f7ff;
+  --nabd-text-secondary: #6da7b8;
+  --nabd-accent: #1fe0ff;
+  --nabd-accent-2: #ff5db4;
 
   /* Customized shadcn/ui colors */
   --background-hero: oklch(8% 0.025 250);

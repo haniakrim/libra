@@ -51,7 +51,7 @@ export function DocsShell({ children }: { children: ReactNode }) {
           <button
             type='button'
             onClick={() => setLocale(isRtl ? 'en' : 'ar')}
-            className='flex items-center gap-2 self-start rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 text-xs font-medium text-gold transition-colors hover:bg-gold/20'
+            className='flex items-center gap-2 self-start rounded-full border border-nabd-accent-2/30 bg-nabd-accent-2/10 px-3 py-1.5 text-xs font-medium text-nabd-accent-2 transition-colors hover:bg-nabd-accent-2/20'
           >
             <Languages className='h-3.5 w-3.5' />
             {isRtl ? 'English' : 'العربية'}

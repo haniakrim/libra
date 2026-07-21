@@ -40,6 +40,36 @@
   }
 }
 
+/* Nabd Agentic OS — scoped palette override for the docs/support/help
+   section. Re-points the existing semantic tokens (--background, --card,
+   --brand, ...) at the exact hex palette, so every component that already
+   reads those tokens (Navbar, Footer, glass-1 cards, text-brand, ...)
+   picks it up automatically within this subtree, without hunting down
+   every color utility individually. Always dark, regardless of the site's
+   light/dark toggle. Doubled selector (.dark.nabd-theme) so this wins the
+   cascade over .dark's own tokens regardless of stylesheet import order —
+   both classes are applied to the same element. */
+.dark.nabd-theme,
+.nabd-theme {
+  --background: var(--nabd-bg);
+  --background-landing: var(--nabd-bg);
+  --foreground: var(--nabd-text);
+  --foreground-landing: var(--nabd-text);
+  --card: var(--nabd-card);
+  --card-foreground: var(--nabd-text);
+  --popover: var(--nabd-card);
+  --popover-foreground: var(--nabd-text);
+  --secondary: var(--nabd-bg-secondary);
+  --secondary-foreground: var(--nabd-text);
+  --muted: var(--nabd-bg-secondary);
+  --muted-foreground: var(--nabd-text-secondary);
+  --brand: var(--nabd-accent);
+  --brand-foreground: var(--nabd-bg);
+  --border: color-mix(in oklch, var(--nabd-accent) 20%, transparent);
+  --input: color-mix(in oklch, var(--nabd-accent) 15%, transparent);
+  --ring: var(--nabd-accent);
+}
+
 /* Glass effects */
 @utility glass-1 {
   @apply border-border from-card/80 to-card/40 dark:border-border/10 dark:border-b-border/5 dark:border-t-border/20 dark:from-card/5 dark:to-card/0 border bg-linear-to-b;
