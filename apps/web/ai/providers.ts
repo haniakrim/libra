@@ -90,6 +90,19 @@ export const myProvider = customProvider({
     'chat-model-reasoning-anthropic': openrouterProvider('anthropic/claude-sonnet-4') as any,
     'chat-model-reasoning-google': openrouterProvider('google/gemini-2.5-pro-preview') as any,
 
+    // Additional OpenRouter-backed models, selectable in the model picker
+    'chat-model-openrouter-gpt-4o': openrouterProvider('openai/gpt-4o') as any,
+    'chat-model-openrouter-gpt-4o-mini': openrouterProvider('openai/gpt-4o-mini') as any,
+    'chat-model-openrouter-deepseek-v3': openrouterProvider('deepseek/deepseek-chat') as any,
+    'chat-model-openrouter-llama-3-3-70b': openrouterProvider(
+      'meta-llama/llama-3.3-70b-instruct'
+    ) as any,
+    'chat-model-openrouter-mistral-large': openrouterProvider('mistralai/mistral-large') as any,
+    'chat-model-openrouter-grok-2': openrouterProvider('x-ai/grok-2-1212') as any,
+    'chat-model-openrouter-qwen-2-5-72b': openrouterProvider(
+      'qwen/qwen-2.5-72b-instruct'
+    ) as any,
+
     // XAI models (kept for compatibility)
     'chat-model-reasoning-xai': xai('grok-3-fast-beta'),
   },

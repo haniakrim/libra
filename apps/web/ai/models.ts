@@ -37,6 +37,13 @@ const MODEL_MAPPING: Record<string, string> = {
   'claude-4-0-sonnet': 'chat-model-reasoning-anthropic',
   // 'databricks-claude-3-7-sonnet': 'chat-model-databricks-claude',
   'gemini-2-5-pro': 'chat-model-reasoning-google',
+  'gpt-4o': 'chat-model-openrouter-gpt-4o',
+  'gpt-4o-mini': 'chat-model-openrouter-gpt-4o-mini',
+  'deepseek-v3': 'chat-model-openrouter-deepseek-v3',
+  'llama-3-3-70b': 'chat-model-openrouter-llama-3-3-70b',
+  'mistral-large': 'chat-model-openrouter-mistral-large',
+  'grok-2': 'chat-model-openrouter-grok-2',
+  'qwen-2-5-72b': 'chat-model-openrouter-qwen-2-5-72b',
 } as const
 
 const DEFAULT_MODELS = {

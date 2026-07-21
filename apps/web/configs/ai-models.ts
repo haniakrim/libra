@@ -19,7 +19,7 @@
  */
 
 // AI model type definitions
-type AIModelProvider = 'anthropic' | 'openai' | 'google'
+type AIModelProvider = 'anthropic' | 'openai' | 'google' | 'openrouter'
 
 // Plan types for subscription requirements
 export const PLAN_TYPES = {
@@ -59,6 +59,58 @@ export const AI_MODELS: AIModel[] = [
     icon: '/google.svg',
     provider: 'google',
     requiredPlan: PLAN_TYPES.PRO,
+  },
+  // OpenRouter-backed models. All models below are routed through the
+  // OpenRouter API (OPENROUTER_API_KEY) rather than a first-party provider
+  // SDK, since this deployment has no Azure OpenAI or native xAI credentials.
+  {
+    id: 'gpt-4o',
+    name: 'GPT-4o',
+    icon: '/openai.svg',
+    provider: 'openrouter',
+    requiredPlan: PLAN_TYPES.PRO,
+  },
+  {
+    id: 'gpt-4o-mini',
+    name: 'GPT-4o Mini',
+    icon: '/openai.svg',
+    provider: 'openrouter',
+    requiredPlan: PLAN_TYPES.FREE,
+  },
+  {
+    id: 'deepseek-v3',
+    name: 'DeepSeek V3',
+    icon: '/openrouter.svg',
+    provider: 'openrouter',
+    requiredPlan: PLAN_TYPES.FREE,
+  },
+  {
+    id: 'llama-3-3-70b',
+    name: 'Llama 3.3 70B',
+    icon: '/openrouter.svg',
+    provider: 'openrouter',
+    requiredPlan: PLAN_TYPES.FREE,
+  },
+  {
+    id: 'mistral-large',
+    name: 'Mistral Large',
+    icon: '/openrouter.svg',
+    provider: 'openrouter',
+    requiredPlan: PLAN_TYPES.PRO,
+  },
+  {
+    id: 'grok-2',
+    name: 'Grok 2',
+    icon: '/openrouter.svg',
+    provider: 'openrouter',
+    requiredPlan: PLAN_TYPES.PRO,
+  },
+  {
+    id: 'qwen-2-5-72b',
+    name: 'Qwen 2.5 72B',
+    icon: '/openrouter.svg',
+    provider: 'openrouter',
+    requiredPlan: PLAN_TYPES.FREE,
   },
 ]
 
