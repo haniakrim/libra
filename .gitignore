@@ -60,3 +60,8 @@ node_modules/
 .serena/
 docs/.tmp/
 
+# claude / playwright session artifacts
+.claude/
+.claude-flow/
+apps/web/test-results/
+
