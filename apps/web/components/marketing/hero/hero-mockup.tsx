@@ -63,6 +63,10 @@ export const HeroMockup = memo(({ mockup = defaultMockup }: HeroMockupProps) => 
           {mockup}
         </Mockup>
       </MockupFrame>
+      <div
+        className='pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-[var(--background-landing)] via-[var(--background-landing)]/80 to-transparent'
+        aria-hidden='true'
+      />
       <Glow variant='top' className='animate-appear-zoom opacity-0 delay-1000 translate-z-0' />
     </div>
   )

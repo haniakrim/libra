@@ -42,8 +42,8 @@ export default function Hero({ title, description, mockup, badge, buttons, class
           <AppDescriptionForm
           />
 
-          {/* Buttons always visible, no conditional rendering */}
-          <HeroButtons buttons={buttons} />
+          {/* Community and GitHub buttons hidden for Tron hero */}
+          <HeroButtons buttons={false} />
 
           <HeroMockup mockup={mockup} />
         </div>

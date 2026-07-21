@@ -39,7 +39,7 @@ export const Logo = () => {
                 alt={m['logo.alt']()}
                 width={56}
                 height={42}
-                className='hidden dark:block object-contain transition-opacity duration-300'
+                className='hidden dark:block object-contain transition-opacity duration-300 text-[var(--brand)]'
                 priority
             />
         </div>
@@ -62,7 +62,7 @@ export const LogoLarge = () => {
                 alt={m['logo.alt']()}
                 width={112}
                 height={84}
-                className='hidden dark:block object-contain transition-opacity duration-300'
+                className='hidden dark:block object-contain transition-opacity duration-300 text-[var(--brand)]'
                 priority
             />
         </div>
@@ -84,7 +84,7 @@ export const LogoHero = () => {
                 alt={m['logo.alt']()}
                 width={72}
                 height={54}
-                className='hidden dark:block object-contain transition-opacity duration-300'
+                className='hidden dark:block object-contain transition-opacity duration-300 text-[var(--brand)]'
                 priority
             />
         </div>

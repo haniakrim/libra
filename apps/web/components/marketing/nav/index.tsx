@@ -96,7 +96,9 @@ export default function Navbar({
               <Link href={homeUrl}>
                 <div className='flex items-center gap-1 justify-center rounded-xl'>
                   <Logo />
-                  <TextGif text={name} weight='bold' />
+                  <span className='dark:[filter:hue-rotate(145deg)_saturate(1.8)_brightness(1.1)_drop-shadow(0_0_5px_oklch(85%_0.15_200_/_0.5))]'>
+                    <TextGif text={name} weight='bold' />
+                  </span>
                 </div>
               </Link>
             </div>
