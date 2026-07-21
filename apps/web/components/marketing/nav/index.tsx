@@ -28,7 +28,7 @@ import type { ReactNode } from 'react'
 import { Logo } from '@/components/common/logo/LogoImage'
 import { ModeToggle } from '@/components/common/mode-toggle'
 import { LanguageSwitcher } from '@/components/language-switcher'
-import { TextGif } from '@/components/ui/text-gif'
+import { ColourfulText } from '@/components/ui/colourful-text'
 import { siteConfig } from '@/configs/site'
 import * as m from '@/paraglide/messages'
 import Navigation from './navigation'
@@ -96,8 +96,8 @@ export default function Navbar({
               <Link href={homeUrl}>
                 <div className='flex items-center gap-1 justify-center rounded-xl'>
                   <Logo />
-                  <span className='[filter:hue-rotate(0deg)_saturate(1)_brightness(1)_drop-shadow(none)] dark:[filter:hue-rotate(145deg)_saturate(1.8)_brightness(1.1)_drop-shadow(0_0_5px_oklch(85%_0.15_200_/_0.5))]'>
-                    <TextGif text={name} weight='bold' />
+                  <span className='text-2xl font-bold font-sansTight sm:text-3xl lg:text-4xl'>
+                    <ColourfulText text={name} />
                   </span>
                 </div>
               </Link>

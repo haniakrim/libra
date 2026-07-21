@@ -31,8 +31,9 @@ import { useTheme } from 'next-themes'
 const ParticlesBackground = memo(() => {
     const { resolvedTheme } = useTheme()
     
-    // Dynamic particle color based on theme
-    const particleColor = resolvedTheme === 'dark' ? '#FDBA72FF' : '#3B82F6FF'
+    // Dynamic particle color based on theme — dark mode matches the Tron
+    // OS neon-cyan brand token (--primary: oklch(85% 0.15 200) = #00EAF4)
+    const particleColor = resolvedTheme === 'dark' ? '#00EAF4FF' : '#3B82F6FF'
     
     return (
         <div className='absolute inset-0 w-full h-full z-0 overflow-hidden'>
