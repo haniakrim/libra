@@ -2,6 +2,11 @@
 
 ## 2026-07-21
 
+### Hero visuals: AI-generated Tron mockup + headline flicker fix
+- Replaced `apps/web/public/app-dark.png`/`app-light.png` (stale product screenshot with off-theme orange accents) with new AI-generated (Pollinations) hero mockup art matching the Tron cyan theme, resized to the existing 1625x785 frame.
+- Fixed a recurring visual glitch: stray glyphs flickering to the left of the "Turn ideas into apps in minutes" headline every 5 seconds. Root cause: `ColourfulText`'s color-cycle re-keyed (and thus fully remounted) every letter span each cycle; since it's a child of the `h1` (which combines `text-wrap:balance`, `drop-shadow`, and `bg-clip-text`), the forced remount reflowed the whole headline and Chromium's repaint during that re-layout produced the artifact. Fixed by keeping a stable key and letting Framer Motion re-trigger the animation via changed `animate` target values instead of remounting.
+- Verified via Playwright screenshots against the live site across two consecutive 5s cycle boundaries — clean both times.
+
 ### Postgres credential rotation (security)
 - The generated `POSTGRES_PASSWORD` was accidentally echoed into an agent-session transcript via `tail`. Treated as compromised per standard practice even though the DB is internal-only (not published, VPS-network-scoped).
 - Rotated: new password generated entirely server-side (`openssl rand -hex 24` inside the SSH session — never appears in any local command text or output), `ALTER ROLE libra WITH PASSWORD ...` applied directly, `.env.production` (VPS + local + `apps/web`) rewritten to match, `web`/`postgres` containers recreated to pick up the new credential.
