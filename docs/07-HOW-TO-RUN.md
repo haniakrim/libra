@@ -108,3 +108,33 @@ For each service below, replace the `HITL_REQUIRED_*` value in `.env` with a rea
 ## Local development defaults
 
 For local development, copy `.env.example` to `.env` and use localhost URLs. The `.dev.vars` files inside individual apps provide worker-local overrides.
+
+### Local email-OTP login (no production secrets required)
+
+To test sign-in locally without Stripe, real Turnstile, or production DNS:
+
+1. Create `apps/web/.env.local` (gitignored) with:
+   ```bash
+   # Use Cloudflare Turnstile test keys so the captcha always passes locally
+   NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+   TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+   # Disable Stripe locally (the root .env contains a placeholder that throws on sign-in)
+   STRIPE_SECRET_KEY=
+   STRIPE_WEBHOOK_SECRET=
+
+   # Resend for OTP emails (provide a real key; from domain must be verified in Resend)
+   RESEND_API_KEY=re_...
+   RESEND_FROM=noreply@libra.agentic-lab.io
+
+   # Next.js dev environment
+   NODE_ENV=development
+   ```
+2. Make sure `apps/web/package.json` loads `.env.local` after the root `.env`:
+   ```json
+   "dev": "dotenv -e ../../.env -e .env.local -o -- next dev --turbo -p 3000"
+   ```
+3. Start the web app with `bun dev:web` (or `cd apps/web && bun dev`).
+4. Visit `http://localhost:3000/login`, enter an email, pass the invisible Turnstile test captcha, and click **Send me my link**.
+5. Retrieve the OTP from the Resend dashboard or API (`GET https://api.resend.com/emails?limit=1`), enter it, and click **Verify and sign in**.
+6. Confirm the browser lands on `/dashboard` and the user/org appears in the top nav.

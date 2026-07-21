@@ -25,9 +25,20 @@ Before any feature is "done":
 
 80% minimum per file. Enforced by Vitest `--coverage` and the tdd-guide agent.
 
-## Current state (Phase 2)
+## Auth flow verification checklist (completed 2026-07-21)
 
-- `bun typecheck` — 6/13 packages pass; 1 fail (`better-auth-cloudflare` — pre-existing type drift from better-auth version bump).
-- `bun build` — pre-existing failures in `better-auth-stripe` (DTS) and `apps/web` (ts-config path resolution — fixed via symlink in `node_modules/@libra/typescript-config`).
-- Dev server boots; `/` and `/login` return 200.
-- tRPC + better-auth routes return 404 due to a pre-existing Turbopack `@/paraglide/server` edge runtime resolution issue. Tracked separately.
+| Step | Route / action | Expected result | Status |
+|------|----------------|-----------------|--------|
+| 1 | `GET /login` | Page renders 200, Turnstile widget invisible | ✅ |
+| 2 | `POST /api/auth/email-otp/send-verification-otp` | 200 OK, captcha passes, OTP email sent | ✅ |
+| 3 | Resend API | Email delivered with 6-digit OTP to inbox | ✅ |
+| 4 | `POST /api/auth/sign-in/email-otp` | 200 OK, `set-auth-token` header returned | ✅ |
+| 5 | Browser redirect | Lands on `/dashboard`, user/org shown in nav | ✅ |
+
+## Current state
+
+- `bun typecheck` — 13/13 packages pass.
+- `bun build --filter libra-core --filter @libra/auth ...` — passes for auth, web, and touched packages.
+- Dev server boots; `/`, `/login`, and `/dashboard` return 200.
+- Email-OTP login verified end to end via Playwright on `http://localhost:3000`.
+- Pre-existing test failures remain in unrelated suites (`packages/auth` annual-quota-refresh module resolution, `apps/web` ai/generate assertions, React CJS resolution). These are not login blockers and are tracked separately.

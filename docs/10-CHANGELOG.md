@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-07-21
+
+### Login blocker resolved — email-OTP end to end
+- Wired Resend for `libra.agentic-lab.io`: `RESEND_API_KEY` and `RESEND_FROM` added to local env and env schema.
+- Fixed Cloudflare Turnstile local test keys (`1x00000000000000000000AA` / `1x0000000000000000000000000000000AA`) in `apps/web/.env.local` and `.dev.vars`.
+- Updated `apps/web/package.json` dev script to load `.env.local` after root `.env` so local overrides win.
+- Disabled Stripe plugin when `STRIPE_SECRET_KEY` is missing/placeholder in development (`packages/auth/utils/stripe-config.ts` + `apps/web/env.mjs`), unblocking sign-in 500.
+- Verified a real login on `http://localhost:3000`: email → OTP → `/dashboard` with user/org populated.
+- No production deploy or push performed. Commit `30f0970` (local-dev env guards) already contains the required changes.
+
 ## 2026-07-20
 
 ### Phase 1 — production env audit
