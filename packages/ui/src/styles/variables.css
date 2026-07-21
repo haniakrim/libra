@@ -192,4 +192,10 @@
       32px 32px;
     background-attachment: fixed;
   }
+
+  /* Landing page: let the Tron grid show through every section in dark mode */
+  .dark .landing-page,
+  .dark .landing-page section[data-slot="section"] {
+    background-color: transparent;
+  }
 }

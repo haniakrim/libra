@@ -18,6 +18,8 @@
  *
  */
 
+import { initAuth } from '@libra/auth/auth-server'
+import { headers } from 'next/headers'
 import Bento from '@/components/marketing/bento'
 import CTA from '@/components/marketing/cta'
 import FAQ from '@/components/marketing/faq'
@@ -26,8 +28,6 @@ import Footer from '@/components/marketing/footer'
 import Hero from '@/components/marketing/hero/index'
 import Navbar from '@/components/marketing/nav'
 import Pricing from '@/components/marketing/price'
-import { initAuth } from '@libra/auth/auth-server'
-import { headers } from 'next/headers'
 
 export default async function Home() {
   // Check authentication status on server side
@@ -45,7 +45,7 @@ export default async function Home() {
   }
 
   return (
-    <main className='min-h-screen w-full overflow-hidden bg-[var(--background-landing)] text-[var(--foreground-landing)] '>
+    <main className='landing-page min-h-screen w-full overflow-hidden bg-[var(--background-landing)] text-[var(--foreground-landing)] dark:bg-transparent'>
       <Navbar isAuthenticated={isAuthenticated} />
       <Hero />
 
