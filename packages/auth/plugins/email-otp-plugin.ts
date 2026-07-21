@@ -18,10 +18,10 @@
  *
  */
 
+import { writeFile } from 'node:fs/promises'
 import { resend } from '@libra/email'
 import { env as emailEnv } from '@libra/email/env.mjs'
-import { EmailVerificationTemplate, SignInTemplate } from '@libra/email/templates'
-import { emailSubjects } from '@libra/email/templates'
+import { EmailVerificationTemplate, emailSubjects, SignInTemplate } from '@libra/email/templates'
 import { emailOTP } from 'better-auth/plugins'
 import React from 'react'
 
@@ -49,15 +49,22 @@ export const emailOTPPlugin = emailOTP({
       template = React.createElement(EmailVerificationTemplate, { otp })
       subject = emailSubjects['email-verification']
     }
-    try {
-      await resend.emails.send({
-        from: emailEnv.RESEND_FROM,
-        to: [email],
-        subject,
-        react: template as any,
-      })
-    } catch (error) {
-      throw error
+
+    // E2E helper: when explicitly enabled, write the generated OTP to a temp file
+    // so a headless test can read it back and complete the real sign-in flow.
+    // This path is only active when E2E_CAPTURE_OTP is set and never runs in
+    // production because the variable is unset by default.
+    if (process.env.E2E_CAPTURE_OTP === 'true') {
+      await writeFile(
+        '/tmp/libra-e2e-otp.json',
+        JSON.stringify({ email, otp, type, createdAt: Date.now() })
+      )
     }
+    await resend.emails.send({
+      from: emailEnv.RESEND_FROM,
+      to: [email],
+      subject,
+      react: template as any,
+    })
   },
 })

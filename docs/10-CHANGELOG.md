@@ -2,6 +2,15 @@
 
 ## 2026-07-21
 
+### CI E2E workflow for apps/web
+- Added `.github/workflows/web-e2e.yml` to run the `apps/web` Playwright suite on every push/PR touching the web app or shared packages.
+- The workflow installs Chromium, compiles Paraglide, writes a headless-safe `.env` (with dummy fallbacks for optional third-party credentials), and runs `bun run test:e2e`.
+- Refactored `apps/web/e2e/login-email-otp.spec.ts` to support both the existing mocked send flow (default) and a real email-OTP path when `E2E_RESEND_API_KEY` + `E2E_CAPTURE_OTP=true` are configured.
+- Added an opt-in test-only OTP capture path in `packages/auth/plugins/email-otp-plugin.ts` that writes generated OTPs to `/tmp/libra-e2e-otp.json` only when `E2E_CAPTURE_OTP=true`, enabling the real-sign-in test to read the OTP back and assert a redirect to `/dashboard`.
+- Verified the mock-path E2E passes locally; the real-key test skips automatically when `E2E_RESEND_API_KEY` is unset.
+
+## 2026-07-21
+
 ### Full-page Tron grid on marketing landing page
 - Extended the existing `.dark body` Tron-style grid from the hero only to the entire landing page (hero, bento, features, pricing, FAQ, CTA, footer).
 - Added `landing-page` class and `dark:bg-transparent` to `apps/web/app/(frontend)/(marketing)/page.tsx` so the body grid layer remains visible.
