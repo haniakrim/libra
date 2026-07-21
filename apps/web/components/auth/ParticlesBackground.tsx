@@ -20,35 +20,35 @@
 
 'use client'
 
-import {SparklesCore} from '@/components/ui/sparkles'
-import {memo} from 'react'
 import { useTheme } from 'next-themes'
+import { memo } from 'react'
+import { SparklesCore } from '@/components/ui/sparkles'
 
 /**
  * A memoized particles background component
  * Uses 3D particle animation for visual effect
  */
 const ParticlesBackground = memo(() => {
-    const { resolvedTheme } = useTheme()
-    
-    // Dynamic particle color based on theme — dark mode matches the Tron
-    // OS neon-cyan brand token (--primary: oklch(85% 0.15 200) = #00EAF4)
-    const particleColor = resolvedTheme === 'dark' ? '#00EAF4FF' : '#3B82F6FF'
-    
-    return (
-        <div className='absolute inset-0 w-full h-full z-0 overflow-hidden'>
-            <SparklesCore
-                background="transparent"
-                minSize={0.8}
-                maxSize={2.0}
-                particleDensity={100}
-                className="w-full h-full"
-                particleColor={particleColor}
-            />
-        </div>
-    )
+  const { resolvedTheme } = useTheme()
+
+  // Dynamic particle color based on theme — dark mode matches the Tron
+  // OS neon-cyan brand token (--primary: oklch(85% 0.15 200) = #00EAF4)
+  const particleColor = resolvedTheme === 'dark' ? '#00EAF4FF' : '#3B82F6FF'
+
+  return (
+    <div className='absolute inset-0 w-full h-full z-0 overflow-hidden'>
+      <SparklesCore
+        background='transparent'
+        minSize={0.8}
+        maxSize={2.0}
+        particleDensity={100}
+        className='w-full h-full'
+        particleColor={particleColor}
+      />
+    </div>
+  )
 })
 
 ParticlesBackground.displayName = 'ParticlesBackground'
 
-export default ParticlesBackground 
+export default ParticlesBackground
