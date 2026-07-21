@@ -97,6 +97,6 @@
     "@tanstack/react-query-devtools": "^5.90.2",
     "@types/diff": "^8.0.0",
     "@types/file-saver": "^2.0.7",
-    "wrangler": "4.27.0"
+    "wrangler": "^4.112.0"
   }
 }

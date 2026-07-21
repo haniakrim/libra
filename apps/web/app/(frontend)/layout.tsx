@@ -18,9 +18,9 @@
  *
  */
 
-import {headers} from 'next/headers'
+import { headers } from 'next/headers'
 import type React from 'react'
-import {cache, Suspense} from 'react'
+import { cache, Suspense } from 'react'
 import {
   assertIsLocale,
   baseLocale,
@@ -31,16 +31,15 @@ import {
 } from '../../paraglide/runtime'
 import './fonts'
 import '@libra/ui/globals.css'
+import { Toaster } from '@libra/ui/components/sonner'
+import type { Metadata } from 'next/types'
+import { ThemeProvider } from 'next-themes'
 import ClientProviders from '@/components/client-providers'
-import {GeneralAnalyticsCollector} from '@/components/general-analytics-collector'
-import {GoogleAnalytics} from '@/components/google-analytics'
-import {TRPCReactProvider} from '@/trpc/client'
-import {Toaster} from '@libra/ui/components/sonner'
-import {ThemeProvider} from 'next-themes'
-import Head from 'next/head'
-import type {Metadata} from 'next/types'
-import {Body} from './layout.client'
-import {siteConfig} from '@/configs/site'
+import { GeneralAnalyticsCollector } from '@/components/general-analytics-collector'
+import { GoogleAnalytics } from '@/components/google-analytics'
+import { siteConfig } from '@/configs/site'
+import { TRPCReactProvider } from '@/trpc/client'
+import { Body } from './layout.client'
 
 const ssrLocale = cache(() => ({ locale: baseLocale, origin: 'http://localhost' }))
 
@@ -58,39 +57,39 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
-  metadataBase: new URL(siteConfig.getStartedUrl),
+  metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   keywords: [
-    "AI development platform",
-    "no-code development",
-    "low-code platform",
-    "AI code generation",
-    "natural language programming",
-    "full-stack development",
-    "web application builder",
-    "AI-powered coding",
-    "cloud IDE",
-    "real-time collaboration",
-    "Next.js",
-    "React",
-    "TypeScript",
-    "serverless deployment",
-    "Cloudflare Workers",
-    "SaaS platform",
-    "developer tools",
-    "code editor",
-    "project management",
-    "team collaboration",
-    "AI assistant",
-    "automated deployment",
-    "modern web development",
-    "enterprise development",
-    "subscription management",
+    'AI development platform',
+    'no-code development',
+    'low-code platform',
+    'AI code generation',
+    'natural language programming',
+    'full-stack development',
+    'web application builder',
+    'AI-powered coding',
+    'cloud IDE',
+    'real-time collaboration',
+    'Next.js',
+    'React',
+    'TypeScript',
+    'serverless deployment',
+    'Cloudflare Workers',
+    'SaaS platform',
+    'developer tools',
+    'code editor',
+    'project management',
+    'team collaboration',
+    'AI assistant',
+    'automated deployment',
+    'modern web development',
+    'enterprise development',
+    'subscription management',
   ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.getStartedUrl,
+    type: 'website',
+    locale: 'en_US',
+    url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
@@ -102,22 +101,18 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@nextify2024",
+    creator: '@nextify2024',
   },
   icons: {
-    icon: "/favicon.ico"
+    icon: '/favicon.ico',
   },
-};
+}
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headersList = await headers()
   const localeFromHeader = headersList.get('x-paraglide-locale') as Locale
   const requestUrl = headersList.get('x-paraglide-request-url') || 'http://localhost'
@@ -138,9 +133,18 @@ export default async function RootLayout({
   const locale = getLocale()
   return (
     <html lang={locale} suppressHydrationWarning>
-      <Head>
+      <head>
+        {/* next-themes 0.4.6 injects a minified inline script that references an
+            undefined helper `e` in production builds. Keep this as the very first
+            inline script so the helper is defined before any theme script runs. */}
+        <script
+          id='e-polyfill'
+          dangerouslySetInnerHTML={{
+            __html: "if (typeof e === 'undefined') { var e = function () {} }",
+          }}
+        />
         <GoogleAnalytics />
-      </Head>
+      </head>
       <Body>
         <ClientProviders>
           <ThemeProvider

@@ -1,0 +1,12 @@
+- generic [active] [ref=f215e1]:
+  - main [ref=f215e2]:
+    - navigation [ref=f215e6]
+    - generic [ref=f215e32]
+    - generic [ref=f215e73]
+    - generic [ref=f215e295]
+    - generic [ref=f215e307]
+    - generic [ref=f215e321]
+    - generic [ref=f215e361]
+    - generic [ref=f215e370]
+  - region "Notifications alt+T"
+  - alert [ref=f215e476]

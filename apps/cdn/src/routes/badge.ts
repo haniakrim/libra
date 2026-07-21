@@ -159,7 +159,7 @@ const badgeScript = `
     
     // Badge HTML structure
     const badgeHtml = \`
-      <a href="https://libra.dev" target="_blank" rel="noopener noreferrer" class="badge-container" title="Made with Libra">
+      <a href="https://libra.agentic-lab.io" target="_blank" rel="noopener noreferrer" class="badge-container" title="Made with Libra">
         \${libraLogo}
         <span class="badge-text">Made with Libra</span>
       </a>

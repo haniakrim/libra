@@ -20,8 +20,8 @@ export default defineConfig(({ mode }) => {
     //   return `http://${env.VITE_INSPECTOR_HOST || 'localhost'}:${env.VITE_INSPECTOR_PORT || '3004'}`;
     // }
 
-    // Default to cdn.libra.dev for production and other environments
-    return 'https://cdn.libra.dev';
+    // Default to cdn.libra.agentic-lab.io for production and other environments
+    return 'https://cdn.libra.agentic-lab.io';
   };
 
   return {

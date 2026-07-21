@@ -28,6 +28,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ["/*/dashboard", "/*/dashboard/*", "/*/project/*" ,"/*/project/*"],
         },
-        sitemap: 'https://libra.dev/sitemap.xml',
+        sitemap: 'https://libra.agentic-lab.io/sitemap.xml',
     }
 }

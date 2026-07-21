@@ -42,7 +42,7 @@ export function createCorsMiddleware() {
           
           // Check for subdomain match in production
           if (config.ENVIRONMENT === 'production') {
-            // Allow any subdomain of libra.dev
+            // Allow any subdomain of libra.agentic-lab.io
             if (requestOrigin.match(/^https:\/\/[a-zA-Z0-9-]+\.libra\.dev$/)) {
               return requestOrigin
             }
@@ -66,7 +66,7 @@ export function createCorsMiddleware() {
       console.error('CORS middleware error:', error)
       
       return cors({
-        origin: 'https://libra.dev',
+        origin: 'https://libra.agentic-lab.io',
         allowMethods: ['GET', 'POST'],
         allowHeaders: ['Content-Type'],
         credentials: false,

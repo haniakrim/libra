@@ -54,8 +54,8 @@ export const corsConfig = {
 
         // Production origins
         origins.push(
-            'https://libra.dev',
-            'https://cdn.libra.dev',
+            'https://libra.agentic-lab.io',
+            'https://cdn.libra.agentic-lab.io',
             "https://libra.sh"
         )
 
@@ -159,7 +159,7 @@ export function isDevelopment(env: EnvConfig): boolean {
  */
 export function getApiBaseUrl(env: EnvConfig): string {
     if (isProduction(env)) {
-        return 'https://cdn.libra.dev'
+        return 'https://cdn.libra.agentic-lab.io'
     }
     return 'http://localhost:8787'
 }

@@ -94,4 +94,4 @@ const AutosizeInput = React.forwardRef<
 })
 AutosizeInput.displayName = 'AutosizeInput'
 
-export { Input, DebouncedInput, AutosizeInput }
+export { AutosizeInput, DebouncedInput, Input }

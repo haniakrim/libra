@@ -86,4 +86,4 @@ function TileLink({ className, ...props }: React.ComponentProps<'a'>) {
   )
 }
 
-export { Tile, TileVisual, TileTitle, TileDescription, TileContent, TileLink }
+export { Tile, TileContent, TileDescription, TileLink, TileTitle, TileVisual }

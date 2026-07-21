@@ -18,8 +18,6 @@
  *
  */
 
-import { TextGif } from '@/components/ui/text-gif'
-import { siteConfig } from '@/configs/site'
 import { Button, type ButtonProps } from '@libra/ui/components/button'
 import { Navbar as NavbarComponent, NavbarLeft, NavbarRight } from '@libra/ui/components/navbar'
 import { Sheet, SheetContent, SheetTrigger } from '@libra/ui/components/sheet'
@@ -27,10 +25,13 @@ import { cn } from '@libra/ui/lib/utils'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import Navigation from './navigation'
-import {Logo} from "@/components/common/logo/LogoImage"
+import { Logo } from '@/components/common/logo/LogoImage'
+import { ModeToggle } from '@/components/common/mode-toggle'
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { TextGif } from '@/components/ui/text-gif'
+import { siteConfig } from '@/configs/site'
 import * as m from '@/paraglide/messages'
+import Navigation from './navigation'
 
 interface NavbarLink {
   text: string
@@ -62,9 +63,9 @@ export default function Navbar({
   name = 'Libra',
   homeUrl = siteConfig.url,
   mobileLinks = [
-    { text: m["nav.documentation"](), href: siteConfig.url },
-    { text: m["nav.templates"](), href: siteConfig.url },
-    { text: m["nav.playground"](), href: siteConfig.url },
+    { text: m['nav.documentation'](), href: siteConfig.links.docs },
+    { text: m['nav.templates'](), href: siteConfig.links.github },
+    { text: m['nav.playground'](), href: '/contact' },
   ],
   actions,
   showNavigation = true,
@@ -76,15 +77,13 @@ export default function Navbar({
   const defaultActions: NavbarActionProps[] = isAuthenticated
     ? [
         {
-          text: m["nav.dashboard"](),
-          href: "/dashboard",
+          text: m['nav.dashboard'](),
+          href: '/dashboard',
           isButton: true,
           variant: 'default' as const,
         },
       ]
-    : [
-        { text: m["nav.login"](), href: "/login", isButton: false },
-      ]
+    : [{ text: m['nav.login'](), href: '/login', isButton: false }]
 
   const finalActions = actions || defaultActions
   return (
@@ -97,10 +96,7 @@ export default function Navbar({
               <Link href={homeUrl}>
                 <div className='flex items-center gap-1 justify-center rounded-xl'>
                   <Logo />
-                  <TextGif
-                    text={name}
-                    weight="bold"
-                  />
+                  <TextGif text={name} weight='bold' />
                 </div>
               </Link>
             </div>
@@ -122,12 +118,13 @@ export default function Navbar({
                 </Link>
               )
             )}
+            <ModeToggle />
             <LanguageSwitcher />
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant='ghost' size='icon' className='shrink-0 md:hidden'>
                   <Menu className='size-5' />
-                  <span className='sr-only'>{m["nav.toggleNavigation"]()}</span>
+                  <span className='sr-only'>{m['nav.toggleNavigation']()}</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side='right'>
@@ -153,8 +150,9 @@ export default function Navbar({
                       {action.text}
                     </Link>
                   ))}
-                  <div className='pt-4 border-t border-border'>
+                  <div className='pt-4 border-t border-border flex items-center gap-2'>
                     <LanguageSwitcher />
+                    <ModeToggle />
                   </div>
                 </nav>
               </SheetContent>

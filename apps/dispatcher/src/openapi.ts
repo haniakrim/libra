@@ -90,8 +90,8 @@ openApiApp.doc('/openapi.json', {
     description: 'API for dispatching requests to Cloudflare Workers using subdomain routing',
     contact: {
       name: 'Libra Team',
-      url: 'https://libra.dev',
-      email: 'support@libra.dev',
+      url: 'https://libra.agentic-lab.io',
+      email: 'support@libra.agentic-lab.io',
     },
     license: {
       name: 'AGPL-3.0',
@@ -100,7 +100,7 @@ openApiApp.doc('/openapi.json', {
   },
   servers: [
     {
-      url: 'https://dispatcher.libra.dev',
+      url: 'https://dispatcher.libra.agentic-lab.io',
       description: 'Production server',
     },
     {

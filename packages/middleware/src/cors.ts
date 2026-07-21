@@ -66,20 +66,20 @@ function getEnvironmentOrigins(environment: string): string[] {
   
   // Production: Allow specific Libra domains
   return [
-    'https://libra.dev',
-    'https://www.libra.dev',
-    'https://app.libra.dev',
-    'https://cdn.libra.dev',
-    'https://docs.libra.dev',
-    'https://auth.libra.dev',
-    'https://api.libra.dev',
-    'https://dispatcher.libra.dev',
-    'https://builder.libra.dev',
-    'https://email.libra.dev',
-    'https://web.libra.dev',
-    'https://deploy.libra.dev',
-    'https://auth-studio.libra.dev',
-    'https://vite-shadcn-template.libra.dev',
+    'https://libra.agentic-lab.io',
+    'https://www.libra.agentic-lab.io',
+    'https://app.libra.agentic-lab.io',
+    'https://cdn.libra.agentic-lab.io',
+    'https://docs.libra.agentic-lab.io',
+    'https://auth.libra.agentic-lab.io',
+    'https://api.libra.agentic-lab.io',
+    'https://dispatcher.libra.agentic-lab.io',
+    'https://builder.libra.agentic-lab.io',
+    'https://email.libra.agentic-lab.io',
+    'https://web.libra.agentic-lab.io',
+    'https://deploy.libra.agentic-lab.io',
+    'https://auth-studio.libra.agentic-lab.io',
+    'https://vite-shadcn-template.libra.agentic-lab.io',
   ]
 }
 
@@ -124,7 +124,7 @@ export function createCorsMiddleware(
         }
       }
 
-      // Production: Allow subdomains of libra.dev and libra.sh
+      // Production: Allow subdomains of libra.agentic-lab.io and libra.sh
       if (!isDevelopment) {
         if (requestOrigin.match(/^https:\/\/[a-zA-Z0-9-]+\.libra\.dev$/)) {
           return requestOrigin

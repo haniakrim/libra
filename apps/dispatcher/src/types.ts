@@ -24,7 +24,10 @@ import type { CustomDomainProject } from '@libra/db'
 
 export interface DispatchNamespace {
   get(name: string): {
-    fetch(input: URL | RequestInfo, init?: RequestInit<CfProperties<unknown>> | undefined): Promise<Response>
+    fetch(
+      input: URL | RequestInfo,
+      init?: RequestInit<CfProperties<unknown>> | undefined
+    ): Promise<Response>
     connect(address: string | SocketAddress, options?: SocketOptions | undefined): Socket
   }
 }
@@ -37,6 +40,9 @@ export interface CloudflareBindings {
   DISPATCH_NAMESPACE_NAME: string
   DISPATCH_NAMESPACE_ACCOUNT_ID: string
   POSTGRES_URL: string
+
+  // Trigger.dev (optional)
+  TRIGGER_SECRET_KEY?: string
 }
 
 export interface ContextVariables {
@@ -93,10 +99,12 @@ export interface HealthCheckResult {
   version: string
   requestId: string
   checks?: {
-    [key: string]: boolean | {
-      status: boolean
-      message: string
-    }
+    [key: string]:
+      | boolean
+      | {
+          status: boolean
+          message: string
+        }
   }
   error?: string
 }
@@ -129,7 +137,7 @@ export enum DispatchErrorCode {
   INSUFFICIENT_PERMISSIONS = 'INSUFFICIENT_PERMISSIONS',
   REQUEST_TOO_LARGE = 'REQUEST_TOO_LARGE',
   INVALID_REQUEST_FORMAT = 'INVALID_REQUEST_FORMAT',
-  INTERNAL_ERROR = 'INTERNAL_ERROR'
+  INTERNAL_ERROR = 'INTERNAL_ERROR',
 }
 
 // HTTP status codes
@@ -144,7 +152,7 @@ export enum HttpStatusCode {
   METHOD_NOT_ALLOWED = 405,
   REQUEST_TOO_LARGE = 413,
   INTERNAL_SERVER_ERROR = 500,
-  SERVICE_UNAVAILABLE = 503
+  SERVICE_UNAVAILABLE = 503,
 }
 
 // Middleware types

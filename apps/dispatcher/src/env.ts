@@ -18,8 +18,8 @@
  *
  */
 
-import { z } from 'zod/v4'
 import { tryCatch } from '@libra/common'
+import { z } from 'zod/v4'
 
 // Simplified environment validation for dispatcher
 // Only validates essential variables needed for dispatcher functionality
@@ -27,18 +27,21 @@ export const dispatcherEnvSchema = z.object({
   // GitHub OAuth (required for auth)
   BETTER_GITHUB_CLIENT_ID: z.string().min(1),
   BETTER_GITHUB_CLIENT_SECRET: z.string().min(1),
-  
+
   // Cloudflare settings (required for dispatcher operations)
   CLOUDFLARE_ACCOUNT_ID: z.string().min(1),
   DATABASE_ID: z.string().min(1),
   CLOUDFLARE_API_TOKEN: z.string().min(1),
-  
+
   // Security (required for auth)
   TURNSTILE_SECRET_KEY: z.string().min(1),
-  
+
   // Optional variables
   STRIPE_SECRET_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
+
+  // Trigger.dev (optional; build/deploy route returns 503 when missing)
+  TRIGGER_SECRET_KEY: z.string().optional(),
 })
 
 export type DispatcherEnv = z.infer<typeof dispatcherEnvSchema>
@@ -68,7 +71,8 @@ export function getDispatcherEnv(c: any): DispatcherEnv {
     TURNSTILE_SECRET_KEY: c.env.TURNSTILE_SECRET_KEY,
     STRIPE_SECRET_KEY: c.env.STRIPE_SECRET_KEY,
     STRIPE_WEBHOOK_SECRET: c.env.STRIPE_WEBHOOK_SECRET,
+    TRIGGER_SECRET_KEY: c.env.TRIGGER_SECRET_KEY,
   }
-  
+
   return validateDispatcherEnv(env)
 }

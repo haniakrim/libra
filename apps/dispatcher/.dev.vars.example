@@ -17,6 +17,9 @@ TURNSTILE_SECRET_KEY=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 
+# Trigger.dev (optional)
+TRIGGER_SECRET_KEY=
+
 # Email (optional for dispatcher)
 RESEND_FROM=
 RESEND_API_KEY=

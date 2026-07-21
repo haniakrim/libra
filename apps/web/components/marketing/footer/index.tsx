@@ -55,8 +55,12 @@ export default function FooterSection({
       id: 'product',
       title: m['footer.product'](),
       links: [
-        { id: 'changelog', text: m['footer.changelog'](), href: siteConfig.url },
-        { id: 'documentation', text: m['footer.documentation'](), href: siteConfig.url },
+        {
+          id: 'changelog',
+          text: m['footer.changelog'](),
+          href: `${siteConfig.links.github}/releases`,
+        },
+        { id: 'documentation', text: m['footer.documentation'](), href: siteConfig.links.docs },
       ],
     },
     {
@@ -97,7 +101,11 @@ export default function FooterSection({
                     key={link.id}
                     href={link.href}
                     className='text-muted-foreground text-sm'
-                    data-attr={link.id === 'github' || link.href?.includes('github.com') ? 'github' : undefined}
+                    data-attr={
+                      link.id === 'github' || link.href?.includes('github.com')
+                        ? 'github'
+                        : undefined
+                    }
                   >
                     {link.text}
                   </a>

@@ -515,7 +515,7 @@ export function validateDomainFormat(domain: string): {
   const reservedDomains = [
     'localhost',
     'libra.sh',
-    'libra.dev',
+    'libra.agentic-lab.io',
     'workers.dev',
   ]
 

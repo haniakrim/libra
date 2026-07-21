@@ -68,7 +68,7 @@ const azure = createAzure(azureConfig)
 const openrouterConfig = {
   apiKey: env.OPENROUTER_API_KEY || '',
   headers: {
-    'HTTP-Referer': 'https://libra.dev',
+    'HTTP-Referer': 'https://libra.agentic-lab.io',
     'X-Title': 'Libra AI',
   },
 }

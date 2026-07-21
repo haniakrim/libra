@@ -123,7 +123,7 @@ export const CancellationEmailTemplate: React.FC = () => {
         >
           Changed your mind? {" "}
           <Link
-            href="https://libra.dev/#price"
+            href="https://libra.agentic-lab.io/#price"
             style={{
               color: '#e9680c', // Your brand color
               textDecoration: 'none',

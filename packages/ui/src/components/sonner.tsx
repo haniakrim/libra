@@ -107,5 +107,5 @@ const Toaster = ({
 // Simply export the original toast function, ensuring enhanced styles are used
 const toast = sonnerToast
 
-export { Toaster, toast }
 export type { ToastProps }
+export { Toaster, toast }

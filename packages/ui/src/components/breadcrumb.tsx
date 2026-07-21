@@ -77,10 +77,8 @@ const BreadcrumbPage = React.forwardRef<HTMLSpanElement, React.ComponentPropsWit
   ({ className, ...props }, ref) => (
     <span
       ref={ref}
-      role='link'
       aria-disabled='true'
       aria-current='page'
-      tabIndex={0}
       className={cn(
         'text-foreground bg-fg-50 rounded border border-fg-200 px-2 py-1 font-mono font-normal',
         className
@@ -118,10 +116,10 @@ BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis'
 
 export {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
 }

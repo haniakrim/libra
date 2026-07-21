@@ -288,7 +288,7 @@ export function createApiKeyAuthMiddleware(
     // Set a service session
     c.set('userSession', {
       userId: 'service',
-      email: 'service@libra.dev',
+      email: 'service@libra.agentic-lab.io',
     })
 
     await next()

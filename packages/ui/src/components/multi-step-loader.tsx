@@ -78,7 +78,6 @@ const LoaderCore = ({
 
         return (
           <motion.div
-            // biome-ignore lint/suspicious/noArrayIndexKey: Loading states are static
             key={`loading-state-${index}`}
             className={cn('text-left flex gap-2 mb-4')}
             initial={{ opacity: 0, y: -(value * 40) }}

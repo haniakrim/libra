@@ -19,7 +19,7 @@
   },
   "routes": [
     {
-      "pattern": "libra.dev",
+      "pattern": "libra.agentic-lab.io",
       "custom_domain": true
     }
   ],
@@ -40,20 +40,20 @@
    * https://developers.cloudflare.com/workers/configuration/secrets/
    */
   "vars": {
-    "NEXT_PUBLIC_APP_URL": "https://libra.dev",
-    "NEXT_PUBLIC_CDN_URL": "https://cdn.libra.dev",
-    "NEXT_PUBLIC_DEPLOY_URL": "https://deploy.libra.dev",
-    "NEXT_PUBLIC_DISPATCHER_URL": "https://dispatcher.libra.dev",
-    "NEXT_PUBLIC_DOCS_URL": "https://docs.libra.dev",
-    "NEXT_PUBLIC_SCREENSHOT_URL": "https://screenshot.libra.dev",
+    "NEXT_PUBLIC_APP_URL": "https://libra.agentic-lab.io",
+    "NEXT_PUBLIC_CDN_URL": "https://cdn.libra.agentic-lab.io",
+    "NEXT_PUBLIC_DEPLOY_URL": "https://deploy.libra.agentic-lab.io",
+    "NEXT_PUBLIC_DISPATCHER_URL": "https://dispatcher.libra.agentic-lab.io",
+    "NEXT_PUBLIC_DOCS_URL": "https://docs.libra.agentic-lab.io",
+    "NEXT_PUBLIC_SCREENSHOT_URL": "https://screenshot.libra.agentic-lab.io",
     "NEXT_PUBLIC_SCAN": "0",
-    "NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAABgQW7OpphMdlFWn",
+    "NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAD6D6jF5kC16RCQQ",
     "NEXT_PUBLIC_SANDBOX_DEFAULT_PROVIDER": "e2b",
     "NEXT_PUBLIC_SANDBOX_BUILDER_DEFAULT_PROVIDER": "e2b",
-    "NEXT_PUBLIC_POSTHOG_KEY": "phc_wBRTFUWUwNBj8GduilPefxNZAFBMU7j091feuG58n6h",
+    "NEXT_PUBLIC_POSTHOG_KEY": "",
     "NEXT_PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com",
-    "NEXT_PUBLIC_CLOUDFLARE_DCV_VERIFICATION_ID": "847d63bd5e1880b5",
-    "NEXT_PUBLIC_CUSTOMERS_IP_ADDRESS": "104.17.243.236"
+    "NEXT_PUBLIC_CLOUDFLARE_DCV_VERIFICATION_ID": "HITL_REQUIRED_dcv_id",
+    "NEXT_PUBLIC_CUSTOMERS_IP_ADDRESS": ""
   },
   /**
    * Bindings
@@ -71,7 +71,8 @@
     {
       "binding": "DATABASE",
       "database_name": "libra-auth",
-      "database_id": "65130247-5f4b-40f7-bbda-d7a1c8516609"
+      "database_id": "65130247-5f4b-40f7-bbda-d7a1c8516609",
+      "migrations_dir": "../../packages/auth/db/migrations"
     }
   ],
   // docker run --name libra -e POSTGRES_PASSWORD=postgres -d postgres

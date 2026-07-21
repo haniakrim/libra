@@ -165,7 +165,7 @@ const getNavMainItems = (userRole?: string) => {
 const getNavSecondaryItems = () => [
   {
     title: m['dashboard.sidebar.navigation.docs'](),
-    url: 'https://docs.libra.dev',
+    url: 'https://docs.libra.agentic-lab.io',
     icon: FileIcon,
   },
   {
@@ -175,12 +175,12 @@ const getNavSecondaryItems = () => [
   },
   {
     title: m['dashboard.sidebar.navigation.support'](),
-    url: 'https://forum.libra.dev',
+    url: 'https://forum.libra.agentic-lab.io',
     icon: MdForum,
   },
   {
     title: m['dashboard.sidebar.navigation.help'](),
-    url: 'https://forum.libra.dev/c/9-category/9',
+    url: 'https://forum.libra.agentic-lab.io/c/9-category/9',
     icon: HelpCircleIcon,
   },
 ]

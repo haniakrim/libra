@@ -27,8 +27,8 @@ function replaceConfigPlaceholders(templatePath: string, outputPath: string): vo
     ENVIRONMENT: 'production',
 
     // Application URLs
-    NEXT_PUBLIC_APP_URL: 'https://libra.dev',
-    NEXT_PUBLIC_CDN_URL: 'https://cdn.libra.dev',
+    NEXT_PUBLIC_APP_URL: 'https://libra.agentic-lab.io',
+    NEXT_PUBLIC_CDN_URL: 'https://cdn.libra.agentic-lab.io',
 
     // Cloudflare
     CLOUDFLARE_AIGATEWAY_NAME: 'azure-ai',

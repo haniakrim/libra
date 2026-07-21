@@ -54,7 +54,7 @@ const nextConfig = {
         },
         {
             protocol: 'https',
-            hostname: 'cdn.libra.dev',
+            hostname: 'cdn.libra.agentic-lab.io',
             pathname: '/image/**',
         }
       ],
@@ -67,7 +67,7 @@ const nextConfig = {
                 strategy: ["cookie", "baseLocale"],
                 experimentalMiddlewareLocaleSplitting: false,
                 // Set cookie domain for subdomain sharing in staging/production
-                cookieDomain: process.env.NODE_ENV === 'production' ? '.libra.dev' : 'localhost'
+                cookieDomain: process.env.NODE_ENV === 'production' ? '.libra.agentic-lab.io' : 'localhost'
             })
     		);
     		return config;

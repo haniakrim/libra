@@ -20,6 +20,10 @@
 
 'use client'
 
+import { ModeToggle } from '@/components/common/mode-toggle'
+import { siteConfig } from '@/configs/site'
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 import { useId } from 'react'
 import * as m from '@/paraglide/messages'
 
@@ -151,9 +155,27 @@ const SubSection = ({ title, children }: SubSectionProps) => (
   </div>
 )
 
+function LegalHeader() {
+  return (
+    <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md'>
+      <div className='max-w-6xl mx-auto px-4 h-14 flex items-center justify-between'>
+        <Link
+          href='/'
+          className='flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+        >
+          <ArrowLeft className='h-4 w-4' />
+          Back to home
+        </Link>
+        <ModeToggle />
+      </div>
+    </header>
+  )
+}
+
 export default function TermsPage() {
   return (
     <div className='min-h-screen bg-background'>
+      <LegalHeader />
       <div className='max-w-6xl mx-auto px-4 py-12 md:py-24'>
         {/* Header */}
         <div className='text-center mb-12'>
@@ -174,11 +196,7 @@ export default function TermsPage() {
               {m["terms.agreement.description"]()}
             </p>
             <p>
-              {m["terms.agreement.serviceDescription"]({ websiteUrl: (
-                <a href='https://libra.dev' className='text-primary hover:text-primary/80 transition-colors font-medium'>
-                  https://libra.dev
-                </a>
-              )})}
+              {m["terms.agreement.serviceDescription"]({ websiteUrl: siteConfig.url })}
             </p>
             <div className='glass-3 rounded-lg p-4 mt-4'>
               <p className='font-semibold text-foreground'>
@@ -581,10 +599,10 @@ export default function TermsPage() {
               <p className='font-bold text-foreground'>{m["terms.contact.companyName"]()}</p>
               <p className='mt-2'>
                 <a
-                  href='mailto:contact@libra.dev'
+                  href='mailto:contact@libra.agentic-lab.io'
                   className='text-primary hover:text-primary/80 transition-colors font-medium'
                 >
-                  contact@libra.dev
+                  contact@libra.agentic-lab.io
                 </a>
               </p>
             </address>

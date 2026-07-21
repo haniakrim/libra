@@ -12,7 +12,7 @@
   },
   "routes": [
     {
-      "pattern": "docs.libra.dev",
+      "pattern": "docs.libra.agentic-lab.io",
       "custom_domain": true
     }
   ],

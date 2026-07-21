@@ -21,8 +21,13 @@
 'use client'
 
 import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile'
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { env } from '../../../env.mjs'
+
+// Cloudflare Turnstile test key that always passes verification.
+// Used automatically on localhost/127.0.0.1 so local previews are not blocked
+// by domain-restricted production keys.
+const LOCALHOST_TEST_SITE_KEY = '1x00000000000000000000AA'
 
 interface TurnstileWidgetComponentProps {
   onSuccess: (token: string) => void
@@ -61,6 +66,16 @@ const TurnstileWidget = React.forwardRef<TurnstileWidgetRef, TurnstileWidgetComp
     const [isLoading, setIsLoading] = useState(true)
     const [isVerified, setIsVerified] = useState(false)
     const [hasError, setHasError] = useState(false)
+    const [useLocalTestKey, setUseLocalTestKey] = useState(false)
+
+    useEffect(() => {
+      if (
+        typeof window !== 'undefined' &&
+        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ) {
+        setUseLocalTestKey(true)
+      }
+    }, [])
 
     const handleSuccess = useCallback(
       (token: string) => {
@@ -174,7 +189,7 @@ const TurnstileWidget = React.forwardRef<TurnstileWidgetRef, TurnstileWidgetComp
         >
           <Turnstile
             ref={turnstileRef}
-            siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+            siteKey={useLocalTestKey ? LOCALHOST_TEST_SITE_KEY : env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
             onSuccess={handleSuccess}
             onError={handleError}
             onExpire={handleExpire}

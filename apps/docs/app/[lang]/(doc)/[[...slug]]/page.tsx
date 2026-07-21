@@ -153,10 +153,10 @@ export async function generateMetadata(props: {
             title,
             description,
             siteName: "Libra Docs",
-            url: `https://docs.libra.dev/${lang}/${page.slugs.join("/")}`,
+            url: `https://docs.libra.agentic-lab.io/${lang}/${page.slugs.join("/")}`,
             images: [
                 {
-                    url: `/og.png?title=${encodeURIComponent(rootTitle)}&description=${encodeURIComponent(description ?? "")}&path=${encodeURIComponent(`${["libra.dev", ...page.slugs].join("/")}`)}`,
+                    url: `/og.png?title=${encodeURIComponent(rootTitle)}&description=${encodeURIComponent(description ?? "")}&path=${encodeURIComponent(`${["libra.agentic-lab.io", ...page.slugs].join("/")}`)}`,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -168,7 +168,7 @@ export async function generateMetadata(props: {
             title,
             description,
             creator: "@nextify2024",
-            site: "https://libra.dev",
+            site: "https://libra.agentic-lab.io",
         },
         keywords: ["libra", "open source", "ai", "web coding", "vibe coding"],
     };

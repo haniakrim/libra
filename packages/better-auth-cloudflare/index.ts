@@ -114,7 +114,9 @@ export const createKVStorage = (kv: KVNamespace<string>): SecondaryStorage => {
             return kv.get(key);
         },
         set: async (key: string, value: string, ttl?: number) => {
-            return kv.put(key, value, ttl ? { expirationTtl: ttl } : undefined);
+            // KV requires expirationTtl >= 60 seconds (both local miniflare and production)
+            const safeTtl = ttl ? Math.max(ttl, 60) : undefined;
+            return kv.put(key, value, safeTtl ? { expirationTtl: safeTtl } : undefined);
         },
         delete: async (key: string) => {
             return kv.delete(key);

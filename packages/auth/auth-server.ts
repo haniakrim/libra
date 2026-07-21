@@ -95,24 +95,24 @@ async function authBuilder() {
             clientSecret: envs.BETTER_GITHUB_CLIENT_SECRET as string,
           },
         },
-        // Enable cross-subdomain cookies for libra.dev and subdomains
+        // Enable cross-subdomain cookies for libra.agentic-lab.io and subdomains
         ...(isDevelopment() ? {} : {
           advanced: {
             crossSubDomainCookies: {
               enabled: true,
-              domain: '.libra.dev',
+              domain: '.libra.agentic-lab.io',
             },
           },
           // Configure trusted origins for cross-subdomain authentication
           trustedOrigins: [
-            'https://libra.dev',
-            'https://cdn.libra.dev',
-            'https://deploy.libra.dev',
-            'https://dispatcher.libra.dev',
-            'https://auth.libra.dev',
-            'https://api.libra.dev',
-            'https://docs.libra.dev',
-            'https://web.libra.dev',
+            'https://libra.agentic-lab.io',
+            'https://cdn.libra.agentic-lab.io',
+            'https://deploy.libra.agentic-lab.io',
+            'https://dispatcher.libra.agentic-lab.io',
+            'https://auth.libra.agentic-lab.io',
+            'https://api.libra.agentic-lab.io',
+            'https://docs.libra.agentic-lab.io',
+            'https://web.libra.agentic-lab.io',
             // Development origins
             'http://localhost:3000',
             'http://localhost:3004',
@@ -170,12 +170,12 @@ export const auth = betterAuth({
           clientSecret: envs.BETTER_GITHUB_CLIENT_SECRET as string,
         },
       },
-      // Enable cross-subdomain cookies for libra.dev and subdomains
+      // Enable cross-subdomain cookies for libra.agentic-lab.io and subdomains
       ...(isDevelopment() ? {} : {
         advanced: {
           crossSubDomainCookies: {
             enabled: true,
-            domain: '.libra.dev',
+            domain: '.libra.agentic-lab.io',
           },
         },
       }),

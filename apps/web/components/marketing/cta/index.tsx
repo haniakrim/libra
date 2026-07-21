@@ -18,11 +18,11 @@
  *
  */
 
-import * as m from '@/paraglide/messages'
 import { Badge } from '@libra/ui/components/badge'
 import { Section } from '@libra/ui/components/section'
 import { cn } from '@libra/ui/lib/utils'
 import type { ReactNode } from 'react'
+import * as m from '@/paraglide/messages'
 import { Button, type ButtonProps } from '../../ui/button'
 
 interface CTAButtonProps {
@@ -47,7 +47,7 @@ export default function CTA({
   description = m['cta.subtitle'](),
   buttons = [
     {
-      href: '#',
+      href: '/login',
       text: m['cta.button'](),
       variant: 'default',
     },
@@ -61,12 +61,25 @@ export default function CTA({
           <span className='text-muted-foreground'>{badgeText}</span>
         </Badge>
         <h2 className='text-2xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl'>{title}</h2>
-        {description && <p className='text-base sm:text-lg text-muted-foreground max-w-full sm:max-w-[600px]'>{description}</p>}
+        {description && (
+          <p className='text-base sm:text-lg text-muted-foreground max-w-full sm:max-w-[600px]'>
+            {description}
+          </p>
+        )}
         {buttons !== false && buttons.length > 0 && (
           <div className='flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full sm:w-auto'>
             {buttons.map((button, index) => (
-              <Button key={`${button.text}-${button.href}-${index}`} variant={button.variant || 'default'} size='lg' asChild className='w-full sm:w-auto'>
-                <a href={button.href} data-attr={button.href?.includes('#price') ? 'upgrade' : undefined}>
+              <Button
+                key={`${button.text}-${button.href}-${index}`}
+                variant={button.variant || 'default'}
+                size='lg'
+                asChild
+                className='w-full sm:w-auto'
+              >
+                <a
+                  href={button.href}
+                  data-attr={button.href?.includes('#price') ? 'upgrade' : undefined}
+                >
                   {button.icon}
                   {button.text}
                   {button.iconRight}

@@ -9,13 +9,18 @@
     "update": "bun update"
   },
   "dependencies": {
+    "@libra/ui": "*",
+    "@orama/orama": "^3.1.14",
+    "@orama/tokenizers": "^3.1.14",
     "fumadocs-core": "^15.7.13",
     "fumadocs-mdx": "^11.10.1",
     "fumadocs-ui": "^15.7.13",
+    "lucide-react": "^1.25.0",
     "motion": "^12.23.19",
+    "next": "^16.2.10",
     "octokit": "^5.0.3",
-    "@orama/tokenizers": "^3.1.14",
-    "@orama/orama": "^3.1.14",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "zod": "^4.1.11"
   },
   "devDependencies": {

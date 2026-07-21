@@ -25,7 +25,7 @@
 @import "./variables.css";
 @import "./quota.css";
 @import "tw-animate-css";
-@plugin 'tailwind-scrollbar';
+@plugin "tailwind-scrollbar";
 @source "../../../../packages/ui/src/**/*.{js,ts,jsx,tsx}";
 
 @custom-variant dark (&:where(.dark, .dark *));

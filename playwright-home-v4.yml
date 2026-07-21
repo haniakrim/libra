@@ -1,0 +1,153 @@
+- generic [ref=f219e1]:
+  - main [ref=f219e2]:
+    - navigation [ref=f219e6]:
+      - navigation [ref=f219e7]:
+        - link "Logo Libra" [ref=f219e9] [cursor=pointer]:
+          - /url: https://libra.agentic-lab.io
+          - generic [ref=f219e10]:
+            - img "Logo" [ref=f219e488]
+            - generic [ref=f219e13]: Libra
+        - navigation "Main" [ref=f219e14]:
+          - list [ref=f219e16]:
+            - listitem [ref=f219e17]
+            - listitem [ref=f219e19]
+            - listitem [ref=f219e21]
+      - navigation [ref=f219e23]:
+        - link "Login" [ref=f219e24] [cursor=pointer]:
+          - /url: /login
+        - button "Toggle theme" [active] [ref=f219e25] [cursor=pointer]
+        - button "English" [ref=f219e29] [cursor=pointer]
+    - generic [ref=f219e36]:
+      - generic [ref=f219e37]:
+        - generic [ref=f219e38]: Built on Developer-Loved Tools
+        - link "Start Free" [ref=f219e396] [cursor=pointer]:
+          - /url: https://libra.agentic-lab.io/login
+      - heading "Turn ideas into apps in m i n u t e s" [level=1] [ref=f219e397]:
+        - text: Turn ideas into apps in
+        - generic [ref=f219e521]: m
+        - generic [ref=f219e522]: i
+        - generic [ref=f219e523]: "n"
+        - generic [ref=f219e524]: u
+        - generic [ref=f219e525]: t
+        - generic [ref=f219e526]: e
+        - generic [ref=f219e527]: s
+      - paragraph [ref=f219e44]: Brings your app ideas to life with AI, and deploys them to your domain.
+      - generic [ref=f219e45]:
+        - generic [ref=f219e48]:
+          - generic: Ask Libra to create A platform to discover and organize local community events and
+          - textbox [ref=f219e49]
+          - generic [ref=f219e50]:
+            - button "Add image" [ref=f219e405]
+            - button "Send" [disabled] [ref=f219e57]
+        - paragraph [ref=f219e61]: Free forever. Your code, your ownership. Download or sync to GitHub.
+      - generic [ref=f219e62]:
+        - link "Community" [ref=f219e63] [cursor=pointer]:
+          - /url: https://forum.libra.agentic-lab.io
+        - link "Github" [ref=f219e67] [cursor=pointer]:
+          - /url: https://github.com/nextify-limited/libra
+      - img "Libra AI UI screenshot" [ref=f219e406]
+    - generic [ref=f219e77]:
+      - heading "Built on Developer-Loved Tools" [level=2] [ref=f219e78]
+      - paragraph [ref=f219e79]: "Built for developers who refuse compromises: core open source, modern tech stack, automated workflows, and actually usable outputs. Your code, your control, your freedom—exactly as it should be."
+      - generic [ref=f219e80]:
+        - generic [ref=f219e86]:
+          - heading "AI-Powered Code Generation" [level=3] [ref=f219e87]
+          - paragraph [ref=f219e89]: Multi-model AI integration with Claude, Azure OpenAI, and Gemini. Natural language driven production-grade code generation with intelligent context awareness and best practice compliance.
+        - generic [ref=f219e102]:
+          - generic [ref=f219e107]:
+            - heading "Core Open Source" [level=3] [ref=f219e108]
+            - paragraph [ref=f219e110]: Unlike closed-source tools, Libra is core open source. You can view, modify, and extend every line of code. No black boxes, no vendor lock-in, true development freedom.
+          - generic [ref=f219e114]:
+            - generic [ref=f219e120]
+            - generic [ref=f219e134]
+        - generic [ref=f219e148]:
+          - generic [ref=f219e153]:
+            - heading "Built with React + shadcn/ui" [level=3] [ref=f219e154]
+            - paragraph [ref=f219e156]: Uses developers' favorite modern tech stack. Based on React 19, TypeScript, Tailwind CSS, and shadcn/ui component library, ensuring code quality and maintainability.
+          - img "Logo" [ref=f219e498]
+        - generic [ref=f219e202]:
+          - heading "Custom Domain Deployment" [level=3] [ref=f219e203]
+          - generic [ref=f219e204]: Deploy to your own domain with complete control over your application's access URL. No dependency on third-party platforms, truly own your product.
+        - generic [ref=f219e218]:
+          - generic [ref=f219e223]:
+            - heading "Image Upload & GitHub Auto-Commit" [level=3] [ref=f219e224]
+            - generic [ref=f219e225]
+          - generic [ref=f219e230]:
+            - generic [ref=f219e231]
+            - generic [ref=f219e237]
+        - generic [ref=f219e252]:
+          - heading "Excellent User Experience Output" [level=3] [ref=f219e253]
+          - generic [ref=f219e254]:
+            - paragraph [ref=f219e255]: Product outputs are actually usable, not simple demos. Generated apps have complete functionality, excellent UI/UX design, and production-grade code quality.
+            - paragraph [ref=f219e256]: Open source community-driven, continuous improvement and innovation.
+    - generic [ref=f219e299]:
+      - heading "Powerful Features Developers Love" [level=1] [ref=f219e300]
+      - paragraph [ref=f219e301]: Built on modern tools with exceptional developer experience and user interface outputs.
+    - generic [ref=f219e311]:
+      - generic [ref=f219e312]:
+        - heading "Pricing Plans" [level=2] [ref=f219e313]
+        - paragraph [ref=f219e314]: Choose a plan that suits your needs, with features and support tailored to your requirements.
+      - generic [ref=f219e316]:
+        - generic [ref=f219e317]: Monthly
+        - switch [ref=f219e318] [cursor=pointer]
+        - generic [ref=f219e319]: YearlySave up to 20%
+      - generic [ref=f219e408]:
+        - separator [ref=f219e409]
+        - generic [ref=f219e410]:
+          - generic [ref=f219e411]:
+            - generic [ref=f219e412]
+            - paragraph [ref=f219e421]: For custom requirements, dedicated support, SSO and data protection
+            - link "Contact Us" [ref=f219e423] [cursor=pointer]:
+              - /url: mailto:contact@libra.agentic-lab.io
+          - generic [ref=f219e427]:
+            - heading "Enterprise Features" [level=3] [ref=f219e428]
+            - generic [ref=f219e429]
+    - generic [ref=f219e325]:
+      - heading "Frequently Asked Questions" [level=2] [ref=f219e326]
+      - generic [ref=f219e327]:
+        - heading "Is Libra open source?" [level=3] [ref=f219e329]:
+          - button "Is Libra open source?" [ref=f219e330]
+        - heading "What is Libra?" [level=3] [ref=f219e335]:
+          - button "What is Libra?" [ref=f219e336]
+        - heading "What's the difference from other AI building tools?" [level=3] [ref=f219e341]:
+          - button "What's the difference from other AI building tools?" [ref=f219e342]
+        - heading "What's the pricing model?" [level=3] [ref=f219e347]:
+          - button "What's the pricing model?" [ref=f219e348]
+        - heading "Who owns the code?" [level=3] [ref=f219e353]:
+          - button "Who owns the code?" [ref=f219e354]
+        - heading "Do I need programming experience?" [level=3] [ref=f219e359]:
+          - button "Do I need programming experience?" [ref=f219e360]
+    - generic [ref=f219e365]:
+      - generic [ref=f219e366]: Ready to Start Building for Free?
+      - heading "Ready to Start Building for Free?" [level=2] [ref=f219e368]
+      - paragraph [ref=f219e369]: Join the open source developer community and use Libra to transform ideas into truly usable products. Free forever, your code completely belongs to you.
+      - link "Start Building Free" [ref=f219e371] [cursor=pointer]:
+        - /url: /login
+    - generic [ref=f219e374]:
+      - generic [ref=f219e375]:
+        - generic [ref=f219e377]:
+          - img "Logo" [ref=f219e499]
+          - heading "Libra AI" [level=3] [ref=f219e380]
+        - generic [ref=f219e382]:
+          - heading "Product" [level=3] [ref=f219e383]
+          - link "Changelog" [ref=f219e384] [cursor=pointer]:
+            - /url: https://github.com/nextify-limited/libra/releases
+          - link "Documentation" [ref=f219e385] [cursor=pointer]:
+            - /url: https://docs.libra.agentic-lab.io
+        - generic [ref=f219e386]:
+          - heading "Contact" [level=3] [ref=f219e387]
+          - link "Community" [ref=f219e388] [cursor=pointer]:
+            - /url: https://forum.libra.agentic-lab.io
+          - link "Twitter" [ref=f219e389] [cursor=pointer]:
+            - /url: https://twitter.com/nextify2024
+          - link "Github" [ref=f219e390] [cursor=pointer]:
+            - /url: https://github.com/nextify-limited/libra
+      - generic [ref=f219e391]:
+        - generic [ref=f219e392]: © 2025 Nextify Limited. All rights reserved
+        - generic [ref=f219e393]:
+          - link "Privacy Policy" [ref=f219e394] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms of Service" [ref=f219e395] [cursor=pointer]:
+            - /url: /terms
+  - region "Notifications alt+T"
+  - alert [ref=f219e480]

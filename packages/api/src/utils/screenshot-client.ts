@@ -49,7 +49,7 @@ function getScreenshotServiceUrl(): string {
   }
   
   // In production, use the deployed service
-  return 'https://screenshot.libra.dev'
+  return 'https://screenshot.libra.agentic-lab.io'
 }
 
 /**

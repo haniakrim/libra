@@ -168,10 +168,8 @@ export const AssemblyLoader = ({
   return (
     <div className={cn('text-fg-300 h-fit w-fit font-mono whitespace-pre', className)}>
       {grid.map((row, y) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: Grid rows have fixed positions
         <div key={`row-${y}`}>
           {row.map((cell, x) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: Grid cells have fixed positions
             <span key={`cell-${x}-${y}`} className='tracking-[0.5em]'>
               {cell || (block && block.x === x && block.y === y) ? filledChar : emptyChar}
             </span>

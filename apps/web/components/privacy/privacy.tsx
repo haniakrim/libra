@@ -20,6 +20,10 @@
 
 'use client'
 
+import { ModeToggle } from '@/components/common/mode-toggle'
+import { siteConfig } from '@/configs/site'
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 import * as m from '@/paraglide/messages'
 
 // TypeScript interfaces
@@ -128,9 +132,27 @@ const SubSection = ({ title, children }: SubSectionProps) => (
   </div>
 );
 
+function LegalHeader() {
+  return (
+    <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md'>
+      <div className='max-w-6xl mx-auto px-4 h-14 flex items-center justify-between'>
+        <Link
+          href='/'
+          className='flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+        >
+          <ArrowLeft className='h-4 w-4' />
+          Back to home
+        </Link>
+        <ModeToggle />
+      </div>
+    </header>
+  )
+}
+
 export default function PrivacyPage() {
   return (
     <div className='min-h-screen bg-background'>
+      <LegalHeader />
       <div className='max-w-6xl mx-auto px-4 py-12 md:py-24'>
         {/* Header */}
         <div className='text-center mb-12'>
@@ -157,12 +179,15 @@ export default function PrivacyPage() {
               <div className='flex items-start space-x-3'>
                 <div className='w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0' />
                 <p>
-                  {m["privacy.about.usageScenarios.website"]({ websiteUrl: (
-                    <a href='https://libra.dev' className='text-primary hover:text-primary/80 transition-colors font-medium'>
-                      https://libra.dev
-                    </a>
-                  )})}
-                </p>
+                Visit our website{' '}
+                <a
+                  href={siteConfig.url}
+                  className='text-primary hover:text-primary/80 transition-colors font-medium'
+                >
+                  {siteConfig.url}
+                </a>
+                , or any website of ours that links to this Privacy Notice
+              </p>
               </div>
               <div className='flex items-start space-x-3'>
                 <div className='w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0' />
@@ -182,14 +207,17 @@ export default function PrivacyPage() {
             {m["privacy.concerns.title"]()}
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            {m["privacy.concerns.description"]({ contactEmail: (
-              <a
-                href="mailto:contact@libra.dev"
-                className="text-primary hover:text-primary/80 transition-colors font-medium"
-              >
-                contact@libra.dev
-              </a>
-            )})}
+            Reading this Privacy Notice will help you understand your privacy rights and choices.
+            We are responsible for making decisions about how your personal information is processed.
+            If you do not agree with our policies and practices, please do not use our Services.
+            If you still have any questions or concerns, please contact us at{' '}
+            <a
+              href='mailto:contact@libra.agentic-lab.io'
+              className='text-primary hover:text-primary/80 transition-colors font-medium'
+            >
+              contact@libra.agentic-lab.io
+            </a>
+            .
           </p>
         </div>
 
@@ -337,14 +365,14 @@ export default function PrivacyPage() {
         <div className="space-y-8">
           <Section title={m["privacy.contact.title"]()}>
             <p className="text-muted-foreground leading-relaxed">
-              {m["privacy.contact.description"]({ contactEmail: (
-                <a
-                  href="mailto:contact@libra.dev"
-                  className="text-primary hover:text-primary/80 transition-colors font-medium"
-                >
-                  contact@libra.dev
-                </a>
-              )})}
+              If you have questions or comments about this privacy policy, please contact us at{' '}
+              <a
+                href='mailto:contact@libra.agentic-lab.io'
+                className='text-primary hover:text-primary/80 transition-colors font-medium'
+              >
+                contact@libra.agentic-lab.io
+              </a>
+              .
             </p>
           </Section>
 
