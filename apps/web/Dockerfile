@@ -41,7 +41,10 @@ COPY --from=builder --chown=libra:libra /repo/apps/web ./apps/web
 USER libra
 WORKDIR /repo/apps/web
 EXPOSE 3000
+# bun:1-slim has no wget/curl — use bun's built-in fetch instead. Traefik's
+# docker provider excludes containers Docker reports unhealthy, so a broken
+# healthcheck here silently 404s every request at the proxy, not just locally.
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=30s \
-  CMD wget -qO- http://127.0.0.1:3000/ || exit 1
+  CMD bun -e "fetch('http://127.0.0.1:3000/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
 
 CMD ["sh", "-c", "bun run ../../packages/auth/db/migrate-selfhost.ts && bun run start"]
