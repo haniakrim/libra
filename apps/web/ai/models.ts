@@ -26,9 +26,14 @@ import type { AnthropicProviderOptions } from '@ai-sdk/anthropic'
 // Model Configuration and Selection
 // ============================================================================
 
+// Azure OpenAI (AZURE_API_KEY / AZURE_RESOURCE_NAME / AZURE_BASE_URL) is not
+// configured on this deployment, so 'gpt-4-1' and 'gpt-4-1-mini' are routed
+// to the OpenRouter-backed Claude model (verified working) instead of the
+// unreachable Azure endpoint. Revert to 'chat-model-reasoning-azure' /
+// 'chat-model-reasoning-azure-mini' once real Azure credentials are set.
 const MODEL_MAPPING: Record<string, string> = {
-  'gpt-4-1': 'chat-model-reasoning-azure',
-  'gpt-4-1-mini': 'chat-model-reasoning-azure-mini',
+  'gpt-4-1': 'chat-model-reasoning-anthropic',
+  'gpt-4-1-mini': 'chat-model-reasoning-anthropic',
   'claude-4-0-sonnet': 'chat-model-reasoning-anthropic',
   // 'databricks-claude-3-7-sonnet': 'chat-model-databricks-claude',
   'gemini-2-5-pro': 'chat-model-reasoning-google',
@@ -36,8 +41,8 @@ const MODEL_MAPPING: Record<string, string> = {
 
 const DEFAULT_MODELS = {
   FILE_EDIT: 'gpt-4-1-mini',
-  FALLBACK: 'chat-model-reasoning-azure',
-  FILE_EDIT_FALLBACK: 'chat-model-reasoning-azure-mini',
+  FALLBACK: 'chat-model-reasoning-anthropic',
+  FILE_EDIT_FALLBACK: 'chat-model-reasoning-anthropic',
 } as const
 
 /**
