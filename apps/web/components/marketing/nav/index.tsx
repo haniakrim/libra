@@ -23,9 +23,9 @@ import { Navbar as NavbarComponent, NavbarLeft, NavbarRight } from '@libra/ui/co
 import { Sheet, SheetContent, SheetTrigger } from '@libra/ui/components/sheet'
 import { cn } from '@libra/ui/lib/utils'
 import { Menu } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { AnimatedLogoLockup } from '@/components/common/logo/AnimatedLogoLockup'
 import { ModeToggle } from '@/components/common/mode-toggle'
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { siteConfig } from '@/configs/site'
@@ -93,16 +93,7 @@ export default function Navbar({
           <NavbarLeft>
             <div className='flex items-center gap-2'>
               <Link href={homeUrl}>
-                <div className='flex items-center justify-center rounded-xl'>
-                  <Image
-                    src='/images/brand/libra-header-logo.png'
-                    alt={name}
-                    width={192}
-                    height={40}
-                    priority
-                    className='h-8 w-auto sm:h-9 lg:h-10'
-                  />
-                </div>
+                <AnimatedLogoLockup />
               </Link>
             </div>
             {showNavigation && (customNavigation || <Navigation />)}

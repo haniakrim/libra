@@ -18,6 +18,28 @@
  *
  */
 
+/* Animated Tron-cyan/electric logo gradient — shared by the header and
+   footer logo lockups (icon mask + wordmark text) so both animate in sync
+   with identical colors. Stops sit around the --brand hue family (~200)
+   at higher chroma for a bolder, more electric look than the UI brand
+   token itself. */
+@utility logo-gradient-bg {
+  background-image: linear-gradient(
+    90deg,
+    oklch(92% 0.2 190),
+    oklch(68% 0.26 250),
+    oklch(85% 0.24 170),
+    oklch(92% 0.2 190)
+  );
+  background-size: 300% 100%;
+  animation: logo-gradient 4.5s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
+
 /* Glass effects */
 @utility glass-1 {
   @apply border-border from-card/80 to-card/40 dark:border-border/10 dark:border-b-border/5 dark:border-t-border/20 dark:from-card/5 dark:to-card/0 border bg-linear-to-b;

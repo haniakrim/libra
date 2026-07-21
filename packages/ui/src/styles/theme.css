@@ -78,6 +78,17 @@
   --animate-appear-zoom: appear-zoom 0.4s forwards ease-out;
 
   --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+  --animate-logo-gradient: logo-gradient 6s ease-in-out infinite;
+
+  @keyframes logo-gradient {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
 
   @keyframes rainbow {
     0% {

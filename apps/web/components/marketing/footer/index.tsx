@@ -19,8 +19,8 @@
  */
 
 import { cn } from '@libra/ui/lib/utils'
-import Image from 'next/image'
 import type { ReactNode } from 'react'
+import { AnimatedLogoLockup } from '@/components/common/logo/AnimatedLogoLockup'
 import { Footer, FooterBottom, FooterColumn, FooterContent } from '@/components/ui/footer'
 import { siteConfig } from '@/configs/site'
 import * as m from '@/paraglide/messages'
@@ -46,15 +46,7 @@ interface FooterProps {
 }
 
 export default function FooterSection({
-  logo = (
-    <Image
-      src='/images/brand/libra-header-logo.png'
-      alt='Libra AI'
-      width={192}
-      height={40}
-      className='h-8 w-auto'
-    />
-  ),
+  logo = <AnimatedLogoLockup textClassName='text-lg sm:text-xl' />,
   columns = [
     {
       id: 'product',
@@ -87,7 +79,7 @@ export default function FooterSection({
         <Footer>
           <FooterContent>
             <FooterColumn className='col-span-12 sm:col-span-6 md:col-span-3 lg:col-span-1'>
-              <div className='flex items-center gap-1'>{logo}</div>
+              {logo}
             </FooterColumn>
             {columns.map((column) => (
               <FooterColumn key={column.id}>
