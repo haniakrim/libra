@@ -79,7 +79,7 @@ export function useMemoizedMessages(messageKeys: string[]) {
     // cspell:disable-next-line
     const m = require('@/paraglide/messages')
 
-    messageKeys.forEach(key => {
+    messageKeys.forEach((key) => {
       try {
         messages[key] = m[key]?.() || key
       } catch {
@@ -132,9 +132,7 @@ export function useOptimizedI18n() {
 /**
  * Intersection observer hook for lazy loading and visibility detection
  */
-export function useIntersectionObserver(
-  options: IntersectionObserverInit = {}
-) {
+export function useIntersectionObserver(options: IntersectionObserverInit = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false)
   const [hasIntersected, setHasIntersected] = useState(false)
   const targetRef = useRef<HTMLElement>(null)
@@ -154,7 +152,7 @@ export function useIntersectionObserver(
       },
       {
         threshold: 0.1,
-        ...options
+        ...options,
       }
     )
 
@@ -168,7 +166,7 @@ export function useIntersectionObserver(
   return {
     targetRef,
     isIntersecting,
-    hasIntersected
+    hasIntersected,
   }
 }
 
@@ -182,29 +180,32 @@ export function useOptimizedClipboard() {
   const copyToClipboard = useCallback(async (text: string, key = 'default') => {
     try {
       await navigator.clipboard.writeText(text)
-      
+
       // Clear existing timeout for this key
       if (timeoutRefs.current[key]) {
         clearTimeout(timeoutRefs.current[key])
       }
-      
-      setCopiedStates(prev => ({ ...prev, [key]: true }))
-      
+
+      setCopiedStates((prev) => ({ ...prev, [key]: true }))
+
       // Reset after 2 seconds
       timeoutRefs.current[key] = setTimeout(() => {
-        setCopiedStates(prev => ({ ...prev, [key]: false }))
+        setCopiedStates((prev) => ({ ...prev, [key]: false }))
         delete timeoutRefs.current[key]
       }, 2000)
-      
+
       return true
     } catch {
       return false
     }
   }, [])
 
-  const isCopied = useCallback((key = 'default') => {
-    return copiedStates[key] || false
-  }, [copiedStates])
+  const isCopied = useCallback(
+    (key = 'default') => {
+      return copiedStates[key] || false
+    },
+    [copiedStates]
+  )
 
   // Cleanup timeouts on unmount
   useEffect(() => {
@@ -219,7 +220,10 @@ export function useOptimizedClipboard() {
 /**
  * Optimized animation frame hook for smooth animations
  */
-export function useAnimationFrame(callback: (deltaTime: number) => void, deps: DependencyList = []) {
+export function useAnimationFrame(
+  callback: (deltaTime: number) => void,
+  deps: DependencyList = []
+) {
   const requestRef = useRef<number | undefined>(undefined)
   const previousTimeRef = useRef<number | undefined>(undefined)
   const callbackRef = useRef(callback)
@@ -262,7 +266,7 @@ export function useAnimationFrame(callback: (deltaTime: number) => void, deps: D
 export function useResizeObserver<T extends HTMLElement>() {
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
     width: 0,
-    height: 0
+    height: 0,
   })
   const targetRef = useRef<T>(null)
 
@@ -270,7 +274,7 @@ export function useResizeObserver<T extends HTMLElement>() {
     const target = targetRef.current
     if (!target) return
 
-    const resizeObserver = new ResizeObserver(entries => {
+    const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const { width, height } = entry.contentRect
         setDimensions({ width, height })
@@ -290,11 +294,7 @@ export function useResizeObserver<T extends HTMLElement>() {
 /**
  * Memory-efficient state management for large lists
  */
-export function useVirtualizedState<T>(
-  items: T[],
-  itemHeight: number,
-  containerHeight: number
-) {
+export function useVirtualizedState<T>(items: T[], itemHeight: number, containerHeight: number) {
   const [scrollTop, setScrollTop] = useState(0)
 
   const visibleRange = useMemo(() => {
@@ -303,7 +303,7 @@ export function useVirtualizedState<T>(
       startIndex + Math.ceil(containerHeight / itemHeight) + 1,
       items.length
     )
-    
+
     return { startIndex, endIndex }
   }, [scrollTop, itemHeight, containerHeight, items.length])
 
@@ -319,7 +319,7 @@ export function useVirtualizedState<T>(
     totalHeight,
     offsetY,
     setScrollTop,
-    visibleRange
+    visibleRange,
   }
 }
 

@@ -20,11 +20,11 @@
 
 'use client'
 
-import { Check, Copy, ExternalLink } from 'lucide-react'
 import { Button } from '@libra/ui/components/button'
 import { cn } from '@libra/ui/lib/utils'
-import { useOptimizedClipboard, useMemoizedMessages } from './hooks/use-performance-optimization'
+import { Check, Copy, ExternalLink } from 'lucide-react'
 import * as m from '@/paraglide/messages'
+import { useMemoizedMessages, useOptimizedClipboard } from './hooks/use-performance-optimization'
 
 interface UrlDisplayCardProps {
   url: string
@@ -33,12 +33,7 @@ interface UrlDisplayCardProps {
   hideHeader?: boolean
 }
 
-export function UrlDisplayCard({
-  url,
-  title,
-  className,
-  hideHeader = false
-}: UrlDisplayCardProps) {
+export function UrlDisplayCard({ url, title, className, hideHeader = false }: UrlDisplayCardProps) {
   // Use optimized clipboard hook
   const { copyToClipboard, isCopied } = useOptimizedClipboard()
 
@@ -48,7 +43,7 @@ export function UrlDisplayCard({
     'ide.deployment.dialog.copy',
     'ide.deployment.dialog.copied',
     'ide.deployment.dialog.open',
-    'ide.deployment.dialog.active'
+    'ide.deployment.dialog.active',
   ])
 
   // Use memoized values
@@ -60,21 +55,21 @@ export function UrlDisplayCard({
   }
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn('space-y-4', className)}>
       {!hideHeader && (
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-brand/5 to-transparent rounded-2xl" />
-          <div className="relative glass-2 rounded-2xl p-6 border border-border/50 space-y-4">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-brand/20 flex items-center justify-center border border-primary/30">
-                  <ExternalLink className="w-5 h-5 text-primary" />
+        <div className='relative'>
+          <div className='absolute inset-0 bg-gradient-to-br from-primary/5 via-brand/5 to-transparent rounded-2xl' />
+          <div className='relative glass-2 rounded-2xl p-6 border border-border/50 space-y-4'>
+            <div className='flex items-center justify-between gap-4'>
+              <div className='flex items-center gap-3'>
+                <div className='w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-brand/20 flex items-center justify-center border border-primary/30'>
+                  <ExternalLink className='w-5 h-5 text-primary' />
                 </div>
                 <div>
-                  <h4 className="text-base font-semibold text-foreground">
-                    {displayTitle}
-                  </h4>
-                  <p className="text-xs text-muted-foreground">{m["ide.deployment.success.liveUrlTitle"]()}</p>
+                  <h4 className='text-base font-semibold text-foreground'>{displayTitle}</h4>
+                  <p className='text-xs text-muted-foreground'>
+                    {m['ide.deployment.success.liveUrlTitle']()}
+                  </p>
                 </div>
               </div>
             </div>
@@ -83,62 +78,53 @@ export function UrlDisplayCard({
       )}
 
       {/* URL display with actions */}
-      <div className="glass-1 rounded-xl border border-border/30 overflow-hidden">
-        <div className="p-4 space-y-3">
-          <div className="flex items-center justify-between gap-3">
+      <div className='glass-1 rounded-xl border border-border/30 overflow-hidden'>
+        <div className='p-4 space-y-3'>
+          <div className='flex items-center justify-between gap-3'>
             <a
               href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 group flex items-center gap-3 min-w-0"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='flex-1 group flex items-center gap-3 min-w-0'
             >
-              <div className="w-2 h-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full animate-pulse flex-shrink-0" />
-              <span className="text-sm font-mono text-foreground/90 truncate group-hover:text-primary transition-colors duration-200">
+              <div className='w-2 h-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full animate-pulse flex-shrink-0' />
+              <span className='text-sm font-mono text-foreground/90 truncate group-hover:text-primary transition-colors duration-200'>
                 {url}
               </span>
             </a>
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className='flex items-center gap-2 flex-shrink-0'>
               <Button
-                variant="ghost"
-                size="sm"
+                variant='ghost'
+                size='sm'
                 onClick={() => handleCopyUrl(url)}
                 className={cn(
-                  "h-8 px-3 text-xs font-medium transition-all duration-200",
-                  copiedUrl && "text-green-600 dark:text-green-400"
+                  'h-8 px-3 text-xs font-medium transition-all duration-200',
+                  copiedUrl && 'text-green-600 dark:text-green-400'
                 )}
               >
-                {copiedUrl ? (
-                  <Check className="h-3.5 w-3.5" />
-                ) : (
-                  <Copy className="h-3.5 w-3.5" />
-                )}
+                {copiedUrl ? <Check className='h-3.5 w-3.5' /> : <Copy className='h-3.5 w-3.5' />}
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                asChild
-                className="h-8 px-3 text-xs font-medium"
-              >
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="h-3.5 w-3.5" />
+              <Button variant='ghost' size='sm' asChild className='h-8 px-3 text-xs font-medium'>
+                <a href={url} target='_blank' rel='noopener noreferrer'>
+                  <ExternalLink className='h-3.5 w-3.5' />
                 </a>
               </Button>
             </div>
           </div>
         </div>
-        
+
         {/* Status bar */}
-        <div className="bg-muted/30 px-4 py-2 border-t border-border/30">
-          <div className="flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-muted-foreground font-medium">{m["ide.deployment.urlStatus.liveOnline"]()}</span>
+        <div className='bg-muted/30 px-4 py-2 border-t border-border/30'>
+          <div className='flex items-center justify-between text-xs'>
+            <div className='flex items-center gap-2'>
+              <div className='w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse' />
+              <span className='text-muted-foreground font-medium'>
+                {m['ide.deployment.urlStatus.liveOnline']()}
+              </span>
             </div>
-            <span className="text-muted-foreground">{m["ide.deployment.urlStatus.sslEnabled"]()}</span>
+            <span className='text-muted-foreground'>
+              {m['ide.deployment.urlStatus.sslEnabled']()}
+            </span>
           </div>
         </div>
       </div>

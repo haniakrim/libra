@@ -21,8 +21,8 @@
 'use client'
 
 import { Rocket } from 'lucide-react'
-import { ActionButton } from '../atoms'
 import * as m from '@/paraglide/messages'
+import { ActionButton } from '../atoms'
 
 interface SuccessActionsProps {
   onRedeploy?: () => Promise<void>
@@ -37,27 +37,23 @@ export function SuccessActions({
   onClose,
   showRedeployButton = false,
   redeployLoading = false,
-  className
+  className,
 }: SuccessActionsProps) {
   return (
     <div className={`flex gap-3 pt-4 ${className || ''}`}>
       {showRedeployButton && onRedeploy && (
         <ActionButton
-          intent="primary"
+          intent='primary'
           onClick={onRedeploy}
           loading={redeployLoading}
           icon={Rocket}
-          className="flex-1"
+          className='flex-1'
         >
-          {m["ide.deployment.success.redeploy"]()}
+          {m['ide.deployment.success.redeploy']()}
         </ActionButton>
       )}
-      <ActionButton
-        intent="secondary"
-        onClick={onClose}
-        className="flex-1"
-      >
-        {m["ide.deployment.success.complete"]()}
+      <ActionButton intent='secondary' onClick={onClose} className='flex-1'>
+        {m['ide.deployment.success.complete']()}
       </ActionButton>
     </div>
   )

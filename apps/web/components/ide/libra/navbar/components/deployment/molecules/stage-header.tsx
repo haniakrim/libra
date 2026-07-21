@@ -20,8 +20,8 @@
 
 'use client'
 
-import { StatusIndicator, type StatusType } from '../atoms'
 import { cn } from '@libra/ui/lib/utils'
+import { StatusIndicator, type StatusType } from '../atoms'
 
 interface StageHeaderProps {
   title: string
@@ -36,39 +36,31 @@ export function StageHeader({
   description,
   status,
   showProgress = false,
-  className
+  className,
 }: StageHeaderProps) {
   return (
-    <div className={cn(
-      'relative space-y-3 px-6 pt-6 pb-4 border-b border-border/30',
-      'bg-gradient-to-b from-background/50 to-transparent',
-      className
-    )}>
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-foreground tracking-tight">
-          {title}
-        </h2>
-        {status && (
-          <StatusIndicator 
-            status={status} 
-            size="md"
-            showText={false}
-          />
-        )}
-      </div>
-      
-      {description && (
-        <p className="text-muted-foreground text-sm leading-relaxed">
-          {description}
-        </p>
+    <div
+      className={cn(
+        'relative space-y-3 px-6 pt-6 pb-4 border-b border-border/30',
+        'bg-gradient-to-b from-background/50 to-transparent',
+        className
       )}
-      
+    >
+      <div className='flex items-center justify-between'>
+        <h2 className='text-xl font-bold text-foreground tracking-tight'>{title}</h2>
+        {status && <StatusIndicator status={status} size='md' showText={false} />}
+      </div>
+
+      {description && (
+        <p className='text-muted-foreground text-sm leading-relaxed'>{description}</p>
+      )}
+
       {showProgress && (
-        <div className="w-full bg-muted/30 rounded-full h-1">
-          <div 
-            className="bg-gradient-to-r from-primary to-brand h-1 rounded-full transition-all duration-300"
+        <div className='w-full bg-muted/30 rounded-full h-1'>
+          <div
+            className='bg-gradient-to-r from-primary to-brand h-1 rounded-full transition-all duration-300'
             style={{ width: '100%' }}
-            aria-hidden="true"
+            aria-hidden='true'
           />
         </div>
       )}

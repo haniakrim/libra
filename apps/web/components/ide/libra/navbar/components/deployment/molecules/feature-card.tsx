@@ -20,9 +20,9 @@
 
 'use client'
 
-import { ChevronDown, ChevronRight } from 'lucide-react'
 import { cn } from '@libra/ui/lib/utils'
 import type { LucideIcon } from 'lucide-react'
+import { ChevronDown, ChevronRight } from 'lucide-react'
 
 interface FeatureCardProps {
   title: string
@@ -41,14 +41,14 @@ export function FeatureCard({
   expanded = false,
   onToggle,
   children,
-  className
+  className,
 }: FeatureCardProps) {
   const isCollapsible = Boolean(onToggle && children)
 
   return (
     <div className={cn('deployment-card overflow-hidden', className)}>
       {/* Header */}
-      <div 
+      <div
         className={cn(
           'flex items-center gap-3 p-4',
           isCollapsible && 'cursor-pointer hover:bg-muted/30 transition-colors'
@@ -56,34 +56,34 @@ export function FeatureCard({
         onClick={isCollapsible ? onToggle : undefined}
         role={isCollapsible ? 'button' : undefined}
         tabIndex={isCollapsible ? 0 : undefined}
-        onKeyDown={isCollapsible ? (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            onToggle?.()
-          }
-        } : undefined}
+        onKeyDown={
+          isCollapsible
+            ? (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  onToggle?.()
+                }
+              }
+            : undefined
+        }
         aria-expanded={isCollapsible ? expanded : undefined}
         aria-controls={isCollapsible ? `feature-content-${title}` : undefined}
       >
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/10 to-brand/10 flex items-center justify-center flex-shrink-0">
-          <Icon className="w-5 h-5 text-primary" />
+        <div className='w-10 h-10 rounded-lg bg-gradient-to-br from-primary/10 to-brand/10 flex items-center justify-center flex-shrink-0'>
+          <Icon className='w-5 h-5 text-primary' />
         </div>
-        
-        <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-semibold text-foreground">
-            {title}
-          </h3>
-          <p className="text-xs text-muted-foreground mt-1">
-            {description}
-          </p>
+
+        <div className='flex-1 min-w-0'>
+          <h3 className='text-sm font-semibold text-foreground'>{title}</h3>
+          <p className='text-xs text-muted-foreground mt-1'>{description}</p>
         </div>
-        
+
         {isCollapsible && (
-          <div className="flex-shrink-0">
+          <div className='flex-shrink-0'>
             {expanded ? (
-              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+              <ChevronDown className='w-4 h-4 text-muted-foreground' />
             ) : (
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+              <ChevronRight className='w-4 h-4 text-muted-foreground' />
             )}
           </div>
         )}
@@ -91,24 +91,20 @@ export function FeatureCard({
 
       {/* Collapsible content */}
       {isCollapsible && (
-        <div 
+        <div
           id={`feature-content-${title}`}
           className={cn(
             'overflow-hidden transition-all duration-300 ease-in-out',
             expanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <div className="px-4 pb-4 border-t border-border/30">
-            {children}
-          </div>
+          <div className='px-4 pb-4 border-t border-border/30'>{children}</div>
         </div>
       )}
 
       {/* Static content */}
       {!isCollapsible && children && (
-        <div className="px-4 pb-4 border-t border-border/30">
-          {children}
-        </div>
+        <div className='px-4 pb-4 border-t border-border/30'>{children}</div>
       )}
     </div>
   )

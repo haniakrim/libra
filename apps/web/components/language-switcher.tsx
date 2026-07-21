@@ -18,69 +18,63 @@
  *
  */
 
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { Globe } from "lucide-react";
-import { Button } from "@libra/ui/components/button";
+import { Button } from '@libra/ui/components/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@libra/ui/components/dropdown-menu";
-import { getLocale, setLocale, type Locale } from "../paraglide/runtime";
-import * as m from "@/paraglide/messages";
+} from '@libra/ui/components/dropdown-menu'
+import { Globe } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import * as m from '@/paraglide/messages'
+import { getLocale, type Locale, setLocale } from '../paraglide/runtime'
 
 const getLanguages = (isHydrated: boolean) => [
-  { code: "en" as Locale, name: isHydrated ? m["common.languages.english"]() : "English" },
-  { code: "zh" as Locale, name: isHydrated ? m["common.languages.chinese"]() : "中文" },
-];
+  { code: 'en' as Locale, name: isHydrated ? m['common.languages.english']() : 'English' },
+  { code: 'ar' as Locale, name: isHydrated ? m['common.languages.arabic']() : 'العربية' },
+]
 
 export function LanguageSwitcher() {
-  const [isHydrated, setIsHydrated] = useState(false);
-  const currentLocale = getLocale();
+  const [isHydrated, setIsHydrated] = useState(false)
+  const currentLocale = getLocale()
 
   useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+    setIsHydrated(true)
+  }, [])
 
   const handleLanguageChange = (locale: Locale) => {
-    setLocale(locale);
-  };
+    setLocale(locale)
+  }
 
-  const languages = getLanguages(isHydrated);
-  const currentLanguage = languages.find(lang => lang.code === currentLocale);
+  const languages = getLanguages(isHydrated)
+  const currentLanguage = languages.find((lang) => lang.code === currentLocale)
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
-          <Globe className="h-4 w-4" />
+        <Button variant='ghost' size='sm' className='gap-2'>
+          <Globe className='h-4 w-4' />
           {isHydrated ? (
-            <span>
-              {currentLanguage?.name}
-            </span>
+            <span>{currentLanguage?.name}</span>
           ) : (
-            <span>
-              {m["common.languages.english"]()}
-            </span>
+            <span>{m['common.languages.english']()}</span>
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align='end'>
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}
             onClick={() => handleLanguageChange(language.code)}
-            className={`cursor-pointer ${
-              currentLocale === language.code ? "bg-accent" : ""
-            }`}
+            className={`cursor-pointer ${currentLocale === language.code ? 'bg-accent' : ''}`}
           >
             {language.name}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

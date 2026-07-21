@@ -21,6 +21,7 @@
 'use client'
 
 import { cn } from '@libra/ui/lib/utils'
+import * as m from '@/paraglide/messages'
 
 export type DeploymentStatus = 'preparing' | 'deploying' | 'success' | 'error' | 'cancelled'
 
@@ -35,11 +36,11 @@ interface DeploymentStatusIndicatorProps {
 // Helper function to get status labels
 function getStatusLabel(status: DeploymentStatus): string {
   const labels = {
-    preparing: '准备中',
-    deploying: '部署中',
-    success: '部署成功',
-    error: '部署失败',
-    cancelled: '已取消'
+    preparing: m['ide.deployment.deploymentStatusLabels.preparing'](),
+    deploying: m['ide.deployment.deploymentStatusLabels.deploying'](),
+    success: m['ide.deployment.deploymentStatusLabels.success'](),
+    error: m['ide.deployment.deploymentStatusLabels.error'](),
+    cancelled: m['ide.deployment.deploymentStatusLabels.cancelled'](),
   }
   return labels[status]
 }
@@ -50,54 +51,54 @@ const statusConfig = {
     bgColor: 'bg-blue-50 dark:bg-blue-950/20',
     borderColor: 'border-blue-200 dark:border-blue-800',
     indicatorColor: 'bg-blue-500',
-    animation: 'animate-pulse'
+    animation: 'animate-pulse',
   },
   deploying: {
     color: 'text-primary',
     bgColor: 'bg-primary/5',
     borderColor: 'border-primary/20',
     indicatorColor: 'bg-gradient-to-r from-primary to-brand',
-    animation: 'animate-pulse'
+    animation: 'animate-pulse',
   },
   success: {
     color: 'text-green-600 dark:text-green-400',
     bgColor: 'bg-green-50 dark:bg-green-950/20',
     borderColor: 'border-green-200 dark:border-green-800',
     indicatorColor: 'bg-green-500',
-    animation: ''
+    animation: '',
   },
   error: {
     color: 'text-red-600 dark:text-red-400',
     bgColor: 'bg-red-50 dark:bg-red-950/20',
     borderColor: 'border-red-200 dark:border-red-800',
     indicatorColor: 'bg-red-500',
-    animation: ''
+    animation: '',
   },
   cancelled: {
     color: 'text-gray-600 dark:text-gray-400',
     bgColor: 'bg-gray-50 dark:bg-gray-950/20',
     borderColor: 'border-gray-200 dark:border-gray-800',
     indicatorColor: 'bg-gray-500',
-    animation: ''
-  }
+    animation: '',
+  },
 } as const
 
 const sizeConfig = {
   sm: {
     container: 'px-2 py-1',
     indicator: 'w-1.5 h-1.5',
-    text: 'deployment-text-caption'
+    text: 'deployment-text-caption',
   },
   md: {
     container: 'px-3 py-2',
     indicator: 'w-2 h-2',
-    text: 'deployment-text-body'
+    text: 'deployment-text-body',
   },
   lg: {
     container: 'px-4 py-3',
     indicator: 'w-2.5 h-2.5',
-    text: 'deployment-text-subtitle'
-  }
+    text: 'deployment-text-subtitle',
+  },
 } as const
 
 export function DeploymentStatusIndicator({
@@ -105,11 +106,11 @@ export function DeploymentStatusIndicator({
   message,
   className,
   size = 'md',
-  showAnimation = true
+  showAnimation = true,
 }: DeploymentStatusIndicatorProps) {
   const config = statusConfig[status]
   const sizeStyles = sizeConfig[size]
-  
+
   return (
     <div
       className={cn(
@@ -123,8 +124,15 @@ export function DeploymentStatusIndicator({
       style={{
         borderRadius: 'var(--deployment-radius-xl)',
       }}
-      role="status"
-      aria-label={`部署状态: ${getStatusLabel(status)}${message ? ` - ${message}` : ''}`}
+      role='status'
+      aria-label={
+        message
+          ? m['ide.deployment.status.statusLabelWithMessage']({
+              status: getStatusLabel(status),
+              message,
+            })
+          : m['ide.deployment.status.statusLabel']({ status: getStatusLabel(status) })
+      }
     >
       {/* Status indicator dot */}
       <div
@@ -134,18 +142,14 @@ export function DeploymentStatusIndicator({
           sizeStyles.indicator,
           showAnimation && config.animation
         )}
-        aria-hidden="true"
+        aria-hidden='true'
       />
-      
+
       {/* Status text */}
-      <span className={cn(
-        'font-medium whitespace-nowrap',
-        config.color,
-        sizeStyles.text
-      )}>
+      <span className={cn('font-medium whitespace-nowrap', config.color, sizeStyles.text)}>
         {message || getStatusLabel(status)}
       </span>
-      
+
       {/* Loading spinner for active states */}
       {showAnimation && (status === 'preparing' || status === 'deploying') && (
         <div
@@ -155,7 +159,7 @@ export function DeploymentStatusIndicator({
             size === 'md' && 'w-4 h-4',
             size === 'lg' && 'w-5 h-5'
           )}
-          aria-hidden="true"
+          aria-hidden='true'
         />
       )}
     </div>
@@ -168,14 +172,14 @@ export function DeploymentStatusIndicator({
 export function CompactStatusIndicator({
   status,
   className,
-  showTooltip = true
+  showTooltip = true,
 }: {
   status: DeploymentStatus
   className?: string
   showTooltip?: boolean
 }) {
   const config = statusConfig[status]
-  
+
   return (
     <div
       className={cn(
@@ -186,7 +190,7 @@ export function CompactStatusIndicator({
       )}
       title={showTooltip ? getStatusLabel(status) : undefined}
       aria-label={getStatusLabel(status)}
-      role="status"
+      role='status'
     />
   )
 }
@@ -198,7 +202,7 @@ export function ProgressStatusIndicator({
   status,
   progress,
   stage,
-  className
+  className,
 }: {
   status: DeploymentStatus
   progress?: number
@@ -206,7 +210,7 @@ export function ProgressStatusIndicator({
   className?: string
 }) {
   const config = statusConfig[status]
-  
+
   return (
     <div
       className={cn(
@@ -218,37 +222,36 @@ export function ProgressStatusIndicator({
       style={{
         borderRadius: 'var(--deployment-radius-md)',
       }}
-      role="status"
-      aria-label={`部署状态: ${getStatusLabel(status)}${progress ? ` - ${progress}%` : ''}`}
+      role='status'
+      aria-label={
+        progress
+          ? m['ide.deployment.status.statusLabelWithProgress']({
+              status: getStatusLabel(status),
+              progress,
+            })
+          : m['ide.deployment.status.statusLabel']({ status: getStatusLabel(status) })
+      }
     >
-      <div className={cn(
-        'w-4 h-4 rounded-full flex-shrink-0',
-        config.indicatorColor,
-        config.animation
-      )} />
-      
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center justify-between">
-          <span className={cn(
-            'deployment-text-subtitle font-medium',
-            config.color
-          )}>
+      <div
+        className={cn(
+          'w-4 h-4 rounded-full flex-shrink-0',
+          config.indicatorColor,
+          config.animation
+        )}
+      />
+
+      <div className='flex-1 min-w-0'>
+        <div className='flex items-center justify-between'>
+          <span className={cn('deployment-text-subtitle font-medium', config.color)}>
             {getStatusLabel(status)}
           </span>
           {progress !== undefined && (
-            <span className={cn(
-              'deployment-text-caption font-bold',
-              config.color
-            )}>
+            <span className={cn('deployment-text-caption font-bold', config.color)}>
               {progress}%
             </span>
           )}
         </div>
-        {stage && (
-          <p className="deployment-text-caption text-muted-foreground mt-1">
-            {stage}
-          </p>
-        )}
+        {stage && <p className='deployment-text-caption text-muted-foreground mt-1'>{stage}</p>}
       </div>
     </div>
   )

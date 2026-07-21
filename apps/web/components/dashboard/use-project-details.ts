@@ -20,31 +20,30 @@
 
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { useTRPC } from '@/trpc/client'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { formatDistanceToNow } from 'date-fns'
-import { zhCN, enUS } from 'date-fns/locale'
+import { arSA, enUS } from 'date-fns/locale'
+import { useRouter } from 'next/navigation'
+import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'sonner'
-import { getLocale } from '@/paraglide/runtime'
-
-import type { FormState, TabId } from './project-details-types'
 import * as m from '@/paraglide/messages'
+import { getLocale } from '@/paraglide/runtime'
+import { useTRPC } from '@/trpc/client'
+import type { FormState, TabId } from './project-details-types'
 
 // Format date with locale support
 export const formatDate = (date: Date | string | null | undefined) => {
-  if (!date) return m["dashboard.workspace.projectDetails.dateFormat.unknown"]()
+  if (!date) return m['dashboard.workspace.projectDetails.dateFormat.unknown']()
   try {
     const currentLocale = getLocale()
-    const dateLocale = currentLocale === 'zh' ? zhCN : enUS
-    
+    const dateLocale = currentLocale === 'ar' ? arSA : enUS
+
     return formatDistanceToNow(new Date(date), {
       addSuffix: true,
       locale: dateLocale,
     })
   } catch (error) {
-    return m["dashboard.workspace.projectDetails.dateFormat.invalid"]()
+    return m['dashboard.workspace.projectDetails.dateFormat.invalid']()
   }
 }
 
@@ -72,10 +71,7 @@ export function useProjectDetails(projectId: string | null, projectName: string 
 
   // Get project details
   const projectQuery = useQuery(
-    trpc.project.getById.queryOptions(
-      { id: projectId ?? '' },
-      { enabled: !!projectId }
-    )
+    trpc.project.getById.queryOptions({ id: projectId ?? '' }, { enabled: !!projectId })
   )
   const project = projectQuery.data as any
   const isLoadingProject = projectQuery.isLoading
@@ -101,37 +97,39 @@ export function useProjectDetails(projectId: string | null, projectName: string 
   }, [project])
 
   // Form change handling - memoized with useCallback
-  const handleFormChange = useCallback((field: 'name' | 'description' | 'knowledge', value: string) => {
-    setFormState((prev) => {
-      const newState = {
-        ...prev,
-        [field]: value,
-      }
+  const handleFormChange = useCallback(
+    (field: 'name' | 'description' | 'knowledge', value: string) => {
+      setFormState((prev) => {
+        const newState = {
+          ...prev,
+          [field]: value,
+        }
 
-      if (field === 'name') {
-        newState.hasNameChanges = value !== originalName
-        newState.hasUnsavedChanges = value !== originalName || prev.hasKnowledgeChanges
-      }
+        if (field === 'name') {
+          newState.hasNameChanges = value !== originalName
+          newState.hasUnsavedChanges = value !== originalName || prev.hasKnowledgeChanges
+        }
 
-      if (field === 'description') {
-        newState.hasUnsavedChanges = true
-      }
+        if (field === 'description') {
+          newState.hasUnsavedChanges = true
+        }
 
-      if (field === 'knowledge') {
-        newState.hasKnowledgeChanges = value !== originalKnowledge
-        newState.hasUnsavedChanges = value !== originalKnowledge || prev.hasNameChanges
-      }
+        if (field === 'knowledge') {
+          newState.hasKnowledgeChanges = value !== originalKnowledge
+          newState.hasUnsavedChanges = value !== originalKnowledge || prev.hasNameChanges
+        }
 
-      return newState
-    })
-  }, [originalName, originalKnowledge])
+        return newState
+      })
+    },
+    [originalName, originalKnowledge]
+  )
 
   // Remove auto-save functionality - knowledge should only be saved manually
 
   // Save project changes
   const handleSave = async () => {
     if (!projectId) return
-
 
     try {
       // If project name or knowledge base has changed, use new updateProjectConfig API
@@ -167,22 +165,19 @@ export function useProjectDetails(projectId: string | null, projectName: string 
       // Refresh project data
       await queryClient.invalidateQueries(trpc.project.getById.pathFilter())
 
-      toast.success(m["dashboard.workspace.projectDetails.notifications.updateSuccess"](), {
-        description: m["dashboard.workspace.projectDetails.notifications.updateSuccessDesc"](),
+      toast.success(m['dashboard.workspace.projectDetails.notifications.updateSuccess'](), {
+        description: m['dashboard.workspace.projectDetails.notifications.updateSuccessDesc'](),
       })
     } catch (error) {
-      toast.error(m["dashboard.workspace.projectDetails.notifications.saveFailed"](), {
-        description: m["dashboard.workspace.projectDetails.notifications.saveFailedDesc"](),
+      toast.error(m['dashboard.workspace.projectDetails.notifications.saveFailed'](), {
+        description: m['dashboard.workspace.projectDetails.notifications.saveFailedDesc'](),
       })
     }
   }
 
-
-
   // Delete project
   const handleDelete = async () => {
     if (!projectId) return
-
 
     try {
       await deleteProject.mutateAsync({ id: projectId })
@@ -197,15 +192,15 @@ export function useProjectDetails(projectId: string | null, projectName: string 
       await queryClient.invalidateQueries(trpc.project.getQuotaStatus.pathFilter())
       await queryClient.invalidateQueries(trpc.subscription.getUsage.pathFilter())
 
-      toast.success(m["dashboard.workspace.projectDetails.notifications.deleteSuccess"]())
+      toast.success(m['dashboard.workspace.projectDetails.notifications.deleteSuccess']())
 
       // Navigate to project list page
       router.push('/dashboard')
 
       return true
     } catch (error) {
-      toast.error(m["dashboard.workspace.projectDetails.notifications.deleteFailed"](), {
-        description: m["dashboard.workspace.projectDetails.notifications.deleteFailedDesc"](),
+      toast.error(m['dashboard.workspace.projectDetails.notifications.deleteFailed'](), {
+        description: m['dashboard.workspace.projectDetails.notifications.deleteFailedDesc'](),
       })
       return false
     }
@@ -240,4 +235,4 @@ export function useProjectDetails(projectId: string | null, projectName: string 
     setConfirmLeaveDialogOpen,
     handlePendingChanges,
   }
-} 
+}

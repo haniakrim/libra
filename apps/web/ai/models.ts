@@ -18,9 +18,9 @@
  *
  */
 
-import { canAccessModel, getDefaultModelForPlan, findModelById } from '@/configs/ai-models'
-import { env } from '@/env.mjs'
 import type { AnthropicProviderOptions } from '@ai-sdk/anthropic'
+import { canAccessModel, findModelById, getDefaultModelForPlan } from '@/configs/ai-models'
+import { env } from '@/env.mjs'
 
 // ============================================================================
 // Model Configuration and Selection
@@ -64,11 +64,16 @@ export const selectModel = (
     // Strict access control for non-file-edit operations
     if (!canAccessModel(userPlan, modelToUse)) {
       const requestedModel = findModelById(modelToUse)
-      throw new Error(`Access denied: ${requestedModel.name} requires ${requestedModel.requiredPlan} subscription. Current plan: ${userPlan}`)
+      throw new Error(
+        `Access denied: ${requestedModel.name} requires ${requestedModel.requiredPlan} subscription. Current plan: ${userPlan}`
+      )
     }
   }
 
-  return MODEL_MAPPING[modelToUse] || (isFileEdit ? DEFAULT_MODELS.FILE_EDIT_FALLBACK : DEFAULT_MODELS.FALLBACK)
+  return (
+    MODEL_MAPPING[modelToUse] ||
+    (isFileEdit ? DEFAULT_MODELS.FILE_EDIT_FALLBACK : DEFAULT_MODELS.FALLBACK)
+  )
 }
 
 /**

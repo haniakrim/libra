@@ -40,7 +40,7 @@ export function PlanOverviewCard({
   className,
 }: PlanOverviewCardProps) {
   const currentLocale = getLocale()
-  const dateLocale = currentLocale === 'zh' ? 'zh-CN' : 'en-US'
+  const dateLocale = currentLocale === 'ar' ? 'ar-SA' : 'en-US'
 
   return (
     <Card className={cn('border bg-card', className)}>

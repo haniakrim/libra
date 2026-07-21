@@ -20,8 +20,9 @@
 
 'use client'
 
-import { Loader2, Sparkles } from 'lucide-react'
 import { cn } from '@libra/ui/lib/utils'
+import { Loader2, Sparkles } from 'lucide-react'
+import * as m from '@/paraglide/messages'
 
 interface CircularProgressProps {
   progress: number
@@ -40,7 +41,7 @@ const sizeConfig = {
     loader: 'h-6 w-6',
     text: 'text-xs',
     strokeWidth: 2,
-    radius: 28
+    radius: 28,
   },
   md: {
     container: 'h-20 w-20',
@@ -48,7 +49,7 @@ const sizeConfig = {
     loader: 'h-8 w-8',
     text: 'text-sm',
     strokeWidth: 3,
-    radius: 36
+    radius: 36,
   },
   lg: {
     container: 'h-24 w-24',
@@ -56,7 +57,7 @@ const sizeConfig = {
     loader: 'h-10 w-10',
     text: 'text-sm',
     strokeWidth: 3,
-    radius: 44
+    radius: 44,
   },
   xl: {
     container: 'h-32 w-32',
@@ -64,8 +65,8 @@ const sizeConfig = {
     loader: 'h-12 w-12',
     text: 'text-base',
     strokeWidth: 4,
-    radius: 60
-  }
+    radius: 60,
+  },
 }
 
 export function CircularProgress({
@@ -75,7 +76,7 @@ export function CircularProgress({
   showPercentage = true,
   showIcon = true,
   className,
-  'aria-label': ariaLabel
+  'aria-label': ariaLabel,
 }: CircularProgressProps) {
   const config = sizeConfig[size]
   const { radius } = config
@@ -92,19 +93,19 @@ export function CircularProgress({
         return {
           container: 'glass-2 border border-border/30',
           background: 'bg-gradient-to-br from-primary/5 via-brand/5 to-primary/5',
-          glow: 'shadow-lg shadow-primary/20'
+          glow: 'shadow-lg shadow-primary/20',
         }
       case 'glass':
         return {
           container: 'glass-3 border border-border/20',
           background: 'bg-gradient-to-br from-background/80 to-background/60',
-          glow: 'shadow-xl shadow-black/10'
+          glow: 'shadow-xl shadow-black/10',
         }
       default:
         return {
           container: 'border border-border/50',
           background: 'bg-background',
-          glow: 'shadow-md'
+          glow: 'shadow-md',
         }
     }
   }
@@ -113,70 +114,69 @@ export function CircularProgress({
 
   return (
     <div
-      className={cn("relative", config.container, className)}
-      role="img"
-      aria-label={ariaLabel || `进度: ${progress}%`}
+      className={cn('relative', config.container, className)}
+      role='img'
+      aria-label={ariaLabel || m['ide.deployment.progress.ariaLabels.progress']({ progress })}
     >
       {/* Outer glow effect */}
       {variant === 'gradient' && (
-        <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary/20 via-brand/20 to-primary/20 blur-xl animate-pulse" />
+        <div className='absolute -inset-4 rounded-full bg-gradient-to-r from-primary/20 via-brand/20 to-primary/20 blur-xl animate-pulse' />
       )}
 
       {/* Main container */}
-      <div className={cn(
-        "rounded-full flex items-center justify-center relative",
-        variantStyles.container,
-        variantStyles.background,
-        variantStyles.glow,
-        config.container
-      )}>
+      <div
+        className={cn(
+          'rounded-full flex items-center justify-center relative',
+          variantStyles.container,
+          variantStyles.background,
+          variantStyles.glow,
+          config.container
+        )}
+      >
         {/* Animated loader icon */}
         {showIcon && (
-          <Loader2
-            className={cn("animate-spin text-primary", config.loader)}
-            aria-hidden="true"
-          />
+          <Loader2 className={cn('animate-spin text-primary', config.loader)} aria-hidden='true' />
         )}
       </div>
 
       {/* SVG Progress Ring */}
       <svg
-        className={cn("absolute inset-0 transform -rotate-90", config.svg)}
-        aria-hidden="true"
-        role="img"
-        aria-label={`进度环: ${progress}%`}
+        className={cn('absolute inset-0 transform -rotate-90', config.svg)}
+        aria-hidden='true'
+        role='img'
+        aria-label={m['ide.deployment.progress.ariaLabels.progressRing']({ progress })}
       >
-        <title>进度指示器</title>
+        <title>{m['ide.deployment.progress.ariaLabels.progressIndicator']()}</title>
         {/* Background circle */}
         <circle
-          cx="50%"
-          cy="50%"
+          cx='50%'
+          cy='50%'
           r={radius}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          className="text-muted/20"
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='2'
+          className='text-muted/20'
         />
         {/* Progress circle with gradient */}
         <circle
-          cx="50%"
-          cy="50%"
+          cx='50%'
+          cy='50%'
           r={radius}
-          fill="none"
-          stroke={variant === 'gradient' ? "url(#progressGradient)" : "currentColor"}
+          fill='none'
+          stroke={variant === 'gradient' ? 'url(#progressGradient)' : 'currentColor'}
           strokeWidth={config.strokeWidth}
           strokeDasharray={strokeDasharray}
           strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-          className="text-primary transition-all duration-1000 ease-out drop-shadow-lg"
+          strokeLinecap='round'
+          className='text-primary transition-all duration-1000 ease-out drop-shadow-lg'
         />
         {/* Gradient definition for enhanced visual */}
         {variant === 'gradient' && (
           <defs>
-            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="var(--primary)" />
-              <stop offset="50%" stopColor="var(--brand)" />
-              <stop offset="100%" stopColor="var(--primary)" />
+            <linearGradient id='progressGradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+              <stop offset='0%' stopColor='var(--primary)' />
+              <stop offset='50%' stopColor='var(--brand)' />
+              <stop offset='100%' stopColor='var(--primary)' />
             </linearGradient>
           </defs>
         )}
@@ -184,14 +184,8 @@ export function CircularProgress({
 
       {/* Percentage display */}
       {showPercentage && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span
-            className={cn(
-              "font-bold text-foreground",
-              config.text
-            )}
-            aria-hidden="true"
-          >
+        <div className='absolute inset-0 flex flex-col items-center justify-center'>
+          <span className={cn('font-bold text-foreground', config.text)} aria-hidden='true'>
             {progress}%
           </span>
         </div>

@@ -20,9 +20,9 @@
 
 'use client'
 
-import { Globe, Zap, Rocket } from 'lucide-react'
-import { UrlPreview, ActionButton } from './atoms'
+import { Globe, Rocket, Zap } from 'lucide-react'
 import * as m from '@/paraglide/messages'
+import { ActionButton, UrlPreview } from './atoms'
 
 interface DeploymentConfirmationProps {
   onConfirm: () => Promise<void>
@@ -37,7 +37,7 @@ export function DeploymentConfirmation({
   existingUrl,
   isDeploying,
   onClose,
-  projectId
+  projectId,
 }: DeploymentConfirmationProps) {
   const handleConfirm = async () => {
     await onConfirm()
@@ -53,60 +53,65 @@ export function DeploymentConfirmation({
 
   return (
     <main
-      className="deployment-section flex flex-col"
+      className='deployment-section flex flex-col'
       style={{ gap: 'var(--deployment-section-gap)' }}
-      aria-label={hasExistingDeployment ? m["ide.deployment.dialog.redeployConfirmationAriaLabel"]() : m["ide.deployment.dialog.confirmationAriaLabel"]()}
+      aria-label={
+        hasExistingDeployment
+          ? m['ide.deployment.dialog.redeployConfirmationAriaLabel']()
+          : m['ide.deployment.dialog.confirmationAriaLabel']()
+      }
     >
-
-
       {/* URL preview card with left-aligned icon */}
-      <div className="deployment-card-primary">
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h3 className="deployment-text-subtitle text-foreground font-semibold">
+      <div className='deployment-card-primary'>
+        <div className='space-y-3'>
+          <div className='flex items-center justify-between'>
+            <h3 className='deployment-text-subtitle text-foreground font-semibold'>
               {hasExistingDeployment
-                ? m["ide.deployment.dialog.currentDeploymentAddress"]()
-                : m["ide.deployment.dialog.previewDeploymentAddress"]()
-              }
+                ? m['ide.deployment.dialog.currentDeploymentAddress']()
+                : m['ide.deployment.dialog.previewDeploymentAddress']()}
             </h3>
-            <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${hasExistingDeployment ? 'bg-green-500' : 'bg-orange-500'}`} />
-              <span className="deployment-text-caption text-muted-foreground">
-                {hasExistingDeployment ? m["ide.deployment.dialog.live"]() : m["ide.deployment.dialog.availableAfterDeploy"]()}
+            <div className='flex items-center gap-2'>
+              <div
+                className={`w-2 h-2 rounded-full ${hasExistingDeployment ? 'bg-green-500' : 'bg-orange-500'}`}
+              />
+              <span className='deployment-text-caption text-muted-foreground'>
+                {hasExistingDeployment
+                  ? m['ide.deployment.dialog.live']()
+                  : m['ide.deployment.dialog.availableAfterDeploy']()}
               </span>
             </div>
           </div>
 
           <UrlPreview
             url={expectedUrl}
-            status={hasExistingDeployment ? "live" : "preview"}
+            status={hasExistingDeployment ? 'live' : 'preview'}
             showActions={true}
-            className="!mt-3"
+            className='!mt-3'
           />
         </div>
       </div>
 
       {/* Compact deployment features */}
-      <div className="deployment-card-enhanced">
-        <div className="space-y-3">
-          <h4 className="deployment-text-subtitle font-semibold text-foreground">
-            {m["ide.deployment.dialog.deploymentFeatures"]()}
+      <div className='deployment-card-enhanced'>
+        <div className='space-y-3'>
+          <h4 className='deployment-text-subtitle font-semibold text-foreground'>
+            {m['ide.deployment.dialog.deploymentFeatures']()}
           </h4>
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center">
-                <Zap className="w-3 h-3 text-green-600 dark:text-green-400" aria-hidden="true" />
+          <div className='flex items-center justify-between text-sm'>
+            <div className='flex items-center gap-2'>
+              <div className='w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center'>
+                <Zap className='w-3 h-3 text-green-600 dark:text-green-400' aria-hidden='true' />
               </div>
-              <span className="text-foreground font-medium">
-                {m["ide.deployment.dialog.globalCdn"]()}
+              <span className='text-foreground font-medium'>
+                {m['ide.deployment.dialog.globalCdn']()}
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
-                <Globe className="w-3 h-3 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+            <div className='flex items-center gap-2'>
+              <div className='w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center'>
+                <Globe className='w-3 h-3 text-blue-600 dark:text-blue-400' aria-hidden='true' />
               </div>
-              <span className="text-foreground font-medium">
-                {m["ide.deployment.dialog.sslSecurity"]()}
+              <span className='text-foreground font-medium'>
+                {m['ide.deployment.dialog.sslSecurity']()}
               </span>
             </div>
           </div>
@@ -114,29 +119,29 @@ export function DeploymentConfirmation({
       </div>
 
       {/* Enhanced action bar */}
-      <div className="deployment-action-bar-responsive">
+      <div className='deployment-action-bar-responsive'>
         <ActionButton
-          intent="secondary"
+          intent='secondary'
           onClick={onClose}
-          className="flex-1"
-          aria-label={m["ide.deployment.dialog.cancelDeploymentAriaLabel"]()}
+          className='flex-1'
+          aria-label={m['ide.deployment.dialog.cancelDeploymentAriaLabel']()}
         >
-          {m["ide.deployment.dialog.cancel"]()}
+          {m['ide.deployment.dialog.cancel']()}
         </ActionButton>
         <ActionButton
-          intent="primary"
+          intent='primary'
           onClick={handleConfirm}
           icon={Rocket}
-          className="flex-1"
-          aria-label={hasExistingDeployment
-            ? m["ide.deployment.dialog.redeployProjectAriaLabel"]()
-            : m["ide.deployment.dialog.startDeploymentAriaLabel"]()
+          className='flex-1'
+          aria-label={
+            hasExistingDeployment
+              ? m['ide.deployment.dialog.redeployProjectAriaLabel']()
+              : m['ide.deployment.dialog.startDeploymentAriaLabel']()
           }
         >
           {hasExistingDeployment
-            ? m["ide.deployment.dialog.redeploy"]()
-            : m["ide.deployment.dialog.deploy"]()
-          }
+            ? m['ide.deployment.dialog.redeploy']()
+            : m['ide.deployment.dialog.deploy']()}
         </ActionButton>
       </div>
     </main>

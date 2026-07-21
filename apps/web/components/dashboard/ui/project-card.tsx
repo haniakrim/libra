@@ -20,16 +20,16 @@
 
 'use client'
 
-import { memo, useState } from 'react'
+import { Tooltip, TooltipTrigger } from '@libra/ui/components/tooltip'
+import { cn } from '@libra/ui/lib/utils'
 import { formatDistanceToNow } from 'date-fns'
-import { enUS, zhCN } from 'date-fns/locale'
+import { arSA, enUS } from 'date-fns/locale'
 import { Clock, MoreVertical, Star } from 'lucide-react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Tooltip, TooltipTrigger } from '@libra/ui/components/tooltip'
-import { cn } from '@libra/ui/lib/utils'
+import { memo, useState } from 'react'
 import * as m from '@/paraglide/messages'
 import { getLocale } from '@/paraglide/runtime'
 
@@ -40,10 +40,8 @@ const {
   'dashboard.projectCard.time.justCreated': timeJustCreated,
   'dashboard.projectCard.noDescription': noDescription,
 } = m
-import {
-  GlowingStarsDescription,
-  GlowingStarsTitle,
-} from '../../ui/glowing-stars'
+
+import { GlowingStarsDescription, GlowingStarsTitle } from '../../ui/glowing-stars'
 import { CreateProjectDialog } from '../create-project-dialog'
 import { Loading } from '../loading'
 import { ProjectDetailsDialog } from '../project-details-dialog'
@@ -92,7 +90,7 @@ function ProjectCardComponent({ project }: { project: Project }) {
   // Format time
   const formattedTime = () => {
     const currentLocale = getLocale()
-    const dateLocale = currentLocale === 'zh' ? zhCN : enUS
+    const dateLocale = currentLocale === 'ar' ? arSA : enUS
 
     if (project.updatedAt) {
       const timeAgo = formatDistanceToNow(new Date(project.updatedAt), { locale: dateLocale })
@@ -108,13 +106,12 @@ function ProjectCardComponent({ project }: { project: Project }) {
   return (
     <>
       <Tooltip>
-        <TooltipTrigger 
-          asChild
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <TooltipTrigger asChild onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div
-            className={cn('block h-full group relative cursor-pointer', isProjectInactive && 'opacity-60')}
+            className={cn(
+              'block h-full group relative cursor-pointer',
+              isProjectInactive && 'opacity-60'
+            )}
           >
             {hasValidPreviewImage ? (
               // Display preview image card
@@ -160,11 +157,11 @@ function ProjectCardComponent({ project }: { project: Project }) {
 
                 {/* Disabled overlay for inactive projects */}
                 {isProjectInactive && (
-                  <div
-                    className='absolute inset-0 bg-muted/40 backdrop-blur-[2px] z-10 flex items-center justify-center'
-                  >
+                  <div className='absolute inset-0 bg-muted/40 backdrop-blur-[2px] z-10 flex items-center justify-center'>
                     <div className='bg-background/95 px-4 py-2 rounded-md border border-muted-foreground/30 shadow-sm'>
-                      <span className='text-xs text-muted-foreground font-medium tracking-wider uppercase'>{m["dashboard.projectCard.inactive"]()}</span>
+                      <span className='text-xs text-muted-foreground font-medium tracking-wider uppercase'>
+                        {m['dashboard.projectCard.inactive']()}
+                      </span>
                     </div>
                   </div>
                 )}
@@ -197,9 +194,14 @@ function ProjectCardComponent({ project }: { project: Project }) {
                             opacity: isHovered ? 1 : 0,
                             scale: isHovered ? 1 : 0.8,
                             rotate: isHovered ? 0 : -45,
-                            y: isHovered ? 0 : -2
+                            y: isHovered ? 0 : -2,
                           }}
-                          transition={{ duration: 0.4, type: 'spring', stiffness: 400, damping: 20 }}
+                          transition={{
+                            duration: 0.4,
+                            type: 'spring',
+                            stiffness: 400,
+                            damping: 20,
+                          }}
                           aria-hidden='true'
                         >
                           <Star className='h-3.5 w-3.5 text-primary/80 fill-primary/25' />
@@ -211,9 +213,7 @@ function ProjectCardComponent({ project }: { project: Project }) {
                         className='text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-snug min-h-[2rem] sm:min-h-[2.25rem]'
                       >
                         {project.initialMessage || (
-                          <span className='italic text-muted-foreground/60'>
-                            {noDescription()}
-                          </span>
+                          <span className='italic text-muted-foreground/60'>{noDescription()}</span>
                         )}
                       </GlowingStarsDescription>
                     </div>
@@ -223,7 +223,9 @@ function ProjectCardComponent({ project }: { project: Project }) {
                   <div className='mt-auto'>
                     <div className='flex items-center gap-2 text-xs text-muted-foreground border-t border-border/30 pt-1.5'>
                       <Clock className='size-3 flex-shrink-0 text-muted-foreground/70' />
-                      <span className='inline-block w-full truncate font-medium'>{formattedTime()}</span>
+                      <span className='inline-block w-full truncate font-medium'>
+                        {formattedTime()}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -242,7 +244,7 @@ function ProjectCardComponent({ project }: { project: Project }) {
                       e.preventDefault()
                       setShowDetailsDialog(true)
                     }}
-                    aria-label={m["dashboard.projectCard.projectSettings"]()}
+                    aria-label={m['dashboard.projectCard.projectSettings']()}
                   >
                     <MoreVertical className='h-4 w-4 text-muted-foreground hover:text-foreground transition-colors' />
                   </motion.button>
@@ -274,16 +276,17 @@ function ProjectCardComponent({ project }: { project: Project }) {
                       }}
                     >
                       {[...Array(108)].map((_, starIdx) => (
-                        <div key={`star-${starIdx}`} className='relative flex items-center justify-center'>
+                        <div
+                          key={`star-${starIdx}`}
+                          className='relative flex items-center justify-center'
+                        >
                           <div
                             className='h-[1px] w-[1px] rounded-full transition-all duration-300'
                             style={{
                               background: isHovered
                                 ? 'hsl(var(--primary))'
                                 : 'hsl(var(--muted-foreground) / 0.3)',
-                              boxShadow: isHovered
-                                ? '0 0 2px hsl(var(--primary) / 0.5)'
-                                : 'none'
+                              boxShadow: isHovered ? '0 0 2px hsl(var(--primary) / 0.5)' : 'none',
                             }}
                           />
                         </div>
@@ -305,11 +308,11 @@ function ProjectCardComponent({ project }: { project: Project }) {
 
                 {/* Disabled overlay for inactive projects */}
                 {isProjectInactive && (
-                  <div
-                    className='absolute inset-0 bg-muted/40 backdrop-blur-[2px] z-10 flex items-center justify-center'
-                  >
+                  <div className='absolute inset-0 bg-muted/40 backdrop-blur-[2px] z-10 flex items-center justify-center'>
                     <div className='bg-background/95 px-4 py-2 rounded-md border border-muted-foreground/30 shadow-sm'>
-                      <span className='text-xs text-muted-foreground font-medium tracking-wider uppercase'>{m["dashboard.projectCard.inactive"]()}</span>
+                      <span className='text-xs text-muted-foreground font-medium tracking-wider uppercase'>
+                        {m['dashboard.projectCard.inactive']()}
+                      </span>
                     </div>
                   </div>
                 )}
@@ -342,9 +345,14 @@ function ProjectCardComponent({ project }: { project: Project }) {
                             opacity: isHovered ? 1 : 0,
                             scale: isHovered ? 1 : 0.8,
                             rotate: isHovered ? 0 : -45,
-                            y: isHovered ? 0 : -2
+                            y: isHovered ? 0 : -2,
                           }}
-                          transition={{ duration: 0.4, type: 'spring', stiffness: 400, damping: 20 }}
+                          transition={{
+                            duration: 0.4,
+                            type: 'spring',
+                            stiffness: 400,
+                            damping: 20,
+                          }}
                           aria-hidden='true'
                         >
                           <Star className='h-3.5 w-3.5 text-primary/80 fill-primary/25' />
@@ -356,9 +364,7 @@ function ProjectCardComponent({ project }: { project: Project }) {
                         className='text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-snug min-h-[2rem] sm:min-h-[2.25rem]'
                       >
                         {project.initialMessage || (
-                          <span className='italic text-muted-foreground/60'>
-                            {noDescription()}
-                          </span>
+                          <span className='italic text-muted-foreground/60'>{noDescription()}</span>
                         )}
                       </GlowingStarsDescription>
                     </div>
@@ -368,7 +374,9 @@ function ProjectCardComponent({ project }: { project: Project }) {
                   <div className='mt-auto'>
                     <div className='flex items-center gap-2 text-xs text-muted-foreground border-t border-border/30 pt-1.5'>
                       <Clock className='size-3 flex-shrink-0 text-muted-foreground/70' />
-                      <span className='inline-block w-full truncate font-medium'>{formattedTime()}</span>
+                      <span className='inline-block w-full truncate font-medium'>
+                        {formattedTime()}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -387,7 +395,7 @@ function ProjectCardComponent({ project }: { project: Project }) {
                       e.preventDefault()
                       setShowDetailsDialog(true)
                     }}
-                    aria-label={m["dashboard.projectCard.projectSettings"]()}
+                    aria-label={m['dashboard.projectCard.projectSettings']()}
                   >
                     <MoreVertical className='h-4 w-4 text-muted-foreground hover:text-foreground transition-colors' />
                   </motion.button>
@@ -397,7 +405,8 @@ function ProjectCardComponent({ project }: { project: Project }) {
 
             {/* Loading animation overlay */}
             {isLoading && (
-              <motion.div className='absolute inset-0 flex items-center justify-center rounded-lg z-50 bg-background/70 backdrop-blur-sm'
+              <motion.div
+                className='absolute inset-0 flex items-center justify-center rounded-lg z-50 bg-background/70 backdrop-blur-sm'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}

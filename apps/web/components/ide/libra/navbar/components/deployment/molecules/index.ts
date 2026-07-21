@@ -18,8 +18,8 @@
  *
  */
 
-export { StageHeader } from './stage-header'
 export { FeatureCard } from './feature-card'
 export { FeatureStatusBar } from './feature-status-bar'
 export { ProgressDisplay } from './progress-display'
+export { StageHeader } from './stage-header'
 export { SuccessActions } from './success-actions'

@@ -20,8 +20,9 @@
 
 'use client'
 
-import { Check, AlertCircle, XCircle, Info, Loader2 } from 'lucide-react'
 import { cn } from '@libra/ui/lib/utils'
+import { AlertCircle, Check, Info, Loader2, XCircle } from 'lucide-react'
+import * as m from '@/paraglide/messages'
 
 export type StatusType = 'success' | 'warning' | 'error' | 'info' | 'loading'
 
@@ -37,49 +38,58 @@ const statusConfig = {
   success: {
     icon: Check,
     colorClass: 'deployment-status-success',
-    defaultText: "成功"
   },
   warning: {
     icon: AlertCircle,
     colorClass: 'deployment-status-warning',
-    defaultText: "警告"
   },
   error: {
     icon: XCircle,
     colorClass: 'deployment-status-error',
-    defaultText: "错误"
   },
   info: {
     icon: Info,
     colorClass: 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/20',
-    defaultText: "信息"
   },
   loading: {
     icon: Loader2,
     colorClass: 'text-muted-foreground animate-pulse',
-    defaultText: "加载中"
-  }
+  },
 } as const
+
+// Called at render time (not module scope) so it reads the request's
+// current locale rather than baking in whatever locale was active when
+// this module first loaded.
+function getDefaultStatusText(status: StatusType): string {
+  const texts: Record<StatusType, string> = {
+    success: m['ide.deployment.status.success'](),
+    warning: m['ide.deployment.status.warning'](),
+    error: m['ide.deployment.status.error'](),
+    info: m['ide.deployment.status.info'](),
+    loading: m['ide.deployment.status.loading'](),
+  }
+  return texts[status]
+}
 
 const sizeConfig = {
   sm: {
     iconSize: 'w-3 h-3',
     containerSize: 'w-6 h-6',
     textSize: 'text-xs',
-    padding: 'px-2 py-1'
+    padding: 'px-2 py-1',
   },
   md: {
     iconSize: 'w-4 h-4',
     containerSize: 'w-8 h-8',
     textSize: 'text-sm',
-    padding: 'px-3 py-1.5'
+    padding: 'px-3 py-1.5',
   },
   lg: {
     iconSize: 'w-5 h-5',
     containerSize: 'w-10 h-10',
     textSize: 'text-base',
-    padding: 'px-4 py-2'
-  }
+    padding: 'px-4 py-2',
+  },
 } as const
 
 export function StatusIndicator({
@@ -87,28 +97,27 @@ export function StatusIndicator({
   size = 'md',
   showText = false,
   text,
-  className
+  className,
 }: StatusIndicatorProps) {
   const config = statusConfig[status]
   const sizeStyles = sizeConfig[size]
   const Icon = config.icon
-  const displayText = text || config.defaultText
+  const displayText = text || getDefaultStatusText(status)
 
   if (showText) {
     return (
-      <div className={cn(
-        'inline-flex items-center gap-2 rounded-full font-medium',
-        config.colorClass,
-        sizeStyles.padding,
-        sizeStyles.textSize,
-        className
-      )}>
-        <Icon 
-          className={cn(
-            sizeStyles.iconSize,
-            status === 'loading' && 'animate-spin'
-          )}
-          aria-hidden="true"
+      <div
+        className={cn(
+          'inline-flex items-center gap-2 rounded-full font-medium',
+          config.colorClass,
+          sizeStyles.padding,
+          sizeStyles.textSize,
+          className
+        )}
+      >
+        <Icon
+          className={cn(sizeStyles.iconSize, status === 'loading' && 'animate-spin')}
+          aria-hidden='true'
         />
         <span>{displayText}</span>
       </div>
@@ -116,7 +125,7 @@ export function StatusIndicator({
   }
 
   return (
-    <div 
+    <div
       className={cn(
         'inline-flex items-center justify-center rounded-full',
         config.colorClass,
@@ -126,12 +135,9 @@ export function StatusIndicator({
       title={displayText}
       aria-label={displayText}
     >
-      <Icon 
-        className={cn(
-          sizeStyles.iconSize,
-          status === 'loading' && 'animate-spin'
-        )}
-        aria-hidden="true"
+      <Icon
+        className={cn(sizeStyles.iconSize, status === 'loading' && 'animate-spin')}
+        aria-hidden='true'
       />
     </div>
   )

@@ -640,7 +640,9 @@
           "create_repo_failed": "Failed to create project repository",
           "popup_blocked": "Popup blocked. Please allow popups for this site and try again.",
           "oauth_failed": "Failed to open GitHub OAuth authorization",
-          "installation_failed": "Failed to open GitHub App installation"
+          "installation_failed": "Failed to open GitHub App installation",
+          "installation_success_oauth_pending": "GitHub App installed successfully! Authorizing repository access...",
+          "installation_success_personal_oauth_required": "GitHub App installed successfully! Personal accounts need to click the \"Repository access required\" button for additional authorization."
         }
       },
       "coming_soon": {
@@ -1112,7 +1114,7 @@
     "language": "Language",
     "languages": {
       "english": "English",
-      "chinese": "中文"
+      "arabic": "Arabic"
     },
     "theme_toggle": "Toggle theme",
     "user_tiers": {
@@ -1562,7 +1564,19 @@
         "info": "Info",
         "loading": "Loading",
         "preparingRedeploy": "Preparing Redeploy",
-        "preparingDeploy": "Preparing Deploy"
+        "preparingDeploy": "Preparing Deploy",
+        "readyToRedeploy": "Ready to redeploy updates",
+        "statusLabel": "Deployment status: {status}",
+        "statusLabelWithMessage": "Deployment status: {status} - {message}",
+        "statusLabelWithProgress": "Deployment status: {status} - {progress}%",
+        "deploymentProgressLabel": "Deployment progress: {progress}%",
+        "deploymentProgressIndicator": "Deployment progress indicator",
+        "loadingEllipsis": "Loading...",
+        "progressWord": "Progress",
+        "estimatedTimeRemainingWithValue": "Estimated time remaining: {estimatedTime}",
+        "progressAnnouncement": "Deployment progress: {progress}%.",
+        "currentStageAnnouncement": "Current stage: {stage}.",
+        "estimatedMinutesAnnouncement": "Estimated {estimatedMinutes} minutes remaining."
       },
       "error": {
         "deploymentFailed": "Deployment Failed",
@@ -1647,7 +1661,26 @@
           "failed": "Failed",
           "unknown": "Status unknown"
         }
-      }
+      },
+      "deploymentStatusLabels": {
+        "preparing": "Preparing",
+        "deploying": "Deploying",
+        "success": "Deployment successful",
+        "error": "Deployment failed",
+        "cancelled": "Cancelled"
+      },
+      "errorBoundary": {
+        "deploymentError": "Deployment error",
+        "errorOccurred": "An error occurred",
+        "unexpectedError": "An unexpected error occurred during deployment. Please retry or contact support.",
+        "retryDeployment": "Retry deployment",
+        "retry": "Retry",
+        "getHelp": "Get help",
+        "errorDetailsDevMode": "Error details (dev mode)",
+        "error": "Error",
+        "retryOperation": "Retry operation"
+      },
+      "retryLoading": "Retry loading ({retryCount}/{maxRetries})"
     },
     "customDomain": {
       "title": "Custom Domain",

@@ -18,13 +18,13 @@
  *
  */
 
-export { StatusIndicator, type StatusType } from './status-indicator'
-export { ProgressCircle } from './progress-circle'
-export { UrlPreview, type UrlStatus } from './url-preview'
 export { ActionButton, type ButtonIntent } from './action-button'
 export {
-  DeploymentStatusIndicator,
   CompactStatusIndicator,
+  type DeploymentStatus,
+  DeploymentStatusIndicator,
   ProgressStatusIndicator,
-  type DeploymentStatus
 } from './deployment-status-indicator'
+export { ProgressCircle } from './progress-circle'
+export { StatusIndicator, type StatusType } from './status-indicator'
+export { UrlPreview, type UrlStatus } from './url-preview'

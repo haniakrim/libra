@@ -30,37 +30,38 @@ interface DeploymentStatusHeaderProps {
 
 export function DeploymentStatusHeader({
   isExistingDeployment = false,
-  className
+  className,
 }: DeploymentStatusHeaderProps) {
   return (
     <div
       className={`text-center space-y-4 px-2 sm:px-0 ${className || ''}`}
-      role="status"
-      aria-live="polite"
+      role='status'
+      aria-live='polite'
     >
-      <div className="flex items-center justify-center gap-3">
+      <div className='flex items-center justify-center gap-3'>
         <div
-          className="h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center"
-          aria-hidden="true"
+          className='h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center'
+          aria-hidden='true'
         >
-          <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 text-green-600 dark:text-green-400" />
+          <CheckCircle className='h-6 w-6 sm:h-7 sm:w-7 text-green-600 dark:text-green-400' />
         </div>
       </div>
-      <div className="space-y-3">
+      <div className='space-y-3'>
         <h3
-          className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground"
-          id="deployment-status-title"
-        >
-          {isExistingDeployment ? m["ide.deployment.dialog.projectDeployedTitle"]() : m["ide.deployment.dialog.deploymentSuccessTitle"]()}
-        </h3>
-        <p
-          className="text-muted-foreground text-sm sm:text-base max-w-md lg:max-w-lg mx-auto leading-relaxed"
-          id="deployment-status-description"
+          className='text-lg sm:text-xl lg:text-2xl font-semibold text-foreground'
+          id='deployment-status-title'
         >
           {isExistingDeployment
-            ? m["ide.deployment.dialog.projectDeployedDescription"]()
-            : m["ide.deployment.dialog.deploymentSuccessDescription"]()
-          }
+            ? m['ide.deployment.dialog.projectDeployedTitle']()
+            : m['ide.deployment.dialog.deploymentSuccessTitle']()}
+        </h3>
+        <p
+          className='text-muted-foreground text-sm sm:text-base max-w-md lg:max-w-lg mx-auto leading-relaxed'
+          id='deployment-status-description'
+        >
+          {isExistingDeployment
+            ? m['ide.deployment.dialog.projectDeployedDescription']()
+            : m['ide.deployment.dialog.deploymentSuccessDescription']()}
         </p>
       </div>
     </div>

@@ -20,14 +20,12 @@
 
 'use client'
 
-import React, { useMemo, useCallback } from 'react'
 import { Check, Rocket } from 'lucide-react'
-import type { CustomDomainStatus } from '../../types/deployment'
-import { CustomDomainSection } from './custom-domain-section'
-import { UrlPreview, ActionButton } from './atoms'
-
-
+import React, { useCallback, useMemo } from 'react'
 import * as m from '@/paraglide/messages'
+import type { CustomDomainStatus } from '../../types/deployment'
+import { ActionButton, UrlPreview } from './atoms'
+import { CustomDomainSection } from './custom-domain-section'
 
 interface DeploymentSuccessProps {
   deployResult?: { workerUrl?: string; message?: string } | null
@@ -45,26 +43,25 @@ interface DeploymentSuccessProps {
 const DeploymentHeader = React.memo<{
   isNewDeployment: boolean
 }>(({ isNewDeployment }) => (
-  <div className="text-center space-y-3">
+  <div className='text-center space-y-3'>
     {/* Success Icon */}
-    <div className="relative inline-flex">
+    <div className='relative inline-flex'>
       <div
-        className="w-12 h-12 mx-auto rounded-full flex items-center justify-center shadow-lg"
+        className='w-12 h-12 mx-auto rounded-full flex items-center justify-center shadow-lg'
         style={{
           background: 'linear-gradient(135deg, var(--deployment-color-success), #10b981)',
-          borderRadius: 'var(--deployment-radius-xl)'
+          borderRadius: 'var(--deployment-radius-xl)',
         }}
       >
-        <Check className="w-6 h-6 text-white" aria-hidden="true" />
+        <Check className='w-6 h-6 text-white' aria-hidden='true' />
       </div>
     </div>
 
     {/* Success Message */}
-    <h2 className="deployment-text-title text-foreground">
+    <h2 className='deployment-text-title text-foreground'>
       {isNewDeployment
-        ? m["ide.deployment.dialog.deploymentSuccessTitle"]()
-        : m["ide.deployment.dialog.projectDeployedTitle"]()
-      }
+        ? m['ide.deployment.dialog.deploymentSuccessTitle']()
+        : m['ide.deployment.dialog.projectDeployedTitle']()}
     </h2>
   </div>
 ))
@@ -84,24 +81,24 @@ const ActionButtons = React.memo<{
   }, [onRedeploy])
 
   return (
-    <div className="deployment-action-bar-responsive">
+    <div className='deployment-action-bar-responsive'>
       <ActionButton
-        intent="secondary"
+        intent='secondary'
         onClick={onClose}
-        className="flex-1"
-        aria-label={m["ide.deployment.dialog.closeDialogAriaLabel"]()}
+        className='flex-1'
+        aria-label={m['ide.deployment.dialog.closeDialogAriaLabel']()}
       >
-        {m["ide.deployment.dialog.close"]()}
+        {m['ide.deployment.dialog.close']()}
       </ActionButton>
       {showRedeployButton && onRedeploy && (
         <ActionButton
-          intent="primary"
+          intent='primary'
           onClick={handleRedeploy}
           icon={Rocket}
-          className="flex-1"
-          aria-label={m["ide.deployment.dialog.redeployProjectAriaLabel"]()}
+          className='flex-1'
+          aria-label={m['ide.deployment.dialog.redeployProjectAriaLabel']()}
         >
-          {m["ide.deployment.dialog.redeploy"]()}
+          {m['ide.deployment.dialog.redeploy']()}
         </ActionButton>
       )}
     </div>
@@ -110,62 +107,66 @@ const ActionButtons = React.memo<{
 
 ActionButtons.displayName = 'ActionButtons'
 
-export const DeploymentSuccess = React.memo<DeploymentSuccessProps>(({
-  deployResult,
-  existingUrl,
-  customDomainStatus,
-  onSetCustomDomain,
-  onVerifyCustomDomain,
-  onRemoveCustomDomain,
-  isCustomDomainLoading = false,
-  onClose,
-  onRedeploy
-}) => {
-  const displayUrl = useMemo(() => deployResult?.workerUrl || existingUrl, [deployResult?.workerUrl, existingUrl])
-  const isNewDeployment = useMemo(() => Boolean(deployResult?.workerUrl), [deployResult?.workerUrl])
-  const showRedeployButton = useMemo(() => Boolean(displayUrl), [displayUrl])
+export const DeploymentSuccess = React.memo<DeploymentSuccessProps>(
+  ({
+    deployResult,
+    existingUrl,
+    customDomainStatus,
+    onSetCustomDomain,
+    onVerifyCustomDomain,
+    onRemoveCustomDomain,
+    isCustomDomainLoading = false,
+    onClose,
+    onRedeploy,
+  }) => {
+    const displayUrl = useMemo(
+      () => deployResult?.workerUrl || existingUrl,
+      [deployResult?.workerUrl, existingUrl]
+    )
+    const isNewDeployment = useMemo(
+      () => Boolean(deployResult?.workerUrl),
+      [deployResult?.workerUrl]
+    )
+    const showRedeployButton = useMemo(() => Boolean(displayUrl), [displayUrl])
 
-  if (!displayUrl) {
-    return null
+    if (!displayUrl) {
+      return null
+    }
+
+    return (
+      <main
+        className='deployment-section flex flex-col'
+        style={{ gap: 'var(--deployment-section-gap)' }}
+        aria-labelledby='deployment-success-title'
+      >
+        {/* Enhanced Success Header */}
+        <DeploymentHeader isNewDeployment={isNewDeployment} />
+
+        {/* Simplified URL Preview */}
+        <UrlPreview url={displayUrl} status='live' showActions={true} />
+
+        {/* Integrated Custom Domain Section */}
+        {(onSetCustomDomain || customDomainStatus) && (
+          <div className='deployment-card-enhanced'>
+            <CustomDomainSection
+              {...(customDomainStatus && { customDomainStatus })}
+              {...(onSetCustomDomain && { onSetCustomDomain })}
+              {...(onVerifyCustomDomain && { onVerifyCustomDomain })}
+              {...(onRemoveCustomDomain && { onRemoveCustomDomain })}
+              isLoading={isCustomDomainLoading}
+            />
+          </div>
+        )}
+
+        {/* Enhanced Action Bar */}
+        <ActionButtons
+          onClose={onClose}
+          onRedeploy={onRedeploy}
+          showRedeployButton={showRedeployButton}
+        />
+      </main>
+    )
   }
-
-  return (
-    <main
-      className="deployment-section flex flex-col"
-      style={{ gap: 'var(--deployment-section-gap)' }}
-      aria-labelledby="deployment-success-title"
-    >
-      {/* Enhanced Success Header */}
-      <DeploymentHeader isNewDeployment={isNewDeployment} />
-
-      {/* Simplified URL Preview */}
-      <UrlPreview
-        url={displayUrl}
-        status="live"
-        showActions={true}
-      />
-
-      {/* Integrated Custom Domain Section */}
-      {(onSetCustomDomain || customDomainStatus) && (
-        <div className="deployment-card-enhanced">
-          <CustomDomainSection
-            {...(customDomainStatus && { customDomainStatus })}
-            {...(onSetCustomDomain && { onSetCustomDomain })}
-            {...(onVerifyCustomDomain && { onVerifyCustomDomain })}
-            {...(onRemoveCustomDomain && { onRemoveCustomDomain })}
-            isLoading={isCustomDomainLoading}
-          />
-        </div>
-      )}
-
-      {/* Enhanced Action Bar */}
-      <ActionButtons
-        onClose={onClose}
-        onRedeploy={onRedeploy}
-        showRedeployButton={showRedeployButton}
-      />
-    </main>
-  )
-})
+)
 
 DeploymentSuccess.displayName = 'DeploymentSuccess'

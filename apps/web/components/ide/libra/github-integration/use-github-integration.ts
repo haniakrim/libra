@@ -20,27 +20,27 @@
 
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
 import { toast } from '@libra/ui/components/sonner'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useCallback, useEffect, useState } from 'react'
+import * as m from '@/paraglide/messages'
 import { useTRPC } from '@/trpc/client'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import type {
+  CreateProjectRepositoryRequest,
   GitHubIntegrationState,
   GitHubRepository,
   GitHubUser,
-  PushToRepositoryRequest,
   ProjectRepositoryInfo,
-  CreateProjectRepositoryRequest
+  PushToRepositoryRequest,
 } from './types'
-import * as m from '@/paraglide/messages'
 
 // Temporary flag to disable force push functionality (sync is still available)
 const FORCE_PUSH_DISABLED = true
 
 // Helper function to create a centered popup window
 const createCenteredPopup = (url: string, name: string, width: number, height: number) => {
-  const left = (window.screen.width / 2) - (width / 2)
-  const top = (window.screen.height / 2) - (height / 2)
+  const left = window.screen.width / 2 - width / 2
+  const top = window.screen.height / 2 - height / 2
 
   return window.open(
     url,
@@ -58,7 +58,7 @@ export function useGitHubIntegration() {
       isAuthenticated: false,
       user: null,
       isLoading: false,
-      error: null
+      error: null,
     },
     installation: null,
     repositories: [],
@@ -68,53 +68,57 @@ export function useGitHubIntegration() {
     pushError: null,
     pushSuccess: false,
     isCheckingInstallation: false,
-    forcePush: false
+    forcePush: false,
   })
 
   // Check GitHub installation status
   const {
     data: installationStatus,
     isLoading: isCheckingInstallation,
-    refetch: refetchInstallationStatus
+    refetch: refetchInstallationStatus,
   } = useQuery({
     ...trpc.github.getInstallationStatus.queryOptions({}),
   })
 
   // Check GitHub connection status and load user data
-  const {
-    data: connectionStatus,
-    isLoading: isCheckingConnection
-  } = useQuery({
+  const { data: connectionStatus, isLoading: isCheckingConnection } = useQuery({
     ...trpc.github.getConnectionStatus.queryOptions({}),
   })
 
   const {
     data: githubUser,
     isLoading: isLoadingUser,
-    error: userError
+    error: userError,
   } = useQuery({
     ...trpc.github.getUser.queryOptions({}),
-    enabled: !!(connectionStatus && typeof connectionStatus === 'object' && 'isConnected' in connectionStatus && connectionStatus.isConnected === true),
+    enabled: !!(
+      connectionStatus &&
+      typeof connectionStatus === 'object' &&
+      'isConnected' in connectionStatus &&
+      connectionStatus.isConnected === true
+    ),
     retry: false,
     throwOnError: false,
     meta: {
       // Suppress error logging for expected authentication failures
-      suppressErrorLogging: true
-    }
+      suppressErrorLogging: true,
+    },
   })
 
-  const {
-    data: repositories,
-    refetch: refetchRepositories
-  } = useQuery({
+  const { data: repositories, refetch: refetchRepositories } = useQuery({
     ...trpc.github.getRepositories.queryOptions({}),
-    enabled: !!(connectionStatus && typeof connectionStatus === 'object' && 'isConnected' in connectionStatus && connectionStatus.isConnected === true),
+    enabled: !!(
+      connectionStatus &&
+      typeof connectionStatus === 'object' &&
+      'isConnected' in connectionStatus &&
+      connectionStatus.isConnected === true
+    ),
     retry: false,
     throwOnError: false,
     meta: {
       // Suppress error logging for expected authentication failures
-      suppressErrorLogging: true
-    }
+      suppressErrorLogging: true,
+    },
   })
 
   // Update state based on tRPC queries
@@ -132,9 +136,10 @@ export function useGitHubIntegration() {
       }
 
       // Show other errors to the user
-      const errorMessage = error && typeof error === 'object' && 'message' in error
-        ? (error.message as string)
-        : 'An error occurred'
+      const errorMessage =
+        error && typeof error === 'object' && 'message' in error
+          ? (error.message as string)
+          : 'An error occurred'
       return errorMessage
     }
 
@@ -158,42 +163,51 @@ export function useGitHubIntegration() {
       isCheckingConnection,
       isCheckingInstallation,
       isLoadingUser,
-      userError: userError?.message
+      userError: userError?.message,
     })
 
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       auth: {
         isAuthenticated: isConnected,
         user: currentUser as GitHubUser | null,
         isLoading: isCheckingConnection || isLoadingUser,
-        error: getDisplayError(userError)
+        error: getDisplayError(userError),
       },
       installation: currentInstallation,
       repositories: currentRepos as GitHubRepository[],
-      isCheckingInstallation
+      isCheckingInstallation,
     }))
-  }, [connectionStatus, githubUser, repositories, installationStatus, isCheckingConnection, isCheckingInstallation, isLoadingUser, userError])
+  }, [
+    connectionStatus,
+    githubUser,
+    repositories,
+    installationStatus,
+    isCheckingConnection,
+    isCheckingInstallation,
+    isLoadingUser,
+    userError,
+  ])
 
   const pushCodeMutation = useMutation(
     trpc.github.pushCode.mutationOptions({
       onSuccess: (result: any) => {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           isPushing: false,
           pushSuccess: true,
-          pushError: null
+          pushError: null,
         }))
         toast.success(result.message)
       },
       onError: (error: any) => {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           isPushing: false,
-          pushError: error.message || m['dashboard.integrations.github.messages.push_failed']()
+          pushError: error.message || m['dashboard.integrations.github.messages.push_failed'](),
         }))
         toast.error(error.message || m['dashboard.integrations.github.messages.push_failed']())
-      }
+      },
     })
   )
 
@@ -203,9 +217,9 @@ export function useGitHubIntegration() {
 
   const authenticateWithGitHub = useCallback(async () => {
     try {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
-        auth: { ...prev.auth, isLoading: true, error: null }
+        auth: { ...prev.auth, isLoading: true, error: null },
       }))
 
       // For GitHub App, we need to open installation page in a popup
@@ -239,10 +253,10 @@ export function useGitHubIntegration() {
 
               // Invalidate and refetch both connection and installation status
               await queryClient.invalidateQueries({
-                queryKey: trpc.github.getConnectionStatus.queryOptions({}).queryKey
+                queryKey: trpc.github.getConnectionStatus.queryOptions({}).queryKey,
               })
               await queryClient.invalidateQueries({
-                queryKey: trpc.github.getInstallationStatus.queryOptions({}).queryKey
+                queryKey: trpc.github.getInstallationStatus.queryOptions({}).queryKey,
               })
 
               // Fetch fresh statuses
@@ -262,19 +276,29 @@ export function useGitHubIntegration() {
 
               if (newInstallationStatus?.isInstalled) {
                 if (newInstallationStatus.requiresOAuth) {
-                  console.log('[GitHub Integration] GitHub App installed, OAuth required for personal account')
-                  toast.success('GitHub App 安装成功！正在进行仓库访问授权...')
+                  console.log(
+                    '[GitHub Integration] GitHub App installed, OAuth required for personal account'
+                  )
+                  toast.success(
+                    m['dashboard.integrations.github.messages.installation_success_oauth_pending']()
+                  )
 
                   // For personal accounts, show message that OAuth is required
-                  console.log('[GitHub Integration] GitHub App installed, OAuth required for personal account')
-                  toast.success('GitHub App 安装成功！个人账户需要点击"需要仓库访问权限"按钮进行额外授权。')
+                  console.log(
+                    '[GitHub Integration] GitHub App installed, OAuth required for personal account'
+                  )
+                  toast.success(
+                    m[
+                      'dashboard.integrations.github.messages.installation_success_personal_oauth_required'
+                    ]()
+                  )
                 } else {
                   console.log('[GitHub Integration] Installation successful!')
                   toast.success(m['dashboard.integrations.github.messages.installation_success']())
 
                   // Invalidate all GitHub-related queries to refresh data
                   await queryClient.invalidateQueries({
-                    queryKey: ['github']
+                    queryKey: ['github'],
                   })
 
                   // Refresh repositories data
@@ -294,9 +318,9 @@ export function useGitHubIntegration() {
               toast.info(m['dashboard.integrations.github.messages.installation_check_failed']())
             }
 
-            setState(prev => ({
+            setState((prev) => ({
               ...prev,
-              auth: { ...prev.auth, isLoading: false }
+              auth: { ...prev.auth, isLoading: false },
             }))
           }, 2000) // Increased timeout to give more time for GitHub's redirect
         }
@@ -306,44 +330,52 @@ export function useGitHubIntegration() {
       setTimeout(() => {
         if (!popup.closed) {
           clearInterval(checkClosed)
-          setState(prev => ({
+          setState((prev) => ({
             ...prev,
-            auth: { ...prev.auth, isLoading: false }
+            auth: { ...prev.auth, isLoading: false },
           }))
         }
       }, 300000) // 5 minutes timeout
-
     } catch (error) {
       console.error('GitHub App installation error:', error)
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         auth: {
           ...prev.auth,
           isLoading: false,
-          error: error instanceof Error ? error.message : m['dashboard.integrations.github.messages.installation_failed']()
-        }
+          error:
+            error instanceof Error
+              ? error.message
+              : m['dashboard.integrations.github.messages.installation_failed'](),
+        },
       }))
-      toast.error(error instanceof Error ? error.message : m['dashboard.integrations.github.messages.installation_failed']())
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : m['dashboard.integrations.github.messages.installation_failed']()
+      )
     }
-  }, [getInstallationUrlMutation, queryClient, refetchRepositories, refetchInstallationStatus, trpc.github.getConnectionStatus.queryOptions, trpc.github.getInstallationStatus.queryOptions])
+  }, [
+    getInstallationUrlMutation,
+    queryClient,
+    refetchRepositories,
+    refetchInstallationStatus,
+    trpc.github.getConnectionStatus.queryOptions,
+    trpc.github.getInstallationStatus.queryOptions,
+  ])
 
   const authorizeUserAccess = useCallback(async () => {
     try {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
-        auth: { ...prev.auth, isLoading: true, error: null }
+        auth: { ...prev.auth, isLoading: true, error: null },
       }))
 
       // Get the OAuth authorization URL using mutation
       const oauthUrlResult = await getOAuthUrlMutation.mutateAsync({})
 
       // Open GitHub OAuth authorization in a centered popup window
-      const popup = createCenteredPopup(
-        oauthUrlResult.oauthUrl,
-        'github-oauth-auth',
-        600,
-        700
-      )
+      const popup = createCenteredPopup(oauthUrlResult.oauthUrl, 'github-oauth-auth', 600, 700)
 
       if (!popup) {
         throw new Error(m['dashboard.integrations.github.messages.popup_blocked']())
@@ -364,10 +396,10 @@ export function useGitHubIntegration() {
 
               // Invalidate and refetch both connection and installation status
               await queryClient.invalidateQueries({
-                queryKey: trpc.github.getConnectionStatus.queryOptions({}).queryKey
+                queryKey: trpc.github.getConnectionStatus.queryOptions({}).queryKey,
               })
               await queryClient.invalidateQueries({
-                queryKey: trpc.github.getInstallationStatus.queryOptions({}).queryKey
+                queryKey: trpc.github.getInstallationStatus.queryOptions({}).queryKey,
               })
 
               // Fetch fresh statuses
@@ -384,7 +416,7 @@ export function useGitHubIntegration() {
 
                 // Invalidate all GitHub-related queries to refresh data
                 await queryClient.invalidateQueries({
-                  queryKey: ['github']
+                  queryKey: ['github'],
                 })
 
                 // Refresh repositories data
@@ -403,9 +435,9 @@ export function useGitHubIntegration() {
               toast.info(m['dashboard.integrations.github.messages.oauth_check_failed']())
             }
 
-            setState(prev => ({
+            setState((prev) => ({
               ...prev,
-              auth: { ...prev.auth, isLoading: false }
+              auth: { ...prev.auth, isLoading: false },
             }))
           }, 2000) // Increased timeout to give more time for GitHub's redirect
         }
@@ -415,93 +447,110 @@ export function useGitHubIntegration() {
       setTimeout(() => {
         if (!popup.closed) {
           clearInterval(checkClosed)
-          setState(prev => ({
+          setState((prev) => ({
             ...prev,
-            auth: { ...prev.auth, isLoading: false }
+            auth: { ...prev.auth, isLoading: false },
           }))
         }
       }, 300000) // 5 minutes timeout
-
     } catch (error) {
       console.error('GitHub OAuth authorization error:', error)
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         auth: {
           ...prev.auth,
           isLoading: false,
-          error: error instanceof Error ? error.message : m['dashboard.integrations.github.messages.oauth_failed']()
-        }
+          error:
+            error instanceof Error
+              ? error.message
+              : m['dashboard.integrations.github.messages.oauth_failed'](),
+        },
       }))
 
       // Handle specific error for organizations (OAuth not needed)
-      if (error instanceof Error && error.message.includes('Organizations use installation tokens')) {
+      if (
+        error instanceof Error &&
+        error.message.includes('Organizations use installation tokens')
+      ) {
         toast.info(m['dashboard.integrations.github.messages.oauth_not_required']())
       } else {
-        toast.error(error instanceof Error ? error.message : m['dashboard.integrations.github.messages.oauth_failed']())
+        toast.error(
+          error instanceof Error
+            ? error.message
+            : m['dashboard.integrations.github.messages.oauth_failed']()
+        )
       }
     }
-  }, [getOAuthUrlMutation, queryClient, refetchRepositories, refetchInstallationStatus, trpc.github.getConnectionStatus.queryOptions, trpc.github.getInstallationStatus.queryOptions])
-
-
+  }, [
+    getOAuthUrlMutation,
+    queryClient,
+    refetchRepositories,
+    refetchInstallationStatus,
+    trpc.github.getConnectionStatus.queryOptions,
+    trpc.github.getInstallationStatus.queryOptions,
+  ])
 
   const selectRepository = useCallback((repository: GitHubRepository) => {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      selectedRepository: repository
+      selectedRepository: repository,
     }))
   }, [])
 
-  const pushToRepository = useCallback(async (request: PushToRepositoryRequest) => {
-    console.log('[GitHub] pushToRepository called', {
-      repositoryId: request.repository.id,
-      repositoryName: request.repository.name,
-      projectId: request.projectId,
-      forcePush: request.forcePush,
-      isAuthenticated: state.auth.isAuthenticated
-    })
-
-    if (!state.auth.isAuthenticated) {
-      console.log('[GitHub] Not authenticated, aborting push')
-      toast.error(m['dashboard.integrations.github.messages.not_authenticated']())
-      return false
-    }
-
-    setState(prev => ({
-      ...prev,
-      isPushing: true,
-      pushError: null,
-      pushSuccess: false
-    }))
-
-    try {
-      const pushParams = {
+  const pushToRepository = useCallback(
+    async (request: PushToRepositoryRequest) => {
+      console.log('[GitHub] pushToRepository called', {
         repositoryId: request.repository.id,
+        repositoryName: request.repository.name,
         projectId: request.projectId,
-        commitMessage: request.commitMessage,
-        branch: request.branch || 'main',
-        forcePush: FORCE_PUSH_DISABLED ? false : (request.forcePush || false),
-        // If virtual repository (ID is -1), pass full_name
-        ...(request.repository.id === -1 && { repositoryFullName: request.repository.full_name })
-      }
-
-      console.log('[GitHub] Calling pushCodeMutation with:', {
-        repositoryId: pushParams.repositoryId,
-        repositoryFullName: pushParams.repositoryFullName,
-        projectId: pushParams.projectId,
-        commitMessage: pushParams.commitMessage,
-        branch: pushParams.branch,
-        forcePush: pushParams.forcePush
+        forcePush: request.forcePush,
+        isAuthenticated: state.auth.isAuthenticated,
       })
 
-      await (pushCodeMutation.mutateAsync as any)(pushParams)
-      console.log('[GitHub] pushCodeMutation completed successfully')
-      return true
-    } catch (error) {
-      console.error('[GitHub] pushCodeMutation failed:', error)
-      // Error handling is done in the mutation's onError callback
-      return false
-    }
-  }, [state.auth.isAuthenticated, pushCodeMutation])
+      if (!state.auth.isAuthenticated) {
+        console.log('[GitHub] Not authenticated, aborting push')
+        toast.error(m['dashboard.integrations.github.messages.not_authenticated']())
+        return false
+      }
+
+      setState((prev) => ({
+        ...prev,
+        isPushing: true,
+        pushError: null,
+        pushSuccess: false,
+      }))
+
+      try {
+        const pushParams = {
+          repositoryId: request.repository.id,
+          projectId: request.projectId,
+          commitMessage: request.commitMessage,
+          branch: request.branch || 'main',
+          forcePush: FORCE_PUSH_DISABLED ? false : request.forcePush || false,
+          // If virtual repository (ID is -1), pass full_name
+          ...(request.repository.id === -1 && { repositoryFullName: request.repository.full_name }),
+        }
+
+        console.log('[GitHub] Calling pushCodeMutation with:', {
+          repositoryId: pushParams.repositoryId,
+          repositoryFullName: pushParams.repositoryFullName,
+          projectId: pushParams.projectId,
+          commitMessage: pushParams.commitMessage,
+          branch: pushParams.branch,
+          forcePush: pushParams.forcePush,
+        })
+
+        await (pushCodeMutation.mutateAsync as any)(pushParams)
+        console.log('[GitHub] pushCodeMutation completed successfully')
+        return true
+      } catch (error) {
+        console.error('[GitHub] pushCodeMutation failed:', error)
+        // Error handling is done in the mutation's onError callback
+        return false
+      }
+    },
+    [state.auth.isAuthenticated, pushCodeMutation]
+  )
 
   const resetState = useCallback(() => {
     setState({
@@ -509,7 +558,7 @@ export function useGitHubIntegration() {
         isAuthenticated: false,
         user: null,
         isLoading: false,
-        error: null
+        error: null,
       },
       installation: null,
       repositories: [],
@@ -519,7 +568,7 @@ export function useGitHubIntegration() {
       pushError: null,
       pushSuccess: false,
       isCheckingInstallation: false,
-      forcePush: false
+      forcePush: false,
     })
   }, [])
 
@@ -537,7 +586,8 @@ export function useGitHubIntegration() {
         await refetchRepositories()
       } catch (error: unknown) {
         // Only show user-facing errors for non-authentication issues
-        const isUnauthorized = error &&
+        const isUnauthorized =
+          error &&
           typeof error === 'object' &&
           'data' in error &&
           error.data &&
@@ -576,38 +626,46 @@ export function useGitHubIntegration() {
         }
       },
       onError: (error: any) => {
-        toast.error(error.message || m['dashboard.integrations.github.messages.create_repo_failed']())
-      }
+        toast.error(
+          error.message || m['dashboard.integrations.github.messages.create_repo_failed']()
+        )
+      },
     })
   )
 
   // Project-specific functions
-  const getProjectRepository = useCallback(async (projectId: string): Promise<ProjectRepositoryInfo | null> => {
-    try {
-      const result = await queryClient.fetchQuery(
-        trpc.github.getProjectRepository.queryOptions({ projectId })
-      )
-      return result as ProjectRepositoryInfo
-    } catch (error) {
-      console.error('Failed to get project repository:', error)
-      return null
-    }
-  }, [queryClient, trpc.github.getProjectRepository])
+  const getProjectRepository = useCallback(
+    async (projectId: string): Promise<ProjectRepositoryInfo | null> => {
+      try {
+        const result = await queryClient.fetchQuery(
+          trpc.github.getProjectRepository.queryOptions({ projectId })
+        )
+        return result as ProjectRepositoryInfo
+      } catch (error) {
+        console.error('Failed to get project repository:', error)
+        return null
+      }
+    },
+    [queryClient, trpc.github.getProjectRepository]
+  )
 
-  const createProjectRepository = useCallback(async (request: CreateProjectRepositoryRequest) => {
-    if (!state.auth.isAuthenticated) {
-      toast.error(m['dashboard.integrations.github.messages.not_authenticated']())
-      return null
-    }
+  const createProjectRepository = useCallback(
+    async (request: CreateProjectRepositoryRequest) => {
+      if (!state.auth.isAuthenticated) {
+        toast.error(m['dashboard.integrations.github.messages.not_authenticated']())
+        return null
+      }
 
-    try {
-      const result = await createProjectRepositoryMutation.mutateAsync(request)
-      return result
-    } catch (error) {
-      // Error handling is done in the mutation's onError callback
-      return null
-    }
-  }, [state.auth.isAuthenticated, createProjectRepositoryMutation])
+      try {
+        const result = await createProjectRepositoryMutation.mutateAsync(request)
+        return result
+      } catch (error) {
+        // Error handling is done in the mutation's onError callback
+        return null
+      }
+    },
+    [state.auth.isAuthenticated, createProjectRepositoryMutation]
+  )
 
   const setForcePush = useCallback((forcePush: boolean) => {
     // Prevent force push changes when force push is disabled
@@ -615,9 +673,9 @@ export function useGitHubIntegration() {
       return
     }
 
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      forcePush
+      forcePush,
     }))
   }, [])
 
@@ -633,6 +691,6 @@ export function useGitHubIntegration() {
     setForcePush,
     // Project-specific functions
     getProjectRepository,
-    createProjectRepository
+    createProjectRepository,
   }
 }

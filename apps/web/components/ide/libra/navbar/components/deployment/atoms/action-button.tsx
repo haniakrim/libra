@@ -20,10 +20,11 @@
 
 'use client'
 
-import { Loader2 } from 'lucide-react'
 import { Button, type ButtonProps } from '@libra/ui/components/button'
 import { cn } from '@libra/ui/lib/utils'
 import type { LucideIcon } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
+import * as m from '@/paraglide/messages'
 
 export type ButtonIntent = 'primary' | 'secondary' | 'danger'
 
@@ -37,16 +38,16 @@ interface ActionButtonProps extends Omit<ButtonProps, 'variant'> {
 const intentConfig = {
   primary: {
     className: 'deployment-button-primary hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]',
-    variant: 'default' as const
+    variant: 'default' as const,
   },
   secondary: {
     className: 'border-border/50 hover:bg-muted/50 hover:border-border/70 transition-all',
-    variant: 'outline' as const
+    variant: 'outline' as const,
   },
   danger: {
     className: 'bg-destructive hover:bg-destructive/90 text-destructive-foreground hover:shadow-lg',
-    variant: 'destructive' as const
-  }
+    variant: 'destructive' as const,
+  },
 } as const
 
 export function ActionButton({
@@ -84,23 +85,23 @@ export function ActionButton({
       {/* Loading state with enhanced accessibility */}
       {loading ? (
         <>
-          <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />
-          <span className="sr-only">加载中...</span>
+          <Loader2 className='mr-2 h-5 w-5 animate-spin' aria-hidden='true' />
+          <span className='sr-only'>{m['ide.deployment.status.loadingEllipsis']()}</span>
         </>
       ) : Icon ? (
-        <Icon className="mr-2 h-5 w-5" aria-hidden="true" />
+        <Icon className='mr-2 h-5 w-5' aria-hidden='true' />
       ) : null}
 
       {/* Button content */}
-      <span className="relative z-10">{children}</span>
+      <span className='relative z-10'>{children}</span>
 
       {/* Ripple effect for primary buttons */}
       {intent === 'primary' && !loading && (
         <span
-          className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0
+          className='absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0
                      transform -skew-x-12 -translate-x-full group-hover:translate-x-full
-                     transition-transform duration-700 ease-out"
-          aria-hidden="true"
+                     transition-transform duration-700 ease-out'
+          aria-hidden='true'
         />
       )}
     </Button>

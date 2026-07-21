@@ -21,8 +21,8 @@
 'use client'
 
 import { useMemo } from 'react'
-import type { CustomDomainStatus } from '../../../types/deployment'
 import * as m from '@/paraglide/messages'
+import type { CustomDomainStatus } from '../../../types/deployment'
 
 /**
  * DNS record interface
@@ -43,7 +43,10 @@ function isApexDomain(domain: string): boolean {
   if (!domain) return false
 
   // Remove protocol if present and clean the domain
-  const cleanDomain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '').toLowerCase()
+  const cleanDomain = domain
+    .replace(/^https?:\/\//, '')
+    .replace(/\/$/, '')
+    .toLowerCase()
 
   // Split by dots and check if it has exactly 2 parts (domain.tld)
   const parts = cleanDomain.split('.')
@@ -61,7 +64,7 @@ export function useDnsRecords(customDomainStatus?: CustomDomainStatus): DNSRecor
     if (!customDomainStatus) return []
 
     const records: DNSRecord[] = []
-    
+
     // Unified customer gateway domain, can be overridden by environment variable
     const customerOrigin = process.env.NEXT_PUBLIC_CUSTOMERS_ORIGIN_SERVER || 'customers.libra.sh'
 
@@ -75,14 +78,15 @@ export function useDnsRecords(customDomainStatus?: CustomDomainStatus): DNSRecor
         name: customDomainStatus.ownershipVerification.name,
         target: customDomainStatus.ownershipVerification.value,
         status: 'pending',
-        description: m["ide.deployment.customDomain.ownershipVerificationDescription"](),
+        description: m['ide.deployment.customDomain.ownershipVerificationDescription'](),
       })
     }
 
     // Phase 2: SSL certificate and domain resolution records after hostname verification
     if (
       (customDomainStatus.status === 'verified' ||
-       (customDomainStatus.status === 'active' && customDomainStatus.sslStatus === 'pending_validation')) &&
+        (customDomainStatus.status === 'active' &&
+          customDomainStatus.sslStatus === 'pending_validation')) &&
       customDomainStatus.customDomain
     ) {
       const domain = customDomainStatus.customDomain
@@ -90,7 +94,7 @@ export function useDnsRecords(customDomainStatus?: CustomDomainStatus): DNSRecor
 
       // DCV delegation record for SSL certificate verification
       const dcvId = process.env.NEXT_PUBLIC_CLOUDFLARE_DCV_VERIFICATION_ID
-      const needsSSLVerification = 
+      const needsSSLVerification =
         customDomainStatus.sslStatus === 'pending_validation' ||
         customDomainStatus.sslStatus === 'pending'
 
@@ -100,7 +104,7 @@ export function useDnsRecords(customDomainStatus?: CustomDomainStatus): DNSRecor
           name: `_acme-challenge.${domain}`,
           target: `${domain}.${dcvId}.dcv.cloudflare.com`,
           status: 'pending',
-          description: m["ide.deployment.customDomain.sslCertificateVerificationDescription"]()
+          description: m['ide.deployment.customDomain.sslCertificateVerificationDescription'](),
         })
       }
 
@@ -112,7 +116,7 @@ export function useDnsRecords(customDomainStatus?: CustomDomainStatus): DNSRecor
           name: domain,
           target: customerIP,
           status: 'pending',
-          description: m["ide.deployment.customDomain.domainResolutionDescription"](),
+          description: m['ide.deployment.customDomain.domainResolutionDescription'](),
         })
 
         // Also provide CNAME option for providers that support CNAME flattening
@@ -121,7 +125,7 @@ export function useDnsRecords(customDomainStatus?: CustomDomainStatus): DNSRecor
           name: domain,
           target: customerOrigin,
           status: 'pending',
-          description: m["ide.deployment.customDomain.cnameFlatteningDescription"](),
+          description: m['ide.deployment.customDomain.cnameFlatteningDescription'](),
         })
       } else {
         // For subdomains, use CNAME record
@@ -130,7 +134,7 @@ export function useDnsRecords(customDomainStatus?: CustomDomainStatus): DNSRecor
           name: domain,
           target: customerOrigin,
           status: 'pending',
-          description: m["ide.deployment.customDomain.domainResolutionDescription"](),
+          description: m['ide.deployment.customDomain.domainResolutionDescription'](),
         })
       }
     }
@@ -163,15 +167,15 @@ export function getStatusColor(status?: string): string {
 export function getStatusText(status?: string): string {
   switch (status) {
     case 'active':
-      return m["ide.deployment.customDomain.statusActive"]()
+      return m['ide.deployment.customDomain.statusActive']()
     case 'verified':
-      return m["ide.deployment.customDomain.statusVerified"]()
+      return m['ide.deployment.customDomain.statusVerified']()
     case 'pending':
-      return m["ide.deployment.customDomain.statusPending"]()
+      return m['ide.deployment.customDomain.statusPending']()
     case 'failed':
-      return m["ide.deployment.customDomain.statusFailed"]()
+      return m['ide.deployment.customDomain.statusFailed']()
     default:
-      return m["ide.deployment.customDomain.statusUnknown"]()
+      return m['ide.deployment.customDomain.statusUnknown']()
   }
 }
 

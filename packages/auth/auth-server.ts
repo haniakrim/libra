@@ -18,20 +18,19 @@
  *
  */
 
-import { withCloudflare, createKVStorage } from '@libra/better-auth-cloudflare'
+import { getAuthDb, getCache } from '@libra/auth/db'
+import { createKVStorage, withCloudflare } from '@libra/better-auth-cloudflare'
 // Declare global KV binding
 import { stripe } from '@libra/better-auth-stripe'
-import { log, isDevelopment, isSelfHosted } from '@libra/common'
+import { isDevelopment, isSelfHosted, log } from '@libra/common'
 import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { betterAuth, type Session } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { admin, bearer, emailOTP, organization } from 'better-auth/plugins'
-import { authRoles } from './admin-roles'
 import { emailHarmony } from 'better-auth-harmony'
-import { getAuthDb, getCache } from '@libra/auth/db'
-import { env as envs } from './env.mjs'
+import { authRoles } from './admin-roles'
+import { env as envs, getAdminUserIds } from './env.mjs'
 import { getActiveOrganization, plugins } from './plugins'
-import { getAdminUserIds } from './env.mjs'
 
 // Shared betterAuth() options for both the Cloudflare (D1+KV) and self-hosted
 // (SQLite+Redis) runtime paths — keeps session hooks, social providers,
@@ -80,30 +79,32 @@ function sharedAuthOptions() {
       },
     },
     // Enable cross-subdomain cookies for libra.agentic-lab.io and subdomains
-    ...(isDevelopment() ? {} : {
-      advanced: {
-        crossSubDomainCookies: {
-          enabled: true,
-          domain: '.libra.agentic-lab.io',
-        },
-      },
-      // Configure trusted origins for cross-subdomain authentication
-      trustedOrigins: [
-        'https://libra.agentic-lab.io',
-        'https://cdn.libra.agentic-lab.io',
-        'https://deploy.libra.agentic-lab.io',
-        'https://dispatcher.libra.agentic-lab.io',
-        'https://auth.libra.agentic-lab.io',
-        'https://api.libra.agentic-lab.io',
-        'https://docs.libra.agentic-lab.io',
-        'https://web.libra.agentic-lab.io',
-        // Development origins
-        'http://localhost:3000',
-        'http://localhost:3004',
-        'http://localhost:3008',
-        'http://localhost:3007',
-      ],
-    }),
+    ...(isDevelopment()
+      ? {}
+      : {
+          advanced: {
+            crossSubDomainCookies: {
+              enabled: true,
+              domain: '.libra.agentic-lab.io',
+            },
+          },
+          // Configure trusted origins for cross-subdomain authentication
+          trustedOrigins: [
+            'https://libra.agentic-lab.io',
+            'https://cdn.libra.agentic-lab.io',
+            'https://deploy.libra.agentic-lab.io',
+            'https://dispatcher.libra.agentic-lab.io',
+            'https://auth.libra.agentic-lab.io',
+            'https://api.libra.agentic-lab.io',
+            'https://docs.libra.agentic-lab.io',
+            'https://web.libra.agentic-lab.io',
+            // Development origins
+            'http://localhost:3000',
+            'http://localhost:3004',
+            'http://localhost:3008',
+            'http://localhost:3007',
+          ],
+        }),
     plugins: plugins,
     rateLimit: {
       window: 60,
@@ -174,58 +175,73 @@ export async function initAuth() {
 
 /* ======================================================================= */
 /* Configuration for Schema Generation                                     */
-/* Need to use this to generate schema                                     */
+/* Used by `bun run auth:generate` (@better-auth/cli, which requires a     */
+/* static `auth` export) — never called at runtime. withCloudflare() has   */
+/* side effects (spins up a workerd/D1 context) that must not run during   */
+/* self-hosted app boot, where it raced migrate-selfhost.ts's SQLite       */
+/* handle and crashed with SQLITE_BUSY. Self-hosted deployments generate   */
+/* schema from the Cloudflare path and commit it, so they never invoke    */
+/* auth:generate themselves — this branch only needs to satisfy the       */
+/* export's type, not actually be usable, when self-hosted.               */
 /* ======================================================================= */
-export const auth = betterAuth({
-  ...withCloudflare(
-    {
-      autoDetectIpAddress: true,
-      geolocationTracking: true,
-    },
-    {
-      // No runtime options needed for schema generation
-      socialProviders: {
-        github: {
-          clientId: envs.BETTER_GITHUB_CLIENT_ID as string,
-          clientSecret: envs.BETTER_GITHUB_CLIENT_SECRET as string,
-        },
-      },
-      // Enable cross-subdomain cookies for libra.agentic-lab.io and subdomains
-      ...(isDevelopment() ? {} : {
-        advanced: {
-          crossSubDomainCookies: {
-            enabled: true,
-            domain: '.libra.agentic-lab.io',
-          },
-        },
+export const auth = isSelfHosted()
+  ? (betterAuth({
+      database: drizzleAdapter(process.env['DATABASE'] as any, {
+        provider: 'sqlite',
       }),
-      rateLimit: {
-        window: 60,
-        max: 100,
-      },
-      plugins: [
-        admin({
-          defaultRole: 'user',
-          adminRoles: ['admin', 'superadmin'],
-          adminUserIds: getAdminUserIds(), // Configured via ADMIN_USER_IDS environment variable
-          roles: authRoles,
-        }),
-        organization(),
-        emailOTP({
-          async sendVerificationOTP() {},
-        }),
-        stripe({
-          // stub stripe client for schema generation
-          stripeClient: {} as any,
-          stripeWebhookSecret: '',
-          subscription: { enabled: true, plans: [] },
-        }),
-        emailHarmony(),
-        bearer(),
-      ],
-    }
-  ),
-  database: drizzleAdapter(process.env['DATABASE'] as any, {
-    provider: 'sqlite',
-  }),
-})
+    }) as ReturnType<typeof betterAuth>)
+  : betterAuth({
+      ...withCloudflare(
+        {
+          autoDetectIpAddress: true,
+          geolocationTracking: true,
+        },
+        {
+          // No runtime options needed for schema generation
+          socialProviders: {
+            github: {
+              clientId: envs.BETTER_GITHUB_CLIENT_ID as string,
+              clientSecret: envs.BETTER_GITHUB_CLIENT_SECRET as string,
+            },
+          },
+          // Enable cross-subdomain cookies for libra.agentic-lab.io and subdomains
+          ...(isDevelopment()
+            ? {}
+            : {
+                advanced: {
+                  crossSubDomainCookies: {
+                    enabled: true,
+                    domain: '.libra.agentic-lab.io',
+                  },
+                },
+              }),
+          rateLimit: {
+            window: 60,
+            max: 100,
+          },
+          plugins: [
+            admin({
+              defaultRole: 'user',
+              adminRoles: ['admin', 'superadmin'],
+              adminUserIds: getAdminUserIds(), // Configured via ADMIN_USER_IDS environment variable
+              roles: authRoles,
+            }),
+            organization(),
+            emailOTP({
+              async sendVerificationOTP() {},
+            }),
+            stripe({
+              // stub stripe client for schema generation
+              stripeClient: {} as any,
+              stripeWebhookSecret: '',
+              subscription: { enabled: true, plans: [] },
+            }),
+            emailHarmony(),
+            bearer(),
+          ],
+        }
+      ),
+      database: drizzleAdapter(process.env['DATABASE'] as any, {
+        provider: 'sqlite',
+      }),
+    })

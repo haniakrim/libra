@@ -59,7 +59,7 @@ export function useDeploymentState({
   isDeploying,
   deployResult,
   existingUrl,
-  open
+  open,
 }: DeploymentStateParams): DeploymentStateReturn {
   const [currentStage, setCurrentStage] = useState<DeploymentStage>('confirmation')
   const [hasStartedDeployment, setHasStartedDeployment] = useState(false)
@@ -105,7 +105,7 @@ export function useDeploymentState({
   return {
     currentStage,
     hasStartedDeployment,
-    resetDeploymentState
+    resetDeploymentState,
   }
 }
 
@@ -117,28 +117,30 @@ export function getStageConfig(stage: DeploymentStage): StageConfig {
     confirmation: {
       title: 'ide.deployment.dialog.deploymentConfirmationTitle',
       description: 'ide.deployment.dialog.deploymentConfirmationDescription',
-      showHeader: true
+      showHeader: true,
     },
     progress: {
       title: 'ide.deployment.dialog.deploymentInProgress',
       description: 'ide.deployment.dialog.deploymentProgressDescription',
-      showHeader: false
+      showHeader: false,
     },
     success: {
       title: 'ide.deployment.dialog.deploymentSuccessTitle',
       description: 'ide.deployment.dialog.deploymentSuccessDescription',
-      showHeader: false
+      showHeader: false,
     },
     existing: {
       title: 'ide.deployment.dialog.projectDeployedTitle',
       description: 'ide.deployment.dialog.projectDeployedDescription',
-      showHeader: false
-    }
+      showHeader: false,
+    },
   }
 
-  return configs[stage] || {
-    title: 'ide.deployment.dialog.deploymentConfirmationTitle',
-    description: 'ide.deployment.dialog.deploymentConfirmationDescription',
-    showHeader: true
-  }
+  return (
+    configs[stage] || {
+      title: 'ide.deployment.dialog.deploymentConfirmationTitle',
+      description: 'ide.deployment.dialog.deploymentConfirmationDescription',
+      showHeader: true,
+    }
+  )
 }

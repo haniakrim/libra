@@ -1,0 +1,2423 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "nav": {
+    "features": "المميزات",
+    "pricing": "الأسعار",
+    "price": "السعر",
+    "contact": "تواصل معنا",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "dashboard": "إنشاء",
+    "documentation": "التوثيق",
+    "templates": "القوالب",
+    "playground": "بيئة التجربة",
+    "start_coding": "ابدأ البناء",
+    "brand": "Libra AI",
+    "toggleNavigation": "تبديل قائمة التنقل",
+    "logo_description": "قالب صفحة هبوط مبني بـ React وShadcn/ui وTailwind يمكنك نسخه ولصقه في مشروعك."
+  },
+  "hero": {
+    "badge": "مبني على أدوات يحبها المطورون",
+    "title": "حوّل أفكارك إلى تطبيقات في",
+    "subtitle": "يحوّل أفكار تطبيقك إلى واقع بالذكاء الاصطناعي، وينشرها على نطاقك الخاص.",
+    "cta_primary": "ابدأ مجانًا",
+    "cta_secondary": "عرض على GitHub",
+    "form": {
+      "typewriter_base": "اطلب من Libra إنشاء ",
+      "placeholder": "متتبع قراءة مريح حيث يمكن لعشاق الكتب تسجيل مغامراتهم...",
+      "add_attachment": "إضافة صورة",
+      "send": "إرسال",
+      "footer_text": "مجاني للأبد. كودك ملكك. حمّله أو زامنه مع GitHub.",
+      "clear": "مسح",
+      "clearInput": "مسح الإدخال"
+    },
+    "examples": {
+      "title": "أمثلة أفكار التطبيقات",
+      "subtitle": "انقر على أي مثال لتطبيقه",
+      "buttons": {
+        "discord": "Discord",
+        "github": "Github",
+        "forum": "المجتمع"
+      },
+      "productivity": "الإنتاجية",
+      "social": "التواصل الاجتماعي",
+      "health": "الصحة",
+      "task_manager": "مدير المهام",
+      "task_manager_desc": "متتبع مهام مريح يشبه اليوميات أكثر من العمل.",
+      "task_manager_preview": "اجعل الإنتاجية تبدو سحرية",
+      "note_taking": "تطبيق تدوين الملاحظات",
+      "note_taking_desc": "حديقة رقمية حيث تنمو الأفكار وتترابط بطرق جميلة.",
+      "note_taking_preview": "اعتنِ بأفكارك",
+      "interest_community": "مجتمع الاهتمامات",
+      "interest_community_desc": "زاوية مريحة من الإنترنت حيث تجد الاهتمامات الفريدة قبيلتها.",
+      "interest_community_preview": "اعثر على أرواحك الإبداعية المتقاربة",
+      "local_events": "الفعاليات المحلية",
+      "local_events_desc": "منصة لاكتشاف وتنظيم الفعاليات والأنشطة المجتمعية المحلية.",
+      "local_events_preview": "استكشف الفعاليات من حولك",
+      "diet_tracker": "متتبع النظام الغذائي",
+      "diet_tracker_desc": "رفيق أكل واعٍ يحتفي بمتعة الطعام، لا بالتقييد.",
+      "diet_tracker_preview": "أعد اكتشاف متعة الأكل",
+      "fitness_plan": "خطة اللياقة",
+      "fitness_plan_desc": "حركة تشعرك باللعب لا بالعقاب، مصممة خصيصًا لجسمك الفريد.",
+      "fitness_plan_preview": "احتفِ بروعة جسمك"
+    },
+    "fileUpload": {
+      "deleteFailed": "فشل حذف الملف",
+      "unknownError": "خطأ غير معروف",
+      "uploadFailed": "فشل الرفع",
+      "fileTooLarge": "الملف كبير جدًا (الحد الأقصى 5 ميغابايت). المحدد: {size} ميغابايت",
+      "invalidFileType": "نوع ملف غير صالح. الرجاء اختيار صورة. المحدد: {type}"
+    },
+    "projectCreate": {
+      "success": "تم إنشاء مشروع {name} بنجاح!",
+      "limitExceeded": "فشل إنشاء المشروع، قد يكون الحد قد تم تجاوزه"
+    },
+    "minutes": "دقائق",
+    "title_minutes": "دقائق"
+  },
+  "features": {
+    "title": "مميزات قوية يحبها المطورون",
+    "subtitle": "مبني على أدوات حديثة بتجربة مطور استثنائية ومخرجات واجهة مستخدم متميزة.",
+    "auth_title": "تثبيت الحزم تلقائيًا",
+    "auth_description": "يكتشف ويثبّت التبعيات المطلوبة تلقائيًا بذكاء. لا حاجة لإعداد يدوي.",
+    "payments_title": "وظيفة رفع الصور",
+    "payments_description": "رفع صور يعمل بشكل كامل مع دعم لتنسيقات متعددة وتكامل مع التخزين السحابي.",
+    "database_title": "الحفظ التلقائي على GitHub",
+    "database_description": "مزامنة الكود تلقائيًا إلى مستودعات GitHub مع دعم التحكم بالإصدارات والتطوير التعاوني.",
+    "ui_title": "المحرر المرئي",
+    "ui_description": "محرر مرئي دقيق مع معاينة فورية ومزامنة للكود من أجل تحرير دقيق.",
+    "api_title": "إصلاح تلقائي مجاني",
+    "api_description": "اكتشاف وإصلاح الأخطاء تلقائيًا بالذكاء الاصطناعي لتعزيز كفاءة التطوير.",
+    "deployment_title": "نشر على نطاق مخصص",
+    "deployment_description": "انشر على نطاقات مخصصة مع تحكم كامل في رابط الوصول إلى تطبيقك."
+  },
+  "pricing": {
+    "title": "أسعار بسيطة وشفافة",
+    "subtitle": "اختر الخطة المناسبة لعملك",
+    "title_default": "خطط الأسعار",
+    "description_default": "اختر خطة تناسب احتياجاتك، بمميزات ودعم مصممين خصيصًا لمتطلباتك.",
+    "free_plan": "مجاني",
+    "free_price": "$0",
+    "free_period": "للأبد",
+    "free_description": "مثالية للبدء",
+    "pro_plan": "احترافي",
+    "pro_price": "$29",
+    "pro_period": "شهريًا",
+    "pro_description": "للأعمال المتنامية",
+    "enterprise_plan": "المؤسسات",
+    "enterprise_price": "مخصص",
+    "enterprise_period": "تواصل معنا",
+    "enterprise_description": "للمؤسسات الكبيرة",
+    "get_started": "ابدأ الآن",
+    "contact_sales": "تواصل مع المبيعات",
+    "feature_users": "حتى {count} مستخدم",
+    "feature_projects": "حتى {count} مشروع",
+    "feature_storage": "{amount} تخزين",
+    "feature_support": "دعم عبر البريد الإلكتروني",
+    "feature_priority_support": "دعم ذو أولوية",
+    "feature_custom": "تكاملات مخصصة",
+    "feature_sla": "ضمان اتفاقية مستوى الخدمة",
+    "loading": "جارٍ تحميل خطط الأسعار...",
+    "error": "خطأ في تحميل بيانات الخطة.",
+    "forever_free": "مجاني للأبد",
+    "yearly": "سنويًا",
+    "monthly": "شهريًا",
+    "save_up_to": "وفّر حتى {discount}٪"
+  },
+  "testimonials": {
+    "title": "ماذا يقول مستخدمونا",
+    "subtitle": "استمع إلى المطورين الذين بنوا منتجات مذهلة باستخدام منصتنا.",
+    "description": "Libra ليست مجرد أداة، بل منظومة تطوير كاملة مصممة للجميع، من المبتدئين إلى المحترفين.",
+    "user1": {
+      "name": "سارة جونسون",
+      "role": "مستثمرة عملات رقمية",
+      "quote": "هذه المنصة غيّرت تمامًا طريقة إدارتي لاستثماراتي في العملات الرقمية. الأدوات بديهية وقوية."
+    },
+    "user2": {
+      "name": "مايكل تشن",
+      "role": "متداول يومي",
+      "quote": "منحتني ميزات التحليلات اللحظية وتتبع المحفظة أفضلية في قراراتي التداولية."
+    },
+    "user3": {
+      "name": "إيما ديفيس",
+      "role": "مستثمرة مبتدئة",
+      "quote": "بصفتي جديدة على العملات الرقمية، سهّلت هذه المنصة عليّ البدء وتعلّم الأساسيات."
+    }
+  },
+  "faq": {
+    "title": "الأسئلة الشائعة",
+    "subtitle": "كل ما تحتاج معرفته عن منصة Libra AI",
+    "q1": "هل Libra مفتوحة المصدر؟",
+    "a1": "نعم، وهذا أكبر فرق بينها وبين أدوات البناء الأخرى بالذكاء الاصطناعي. Libra مفتوحة المصدر في جوهرها، بكود شفاف وتطوير يقوده المجتمع، بلا ارتباط بمزوّد واحد.",
+    "q2": "ما هي Libra؟",
+    "a2": "Libra منصة مدعومة بالذكاء الاصطناعي تحوّل الأوصاف النصية إلى تطبيقات ويب فعّالة. مبنية بـ React وshadcn/ui، وتدعم مسارات عمل تطوير آلية.",
+    "q3": "ما الفرق بينها وبين أدوات البناء الأخرى بالذكاء الاصطناعي؟",
+    "a3": "بُنيت Libra على أدوات يحبها المطورون، تدعم تثبيت الحزم تلقائيًا، تستخدم React وshadcn/ui، مفتوحة المصدر في جوهرها، تدعم النشر على نطاق مخصص، رفع صور يعمل بالكامل، حفظ تلقائي على GitHub، محرر مرئي للتحرير الدقيق، إصلاح تلقائي مجاني، مخرجات واجهة مستخدم/تجربة مستخدم ممتازة، ونتائج جاهزة للإنتاج.",
+    "q4": "ما هو نموذج التسعير؟",
+    "a4": "تقدّم Libra خطط أسعار مرنة تبدأ مجانًا. المميزات الأساسية مجانية بشكل دائم، مع خيارات مدفوعة معقولة للمميزات المتقدمة.",
+    "q5": "من يملك الكود؟",
+    "a5": "يمتلك المستخدمون الكود المُولَّد بالكامل. يمكنك تحميل جميع الملفات أو مزامنتها مع GitHub دون أي قيود.",
+    "q6": "هل أحتاج خبرة برمجية؟",
+    "a6": "غير مطلوبة. Libra سهلة الاستخدام للمطورين وغير المطورين على حد سواء، وتوفر واجهة بديهية وتطويرًا مدعومًا بالذكاء الاصطناعي."
+  },
+  "bento": {
+    "title": "مبني على أدوات يحبها المطورون",
+    "description": "مبنية للمطورين الذين يرفضون التنازلات: مفتوحة المصدر في جوهرها، حزمة تقنية حديثة، مسارات عمل آلية، ومخرجات قابلة للاستخدام فعليًا. كودك، تحكمك، حريتك، تمامًا كما ينبغي أن تكون.",
+    "ai_coding": {
+      "title": "توليد كود مدعوم بالذكاء الاصطناعي",
+      "description": "تكامل متعدد النماذج مع Claude وAzure OpenAI وGemini. توليد كود جاهز للإنتاج مدفوع باللغة الطبيعية مع وعي سياقي ذكي والتزام بأفضل الممارسات."
+    },
+    "lightning_fast": {
+      "title": "مبني بـ React وshadcn/ui",
+      "description": "يستخدم الحزمة التقنية الحديثة المفضلة لدى المطورين. مبني على React 19 وTypeScript وTailwind CSS ومكتبة مكونات shadcn/ui، لضمان جودة الكود وقابلية صيانته."
+    },
+    "complete_ownership": {
+      "title": "مفتوحة المصدر في جوهرها",
+      "description": "على عكس الأدوات مغلقة المصدر، Libra مفتوحة المصدر في جوهرها. يمكنك عرض كل سطر من الكود وتعديله وتوسيعه. بلا صناديق سوداء، ولا ارتباط بمزوّد واحد، وحرية تطوير حقيقية."
+    },
+    "performance_optimized": {
+      "title": "نشر على نطاق مخصص",
+      "description": "انشر على نطاقك الخاص مع تحكم كامل في رابط الوصول إلى تطبيقك. دون اعتماد على منصات طرف ثالث، وامتلاك حقيقي لمنتجك."
+    },
+    "tech_stack_freedom": {
+      "title": "رفع الصور والحفظ التلقائي على GitHub",
+      "description_1": "رفع صور يعمل بشكل كامل يدعم تنسيقات متعددة والتخزين السحابي. مزامنة تلقائية للكود إلى مستودعات GitHub مع دعم التحكم بالإصدارات.",
+      "description_2": "يدعم المحرر المرئي التحرير الدقيق، ووظيفة الإصلاح التلقائي المجانية بالذكاء الاصطناعي تعزز كفاءة التطوير."
+    },
+    "community_driven": {
+      "title": "مخرجات تجربة مستخدم ممتازة",
+      "description_1": "مخرجات المنتج قابلة للاستخدام فعليًا، وليست عروضًا تجريبية بسيطة. تمتلك التطبيقات المُولَّدة وظائف كاملة، وتصميم واجهة/تجربة مستخدم ممتاز، وجودة كود جاهزة للإنتاج.",
+      "description_2": "يقودها مجتمع مفتوح المصدر، بتحسين وابتكار مستمرين."
+    }
+  },
+  "cta": {
+    "title": "مستعد للبدء بالبناء مجانًا؟",
+    "subtitle": "انضم إلى مجتمع المطورين مفتوح المصدر واستخدم Libra لتحويل الأفكار إلى منتجات قابلة للاستخدام فعليًا. مجاني للأبد، وكودك ملكك بالكامل.",
+    "button": "ابدأ البناء مجانًا",
+    "secondary": "عرض الكود مفتوح المصدر"
+  },
+  "footer": {
+    "description": "سحر مفتوح المصدر للمطورين المبدعين الذين يرفضون التقيّد.",
+    "product": "المنتج",
+    "features": "المميزات",
+    "pricing": "الأسعار",
+    "changelog": "سجل التغييرات",
+    "company": "الشركة",
+    "about": "من نحن",
+    "contact": "تواصل معنا",
+    "blog": "المدونة",
+    "careers": "الوظائف",
+    "resources": "الموارد",
+    "documentation": "التوثيق",
+    "support": "الدعم",
+    "community": "المجتمع",
+    "discord": "Discord",
+    "twitter": "Twitter",
+    "github": "Github",
+    "legal": "قانوني",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "cookies": "سياسة ملفات تعريف الارتباط",
+    "copyright": "© 2025 Nextify Limited. جميع الحقوق محفوظة.",
+    "copyright_nextify": "© 2025 Nextify Limited. جميع الحقوق محفوظة",
+    "status": "الحالة",
+    "all_rights_reserved": "جميع الحقوق محفوظة.",
+    "made_with_love": "صُنع بحب ❤️ من قِبل الحالمين، للحالمين"
+  },
+  "contact": {
+    "page_title": "تواصل معنا",
+    "page_description": "نتطلع لسماع اقتراحاتك واحتياجاتك. الرجاء تعبئة النموذج أدناه وسيتواصل فريقنا معك في أقرب وقت ممكن.",
+    "form_name_label": "الاسم",
+    "form_name_placeholder": "الرجاء إدخال اسمك",
+    "form_company_label": "الشركة",
+    "form_company_placeholder": "الرجاء إدخال اسم شركتك",
+    "form_email_label": "البريد الإلكتروني",
+    "form_email_placeholder": "your.email@company.com",
+    "form_requirements_label": "المتطلبات",
+    "form_requirements_placeholder": "أخبرنا بمتطلباتك، مثل الميزات المخصصة، تكامل تسجيل الدخول الموحد، احتياجات النشر، إلخ.",
+    "submit_button": "إرسال",
+    "privacy_notice": "بالإرسال، فإنك توافق على",
+    "privacy_policy": "سياسة الخصوصية",
+    "enterprise_title": "خدمات مخصصة للمؤسسات",
+    "enterprise_support": "دعم عملاء مخصص",
+    "enterprise_deployment": "حلول نشر مخصصة",
+    "enterprise_sso": "تكامل تسجيل الدخول الموحد (SSO)",
+    "enterprise_security": "دعم أمن البيانات والامتثال",
+    "enterprise_training": "خدمات تدريب واستشارات احترافية",
+    "other_contact_title": "طرق تواصل أخرى",
+    "customer_support": "دعم العملاء",
+    "customer_support_email": "support@yourcompany.com",
+    "business_cooperation": "التعاون التجاري",
+    "business_cooperation_email": "sales@yourcompany.com",
+    "media_inquiry": "استفسارات الإعلام",
+    "media_inquiry_email": "press@yourcompany.com"
+  },
+  "dashboard": {
+    "my_projects": "مشاريعي",
+    "create_project": "إنشاء مشروع",
+    "creating": "جارٍ الإنشاء...",
+    "empty_state_title": "ابدأ مشروعك الأول",
+    "empty_state_description": "أنشئ مشروعًا لبدء إدارة عملك والتعاون مع فريقك",
+    "empty_state_button": "إنشاء مشروع",
+    "project_name_dialog_title": "إنشاء مشروع جديد",
+    "project_name_dialog_description": "أنشئ مشروعًا جديدًا لبدء عملك. يمكنك تعديل إعدادات المشروع في أي وقت.",
+    "project_name_label": "اسم المشروع",
+    "project_name_placeholder": "أدخل اسم المشروع",
+    "project_name_help": "اختر اسمًا وصفيًا لمشروعك لسهولة التعرف عليه.",
+    "project_name_length": "{current}/32",
+    "project_create_button": "إنشاء مشروع",
+    "project_create_cancel": "إلغاء",
+    "project_name_required": "الرجاء إدخال اسم مشروع صالح",
+    "project_create_success": "تم إنشاء المشروع بنجاح!",
+    "login_required": "الرجاء تسجيل الدخول قبل إنشاء مشروع",
+    "create_failed": "فشل إنشاء المشروع، الرجاء المحاولة مرة أخرى",
+    "quota_exhausted": "تم استنفاد حصة المشاريع، الرجاء ترقية خطتك أو الانتظار حتى إعادة تعيين الحصة",
+    "siteHeader": {
+      "projectManagement": "إدارة المشاريع"
+    },
+    "sidebar": {
+      "navigation": {
+        "admin": "الإدارة",
+        "dashboard": "لوحة التحكم",
+        "teams": "الفرق",
+        "billing": "الفوترة",
+        "session": "الجلسة",
+        "integrations": "التكاملات",
+        "docs": "التوثيق",
+        "github": "Github",
+        "support": "الدعم",
+        "help": "المساعدة"
+      }
+    },
+    "navUser": {
+      "profile": "الملف الشخصي",
+      "session": "الجلسة",
+      "billing": "الفوترة",
+      "settings": "الإعدادات",
+      "logout": "تسجيل الخروج",
+      "loggingOut": "جارٍ تسجيل الخروج...",
+      "switchToLight": "التبديل إلى الوضع الفاتح",
+      "switchToDark": "التبديل إلى الوضع الداكن",
+      "logoutFailed": "فشل تسجيل الخروج، الرجاء المحاولة مرة أخرى"
+    },
+    "teams": {
+      "title": "إدارة الفريق",
+      "subtitle": "إدارة أعضاء الفريق والدعوات",
+      "refreshData": "تحديث البيانات",
+      "refreshing": "جارٍ تحديث البيانات...",
+      "refreshSuccess": "تم تحديث البيانات بنجاح",
+      "currentOrganization": "المؤسسة الحالية",
+      "unnamedOrganization": "مؤسسة بلا اسم",
+      "loadingOrganizationData": "جارٍ تحميل بيانات المؤسسة...",
+      "inviteForm": {
+        "title": "دعوة عضو للفريق",
+        "description": "أرسل دعوة للانضمام إلى فريقك",
+        "emailLabel": "البريد الإلكتروني",
+        "emailPlaceholder": "colleague@example.com",
+        "roleLabel": "الدور",
+        "selectRole": "اختر دورًا",
+        "roleOwner": "مالك",
+        "roleAdmin": "مسؤول",
+        "roleMember": "عضو",
+        "sendInvitation": "إرسال الدعوة",
+        "sending": "جارٍ الإرسال...",
+        "invitationSent": "تم إرسال الدعوة إلى {email}",
+        "sendFailed": "فشل إرسال الدعوة. الرجاء المحاولة مرة أخرى.",
+        "noOrganization": "لم يتم تحديد مؤسسة",
+        "emailInvalid": "الرجاء إدخال بريد إلكتروني صالح",
+        "roleRequired": "الرجاء اختيار دور",
+        "rolePlaceholder": "اختر الدور"
+      },
+      "memberTable": {
+        "title": "أعضاء الفريق",
+        "noMembers": "لا يوجد أعضاء بعد",
+        "inviteFirst": "ادعُ أول عضو في فريقك للبدء",
+        "unnamedUser": "مستخدم بلا اسم",
+        "columns": {
+          "name": "الاسم",
+          "email": "البريد الإلكتروني",
+          "role": "الدور",
+          "joinedAt": "تاريخ الانضمام",
+          "actions": "الإجراءات"
+        },
+        "status": {
+          "active": "نشط",
+          "inactive": "غير متصل",
+          "pending": "قيد الانتظار",
+          "blocked": "محظور",
+          "unknown": "غير معروف"
+        },
+        "actions": {
+          "updateRole": "تحديث الدور",
+          "remove": "إزالة",
+          "confirmRemove": "إزالة العضو؟",
+          "confirmRemoveDesc": "هل أنت متأكد من رغبتك في إزالة {name} من الفريق؟",
+          "cancel": "إلغاء",
+          "confirm": "إزالة",
+          "removing": "جارٍ الإزالة...",
+          "removed": "تمت إزالة العضو {name}",
+          "removeFailed": "فشلت إزالة العضو. الرجاء المحاولة مرة أخرى.",
+          "roleUpdated": "تم تحديث دور العضو",
+          "roleUpdateFailed": "فشل تحديث الدور. الرجاء المحاولة مرة أخرى."
+        }
+      },
+      "invitationTable": {
+        "title": "الدعوات المعلّقة",
+        "noInvitations": "لا توجد دعوات معلّقة",
+        "noInvitationsDesc": "تمت معالجة جميع الدعوات أو لم يتم إرسال أي منها",
+        "currentStatus": "الحالة الحالية",
+        "columns": {
+          "email": "البريد الإلكتروني",
+          "role": "الدور",
+          "status": "الحالة",
+          "expiresAt": "تنتهي في",
+          "actions": "الإجراءات"
+        },
+        "status": {
+          "pending": "قيد الانتظار",
+          "expired": "منتهية",
+          "accepted": "مقبولة",
+          "canceled": "ملغاة",
+          "rejected": "مرفوضة",
+          "unknown": "غير معروف"
+        },
+        "actions": {
+          "cancel": "إلغاء",
+          "confirmCancel": "إلغاء الدعوة؟",
+          "confirmCancelDesc": "هل أنت متأكد من رغبتك في إلغاء الدعوة الخاصة بـ {email}؟",
+          "cancelButton": "إلغاء الدعوة",
+          "canceling": "جارٍ الإلغاء...",
+          "canceled": "تم إلغاء الدعوة الخاصة بـ {email}",
+          "cancelFailed": "فشل إلغاء الدعوة. الرجاء المحاولة مرة أخرى."
+        }
+      },
+      "tabs": {
+        "members": "أعضاء الفريق",
+        "invitations": "الدعوات"
+      },
+      "errors": {
+        "fetchFailed": "فشل جلب بيانات الفريق",
+        "noOrganization": "لم يتم تحديد مؤسسة"
+      }
+    },
+    "billing": {
+      "title": "إدارة الاشتراك",
+      "subtitle": "إدارة خطة اشتراكك واستخدامك",
+      "upgradePlan": "ترقية الخطة",
+      "quickStats": {
+        "aiRemaining": "المتبقي من الذكاء الاصطناعي",
+        "teamMembers": "أعضاء الفريق",
+        "activeProjects": "المشاريع النشطة",
+        "currentPlan": "الخطة الحالية"
+      },
+      "currentPlan": {
+        "title": "الخطة الحالية",
+        "plan": "خطة {plan}",
+        "billingPeriodEnd": "تنتهي فترة الفوترة: {date}"
+      },
+      "usage": {
+        "title": "نظرة عامة على الاستخدام",
+        "insufficient": "منخفض",
+        "aiMessages": {
+          "title": "رسائل الذكاء الاصطناعي",
+          "titleWithPlan": "رسائل الذكاء الاصطناعي ({plan})",
+          "description": "استخدام الدردشة والتوليد الشهري بالذكاء الاصطناعي",
+          "paidDescription": "استخدام الدردشة والتوليد بالذكاء الاصطناعي في الخطة المدفوعة",
+          "freeDescription": "استخدام الدردشة والتوليد بالذكاء الاصطناعي في الخطة المجانية",
+          "hybridDescription": "حصة رسائل الذكاء الاصطناعي (مدفوع {paid} + مجاني {free})",
+          "used": "المستخدم",
+          "remaining": "المتبقي",
+          "total": "الإجمالي",
+          "upgradeForMore": "رقّ لحصة أكبر"
+        },
+        "teamSeats": {
+          "title": "مقاعد الفريق",
+          "description": "عدد أعضاء الفريق الحالي",
+          "used": "المستخدم",
+          "remaining": "المتبقي",
+          "total": "الإجمالي",
+          "expandSeats": "توسيع مقاعد الفريق"
+        },
+        "projects": {
+          "title": "المشاريع",
+          "titleWithPlan": "المشاريع ({plan})",
+          "description": "إجمالي المشاريع المُنشأة",
+          "paidDescription": "إجمالي المشاريع المُنشأة ضمن الخطة المدفوعة",
+          "freeDescription": "إجمالي المشاريع المُنشأة ضمن الخطة المجانية",
+          "hybridDescription": "حصة المشاريع (مدفوع {paid} + مجاني {free})",
+          "used": "المستخدم",
+          "remaining": "المتبقي",
+          "total": "الإجمالي",
+          "createMore": "إنشاء المزيد من المشاريع"
+        }
+      },
+      "upgrade": {
+        "title": "رقّ خطتك",
+        "description": "افتح المزيد من المميزات وحدود أعلى ودعمًا ذا أولوية",
+        "features": {
+          "moreAI": "حصة أكبر من رسائل الذكاء الاصطناعي",
+          "expandTeam": "توسيع التعاون الجماعي",
+          "unlimitedProjects": "إنشاء مشاريع غير محدود"
+        },
+        "viewPlans": "عرض جميع الخطط",
+        "resourcesRunningOut": "بعض الموارد على وشك النفاد، رقّ خطتك لحصة أكبر",
+        "button": "ترقية"
+      },
+      "manage": {
+        "title": "إدارة الخطة",
+        "button": "إدارة الخطة",
+        "processing": "جارٍ المعالجة..."
+      },
+      "loadError": {
+        "title": "فشل التحميل",
+        "description": "تعذّر تحميل معلومات الاشتراك. الرجاء المحاولة لاحقًا أو التواصل مع الدعم.",
+        "backToDashboard": "العودة إلى لوحة التحكم"
+      }
+    },
+    "session": {
+      "title": "إدارة الجلسات",
+      "subtitle": "اطّلع على جلسات تسجيل الدخول لحسابك من أجل الأمان",
+      "refresh": "تحديث بيانات الجلسة",
+      "securityTip": {
+        "title": "نصيحة أمان الحساب",
+        "description": "تحقق بانتظام من جلسات تسجيل الدخول الخاصة بك. إذا لاحظت نشاطًا مريبًا، أنهِ الجلسة وتواصل معنا."
+      },
+      "table": {
+        "columns": {
+          "device": "الجهاز",
+          "ipAddress": "عنوان IP",
+          "location": "الموقع",
+          "loginTime": "وقت تسجيل الدخول",
+          "status": "الحالة"
+        },
+        "deviceTypes": {
+          "iPhone": "جهاز iPhone",
+          "iPad": "جهاز iPad",
+          "androidPhone": "هاتف أندرويد",
+          "androidTablet": "جهاز لوحي أندرويد",
+          "windows": "جهاز ويندوز",
+          "mac": "جهاز ماك",
+          "linux": "جهاز لينكس",
+          "other": "جهاز آخر",
+          "unknown": "جهاز غير معروف"
+        },
+        "unknownLocation": "موقع غير معروف",
+        "unknownIP": "غير معروف",
+        "expiresAt": "تنتهي في: {time}",
+        "noSessions": "لا توجد سجلات جلسات",
+        "terminateTooltip": "إنهاء هذه الجلسة"
+      },
+      "status": {
+        "current": "الجلسة الحالية",
+        "expired": "منتهية",
+        "active": "نشطة"
+      },
+      "actions": {
+        "terminate": "إنهاء",
+        "terminateFailed": "فشل إنهاء الجلسة: {error}"
+      }
+    },
+    "integrations": {
+      "title": "التكاملات",
+      "subtitle": "اربط خدمات خارجية لتعزيز سير عمل التطوير الخاص بك",
+      "github": {
+        "title": "تكامل GitHub",
+        "description": "اربط حساب GitHub الخاص بك لإنشاء المستودعات وإدارة الكود",
+        "connected": "متصل",
+        "not_connected": "غير متصل",
+        "connect_button": "ربط حساب GitHub",
+        "connecting": "جارٍ الربط...",
+        "connect_description": "اربط حساب GitHub الخاص بك لتفعيل ميزات إنشاء المستودعات وإدارتها.",
+        "authenticating": "جارٍ المصادقة...",
+        "checking_connection": "جارٍ التحقق من الاتصال...",
+        "connection_failed": "فشل التحقق من اتصال GitHub",
+        "repositories": "المستودعات",
+        "followers": "المتابعون",
+        "following": "يتابع",
+        "view_profile": "عرض الملف الشخصي",
+        "connect_account_title": "اربط حساب GitHub الخاص بك",
+        "connect_account_description": "أضف حساب GitHub الخاص بك لإدارة المؤسسات المرتبطة ومزامنة مشاريعك.",
+        "connect_github": "ربط GitHub",
+        "test_repo": {
+          "title": "اختبار إنشاء مستودع",
+          "description": "اختبر التكامل من خلال إنشاء مستودع جديد",
+          "placeholder": "test-repo-name",
+          "button": "إنشاء مستودع اختباري"
+        },
+        "install": {
+          "title": "تثبيت تطبيق GitHub",
+          "subtitle": "فعّل تصدير الكود إلى مستودعاتك",
+          "description": "ثبّت تطبيق Libra على GitHub لتفعيل الوصول إلى المستودعات وتصدير الكود",
+          "button": "تثبيت تطبيق GitHub",
+          "installing": "جارٍ التثبيت...",
+          "required_title": "التثبيت مطلوب",
+          "required_description": "ثبّت تطبيق Libra على GitHub لتفعيل الوصول إلى المستودعات وتصدير الكود.",
+          "error_popup_blocked": "تم حظر النافذة المنبثقة. الرجاء السماح بالنوافذ المنبثقة لهذا الموقع والمحاولة مرة أخرى.",
+          "error_installation_failed": "فشل فتح تثبيت تطبيق GitHub"
+        },
+        "oauth": {
+          "title": "إتمام المصادقة",
+          "description": "امنح الإذن للوصول إلى مستودعات GitHub الخاصة بك",
+          "connected_personal": "متصل بـ {account} (حساب شخصي)",
+          "connected_organization": "متصل بـ {account} (مؤسسة)",
+          "connected_generic": "متصل بـ {account}",
+          "app_connected": "تطبيق GitHub متصل",
+          "access_required": "الوصول إلى المستودع مطلوب",
+          "access_description": "امنح الإذن للوصول إلى مستودعاتك من أجل تصدير الكود.",
+          "authorize_button": "تخويل الوصول إلى المستودع"
+        },
+        "repository": {
+          "title": "اختر المستودع",
+          "description": "اختر مستودعًا موجودًا",
+          "select_existing": "اختر مستودعًا موجودًا",
+          "new_button": "جديد",
+          "private_badge": "خاص",
+          "select_aria_label": "اختر المستودع {name}"
+        },
+        "auto_create": {
+          "title": "إنشاء مستودع",
+          "description": "إنشاء مستودع تلقائيًا لمشروعك",
+          "creating_title": "جارٍ إنشاء المستودع...",
+          "ready_title": "جاهز للتصدير",
+          "creating_description": "جارٍ إعداد مستودع GitHub الخاص بك",
+          "ready_description": "إنشاء وتصدير مشروعك تلقائيًا",
+          "project_title": "المشروع: {name}",
+          "creating_project_description": "جارٍ إنشاء مستودع GitHub والتحضير لتصدير الكود...",
+          "ready_project_description": "سننشئ مستودع GitHub تلقائيًا ونصدّر كود مشروعك.",
+          "progress_message": "قد يستغرق هذا بعض الوقت...",
+          "select_existing_button": "اختر مستودعًا موجودًا"
+        },
+        "push": {
+          "title": "تصدير الكود",
+          "description": "صدّر كودك إلى المستودع المحدد",
+          "files_title": "الملفات التي سيتم تصديرها:",
+          "new_file": "ملف جديد",
+          "back_button": "رجوع",
+          "export_button": "تصدير الكود"
+        },
+        "success": {
+          "title": "تكامل GitHub",
+          "description": "تكامل GitHub جاهز لتصدير الكود",
+          "ready_title": "تكامل GitHub جاهز",
+          "access_title": "الوصول إلى المستودع",
+          "access_description": "تواجه مشكلة في الاتصال؟ أعد المصادقة",
+          "authorize_button": "تخويل",
+          "export_title": "تصدير المستودع",
+          "export_description": "جاهز لتصدير كودك",
+          "sync_button": "مزامنة الملفات مع GitHub"
+        },
+        "modal": {
+          "checking_connection": "جارٍ التحقق من اتصال GitHub...",
+          "step_install": "تثبيت تطبيق GitHub",
+          "step_oauth": "إتمام المصادقة",
+          "step_repositories": "اختر المستودع",
+          "step_create": "إنشاء مستودع",
+          "step_push": "تصدير الكود",
+          "step_success": "تكامل GitHub",
+          "description_install": "ثبّت تطبيق Libra على GitHub لتفعيل تصدير الكود",
+          "description_oauth": "امنح الإذن للوصول إلى مستودعات GitHub الخاصة بك",
+          "description_repositories": "اختر مكان تصدير كودك",
+          "description_create": "إنشاء مستودع تلقائيًا لمشروعك",
+          "description_push": "صدّر كودك إلى المستودع المحدد",
+          "description_success": "تكامل GitHub جاهز لتصدير الكود"
+        },
+        "repository_display": {
+          "copy_tooltip": "نسخ رابط المستودع",
+          "copied_tooltip": "تم النسخ!",
+          "private_badge": "خاص"
+        },
+        "messages": {
+          "installation_success": "تم تثبيت تطبيق GitHub بنجاح!",
+          "installation_cancelled": "تم إلغاء تثبيت تطبيق GitHub أو لم يكتمل. يمكنك المحاولة مرة أخرى في أي وقت.",
+          "installation_check_failed": "الرجاء تحديث الصفحة للتحقق من نجاح تثبيت تطبيق GitHub.",
+          "oauth_success": "تم إتمام تخويل GitHub بنجاح!",
+          "oauth_cancelled": "تم إلغاء تخويل GitHub أو لم يكتمل. يمكنك المحاولة مرة أخرى في أي وقت.",
+          "oauth_check_failed": "الرجاء تحديث الصفحة للتحقق من إتمام تخويل GitHub بنجاح.",
+          "oauth_not_required": "تخويل OAuth غير مطلوب لحسابات المؤسسات.",
+          "not_authenticated": "غير مصادَق مع GitHub",
+          "push_failed": "فشل دفع الكود",
+          "refresh_failed": "فشل تحديث المستودعات",
+          "create_repo_failed": "فشل إنشاء مستودع المشروع",
+          "popup_blocked": "تم حظر النافذة المنبثقة. الرجاء السماح بالنوافذ المنبثقة لهذا الموقع والمحاولة مرة أخرى.",
+          "oauth_failed": "فشل فتح تخويل GitHub OAuth",
+          "installation_failed": "فشل فتح تثبيت تطبيق GitHub",
+          "installation_success_oauth_pending": "تم تثبيت تطبيق GitHub بنجاح! جارٍ تخويل الوصول إلى المستودع...",
+          "installation_success_personal_oauth_required": "تم تثبيت تطبيق GitHub بنجاح! تحتاج الحسابات الشخصية للنقر على زر \"الوصول إلى المستودع مطلوب\" للحصول على تخويل إضافي."
+        }
+      },
+      "coming_soon": {
+        "title": "المزيد من التكاملات قريبًا",
+        "description": "نعمل على إضافة المزيد من التكاملات لتعزيز تجربة التطوير الخاصة بك"
+      }
+    },
+    "share": {
+      "modal": {
+        "title": "مشاركة المشروع",
+        "description": "شارك مشروعك المنشور مع الآخرين عبر وسائل التواصل الاجتماعي أو بنسخ الرابط.",
+        "description_not_deployed": "انشر مشروعك أولًا، ثم شاركه مع الآخرين.",
+        "visibility": {
+          "title": "المشروع عام",
+          "description": "يمكن للآخرين عرض مشروعك والوصول إليه",
+          "privateProjectDescription": "هذا المشروع خاص ومرئي فقط لك ولأعضاء فريقك.",
+          "upgradeForPrivateProjects": "رقّ إلى الخطة الاحترافية لإنشاء مشاريع خاصة."
+        },
+        "social": {
+          "share_on_x": "مشاركة على X",
+          "share_on_facebook": "مشاركة على Facebook",
+          "share_on_linkedin": "مشاركة على LinkedIn",
+          "share_on_reddit": "مشاركة على Reddit"
+        },
+        "copy_link": {
+          "title": "أو انسخ الرابط",
+          "description": "شارك هذا الرابط المباشر لمشروعك",
+          "copy_button": "نسخ"
+        },
+        "states": {
+          "loading": "جارٍ تحميل معلومات المشروع...",
+          "not_deployed": "المشروع لم يُنشر بعد. انشر مشروعك أولًا لمشاركته.",
+          "copy_success": "تم نسخ رابط المشروع إلى الحافظة!",
+          "copy_failed": "فشل نسخ رابط المشروع",
+          "visibilityUpdateSuccess": "تم تحديث ظهور المشروع بنجاح",
+          "visibilityUpdateFailed": "فشل تحديث ظهور المشروع"
+        },
+        "close": "إغلاق النافذة",
+        "share_text": {
+          "twitter": "اطّلع على مشروعي الذي بنيته باستخدام Libra AI!",
+          "linkedin_title": "مشروعي المبني باستخدام Libra AI",
+          "linkedin_summary": "اطّلع على هذا المشروع الرائع الذي بنيته باستخدام Libra AI!",
+          "reddit_title": "اطّلع على مشروعي الذي بنيته باستخدام Libra AI!"
+        }
+      }
+    },
+    "projectCard": {
+      "noDescription": "لا يوجد وصف",
+      "projectSettings": "إعدادات المشروع",
+      "inactiveTooltip": "هذا المشروع غير نشط ولا يمكن الوصول إليه",
+      "inactive": "غير نشط",
+      "openingProject": "جارٍ فتح المشروع...",
+      "inactiveAriaLabel": "هذا المشروع غير نشط حاليًا",
+      "time": {
+        "updatedAgo": "حُدّث منذ {time}",
+        "createdAgo": "أُنشئ منذ {time}",
+        "justCreated": "أُنشئ للتو"
+      }
+    },
+    "createProject": {
+      "requirements": {
+        "title": "ما هو التطبيق الذي تريد بناءه؟",
+        "subtitle": "أضف متطلبات مفصّلة لـ \"{projectName}\"",
+        "placeholder": "صف التطبيق الذي تريد بناءه. نوصي بالبدء بميزة واحدة ثم إضافة المزيد تدريجيًا. (مثال: أنشئ تطبيقًا يسمح للمستخدمين برفع الصور وعرضها في معرض)",
+        "required": "وصف المشروع مطلوب",
+        "generateButton": "توليد التطبيق",
+        "generating": "جارٍ توليد التطبيق...",
+        "describeProject": "الرجاء وصف المشروع الذي تريد بناءه"
+      },
+      "notifications": {
+        "generating": "جارٍ توليد تطبيق \"{projectName}\"...",
+        "generatingDescription": "قد يستغرق هذا بعض الوقت، الرجاء التحلي بالصبر",
+        "success": "تم توليد تطبيق \"{projectName}\" بنجاح!",
+        "successDescription": "يمكنك الآن البدء باستخدام تطبيقك الجديد",
+        "viewNow": "عرض الآن",
+        "updateFailed": "فشل تحديث متطلبات المشروع، الرجاء المحاولة مرة أخرى",
+        "generateFailed": "فشل توليد التطبيق، الرجاء المحاولة مرة أخرى"
+      }
+    },
+    "projectDetails": {
+      "dialog": {
+        "title": "تفاصيل المشروع",
+        "description": "إدارة إعدادات المشروع والفريق والضبط",
+        "backButton": "رجوع",
+        "unsaved": "غير محفوظ",
+        "unsavedChanges": "لديك تغييرات غير محفوظة",
+        "saving": "جارٍ الحفظ...",
+        "saveChanges": "حفظ التغييرات"
+      },
+      "errors": {
+        "loadFailed": "فشل تحميل معلومات المشروع",
+        "loadFailedDescription": "تعذّر جلب بيانات المشروع، الرجاء المحاولة مرة أخرى أو التواصل مع المسؤول",
+        "retry": "إعادة المحاولة"
+      }
+    },
+    "workspace": {
+      "switcher": {
+        "switchedTo": "تم التبديل إلى مساحة العمل: {name}",
+        "switchFailed": "فشل التبديل بين مساحات العمل، الرجاء المحاولة مرة أخرى"
+      },
+      "create": {
+        "title": "إنشاء مساحة عمل جديدة",
+        "description": "أنشئ مساحة عمل جديدة لإدارة مشاريعك أو التعاون مع الآخرين. بعد الإنشاء، يمكنك دعوة أعضاء الفريق للانضمام.",
+        "nameLabel": "اسم مساحة العمل",
+        "namePlaceholder": "أدخل اسم مساحة العمل",
+        "nameHelp": "اختر اسمًا وصفيًا لمساحة عملك ليسهل عليك وعلى أعضاء فريقك التعرف عليها.",
+        "cancel": "إلغاء",
+        "creating": "جارٍ الإنشاء...",
+        "createButton": "إنشاء مساحة عمل",
+        "nameRequired": "الرجاء إدخال اسم مساحة عمل صالح",
+        "createSuccess": "تم إنشاء مساحة العمل {name} بنجاح!",
+        "createFailed": "فشل إنشاء مساحة العمل، الرجاء المحاولة مرة أخرى",
+        "slugTaken": "معرّف مساحة العمل هذا مُستخدم بالفعل، الرجاء تجربة معرّف آخر",
+        "createFailedWithMessage": "فشل إنشاء مساحة العمل: {message}",
+        "retryMessage": "الرجاء المحاولة مرة أخرى",
+        "createNew": "إنشاء مساحة عمل جديدة"
+      },
+      "slugEditor": {
+        "label": "معرّف مساحة العمل",
+        "customize": "تخصيص",
+        "reset": "إعادة تعيين",
+        "rules": {
+          "length": "يجب أن يكون بين 3 و30 حرفًا",
+          "format": "يمكن أن يحتوي فقط على أحرف إنجليزية صغيرة وأرقام وشرطات",
+          "noStartEnd": "لا يمكن أن يبدأ أو ينتهي بشرطة"
+        },
+        "clickToEdit": "انقر للتعديل",
+        "editLabel": "تعديل معرّف مساحة العمل",
+        "description": "سيكون هذا هو المعرّف الفريد لمساحة عملك، ويُستخدم للروابط واستدعاءات الواجهة البرمجية.",
+        "fixDescription": "الرجاء تصحيح معرّف مساحة العمل للتأكد من استيفائه للمتطلبات."
+      },
+      "validation": {
+        "slugEmpty": "لا يمكن أن يكون معرّف مساحة العمل فارغًا",
+        "slugTooShort": "يجب أن يتكون معرّف مساحة العمل من 3 أحرف على الأقل",
+        "slugInvalidFormat": "يمكن أن يحتوي معرّف مساحة العمل فقط على أحرف إنجليزية صغيرة وأرقام وشرطات في المنتصف",
+        "slugAlreadyInUse": "معرّف مساحة العمل هذا مُستخدم بالفعل، الرجاء تجربة معرّف آخر",
+        "slugCheckFailed": "تعذّر التحقق من توفر المعرّف، الرجاء المحاولة لاحقًا"
+      },
+      "projectDetails": {
+        "dateFormat": {
+          "unknown": "غير معروف",
+          "invalid": "تاريخ غير صالح"
+        },
+        "notifications": {
+          "updateSuccess": "تم تحديث المشروع بنجاح",
+          "updateSuccessDesc": "تم حفظ جميع التغييرات",
+          "saveFailed": "فشل الحفظ",
+          "saveFailedDesc": "الرجاء التحقق من اتصال الشبكة والمحاولة مرة أخرى",
+          "deleteSuccess": "تم حذف المشروع بنجاح",
+          "deleteFailed": "فشل الحذف",
+          "deleteFailedDesc": "الرجاء المحاولة لاحقًا"
+        }
+      }
+    },
+    "projectDetailsTabs": {
+      "groups": {
+        "project": "المشروع",
+        "content": "المحتوى",
+        "dangerZone": "منطقة الخطر"
+      },
+      "tabs": {
+        "details": "تفاصيل المشروع",
+        "members": "أعضاء الفريق",
+        "history": "السجل",
+        "knowledge": "المعرفة",
+        "assets": "الأصول",
+        "analytics": "التحليلات",
+        "danger": "حذف المشروع"
+      },
+      "comingSoon": "قريبًا",
+      "details": {
+        "basicInfo": "المعلومات الأساسية",
+        "projectName": "اسم المشروع",
+        "readOnly": "للقراءة فقط",
+        "projectDescription": "وصف المشروع",
+        "descriptionPlaceholder": "صف مشروعك...",
+        "descriptionHint": "سيُستخدم وصف المشروع لمساعدة الذكاء الاصطناعي على فهم متطلبات مشروعك.",
+        "projectNamePlaceholder": "أدخل اسم المشروع",
+        "projectDescriptionPlaceholder": "سيُستخدم وصف المشروع لمساعدة الذكاء الاصطناعي على فهم متطلبات مشروعك",
+        "projectDescriptionHelp": "سيُستخدم وصف المشروع لمساعدة الذكاء الاصطناعي على فهم متطلبات مشروعك.",
+        "projectInfo": "معلومات المشروع",
+        "createdAt": "تاريخ الإنشاء",
+        "lastUpdated": "آخر تحديث",
+        "projectId": "معرّف المشروع"
+      },
+      "knowledge": {
+        "title": "المعرفة",
+        "description": "أضف سياقًا عن مشروعك سيُستخدم عند توليد الكود. يمكن أن يشمل ذلك متطلبات محددة أو قيودًا أو أي معلومات أخرى ذات صلة.",
+        "placeholder": "مثال: \"استخدم TypeScript لجميع المكونات\"، \"اتبع مبادئ Material Design\"، \"أضف ميزات إمكانية الوصول\"... (حد أقصى 500 حرف)",
+        "tipTitle": "نصيحة احترافية",
+        "tipContent": "ستُدرج هذه المعلومات تلقائيًا في كل محادثة مع مساعدك بالذكاء الاصطناعي. يمكنك إضافة أشياء مثل تفضيلات أسلوب الكتابة، أو مصطلحات الشركة، أو إرشادات محددة تريد أن يتذكرها الذكاء الاصطناعي دائمًا.",
+        "unsaved": "تغييرات غير محفوظة",
+        "autoSaving": "جارٍ الحفظ التلقائي...",
+        "lastSaved": "تم الحفظ"
+      },
+      "danger": {
+        "title": "منطقة الخطر",
+        "description": "قد تؤدي الإجراءات في هذه المنطقة إلى فقدان البيانات. الرجاء المتابعة بحذر.",
+        "warning": "تحذير",
+        "warningText": "الحذف لا رجعة فيه. سيتم حذف جميع بيانات المشروع والكود والإعدادات نهائيًا.",
+        "deleteButton": "حذف هذا المشروع",
+        "deleting": "جارٍ الحذف...",
+        "step1Title": "تحذير عملية خطيرة",
+        "step1Description": "أنت على وشك الدخول إلى منطقة الخطر. الرجاء قراءة المعلومات التالية بعناية للتأكد من فهمك لعواقب هذه العملية.",
+        "step2Title": "تأكيد حذف المشروع",
+        "step2Instruction": "الرجاء إدخال اسم المشروع \"{projectName}\" لتأكيد عملية الحذف",
+        "confirmationInputLabel": "اسم المشروع",
+        "confirmationInputPlaceholder": "أدخل اسم المشروع للتأكيد",
+        "finalWarning": "ستؤدي هذه العملية إلى حذف المشروع وجميع بياناته نهائيًا، بما في ذلك ملفات الكود ومعلومات الإعدادات وسجلات السجل. لا يمكن التراجع عن هذا الإجراء.",
+        "proceedButton": "أفهم المخاطر، تابع الحذف",
+        "backButton": "رجوع",
+        "inputMismatchError": "اسم المشروع المدخل غير مطابق، الرجاء المحاولة مرة أخرى",
+        "safetyTip": "نصيحة أمان",
+        "safetyTipContent": "قبل حذف المشروع، نوصي بتحميل ملفات المشروع كنسخة احتياطية.",
+        "whatWillHappen": "ستؤدي عملية الحذف إلى:",
+        "consequence1": "حذف جميع ملفات المشروع والكود نهائيًا",
+        "consequence2": "مسح إعدادات المشروع وضبطه",
+        "consequence3": "إزالة صلاحيات الوصول إلى المشروع ومعلومات التعاون",
+        "consequence4": "حذف عمليات نشر المشروع والنطاقات المخصصة",
+        "alternativeAction": "إذا كنت تريد فقط إيقاف المشروع مؤقتًا، ففكّر في تصدير ملفات المشروع بدلًا من حذفه.",
+        "proceedToDeletion": "المتابعة إلى الحذف",
+        "close": "إغلاق",
+        "projectNameMatch": "اسم المشروع مطابق",
+        "deleteConfirm": {
+          "title": "تأكيد حذف المشروع؟",
+          "description": "لا يمكن التراجع عن هذا الإجراء. سيتم حذف المشروع \"{projectName}\" وجميع بياناته المرتبطة نهائيًا.",
+          "cancel": "إلغاء",
+          "confirm": "تأكيد الحذف"
+        },
+        "unsavedChanges": {
+          "title": "تغييرات غير محفوظة",
+          "description": "لديك تغييرات غير محفوظة. هل أنت متأكد من رغبتك في المغادرة؟ ستفقد جميع التغييرات غير المحفوظة.",
+          "continueEditing": "متابعة التحرير",
+          "discardAndLeave": "تجاهل التغييرات والمغادرة"
+        }
+      }
+    },
+    "projectCreateButton": {
+      "quota": {
+        "loading": "جارٍ تحميل معلومات الحصة...",
+        "exhausted": "تم استنفاد حصة المشاريع ({used}/{limit})",
+        "remaining": "متبقٍ {remaining} من حصة المشاريع (المستخدم {used}/{limit})",
+        "upgradeHint": "رقّ خطتك للحصول على حصة مشاريع أكبر",
+        "upgradeButton": "ترقية الآن"
+      }
+    }
+  },
+  "auth": {
+    "email_form": {
+      "title": "إنشاء حساب أو تسجيل الدخول",
+      "subtitle": "ستتلقى رابطًا سحريًا في بريدك الإلكتروني",
+      "github_button": "GitHub",
+      "connecting": "جارٍ الاتصال...",
+      "github_connecting": "جارٍ الاتصال بـ GitHub...",
+      "github_redirecting": "جارٍ التوجيه إلى GitHub...",
+      "github_success": "تمت مصادقة GitHub بنجاح!",
+      "github_error": "فشلت مصادقة GitHub. الرجاء المحاولة مرة أخرى.",
+      "github_popup_blocked": "تم حظر النافذة المنبثقة. الرجاء السماح بالنوافذ المنبثقة والمحاولة مرة أخرى.",
+      "github_network_error": "خطأ في الشبكة. الرجاء التحقق من اتصالك والمحاولة مرة أخرى.",
+      "github_timeout": "انتهت مهلة المصادقة. الرجاء المحاولة مرة أخرى.",
+      "github_cancelled": "تم إلغاء المصادقة. يمكنك المحاولة مرة أخرى في أي وقت.",
+      "retry": "إعادة المحاولة",
+      "help_popup_blocked": "لتفعيل النوافذ المنبثقة: انقر على أيقونة حظر النوافذ المنبثقة في شريط عنوان متصفحك واختر \"السماح دائمًا بالنوافذ المنبثقة\".",
+      "unknown_error": "خطأ غير معروف",
+      "authentication_error": "خطأ في المصادقة",
+      "retry_github_auth": "إعادة محاولة مصادقة GitHub",
+      "or_continue": "أو تابع باستخدام",
+      "email_label": "البريد الإلكتروني",
+      "email_placeholder": "nextify@libra.agentic-lab.io",
+      "send_link": "أرسل لي رابطي",
+      "sending": "جارٍ الإرسال...",
+      "email_required": "الرجاء إدخال بريد إلكتروني صالح",
+      "captcha_required": "الرجاء إتمام التحقق الأمني أعلاه"
+    },
+    "otp_form": {
+      "change_email": "تغيير",
+      "verification_code": "رمز التحقق",
+      "enter_code": "أدخل الرمز المكوّن من 6 أرقام الذي أرسلناه إلى بريدك الإلكتروني",
+      "verifying": "جارٍ التحقق...",
+      "verify_button": "تحقق وسجّل الدخول"
+    },
+    "feature_showcase": {
+      "ai_powered_development": "تطوير مدعوم بالذكاء الاصطناعي",
+      "cloud_ide_environment": "بيئة تطوير سحابية",
+      "open_source_core": "جوهر مفتوح المصدر",
+      "github_integration": "تكامل GitHub",
+      "custom_domain_deployment": "نشر على نطاق مخصص",
+      "multi_model_ai_support": "دعم نماذج ذكاء اصطناعي متعددة",
+      "real_time_preview": "معاينة لحظية",
+      "welcome": "مرحبًا بك في Libra"
+    },
+    "oauth": {
+      "continue_github": "تابع باستخدام GitHub",
+      "continue_google": "تابع باستخدام Google"
+    }
+  },
+  "ui": {
+    "typewriter": {
+      "text1": "صفحة اختبار بأسئلة وأجوبة",
+      "text2": "تخطيط صفحة تفاصيل مقالة المدونة",
+      "text3": "لوحة تحكم بشريط جانبي",
+      "text4": "واجهة مثل platform.openai.com....",
+      "text5": "زر",
+      "text6": "تطبيق يتتبع دورات نوم مقسّمة غير قياسية",
+      "text7": "بطاقة شفافة لعرض إنجازات المستخدم"
+    },
+    "error": {
+      "title": "خطأ",
+      "description": "حدث خطأ ما!",
+      "refresh": "تحديث"
+    },
+    "accessibility": {
+      "close": "إغلاق",
+      "toggleSidebar": "تبديل الشريط الجانبي",
+      "sidebar": "الشريط الجانبي",
+      "sidebarDescription": "يعرض الشريط الجانبي على الجوال.",
+      "searchThroughDashboard": "البحث في لوحة التحكم",
+      "goToPreviousPage": "الانتقال إلى الصفحة السابقة",
+      "goToNextPage": "الانتقال إلى الصفحة التالية",
+      "useAlternativeSyntax": "استخدام تمييز صيغة بديل",
+      "switchToCodeMode": "التبديل إلى وضع الكود",
+      "switchToPreviewMode": "التبديل إلى وضع المعاينة",
+      "viewSourceCode": "عرض الكود المصدري",
+      "previewMarkdown": "معاينة Markdown",
+      "switchToLightMode": "التبديل إلى الوضع الفاتح",
+      "switchToDarkMode": "التبديل إلى الوضع الداكن",
+      "copyToClipboard": "نسخ الكود إلى الحافظة",
+      "copied": "تم النسخ!"
+    }
+  },
+  "chat": {
+    "toolbar": {
+      "file_upload": "رفع ملف",
+      "enhance_prompt": "تحسين الطلب"
+    },
+    "elementSelected": "العنصر المحدد: {tagName}",
+    "assistantReply": "لقد حللت محتوى الصفحة. كيف يمكنني مساعدتك؟",
+    "showMoreOptions": "عرض المزيد من الخيارات",
+    "title": "مساعد الدردشة",
+    "closeChat": "إغلاق الدردشة",
+    "startConversation": "ابدأ محادثة",
+    "startConversationHelper": "يمكنك طرح أي أسئلة حول ملف الكود الحالي، أو طلب المساعدة في تحليل عناصر الصفحة.",
+    "quickQuestions": "أسئلة سريعة",
+    "question1": "ما هي الوظائف الرئيسية لهذه الصفحة؟",
+    "question2": "ساعدني في تحليل بنية الصفحة",
+    "question3": "اشرح وظيفة هذا الكود",
+    "keyboardShortcut": "استخدم الاختصار",
+    "keyboardShortcutSuffix": "للوصول السريع إلى الدردشة",
+    "thinking": "جارٍ التفكير...",
+    "placeholder": "أدخل رسالة...",
+    "copyElementPath": "نسخ مسار العنصر",
+    "copiedToClipboard": "تم النسخ إلى الحافظة",
+    "element": "العنصر",
+    "className": "اسم الفئة",
+    "component": "المكوّن"
+  },
+  "admin": {
+    "title": "لوحة الإدارة",
+    "description": "إدارة مستخدمي النظام، بما في ذلك عرض معلومات المستخدمين، وحظر/إلغاء حظر المستخدمين، وعمليات أخرى",
+    "current_admin": "المسؤول الحالي",
+    "user_management": "إدارة المستخدمين",
+    "user_management_description": "عرض وإدارة جميع المستخدمين في النظام مع ميزات البحث والفرز والترقيم",
+    "search_field": "حقل البحث",
+    "search_placeholder_email": "بحث بالبريد الإلكتروني...",
+    "search_placeholder_name": "بحث بالاسم...",
+    "total_users": "تم العثور على {count} مستخدم",
+    "no_data": "لا توجد بيانات",
+    "loading_failed": "فشل تحميل بيانات المستخدم",
+    "columns": {
+      "user_info": "معلومات المستخدم",
+      "role": "الدور",
+      "registration_time": "وقت التسجيل",
+      "email_verification": "التحقق من البريد الإلكتروني",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    },
+    "user_status": {
+      "normal": "طبيعي",
+      "banned": "محظور",
+      "verified": "موثّق",
+      "unverified": "غير موثّق"
+    },
+    "user_roles": {
+      "admin": "مسؤول",
+      "superadmin": "مسؤول عام",
+      "user": "مستخدم"
+    },
+    "actions": {
+      "ban": "حظر",
+      "unban": "إلغاء الحظر",
+      "ban_user": "حظر المستخدم",
+      "unban_user": "إلغاء حظر المستخدم",
+      "confirm_ban": "تأكيد الحظر",
+      "confirm_unban": "تأكيد إلغاء الحظر",
+      "ban_reason": "سبب الحظر",
+      "ban_reason_placeholder": "أدخل سبب الحظر...",
+      "ban_duration": "مدة الحظر",
+      "ban_duration_placeholder": "أيام (اتركه فارغًا للحظر الدائم)",
+      "ban_duration_help": "اتركه فارغًا للحظر الدائم، أدخل عدد الأيام للحظر المؤقت",
+      "ban_success": "تم حظر المستخدم بنجاح",
+      "unban_success": "تم إلغاء حظر المستخدم بنجاح",
+      "ban_failed": "فشل حظر المستخدم",
+      "unban_failed": "فشل إلغاء حظر المستخدم",
+      "copy_user_id": "نسخ معرّف المستخدم",
+      "copy_email": "نسخ عنوان البريد الإلكتروني",
+      "view_details": "عرض التفاصيل",
+      "more_actions": "فتح القائمة"
+    },
+    "ban_dialog": {
+      "title": "حظر المستخدم",
+      "description": "أنت على وشك حظر المستخدم {name} ({email}). لن يتمكن المستخدم من تسجيل الدخول بعد الحظر.",
+      "reason_optional": "سبب الحظر (اختياري)",
+      "duration_optional": "مدة الحظر (اختياري)"
+    },
+    "unban_dialog": {
+      "title": "تأكيد إلغاء حظر المستخدم",
+      "description": "هل أنت متأكد من رغبتك في إلغاء حظر المستخدم {name} ({email})؟",
+      "ban_reason_label": "سبب الحظر"
+    },
+    "pagination": {
+      "total_records": "إجمالي {total} سجل، صفحة {current} من {pages}",
+      "first_page": "الأولى",
+      "previous_page": "السابقة",
+      "next_page": "التالية",
+      "last_page": "الأخيرة"
+    },
+    "table": {
+      "columns_display": "الأعمدة",
+      "no_name": "لم يتم تعيين اسم"
+    },
+    "search": {
+      "field_label": "حقل البحث:",
+      "field_email": "البريد الإلكتروني",
+      "field_name": "الاسم",
+      "placeholder_email": "بحث بالبريد الإلكتروني...",
+      "placeholder_name": "بحث بالاسم...",
+      "placeholder_default": "بحث..."
+    },
+    "errors": {
+      "load_failed": "فشل تحميل بيانات المستخدم",
+      "unknown_error": "خطأ غير معروف",
+      "retry": "إعادة المحاولة"
+    },
+    "status": {
+      "reason": "السبب",
+      "expires": "تنتهي في",
+      "user_actions": "إجراءات المستخدم",
+      "open_menu": "فتح القائمة"
+    }
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ",
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "no_data": "لا توجد بيانات",
+    "previous": "السابق",
+    "next": "التالي",
+    "pagination_info": "إجمالي {total} سجل، صفحة {current} من {totalPages}",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "submit": "إرسال",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort": "فرز",
+    "language": "اللغة",
+    "languages": {
+      "english": "English",
+      "arabic": "العربية"
+    },
+    "theme_toggle": "تبديل السمة",
+    "user_tiers": {
+      "free": "مجاني",
+      "free_desc": "خطة مجانية بمميزات أساسية",
+      "pro": "احترافي",
+      "pro_desc": "خطة احترافية بمميزات متقدمة",
+      "max": "الأقصى",
+      "max_desc": "خطة الحد الأقصى بمميزات غير محدودة"
+    },
+    "user_menu": {
+      "upgrade": "ترقية",
+      "manage": "إدارة",
+      "ai_usage": "استخدام رسائل الذكاء الاصطناعي",
+      "remaining": "متبقٍ {count} مرة",
+      "loading": "جارٍ التحميل...",
+      "user_menu_label": "قائمة المستخدم"
+    },
+    "loading_skeleton": {
+      "text1": "جارٍ تحويل الأفكار إلى كود...",
+      "text2": "الذكاء الاصطناعي يبني تطبيقك...",
+      "text3": "جارٍ صياغة كل سطر بعناية...",
+      "text4": "تطبيق مذهل قيد الإنجاز...",
+      "text5": "التحليل الذكي جارٍ...",
+      "text6": "رؤيتك الرقمية تتشكل...",
+      "fallback": "أفضل الأشياء تستغرق وقتًا"
+    }
+  },
+  "userButton": {
+    "usageDisplay": {
+      "hybridPlan": "خطة مختلطة",
+      "usageAlmostExhausted": "الاستخدام على وشك النفاد",
+      "usageHigh": "استخدام مرتفع، فكّر في ترقية الخطة",
+      "planDetails": "تفاصيل الخطة",
+      "paidPlan": "خطة مدفوعة",
+      "freeQuota": "الحصة المجانية"
+    },
+    "navigation": {
+      "dashboard": "لوحة التحكم",
+      "profile": "الملف الشخصي"
+    },
+    "actions": {
+      "logOut": "تسجيل الخروج"
+    }
+  },
+  "themeSwitcher": {
+    "options": {
+      "light": "فاتح",
+      "dark": "داكن",
+      "system": "النظام"
+    }
+  },
+  "networkState": {
+    "offline": "أنت غير متصل بالإنترنت حاليًا."
+  },
+  "avatar": {
+    "userAlt": "المستخدم"
+  },
+  "logo": {
+    "alt": "الشعار"
+  },
+  "icon": {
+    "rollback": {
+      "alt": "تراجع"
+    }
+  },
+  "ide": {
+    "navbar": {
+      "download": "تحميل",
+      "downloadAriaLabel": "تحميل ملفات بيئة العمل",
+      "downloading": "جارٍ التحميل...",
+      "downloadFailed": "فشل التحميل. الرجاء المحاولة مرة أخرى.",
+      "brand": "Libra AI للبرمجة السحابية",
+      "search": "بحث",
+      "switchToPreview": "التبديل إلى وضع المعاينة",
+      "switchToCode": "التبديل إلى وضع الكود",
+      "quotaExceeded": "تم تجاوز حصة الذكاء الاصطناعي - رقّ لاستخدام هذه الميزة",
+      "quotaExceededUpgrade": "تم تجاوز حصة الذكاء الاصطناعي. الرجاء الترقية لاستخدام هذه الميزة.",
+      "exportToGitHub": "تصدير إلى GitHub",
+      "deploy": "نشر",
+      "deploying": "جارٍ النشر",
+      "deployProject": "نشر المشروع إلى الإنتاج",
+      "deployingProject": "جارٍ نشر المشروع",
+      "deployProgress": "تقدّم النشر: {progress}٪، المرحلة الحالية: {stage}",
+      "deployShortcut": "الاختصار: Cmd+D",
+      "currentStage": "المرحلة الحالية: {stage}",
+      "deployAriaLabel": "نشر المشروع (الاختصار: Cmd+D)",
+      "deployingAriaLabel": "جارٍ نشر المشروع، التقدّم: {progress}٪",
+      "code": "الكود",
+      "preview": "المعاينة",
+      "switchModeTooltip": "التبديل بين محرر الكود ووضع المعاينة",
+      "share": "مشاركة",
+      "returnToDashboard": "العودة إلى لوحة التحكم",
+      "libraAltText": "Libra - منصة تطوير بالذكاء الاصطناعي"
+    },
+    "errorDisplay": {
+      "failedToLoad": "فشل تحميل بنية الملفات",
+      "networkIssue": "قد يكون هذا بسبب مشاكل في الشبكة أو عدم توفر الخادم مؤقتًا. الرجاء المحاولة لاحقًا.",
+      "refreshPage": "تحديث الصفحة"
+    },
+    "chatToggle": {
+      "openChat": "فتح الدردشة",
+      "openChatAriaLabel": "فتح الدردشة"
+    },
+    "fileExplorer": {
+      "hideSidebar": "إخفاء الشريط الجانبي",
+      "showSidebar": "إظهار الشريط الجانبي",
+      "codeBrowser": "متصفح الكود",
+      "code": "الكود",
+      "exitFullscreen": "الخروج من ملء الشاشة",
+      "enterFullscreen": "الدخول في وضع ملء الشاشة",
+      "comments": {
+        "exposeExpandMethod": "إتاحة طريقة التوسيع للمكوّن الأب"
+      }
+    },
+    "browserToolbar": {
+      "takeScreenshot": "التقاط لقطة شاشة",
+      "takeScreenshotAriaLabel": "التقاط لقطة شاشة"
+    },
+    "helpPanel": {
+      "closeHelpPanel": "إغلاق لوحة المساعدة",
+      "shortcutsAndHelp": "الاختصارات والمساعدة",
+      "keyboardShortcuts": "اختصارات لوحة المفاتيح",
+      "sendMessage": "إرسال رسالة",
+      "elementSelector": "محدد العناصر",
+      "cancelRequest": "إلغاء الطلب",
+      "usageTips": "نصائح الاستخدام",
+      "selectElementsTitle": "اختر عناصر للتفاعل",
+      "selectElementsDesc": "استخدم محدد العناصر للنقر مباشرة على عناصر الصفحة للتفاعل والأسئلة السريعة",
+      "describeRequirementsTitle": "صف المتطلبات بدقة",
+      "describeRequirementsDesc": "عند طرح الأسئلة، حاول وصف المتطلبات المحددة بوضوح للحصول على إجابات أدق",
+      "cancelRequestsTitle": "إلغاء الطلبات الجارية",
+      "cancelRequestsDesc": "لإلغاء طلب جارٍ، انقر على زر الإيقاف المؤقت أو اضغط مفتاح ESC",
+      "closeHelp": "إغلاق المساعدة"
+    },
+    "forkModal": {
+      "forkConversation": "تفريع المحادثة",
+      "createNewProject": "أنشئ مشروعًا جديدًا بتفريع المحادثة حتى هذه النقطة.",
+      "forkDescription": "سينشئ هذا مشروعًا جديدًا يحتوي على جميع الرسائل من بداية المحادثة حتى هذه النقطة. يمكنك متابعة التطوير من هذه الحالة في المشروع الجديد.",
+      "sourceProject": "المشروع المصدر",
+      "forkPoint": "نقطة التفريع",
+      "whatHappens": "ماذا سيحدث:",
+      "newProjectCreated": "سيتم إنشاء مشروع جديد",
+      "conversationCopied": "سيتم نسخ كامل سجل المحادثة حتى هذه النقطة",
+      "redirectToNew": "سيتم توجيهك إلى المشروع الجديد",
+      "originalUnchanged": "سيبقى المشروع الأصلي دون تغيير",
+      "cancel": "إلغاء",
+      "creatingFork": "جارٍ إنشاء التفريع...",
+      "createFork": "إنشاء تفريع"
+    },
+    "upgrade": {
+      "quotaStatus": "حالة الحصة",
+      "quotaRemaining": "متبقٍ 0"
+    },
+    "fileTree": {
+      "fileIcon": {
+        "alt": "أيقونة ملف {filename}"
+      },
+      "accessibility": {
+        "folderLabel": "مجلد {name}",
+        "fileLabel": "ملف {name}"
+      },
+      "console": {
+        "renderingFileTree": "جارٍ عرض شجرة الملفات",
+        "clickedFile": "تم النقر على الملف: {path}، النوع: {type}",
+        "correctedDuplicatePath": "تم تصحيح المسار المكرر: {original} -> {corrected}"
+      },
+      "codeblock": {
+        "toolbar": {
+          "useAlternativeSyntax": "استخدام تمييز صيغة بديل",
+          "switchToCodeMode": "التبديل إلى وضع الكود",
+          "switchToPreviewMode": "التبديل إلى وضع المعاينة",
+          "viewSourceCode": "عرض الكود المصدري",
+          "previewMarkdown": "معاينة Markdown",
+          "switchToLightMode": "التبديل إلى الوضع الفاتح",
+          "switchToDarkMode": "التبديل إلى الوضع الداكن",
+          "copyToClipboard": "نسخ الكود إلى الحافظة",
+          "copied": "تم النسخ!"
+        }
+      },
+      "codeExplorer": {
+        "selectFilePrompt": "الرجاء اختيار ملف من القائمة اليسرى",
+        "selectFileDescription": "اختر ملفًا من متصفح الملفات لعرض محتواه"
+      },
+      "imageRender": {
+        "imageLabel": "الصورة:",
+        "svgFile": "ملف SVG",
+        "imageFile": "ملف صورة"
+      },
+      "download": {
+        "noFilesAvailable": "لا توجد ملفات متاحة للتحميل",
+        "zipGenerationFailed": "فشل إنشاء ملف ZIP",
+        "downloadFailed": "فشل تحميل الملف"
+      }
+    },
+    "codeEditor": {
+      "editMode": "وضع التحرير",
+      "toggleEditMode": "تبديل وضع التحرير",
+      "deploySuccess": "تم نشر تغييرات الملف بنجاح",
+      "deployFailedRetry": "فشل النشر، الرجاء إعادة المحاولة",
+      "deployFailedPrefix": "فشل النشر: ",
+      "fileUpdateFailed": "فشل تحديث الملف",
+      "submitFailed": "فشل الإرسال، الرجاء إعادة المحاولة",
+      "deployFailedWithError": "فشل النشر: {error}",
+      "cancel": "إلغاء",
+      "submitting": "جارٍ الإرسال...",
+      "deploying": "جارٍ النشر...",
+      "retry": "إعادة المحاولة",
+      "submit": "إرسال"
+    },
+    "fileDiff": {
+      "loadingDiffView": "جارٍ تحميل عرض الفروقات...",
+      "unableToLoadDiffView": "تعذّر تحميل عرض الفروقات",
+      "checkConsoleForInfo": "الرجاء التحقق من وحدة التحكم لمزيد من المعلومات",
+      "reload": "إعادة التحميل",
+      "noDiffContentAvailable": "لا يوجد محتوى فروقات متاح",
+      "filesIdenticalOrProcessing": "محتوى الملفات متطابق أو قيد المعالجة",
+      "fileLabel": "الملف:",
+      "linesAdded": "سطر مُضاف",
+      "linesDeleted": "سطر محذوف",
+      "printDiff": "طباعة الفروقات"
+    },
+    "deployment": {
+      "dialog": {
+        "deploymentInProgress": "جارٍ نشر المشروع...",
+        "deploymentStarted": "بدأ النشر بنجاح!",
+        "deploymentProgressDescription": "جارٍ نشر مشروعك، الرجاء الانتظار...",
+        "deploymentSuccessTitle": "تم النشر بنجاح!",
+        "deploymentSuccessDescription": "تم نشر مشروعك بنجاح وهو الآن مباشر.",
+        "projectDeployedTitle": "المشروع منشور بالفعل",
+        "projectDeployedDescription": "مشروعك مباشر بالفعل ويمكن الوصول إليه عبر الرابط أدناه.",
+        "deploymentConfirmationTitle": "نشر المشروع",
+        "deploymentConfirmationDescription": "انشر مشروعك لجعله متاحًا على الإنترنت.",
+        "currentDeploymentAddress": "رابط الموقع المباشر",
+        "previewDeploymentAddress": "الرابط المتوقع",
+        "liveDeploymentAddress": "رابط الموقع المباشر",
+        "previewWarning": "سيكون هذا الرابط متاحًا بعد النشر",
+        "previewUrlSimple": "متاح بعد النشر",
+        "deploymentUrlPreview": "رابط النشر المتوقع",
+        "deploymentStatusPreview": "معاينة",
+        "deploymentStatusPreparing": "جارٍ التحضير",
+        "deploymentStatusDeploying": "جارٍ النشر",
+        "deploymentStatusDeployed": "منشور",
+        "deploymentStatusLive": "مباشر",
+        "deploymentStatusFailed": "فشل",
+        "deploymentStatusExisting": "مباشر",
+        "urlNotAccessibleYet": "سيكون الرابط متاحًا بعد النشر",
+        "urlAccessibleNow": "الرابط متاح الآن",
+        "customDomain": "نطاق مخصص",
+        "useCustomDomain": "استخدم نطاقك الخاص للوصول إلى الموقع",
+        "domainAddress": "عنوان النطاق",
+        "domainRequired": "الرجاء إدخال اسم النطاق",
+        "invalidDomainFormat": "تنسيق نطاق غير صالح",
+        "deployAfterHint": "💡 بعد النشر، ستحتاج إلى إعداد سجلات DNS للإشارة إلى خوادمنا. سنوفر دليل إعداد مفصلًا.",
+        "redeploy": "إعادة النشر",
+        "close": "إغلاق",
+        "cancel": "إلغاء",
+        "deployButton": "نشر",
+        "deploying": "جارٍ النشر...",
+        "customDomainRemoved": "تمت إزالة النطاق المخصص",
+        "customDomainRemoveFailed": "فشلت إزالة النطاق المخصص: {message}",
+        "customDomainVerifyFailed": "فشل التحقق من النطاق: {message}",
+        "customDomainSetSuccess": "تم تعيين النطاق المخصص بنجاح",
+        "customDomainSetFailed": "فشل تعيين النطاق المخصص: {message}",
+        "customDomainVerifySuccess": "تم التحقق من النطاق بنجاح",
+        "deploymentFailedUrlNotAccessible": "فشل النشر - الرابط غير متاح",
+        "statusUnknown": "غير معروف",
+        "copied": "تم النسخ",
+        "copy": "نسخ",
+        "open": "فتح",
+        "active": "نشط",
+        "deploymentUrl": "رابط النشر",
+        "deploymentConfirmationNote": "انقر على نشر لبدء عملية النشر غير المتزامنة. سيتم إشعارك عند اكتمالها.",
+        "startingCloudflareWorkflow": "جارٍ بدء سير عمل Cloudflare...",
+        "premiumFeature": "ميزة مميزة",
+        "customDomainsPremiumFeature": "النطاقات المخصصة متاحة لخطتَي Pro وMax",
+        "sslCertificateActive": "شهادة SSL نشطة",
+        "sslCertificateDescription": "نطاقك المخصص مُعد بالكامل بدعم HTTPS.",
+        "live": "مباشر",
+        "verify": "تحقق",
+        "deploymentFeatures": "مميزات النشر",
+        "redeployProject": "إعادة نشر المشروع",
+        "redeployDescription": "أعد نشر مشروعك بأحدث إصدار",
+        "updateAtAddress": "تحديث في العنوان",
+        "cancelDeployment": "إلغاء النشر",
+        "startDeployment": "بدء النشر",
+        "confirmationAriaLabel": "تأكيد نشر المشروع",
+        "redeployConfirmationAriaLabel": "تأكيد إعادة نشر المشروع",
+        "availableAfterDeploy": "متاح بعد النشر",
+        "globalCdn": "شبكة توصيل محتوى عالمية",
+        "sslSecurity": "أمان SSL",
+        "cancelDeploymentAriaLabel": "إلغاء عملية النشر",
+        "redeployProjectAriaLabel": "إعادة نشر المشروع",
+        "startDeploymentAriaLabel": "بدء نشر المشروع",
+        "deploy": "نشر",
+        "successNetworkDescription": "تم نشر مشروعك بنجاح على الشبكة العالمية",
+        "projectRunningDescription": "مشروعك يعمل الآن على الإنترنت",
+        "deploymentComplete": "اكتمل النشر",
+        "liveRunning": "يعمل مباشرة",
+        "liveAddress": "العنوان المباشر",
+        "accessDescription": "يمكن الآن الوصول إلى مشروعك عبر العنوان التالي",
+        "httpsSecurityFeature": "اتصال آمن HTTPS بتشفير SSL",
+        "globalCdnFeature": "وصول متسارع عبر شبكة توصيل محتوى عالمية",
+        "serviceAvailability": "ضمان توفر خدمة بنسبة 99.9٪",
+        "httpsSecurityShort": "اتصال آمن HTTPS",
+        "globalCdnShort": "تسريع شبكة توصيل محتوى عالمية",
+        "secureLabel": "آمن",
+        "fastLabel": "سريع",
+        "reliableLabel": "موثوق",
+        "secureTooltip": "اتصال آمن HTTPS بتشفير SSL",
+        "fastTooltip": "وصول متسارع عبر شبكة توصيل محتوى عالمية",
+        "reliableTooltip": "ضمان توفر خدمة بنسبة 99.9٪",
+        "closeDialogAriaLabel": "إغلاق النافذة",
+        "titles": {
+          "confirmation": "نشر المشروع",
+          "progress": "النشر جارٍ",
+          "success": "تم النشر بنجاح",
+          "existing": "المشروع منشور",
+          "default": "نشر"
+        },
+        "descriptions": {
+          "confirmation": "أكّد إعدادات النشر وابدأ عملية النشر",
+          "progress": "جارٍ نشر مشروعك، الرجاء الانتظار...",
+          "success": "تم نشر مشروعك بنجاح وهو متاح على الإنترنت",
+          "existing": "إدارة النشر الحالي لديك",
+          "default": "انشر مشروعك"
+        },
+        "announcements": {
+          "confirmation": "مرحلة تأكيد النشر",
+          "progress": "النشر قيد التقدم",
+          "success": "اكتمل النشر بنجاح",
+          "existing": "إدارة النشر الحالي",
+          "default": "تم تحديث حالة النشر"
+        }
+      },
+      "progress": {
+        "preparingEnvironment": "جارٍ تحضير بيئة النشر...",
+        "deployingProject": "جارٍ نشر المشروع",
+        "deploymentProgress": "تقدّم النشر",
+        "start": "البداية",
+        "complete": "الاكتمال",
+        "completed": "مكتمل",
+        "deploymentTime": "⏱️ عادةً ما تستغرق عملية النشر من 1 إلى 3 دقائق، الرجاء التحلي بالصبر",
+        "buildingOptimizing": "نقوم ببناء وتحسين ملفات مشروعك",
+        "deployingToGlobalNetwork": "جارٍ النشر على الشبكة العالمية...",
+        "deploymentAlmostComplete": "النشر على وشك الاكتمال...",
+        "deploymentInProgress": "النشر قيد التقدم...",
+        "estimatedTimeRemaining": "الوقت المتبقي المتوقع",
+        "estimatedTime2to3Minutes": "2-3 دقائق",
+        "estimatedTime1to2Minutes": "1-2 دقيقة",
+        "estimatedTimeLessThan1Minute": "أقل من دقيقة",
+        "deploymentStages": "مراحل النشر",
+        "stages": {
+          "startingWorkflow": "بدء سير عمل Cloudflare",
+          "buildingOptimizing": "بناء وتحسين ملفات المشروع",
+          "deployingToNetwork": "النشر على الشبكة العالمية",
+          "almostComplete": "النشر على وشك الاكتمال"
+        },
+        "estimatedTime": {
+          "twoToThreeMinutes": "2-3 دقائق",
+          "oneToTwoMinutes": "1-2 دقيقة",
+          "lessThanOneMinute": "أقل من دقيقة"
+        },
+        "ariaLabels": {
+          "progress": "التقدّم: {progress}٪",
+          "progressRing": "حلقة التقدّم: {progress}٪",
+          "progressIndicator": "مؤشر التقدّم"
+        }
+      },
+      "customDomain": {
+        "baseUrl": "الرابط الأساسي",
+        "yourDomain": "نطاقك",
+        "visitYourDomain": "زر نطاقك:",
+        "setFollowingRecords": "اضبط السجلات التالية مع مزوّد DNS الخاص بك.",
+        "record": "السجل",
+        "type": "النوع",
+        "name": "الاسم",
+        "target": "الهدف",
+        "dnsPropagationTime": "قد تستغرق تغييرات DNS حتى 48 ساعة للانتشار.",
+        "removeDomain": "إزالة النطاق",
+        "active": "نشط",
+        "verified": "موثّق",
+        "pending": "قيد الانتظار",
+        "failed": "فشل",
+        "ownershipVerification": "للتحقق من ملكية النطاق",
+        "sslCertificateVerification": "للتحقق التلقائي من شهادة SSL",
+        "domainResolution": "لتحويل النطاق إلى الموقع",
+        "sslCertificateActive": "شهادة SSL نشطة",
+        "sslStatus": "نطاقك المخصص مُعد بالكامل، حالة شهادة SSL:",
+        "addCustomDomain": "إضافة نطاق مخصص",
+        "domainVerification": "التحقق من النطاق",
+        "domainConfiguration": "إعداد النطاق",
+        "addDnsRecord": "أضف سجل DNS التالي للتحقق من ملكية النطاق:",
+        "addCnameRecords": "أضف سجلات CNAME التالية لإتمام إعداد النطاق:",
+        "addARecords": "أضف سجلات A التالية لإتمام إعداد النطاق:",
+        "addDnsRecordsApex": "للنطاقات الجذرية، أضف سجلات A التالية. إذا كان مزوّد DNS الخاص بك يدعم تسطيح CNAME، يمكنك أيضًا استخدام سجلات CNAME:",
+        "addDnsRecordsSubdomain": "للنطاقات الفرعية، أضف سجلات CNAME التالية:",
+        "cnameFlattening": "بديل تسطيح CNAME",
+        "cnameAlternative": "إذا كان مزوّد DNS الخاص بك يدعم تسطيح CNAME، يمكنك أيضًا إنشاء سجل CNAME يشير إلى customers.libra.sh",
+        "verificationFailed": "فشل التحقق. قد تستغرق تغييرات DNS حتى 48 ساعة لتصبح سارية.",
+        "ownershipVerified": "تم التحقق من ملكية النطاق. الرجاء إعداد سجلات CNAME أعلاه لإتمام الإعداد.",
+        "dnsHint": "قد تستغرق تغييرات DNS حتى 48 ساعة لتصبح سارية. انقر على تحقق للتحقق من الحالة.",
+        "setting": "جارٍ الضبط...",
+        "setDomain": "ضبط النطاق",
+        "cancel": "إلغاء",
+        "verify": "تحقق",
+        "customDomain": "نطاق مخصص",
+        "configuring": "جارٍ الإعداد",
+        "sslPendingValidation": "التحقق من شهادة SSL قيد الانتظار",
+        "sslPendingDescription": "شهادة SSL قيد التحقق. الرجاء إعداد سجلات DNS أدناه لإتمام هذه العملية.",
+        "ownershipVerificationDescription": "التحقق من ملكية النطاق",
+        "sslCertificateVerificationDescription": "التحقق من شهادة SSL",
+        "domainResolutionDescription": "تحويل النطاق",
+        "cnameFlatteningDescription": "تسطيح CNAME",
+        "statusActive": "نشط",
+        "statusVerified": "موثّق",
+        "statusPending": "قيد الانتظار",
+        "statusFailed": "فشل",
+        "statusUnknown": "غير معروف"
+      },
+      "success": {
+        "deploymentSuccessTitle": "تم النشر بنجاح!",
+        "projectDeployedTitle": "المشروع منشور بالفعل",
+        "deploymentSuccessDescription": "تم نشر مشروعك بنجاح على الشبكة العالمية",
+        "projectDeployedDescription": "مشروعك يعمل الآن على الإنترنت",
+        "liveUrlTitle": "رابط الموقع المباشر",
+        "liveUrlSubtitle": "رابط الموقع المباشر",
+        "cancel": "إلغاء",
+        "redeploy": "إعادة النشر",
+        "complete": "اكتمل"
+      },
+      "features": {
+        "sslEnabled": "SSL مُفعّل",
+        "cdnAccelerated": "متسارع عبر شبكة توصيل محتوى",
+        "realTimeSync": "مزامنة لحظية",
+        "fastAccess": "وصول سريع",
+        "sslCertificate": "شهادة SSL"
+      },
+      "urlStatus": {
+        "liveOnline": "مباشر على الإنترنت",
+        "sslEnabled": "SSL مُفعّل"
+      },
+      "status": {
+        "success": "نجاح",
+        "warning": "تحذير",
+        "error": "خطأ",
+        "info": "معلومة",
+        "loading": "جارٍ التحميل",
+        "preparingRedeploy": "جارٍ تحضير إعادة النشر",
+        "preparingDeploy": "جارٍ تحضير النشر",
+        "readyToRedeploy": "جاهز لإعادة نشر التحديثات",
+        "statusLabel": "حالة النشر: {status}",
+        "statusLabelWithMessage": "حالة النشر: {status} - {message}",
+        "statusLabelWithProgress": "حالة النشر: {status} - {progress}٪",
+        "deploymentProgressLabel": "تقدّم النشر: {progress}٪",
+        "deploymentProgressIndicator": "مؤشر تقدّم النشر",
+        "loadingEllipsis": "جارٍ التحميل...",
+        "progressWord": "التقدّم",
+        "estimatedTimeRemainingWithValue": "الوقت المتبقي المتوقع: {estimatedTime}",
+        "progressAnnouncement": "تقدّم النشر: {progress}٪.",
+        "currentStageAnnouncement": "المرحلة الحالية: {stage}.",
+        "estimatedMinutesAnnouncement": "متبقٍ حوالي {estimatedMinutes} دقيقة."
+      },
+      "error": {
+        "deploymentFailed": "فشل النشر",
+        "deploymentError": "خطأ في النشر",
+        "unexpectedError": "حدث خطأ غير متوقع أثناء النشر. الرجاء إعادة المحاولة أو التواصل مع فريق الدعم.",
+        "categories": {
+          "network": {
+            "title": "خطأ في اتصال الشبكة",
+            "description": "الرجاء التحقق من اتصال الشبكة الخاص بك",
+            "suggestion": "تأكد من استقرار اتصال الشبكة"
+          },
+          "timeout": {
+            "title": "انتهت مهلة النشر",
+            "description": "استغرق النشر وقتًا طويلًا جدًا",
+            "suggestion": "قد يكون هذا بسبب كبر حجم المشروع أو بطء الشبكة"
+          },
+          "build": {
+            "title": "خطأ في البناء",
+            "description": "حدث خطأ أثناء عملية البناء",
+            "suggestion": "الرجاء التحقق من وجود أي أخطاء في الكود"
+          },
+          "unknown": {
+            "title": "خطأ في النشر",
+            "description": "حدث خطأ غير متوقع",
+            "suggestion": "الرجاء إعادة المحاولة أو التواصل مع فريق الدعم"
+          }
+        },
+        "actions": {
+          "close": "إغلاق",
+          "closeAriaLabel": "إغلاق نافذة الخطأ",
+          "retry": "إعادة المحاولة",
+          "retryDeployment": "إعادة محاولة النشر",
+          "retryAriaLabel": "إعادة محاولة النشر",
+          "retryOperationAriaLabel": "إعادة محاولة العملية",
+          "getHelp": "الحصول على مساعدة",
+          "getHelpAriaLabel": "الحصول على مساعدة"
+        },
+        "details": {
+          "technicalDetails": "التفاصيل التقنية"
+        },
+        "solutions": {
+          "title": "حلول شائعة",
+          "checkCode": {
+            "title": "تحقق من الكود",
+            "description": "تأكد من عدم وجود أخطاء في الصياغة"
+          },
+          "checkNetwork": {
+            "title": "اتصال الشبكة",
+            "description": "تحقق من استقرار اتصال الشبكة"
+          }
+        }
+      },
+      "actions": {
+        "canRedeploy": "يمكن إعادة نشر التحديثات",
+        "operationComplete": "اكتملت عملية النشر"
+      },
+      "statusLabels": {
+        "preparing": "جارٍ التحضير",
+        "deploying": "جارٍ النشر",
+        "success": "تم النشر بنجاح",
+        "error": "فشل النشر",
+        "cancelled": "أُلغي",
+        "deploymentStatus": "حالة النشر"
+      },
+      "urlPreview": {
+        "openWebsite": "فتح الموقع {url}",
+        "previewAddress": "عنوان المعاينة: {url}",
+        "copiedToClipboard": "تم النسخ إلى الحافظة",
+        "copyLinkToClipboard": "نسخ الرابط إلى الحافظة"
+      },
+      "dnsRecords": {
+        "descriptions": {
+          "ownershipVerification": "التحقق من ملكية النطاق",
+          "sslVerification": "التحقق من شهادة SSL",
+          "domainResolution": "تحويل النطاق",
+          "cnameFlattening": "تسطيح CNAME"
+        },
+        "statuses": {
+          "active": "نشط",
+          "verified": "موثّق",
+          "pending": "قيد الانتظار",
+          "failed": "فشل",
+          "unknown": "الحالة غير معروفة"
+        }
+      },
+      "deploymentStatusLabels": {
+        "preparing": "جارٍ التحضير",
+        "deploying": "جارٍ النشر",
+        "success": "تم النشر بنجاح",
+        "error": "فشل النشر",
+        "cancelled": "أُلغي"
+      },
+      "errorBoundary": {
+        "deploymentError": "خطأ في النشر",
+        "errorOccurred": "حدث خطأ",
+        "unexpectedError": "حدث خطأ غير متوقع أثناء النشر. الرجاء إعادة المحاولة أو التواصل مع الدعم.",
+        "retryDeployment": "إعادة محاولة النشر",
+        "retry": "إعادة المحاولة",
+        "getHelp": "الحصول على مساعدة",
+        "errorDetailsDevMode": "تفاصيل الخطأ (وضع التطوير)",
+        "error": "خطأ",
+        "retryOperation": "إعادة محاولة العملية"
+      },
+      "retryLoading": "إعادة محاولة التحميل ({retryCount}/{maxRetries})"
+    },
+    "customDomain": {
+      "title": "نطاق مخصص",
+      "description": "استخدم نطاقك الخاص للوصول إلى الموقع",
+      "addDomain": "إضافة نطاق مخصص",
+      "domainPlaceholder": "example.com",
+      "setDomain": "ضبط",
+      "cancel": "إلغاء",
+      "verify": "تحقق",
+      "remove": "إزالة",
+      "status": {
+        "pending": "قيد التحقق",
+        "verified": "موثّق",
+        "active": "نشط",
+        "failed": "فشل التحقق"
+      },
+      "messages": {
+        "setSuccess": "تم تعيين النطاق المخصص بنجاح",
+        "setError": "فشل تعيين النطاق المخصص: {message}",
+        "verifySuccess": "تم التحقق من النطاق بنجاح",
+        "verifyError": "فشل التحقق من النطاق: {message}",
+        "removeSuccess": "تمت إزالة النطاق المخصص بنجاح",
+        "removeError": "فشلت إزالة النطاق المخصص: {message}",
+        "domainRequired": "الرجاء إدخال اسم نطاق",
+        "invalidFormat": "تنسيق اسم نطاق غير صالح",
+        "domainReserved": "هذا النطاق محجوز ولا يمكن استخدامه",
+        "verificationInstructions": "الرجاء إضافة سجل CNAME التالي إلى إعدادات DNS الخاصة بنطاقك لتفعيل تفويض DCV وإصدار شهادة SSL تلقائيًا:",
+        "setupInstructions": "بعد الإعداد، يلزم التحقق من ملكية النطاق. الرجاء التأكد من امتلاكك صلاحيات إدارة هذا النطاق",
+        "dcvDelegation": {
+          "title": "إعداد تفويض DCV",
+          "description": "سيسمح هذا السجل لـ Cloudflare بإصدار وتجديد شهادات SSL لنطاقك تلقائيًا",
+          "recordName": "الاسم",
+          "recordType": "النوع",
+          "recordValue": "القيمة"
+        }
+      },
+      "api": {
+        "cloudflare": {
+          "tokenNotConfigured": "رمز واجهة Cloudflare البرمجية غير مُعد",
+          "dnsQueryFailed": "فشل استعلام DNS: {message}",
+          "dnsQueryError": "أعاد استعلام DNS حالة خطأ",
+          "createHostnameFailed": "فشل إنشاء اسم مضيف مخصص",
+          "hostnameCreationFailed": "فشل إنشاء اسم المضيف المخصص",
+          "getHostnameStatusFailed": "فشل جلب حالة اسم المضيف المخصص",
+          "deleteHostnameFailed": "فشل حذف اسم المضيف المخصص",
+          "getZoneIdFailed": "فشل جلب معرّف المنطقة",
+          "createDnsRecordFailed": "فشل إنشاء سجل DNS",
+          "dnsRecordCreationFailed": "فشل إنشاء سجل DNS",
+          "apiError": "خطأ في واجهة Cloudflare البرمجية: {message}",
+          "domainNotFound": "النطاق غير موجود في حساب Cloudflare"
+        }
+      }
+    },
+    "github": {
+      "modal": {
+        "checkingConnection": "جارٍ التحقق من اتصال GitHub...",
+        "loadingStatus": "جارٍ تحميل حالة تكامل GitHub..."
+      }
+    },
+    "deploymentHook": {
+      "deploymentComplete": "اكتمل النشر",
+      "deploymentFailed": "فشل النشر",
+      "deploymentSuccess": "تم نشر المشروع بنجاح! رابط الوصول: {url}",
+      "deploymentError": "فشل النشر: {message}",
+      "deploymentStarted": "بدأ النشر بنجاح!",
+      "deploymentInProgress": "النشر قيد التقدم...",
+      "cannotDeployNoProjectId": "لا يمكن النشر: معرّف المشروع غير موجود",
+      "preparingEnvironment": "جارٍ تحضير بيئة النشر...",
+      "buildingProject": "جارٍ بناء ملفات المشروع...",
+      "uploadingToServer": "جارٍ الرفع إلى الخادم...",
+      "configuringRuntime": "جارٍ إعداد بيئة التشغيل...",
+      "deploying": "جارٍ النشر..."
+    },
+    "statusComponents": {
+      "loadingContent": "جارٍ تحميل المحتوى...",
+      "pleaseBePatient": "الرجاء التحلي بالصبر بينما نعالج طلبك.",
+      "noContentAvailable": "لا يوجد محتوى متاح",
+      "noContentToDisplay": "لا يوجد محتوى لعرضه"
+    },
+    "unifiedLoadingSystem": {
+      "loadingTabs": "جارٍ تحميل التبويبات...",
+      "loadingMessage": "جارٍ تحميل الرسالة...",
+      "loadingPlan": "جارٍ تحميل الخطة...",
+      "loadingCommands": "جارٍ تحميل الأوامر...",
+      "loadingCodeChanges": "جارٍ تحميل تغييرات الكود..."
+    },
+    "fileComponents": {
+      "new": "جديد",
+      "edit": "تعديل",
+      "openFile": "فتح {path}",
+      "viewDiff": "عرض الفروقات لـ {fileName}",
+      "fileChanges": "تغييرات الملفات",
+      "noFileChanges": "لا توجد تغييرات في الملفات",
+      "file": "ملف",
+      "files": "ملفات"
+    },
+    "diffModal": {
+      "modifiedFile": "ملف مُعدّل",
+      "newFile": "ملف جديد",
+      "dialogTitle": "فروقات الملف: {path} ({fileTypeText})",
+      "dialogDescription": "عرض تغييرات {path} ({fileTypeText}). {additions} إضافة، {deletions} حذف.",
+      "unableToOpenFile": "تعذّر فتح الملف",
+      "new": "جديد",
+      "edit": "تعديل",
+      "loadingFailed": "فشل التحميل",
+      "retry": "إعادة المحاولة",
+      "contentUnavailable": "المحتوى غير متاح",
+      "unableToLoadDiff": "تعذّر تحميل فروقات الملف",
+      "modified": "مُعدّل",
+      "close": "إغلاق",
+      "openFile": "فتح الملف",
+      "closeDialog": "إغلاق النافذة"
+    },
+    "revertModal": {
+      "revertToState": "التراجع إلى الحالة السابقة",
+      "confirmRevertAction": "سيحذف هذا الإجراء نهائيًا جميع الإصدارات التي أُنشئت بعد نقطة التراجع المحددة.",
+      "warningMessage": "⚠️ تحذير: لا يمكن التراجع عن هذا الإجراء وسيحذف البيانات نهائيًا.",
+      "revertPoint": "نقطة التراجع",
+      "whatWillHappen": "ماذا سيحدث:",
+      "allVersionsAfterDeleted": "سيتم حذف جميع الإصدارات التي أُنشئت بعد هذه النقطة نهائيًا",
+      "actionCannotBeUndone": "لا يمكن التراجع عن هذا الإجراء",
+      "projectStateRestored": "ستتم استعادة حالة المشروع إلى النقطة المحددة",
+      "cancel": "إلغاء",
+      "reverting": "جارٍ التراجع...",
+      "confirmRevert": "تأكيد التراجع"
+    }
+  },
+  "browserPreview": {
+    "toolbar": {
+      "themeChanged": "تم تغيير السمة إلى {theme}",
+      "viewChanged": "تم التبديل إلى عرض {view}",
+      "switchToDarkTheme": "التبديل إلى السمة الداكنة",
+      "switchToLightTheme": "التبديل إلى السمة الفاتحة",
+      "switchToSystemTheme": "التبديل إلى سمة النظام",
+      "back": "رجوع",
+      "forward": "تقدّم",
+      "refresh": "تحديث",
+      "switchToDesktop": "التبديل إلى عرض سطح المكتب",
+      "switchToMobile": "التبديل إلى عرض الجوال"
+    },
+    "chat": {
+      "elementSelected": "العنصر المحدد: {tagName}",
+      "assistantReply": "لقد حللت محتوى الصفحة. كيف يمكنني مساعدتك؟",
+      "showMoreOptions": "عرض المزيد من الخيارات",
+      "title": "مساعد الدردشة",
+      "closeChat": "إغلاق الدردشة",
+      "startConversation": "ابدأ محادثة",
+      "startConversationHelper": "يمكنك طرح أي أسئلة حول ملف الكود الحالي، أو طلب المساعدة في تحليل عناصر الصفحة.",
+      "quickQuestions": "أسئلة سريعة",
+      "question1": "ما هي الوظائف الرئيسية لهذه الصفحة؟",
+      "question2": "ساعدني في تحليل بنية الصفحة",
+      "question3": "اشرح وظيفة هذا الكود",
+      "keyboardShortcut": "استخدم الاختصار",
+      "keyboardShortcutSuffix": "للوصول السريع إلى الدردشة",
+      "thinking": "جارٍ التفكير...",
+      "placeholder": "أدخل رسالة...",
+      "copyElementPath": "نسخ مسار العنصر",
+      "copiedToClipboard": "تم النسخ إلى الحافظة",
+      "element": "العنصر",
+      "className": "اسم الفئة",
+      "component": "المكوّن"
+    },
+    "frameViewer": {
+      "loadError": "تعذّر تحميل الصفحة \"{src}\". الرجاء التحقق من الرابط أو اتصال الشبكة.",
+      "loadFailed": "فشل التحميل",
+      "checkUrl": "الرجاء التحقق من الرابط أو اتصال الشبكة والمحاولة مرة أخرى.",
+      "title": "معاينة المتصفح"
+    },
+    "messageDialog": {
+      "title": "رسائل iframe",
+      "noMessages": "لا يوجد سجل رسائل",
+      "noMessagesHelper": "ستُعرض رسائل التفاعل مع iframe هنا"
+    },
+    "iframeManager": {
+      "cannotCommunicate": "تعذّر التواصل مع نافذة المعاينة",
+      "cannotLoadUrl": "تعذّر تحميل الرابط: {url}",
+      "inspectorActivated": "تم تفعيل محدد العناصر. انقر على عناصر الصفحة لاختيارها.",
+      "inspectorDeactivated": "تم إلغاء تفعيل محدد العناصر",
+      "urlRedirected": "تم توجيه الرابط إلى عنوان محلي. قد تحتاج إلى التحقق من إعدادات تطبيقك.",
+      "pageLoadFailed": "فشل تحميل الصفحة"
+    },
+    "messageHandler": {
+      "elementSelected": "تم اختيار العنصر"
+    },
+    "index": {
+      "getPreviewUrlFailed": "فشل جلب رابط المعاينة",
+      "getPreviewUrlError": "فشل جلب رابط المعاينة، الرجاء المحاولة لاحقًا",
+      "projectIdMissing": "معرّف المشروع مفقود"
+    },
+    "loading": {
+      "connecting": "جارٍ الاتصال بالخادم...",
+      "initializing": "جارٍ تهيئة المعاينة...",
+      "rendering": "جارٍ عرض المحتوى...",
+      "ready": "على وشك الجاهزية..."
+    }
+  },
+  "dashboard_nav": {
+    "title": "Libra"
+  },
+  "chatPanel": {
+    "main": {
+      "ariaLabel": "لوحة مساعد الدردشة"
+    },
+    "header": {
+      "title": "مساعد التصميم",
+      "expandPanel": "توسيع اللوحة",
+      "collapsePanel": "طي اللوحة",
+      "closePanel": "إغلاق اللوحة"
+    },
+    "input": {
+      "placeholder": "أدخل رسالتك...",
+      "placeholderQuotaExceeded": "تم تجاوز حصة الذكاء الاصطناعي. الرجاء الترقية للمتابعة.",
+      "characterCount": "{current}/{max}",
+      "chatInputLabel": "مربع إدخال الدردشة",
+      "send": "إرسال",
+      "sendAriaLabel": "إرسال الرسالة",
+      "stop": "إيقاف",
+      "stopAriaLabel": "إيقاف التوليد"
+    },
+    "notifications": {
+      "promptEnhanced": "تم تحسين الطلب بنجاح!",
+      "loginRequired": "الرجاء تسجيل الدخول لاستخدام تحسين الطلب",
+      "enhanceFailed": "فشل تحسين الطلب. الرجاء المحاولة مرة أخرى."
+    },
+    "errors": {
+      "generic": "حدث خطأ أثناء معالجة طلبك. الرجاء المحاولة لاحقًا.",
+      "quotaExceeded": "تم تجاوز حصة الذكاء الاصطناعي",
+      "quotaExceededDesc": "لقد وصلت إلى حد استخدام الذكاء الاصطناعي. الرجاء ترقية خطتك أو الانتظار حتى دورة الفوترة التالية.",
+      "unauthorized": "الرجاء تسجيل الدخول للمتابعة",
+      "forbidden": "تم رفض الوصول. الرجاء التحقق من صلاحياتك.",
+      "upgradeButton": "ترقية الخطة"
+    },
+    "toolbar": {
+      "enhance_prompt": "تحسين الطلب",
+      "file_upload": "رفع ملف",
+      "select_elements": "اختيار العناصر",
+      "stop_selecting": "إيقاف الاختيار",
+      "toggle_element_selector": "تبديل محدد العناصر",
+      "send_message": "إرسال رسالة",
+      "stop_generation": "إيقاف التوليد",
+      "quotaExceededElementSelection": "تم تجاوز حصة الذكاء الاصطناعي. الرجاء الترقية لاستخدام اختيار العناصر.",
+      "quotaExceededFileUpload": "تم تجاوز حصة الذكاء الاصطناعي. الرجاء الترقية لرفع الملفات.",
+      "quotaExceededElementSelectionShort": "تم تجاوز حصة الذكاء الاصطناعي - رقّ لاستخدام اختيار العناصر",
+      "quotaExceededFileUploadShort": "تم تجاوز حصة الذكاء الاصطناعي - رقّ لرفع الملفات"
+    },
+    "fileUpload": {
+      "removeFile": "إزالة الملف"
+    },
+    "newMessage": {
+      "viewNewMessages": "عرض الرسائل الجديدة",
+      "newMessage": "رسالة جديدة",
+      "newMessages": "{count} رسائل جديدة"
+    },
+    "selectedElements": {
+      "title": "العناصر المختارة",
+      "clearAll": "مسح الكل",
+      "removeElement": "إزالة العنصر {name}"
+    },
+    "modelSelector": {
+      "currentModel": "نموذج الذكاء الاصطناعي الحالي: {name}",
+      "modelMenu": "قائمة اختيار نموذج الذكاء الاصطناعي",
+      "subscriptionError": "تعذّر جلب معلومات الاشتراك",
+      "subscriptionErrorDesc": "الرجاء التحقق من اتصال الشبكة أو المحاولة لاحقًا",
+      "modelSwitched": "تم التبديل إلى {name}",
+      "modelRestricted": "{name} يتطلب ترقية الاشتراك",
+      "upgrade": "ترقية",
+      "quotaExceededChangeModels": "تم تجاوز حصة الذكاء الاصطناعي. الرجاء الترقية لتغيير النماذج.",
+      "quotaExceededChangeModelsShort": "تم تجاوز حصة الذكاء الاصطناعي - رقّ لتغيير النماذج"
+    },
+    "modelItem": {
+      "planBadge": {
+        "free": "مجاني",
+        "pro": "احترافي",
+        "max": "الأقصى"
+      },
+      "upgradeTooltip": {
+        "title": "يلزم ترقية الاشتراك",
+        "description": "يتطلب هذا النموذج اشتراك {plan} لاستخدامه",
+        "upgradeButton": "رقّ الآن",
+        "requiresPlan": "يتطلب {plan}",
+        "upgradeToAccess": "بعد الترقية ستحصل على:",
+        "upgradeButtonText": "ترقية إلى {plan}",
+        "planFeatures": {
+          "pro1": "نماذج ذكاء اصطناعي متقدمة",
+          "pro2": "محادثات غير محدودة",
+          "pro3": "دعم ذو أولوية",
+          "max1": "جميع نماذج الذكاء الاصطناعي",
+          "max2": "استخدام غير محدود",
+          "max3": "دعم مخصص",
+          "max4": "وصول مبكر للمميزات"
+        }
+      }
+    },
+    "message": {
+      "processingError": "خطأ في المعالجة",
+      "retry": "إعادة المحاولة",
+      "thinkingExpanded": "تم توسيع عملية التفكير",
+      "thinkingCollapsed": "تم طي عملية التفكير",
+      "expandThinking": "توسيع عملية التفكير",
+      "collapseThinking": "طي عملية التفكير",
+      "viewThinkingProcess": "عرض عملية التفكير",
+      "thinkingProcessDetails": "تفاصيل عملية تفكير الذكاء الاصطناعي",
+      "messageContent": "محتوى الرسالة"
+    },
+    "autoFix": {
+      "button": "إصلاح تلقائي",
+      "processing": "جارٍ الإصلاح...",
+      "errorsDetected": "تم اكتشاف {count} خطأ{plural}",
+      "recentErrors": "الأخطاء الأخيرة:",
+      "andMore": "... و{count} أخرى",
+      "tooltip": {
+        "fix": "إصلاح {count} خطأ{plural} مكتشف تلقائيًا بالذكاء الاصطناعي",
+        "processing": "الإصلاح التلقائي يحلل ويصلح الأخطاء المكتشفة...",
+        "quotaExceeded": "تم تجاوز حصة الذكاء الاصطناعي. الرجاء الترقية لاستخدام الإصلاح التلقائي."
+      },
+      "aria": {
+        "button": "إصلاح تلقائي لـ {count} خطأ{plural}",
+        "processing": "الإصلاح التلقائي قيد المعالجة...",
+        "quotaExceeded": "تم تجاوز حصة الذكاء الاصطناعي - رقّ لاستخدام الإصلاح التلقائي"
+      }
+    },
+    "upgrade": {
+      "quotaExceededShort": "تم تجاوز حصة الذكاء الاصطناعي",
+      "upgrade": "ترقية"
+    },
+    "elementEditor": {
+      "title": "تحرير العنصر",
+      "sections": {
+        "content": "المحتوى",
+        "typography": "الطباعة",
+        "color": "لون النص",
+        "margin": "الهامش",
+        "padding": "الحشو"
+      },
+      "fields": {
+        "content": "المحتوى",
+        "contentPlaceholder": "أدخل محتوى النص...",
+        "fontSize": "حجم الخط",
+        "fontWeight": "وزن الخط",
+        "color": "اللون",
+        "colorPlaceholder": "أبيض",
+        "marginTop": "أعلى",
+        "marginRight": "يمين",
+        "marginBottom": "أسفل",
+        "marginLeft": "يسار",
+        "paddingTop": "أعلى",
+        "paddingRight": "يمين",
+        "paddingBottom": "أسفل",
+        "paddingLeft": "يسار"
+      },
+      "fontWeights": {
+        "normal": "عادي",
+        "bold": "عريض",
+        "lighter": "أخف"
+      },
+      "buttons": {
+        "deleteElement": "حذف العنصر",
+        "cancel": "إلغاء",
+        "applyChanges": "تطبيق التغييرات",
+        "submitToAI": "إرسال إلى الذكاء الاصطناعي"
+      }
+    },
+    "elementSelector": {
+      "activatedSuccess": "تم تفعيل محدد العناصر",
+      "activationFailed": "فشل تفعيل محدد العناصر",
+      "deactivated": "تم إلغاء تفعيل محدد العناصر",
+      "elementRemoved": "تمت إزالة عنصر {tagName}",
+      "stateInactive": "انقر لبدء اختيار العناصر",
+      "stateActivating": "جارٍ بدء وضع الاختيار...",
+      "stateActive": "انقر على عناصر الصفحة لاختيارها",
+      "stateSelecting": "تم اختيار {count} عنصر",
+      "autoDeactivated": "تم إلغاء تفعيل وضع الاختيار تلقائيًا",
+      "maxSelectionsReached": "يمكن اختيار {max} عنصر كحد أقصى",
+      "elementAlreadySelected": "هذا العنصر مُختار بالفعل",
+      "elementAdded": "تم اختيار عنصر {tagName}",
+      "allElementsCleared": "تم مسح {count} عنصر مُختار"
+    }
+  },
+  "upgradeModal": {
+    "editMode": {
+      "title": "الترقية مطلوبة",
+      "description": "الرجاء الترقية لاستخدام وضع التحرير.",
+      "features": {
+        "editCode": "تحرير وتعديل ملفات الكود",
+        "deployChanges": "نشر التغييرات فورًا",
+        "unlimitedEdits": "تعديلات ملفات غير محدودة"
+      }
+    },
+    "aiModel": {
+      "title": "الوصول إلى نموذج ذكاء اصطناعي متقدم",
+      "description": "يتطلب الوصول إلى {model} الترقية.",
+      "features": {
+        "advancedModels": "الوصول إلى نماذج ذكاء اصطناعي متقدمة",
+        "unlimitedUsage": "محادثات ذكاء اصطناعي غير محدودة",
+        "prioritySupport": "دعم ذو أولوية"
+      }
+    },
+    "projectLimit": {
+      "title": "تم بلوغ حد المشاريع",
+      "description": "رقّ لإنشاء مشاريع غير محدودة.",
+      "features": {
+        "unlimitedProjects": "إنشاء مشاريع غير محدود",
+        "teamCollaboration": "ميزات التعاون الجماعي",
+        "advancedFeatures": "ميزات مشاريع متقدمة"
+      }
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "الصفحة غير موجودة",
+    "description": "قد تكون الصفحة التي تبحث عنها قد أُزيلت أو تغيّر اسمها أو غير متاحة مؤقتًا.",
+    "buttons": {
+      "home": "الرئيسية",
+      "dashboard": "لوحة التحكم",
+      "goBack": "الرجوع"
+    },
+    "svg": {
+      "error404": "404",
+      "pageNotFoundText": "الصفحة غير موجودة."
+    }
+  },
+  "lib": {
+    "fileTree": {
+      "downloadSuccess": "تم تحميل ملفات المشروع بنجاح",
+      "sampleDownloadSuccess": "تم تحميل ملفات المشروع النموذجية بنجاح",
+      "downloadFailed": "فشل التحميل: {errorMessage}"
+    }
+  },
+  "privacy": {
+    "title": "سياسة الخصوصية",
+    "lastUpdated": "آخر تحديث: {date}",
+    "about": {
+      "title": "حول سياسة الخصوصية هذه",
+      "description": "خصوصيتك مهمة بالنسبة لنا. توضح سياسة الخصوصية هذه كيفية جمعنا واستخدامنا وحمايتنا لمعلوماتك عند استخدام منصتنا.",
+      "serviceDescription": "يوضح إشعار الخصوصية هذا كيف ولماذا قد نصل إلى معلوماتك الشخصية ونجمعها ونخزّنها ونستخدمها و/أو نشاركها عند استخدامك لخدماتنا، بما في ذلك عندما:",
+      "usageScenarios": {
+        "website": "تزور موقعنا {websiteUrl}، أو أي موقع آخر لنا يرتبط بإشعار الخصوصية هذا",
+        "platform": "تستخدم منصتنا وأدواتنا للتطوير بالذكاء الاصطناعي",
+        "interaction": "تتفاعل معنا بطرق أخرى ذات صلة، بما في ذلك أي مبيعات أو تسويق أو فعاليات"
+      }
+    },
+    "concerns": {
+      "title": "أسئلة أو استفسارات؟",
+      "description": "ستساعدك قراءة إشعار الخصوصية هذا على فهم حقوقك وخياراتك المتعلقة بالخصوصية. نحن المسؤولون عن اتخاذ القرارات بشأن كيفية معالجة معلوماتك الشخصية. إذا كنت لا توافق على سياساتنا وممارساتنا، فالرجاء عدم استخدام خدماتنا. إذا كانت لديك أي أسئلة أو استفسارات أخرى، فالرجاء التواصل معنا على {contactEmail}."
+    },
+    "tableOfContents": {
+      "title": "جدول المحتويات"
+    },
+    "sections": {
+      "informationCollection": {
+        "title": "جمع المعلومات",
+        "shortDescription": "قد نجمع الأنواع التالية من المعلومات عند استخدامك لمنصتنا.",
+        "personalInfo": {
+          "title": "المعلومات الشخصية",
+          "description": "الاسم وعنوان البريد الإلكتروني وتفاصيل الاتصال الأخرى عند التسجيل."
+        },
+        "usageData": {
+          "title": "بيانات الاستخدام",
+          "description": "معلومات حول كيفية تفاعلك مع منصتنا، مثل زيارات الصفحات وسجلات النشاط."
+        },
+        "contentData": {
+          "title": "بيانات المحتوى",
+          "description": "أي مشاريع أو طلبات أو محتوى آخر تنشئه باستخدام منصتنا."
+        }
+      },
+      "usage": {
+        "title": "الاستخدام",
+        "shortDescription": "نستخدم البيانات المجمّعة لتوفير منصتنا وصيانتها وتحسينها.",
+        "description": "نستخدم البيانات المجمّعة من أجل:",
+        "purposes": {
+          "platform": "توفير وصيانة وتحسين منصتنا",
+          "personalization": "تخصيص تجربتك",
+          "communication": "التواصل معك بخصوص التحديثات والدعم",
+          "security": "ضمان الأمان ومنع الاحتيال"
+        }
+      },
+      "dataSharingSecurity": {
+        "title": "مشاركة البيانات والأمان",
+        "shortDescription": "نلتزم بحماية معلوماتك والشفافية بشأن كيفية مشاركة البيانات.",
+        "noMarketing": {
+          "title": "لا مبيعات تسويقية",
+          "description": "لا نبيع أو نشارك معلوماتك الشخصية مع أطراف ثالثة لأغراض تسويقية."
+        },
+        "trustedProviders": {
+          "title": "مزوّدو خدمات موثوقون",
+          "description": "قد نشارك البيانات مع مزوّدي خدمات موثوقين يساعدوننا في تشغيل منصتنا."
+        },
+        "securityMeasures": {
+          "title": "إجراءات الأمان",
+          "description": "نطبّق إجراءات أمان بمعايير الصناعة لحماية معلوماتك."
+        }
+      },
+      "cookiesTracking": {
+        "title": "ملفات تعريف الارتباط والتتبع",
+        "shortDescription": "نستخدم ملفات تعريف الارتباط وتقنيات مماثلة لتحسين تجربتك.",
+        "description": "نستخدم ملفات تعريف الارتباط وتقنيات مماثلة لتحسين تجربتك. يمكنك إدارة تفضيلات ملفات تعريف الارتباط في إعدادات متصفحك.",
+        "analyticsTools": {
+          "title": "أدوات التحليلات وتجربة المستخدم",
+          "description": "نستخدم أدوات التحليلات وتجربة المستخدم التالية من أطراف ثالثة لجمع وتحليل بيانات حول كيفية تفاعل المستخدمين مع خدماتنا:",
+          "ga4": {
+            "title": "Google Analytics 4 (GA4)",
+            "description": "نستخدم Google Analytics 4 لتحليل حركة الموقع وسلوك المستخدمين ومقاييس الأداء. يساعدنا هذا على فهم كيفية تفاعل المستخدمين مع خدماتنا وتحسين تجربة المستخدم. قد يجمع GA4 معلومات مثل عنوان IP الخاص بك ونوع المتصفح والصفحات التي تمت زيارتها والوقت المستغرق على موقعنا."
+          },
+          "posthog": {
+            "title": "PostHog",
+            "description": "نستخدم PostHog لتحليلات المنتج وتحسين تجربة المستخدم. يساعدنا PostHog على تتبع تفاعلات المستخدمين واستخدام الميزات وتحديد مجالات التحسين في خدماتنا. يشمل ذلك جمع بيانات حول إجراءات المستخدم وتسجيلات الجلسات (عند تفعيلها) وأنماط الاستخدام."
+          }
+        },
+        "conclusion": "أدوات التحليلات هذه ضرورية لفهم احتياجات المستخدمين وتحسين خدماتنا وتقديم تجربة مستخدم أفضل. تُستخدم البيانات المجمّعة فقط لأغراض تحليلية وتحسين الخدمة."
+      }
+    },
+    "contact": {
+      "title": "تواصل معنا",
+      "description": "إذا كانت لديك أسئلة أو تعليقات حول سياسة الخصوصية هذه، فالرجاء التواصل معنا على {contactEmail}."
+    },
+    "updates": {
+      "title": "تحديثات السياسة",
+      "description": "قد نحدّث سياسة الخصوصية هذه من وقت لآخر. سيتم الإشارة إلى الإصدار المحدّث بتاريخ مراجعة محدّث، وسيصبح الإصدار المحدّث ساريًا فور إتاحته. نوصي بمراجعة سياسة الخصوصية هذه دوريًا لتبقى على اطلاع بكيفية حمايتنا لمعلوماتك."
+    },
+    "closing": {
+      "statement": "باستخدامك لمنصتنا، فإنك توافق على سياسة الخصوصية هذه. نحن ملتزمون بحماية خصوصيتك وضمان الشفافية في كيفية التعامل مع بياناتك. ثقتك مهمة بالنسبة لنا، ونسعى باستمرار لتحسين ممارساتنا الأمنية وممارسات البيانات لتقديم تجربة آمنة وسلسة."
+    }
+  },
+  "terms": {
+    "title": "شروط الخدمة",
+    "lastUpdated": "آخر تحديث: {date}",
+    "agreement": {
+      "title": "الموافقة على شروطنا القانونية",
+      "description": "نحن Libra AI، نقدّم أدوات وخدمات التطوير بالذكاء الاصطناعي.",
+      "serviceDescription": "نشغّل الموقع {websiteUrl}، بالإضافة إلى أي منتجات وخدمات أخرى ذات صلة تشير أو ترتبط بهذه الشروط القانونية.",
+      "warning": "إذا كنت لا توافق على جميع هذه الشروط القانونية، فيُمنع عليك صراحة استخدام الخدمات ويجب عليك التوقف عن استخدامها فورًا."
+    },
+    "tableOfContents": {
+      "title": "جدول المحتويات"
+    },
+    "sections": {
+      "ourServices": {
+        "title": "خدماتنا",
+        "content": {
+          "paragraph1": "المعلومات المقدَّمة عند استخدام الخدمات غير مخصصة للتوزيع أو الاستخدام من قِبل أي شخص أو كيان في أي ولاية قضائية أو دولة يكون فيها هذا التوزيع أو الاستخدام مخالفًا للقانون أو التنظيم أو يُخضعنا لأي متطلب تسجيل ضمن تلك الولاية القضائية أو الدولة.",
+          "paragraph2": "الخدمات غير مصممة للامتثال للوائح الخاصة بالصناعات المحددة (مثل قانون قابلية نقل التأمين الصحي والمساءلة (HIPAA)، وقانون إدارة أمن المعلومات الفيدرالي (FISMA)، إلخ)، لذا إذا كانت تفاعلاتك ستخضع لمثل هذه القوانين، فلا يجوز لك استخدام الخدمات. لا يجوز لك استخدام الخدمات بطريقة تنتهك قانون جرام-ليتش-بليلي (GLBA)."
+        }
+      },
+      "intellectualProperty": {
+        "title": "حقوق الملكية الفكرية",
+        "ourPropertyTitle": "ملكيتنا الفكرية",
+        "ourPropertyParagraph1": "نحن مالكو أو مرخّصو جميع حقوق الملكية الفكرية في خدماتنا، بما في ذلك جميع الأكواد المصدرية وقواعد البيانات والوظائف والبرمجيات وتصاميم المواقع والصوت والفيديو والنصوص والصور والرسومات الموجودة في الخدمات (يُشار إليها مجتمعة باسم \\\"المحتوى\\\")، بالإضافة إلى العلامات التجارية وعلامات الخدمة والشعارات الواردة فيها (\\\"العلامات\\\").",
+        "ourPropertyParagraph2": "يحمي المحتوى والعلامات الخاصة بنا قوانين حقوق النشر والعلامات التجارية (وحقوق ملكية فكرية أخرى مختلفة وقوانين المنافسة غير العادلة) والمعاهدات في الولايات المتحدة وحول العالم.",
+        "ourPropertyParagraph3": "يُقدَّم المحتوى والعلامات في أو من خلال الخدمات \\\"كما هي\\\" لاستخدامك الشخصي وغير التجاري أو لغرض عملك الداخلي فقط.",
+        "yourUseTitle": "استخدامك لخدماتنا",
+        "yourUseParagraph1": "مع مراعاة امتثالك لهذه الشروط القانونية، بما في ذلك قسم \\\"الأنشطة المحظورة\\\" أدناه، نمنحك ترخيصًا غير حصري وغير قابل للتحويل وقابل للإلغاء من أجل:",
+        "yourUseList1": "الوصول إلى الخدمات",
+        "yourUseList2": "تحميل أو طباعة نسخة من أي جزء من المحتوى الذي حصلت عليه بشكل صحيح"
+      },
+      "userRepresentations": {
+        "title": "إقرارات المستخدم",
+        "intro": "باستخدامك للخدمات، فإنك تقر وتضمن أن:",
+        "list1": "جميع معلومات التسجيل التي تقدّمها ستكون صحيحة ودقيقة وحديثة وكاملة",
+        "list2": "ستحافظ على دقة هذه المعلومات وستحدّث معلومات التسجيل فور الحاجة",
+        "list3": "لديك الأهلية القانونية وتوافق على الامتثال لهذه الشروط القانونية",
+        "list4": "لست قاصرًا في الولاية القضائية التي تقيم فيها",
+        "list5": "لن تصل إلى الخدمات من خلال وسائل آلية أو غير بشرية، سواء عن طريق روبوت أو نص برمجي أو غير ذلك",
+        "list6": "لن تستخدم الخدمات لأي غرض غير قانوني أو غير مصرح به",
+        "list7": "لن ينتهك استخدامك للخدمات أي قانون أو لائحة سارية",
+        "conclusion": "إذا قدّمت أي معلومات غير صحيحة أو غير دقيقة أو غير محدّثة أو غير كاملة، فلنا الحق في تعليق أو إنهاء حسابك ورفض أي استخدام حالي أو مستقبلي للخدمات (أو أي جزء منها)."
+      },
+      "userRegistration": {
+        "title": "تسجيل المستخدم",
+        "paragraph1": "قد يُطلب منك التسجيل لاستخدام الخدمات. أنت توافق على الحفاظ على سرية رمز Cloudflare الخاص بك وستكون مسؤولًا عن جميع استخدامات حسابك ورمز Cloudflare الخاص بك. نحتفظ بالحق في إزالة أو استرداد أو تغيير اسم مستخدم تختاره إذا قررنا، وفق تقديرنا المطلق، أن هذا الاسم غير لائق أو فاحش أو مسيء بطريقة أخرى."
+      },
+      "purchasesPayment": {
+        "title": "المشتريات والدفع",
+        "paymentIntro": "نقبل طرق الدفع التالية:",
+        "paymentVisa": "Visa",
+        "paymentMastercard": "Mastercard",
+        "paymentAmex": "American Express",
+        "paymentStripe": "Stripe",
+        "paragraph1": "أنت توافق على تقديم معلومات شراء وحساب حالية وكاملة ودقيقة لجميع المشتريات التي تتم عبر الخدمات. كما توافق على تحديث معلومات الحساب والدفع فورًا، بما في ذلك عنوان البريد الإلكتروني وطريقة الدفع وتاريخ انتهاء صلاحية بطاقة الدفع، حتى نتمكن من إتمام معاملاتك والتواصل معك عند الحاجة. ستُضاف ضريبة المبيعات إلى سعر المشتريات حسبما نراه ضروريًا. يجوز لنا تغيير الأسعار في أي وقت. ستكون جميع المدفوعات بالدولار الأمريكي.",
+        "paragraph2": "نحتفظ بالحق في رفض أي طلب يُقدَّم عبر الخدمات. يجوز لنا، وفق تقديرنا المطلق، تحديد أو إلغاء الكميات المشتراة لكل شخص أو أسرة أو طلب. قد تشمل هذه القيود الطلبات المقدَّمة بموجب نفس حساب العميل أو نفس طريقة الدفع و/أو الطلبات التي تستخدم نفس عنوان الفوترة أو الشحن."
+      },
+      "subscriptions": {
+        "title": "الاشتراكات",
+        "billingTitle": "الفوترة والتجديد",
+        "billingParagraph1": "سيستمر اشتراكك ويتجدد تلقائيًا ما لم يتم إلغاؤه. أنت توافق على أن نقوم بتحصيل الرسوم من طريقة الدفع الخاصة بك بشكل دوري دون الحاجة إلى موافقتك المسبقة على كل رسوم متكررة، إلى أن تُلغي الطلب المعني.",
+        "billingParagraph2": "ستعتمد مدة دورة الفوترة الخاصة بك على نوع خطة الاشتراك التي تختارها عند شراء الاشتراك.",
+        "cancellationTitle": "الإلغاء",
+        "cancellationParagraph1": "يمكنك إلغاء اشتراكك في أي وقت من خلال تسجيل الدخول إلى حسابك. سيصبح إلغاؤك ساريًا في نهاية الفترة المدفوعة الحالية.",
+        "cancellationParagraph2": "إذا لم تكن راضيًا عن خدماتنا، فالرجاء مراسلتنا عبر البريد الإلكتروني على contact@libra.agentic-lab.io.",
+        "feeChangesTitle": "تغييرات الرسوم",
+        "feeChangesParagraph1": "يجوز لنا، من وقت لآخر، إجراء تغييرات على رسوم الاشتراك وسنُبلغك بأي تغييرات في الأسعار وفقًا للقانون المعمول به."
+      },
+      "prohibitedActivities": {
+        "title": "الأنشطة المحظورة",
+        "intro1": "لا يجوز لك الوصول إلى الخدمات أو استخدامها لأي غرض غير الغرض الذي أتحناها من أجله.",
+        "intro2": "كمستخدم للخدمات، فإنك توافق على عدم:",
+        "list1": "استرجاع البيانات أو أي محتوى آخر من الخدمات بشكل منهجي لإنشاء أو تجميع، بشكل مباشر أو غير مباشر، مجموعة أو تجميعة أو قاعدة بيانات أو دليل دون إذن كتابي منا",
+        "list2": "خداعنا أو الاحتيال علينا أو تضليلنا نحن والمستخدمين الآخرين، خاصةً في أي محاولة لمعرفة معلومات حساب حساسة مثل كلمات مرور المستخدمين",
+        "list3": "التحايل على ميزات الأمان الخاصة بالخدمات أو تعطيلها أو التدخل فيها بأي شكل آخر",
+        "list4": "الحط من قدرنا أو تشويه سمعتنا أو الإضرار بنا و/أو بالخدمات بأي شكل آخر، برأينا",
+        "list5": "استخدام أي معلومات تم الحصول عليها من الخدمات لمضايقة أو إساءة أو إيذاء شخص آخر",
+        "list6": "إساءة استخدام خدمات الدعم لدينا أو تقديم بلاغات كاذبة عن إساءة الاستخدام أو سوء السلوك",
+        "list7": "استخدام الخدمات بطريقة تتعارض مع أي قوانين أو لوائح سارية",
+        "list8": "الانخراط في التأطير غير المصرح به للخدمات أو الربط بها",
+        "list9": "تحميل أو نقل (أو محاولة تحميل أو نقل) فيروسات أو أحصنة طروادة أو مواد أخرى",
+        "list10": "استخدام أو إطلاق أو تطوير أو توزيع أي نظام آلي، بما في ذلك على سبيل المثال لا الحصر، أي عنكبوت أو روبوت أو أداة غش أو أداة استخراج بيانات أو قارئ غير متصل يصل إلى الخدمات"
+      },
+      "userGeneratedContributions": {
+        "title": "مساهمات المستخدم",
+        "paragraph1": "قد تدعوك الخدمات للدردشة أو المساهمة أو المشاركة في المدونات أو لوحات الرسائل أو المنتديات عبر الإنترنت والوظائف الأخرى، وقد تتيح لك فرصة إنشاء أو تقديم أو نشر أو عرض أو إرسال أو أداء أو توزيع أو بث محتوى ومواد إلينا أو على الخدمات، بما في ذلك على سبيل المثال لا الحصر النصوص والكتابات والفيديو والصوت والصور والرسومات والتعليقات والاقتراحات أو المعلومات الشخصية أو مواد أخرى (يُشار إليها مجتمعة باسم \\\"المساهمات\\\").",
+        "paragraph2": "قد تكون المساهمات مرئية للمستخدمين الآخرين للخدمات ومن خلال مواقع الطرف الثالث. وعليه، فقد تُعامَل أي مساهمات ترسلها على أنها غير سرية وغير مملوكة. عندما تنشئ أو تتيح أي مساهمات، فإنك بذلك تقر وتضمن ما يلي:",
+        "warrantyList1": "إن إنشاء وتوزيع ونقل وعرض أو أداء مساهماتك علنًا، والوصول إليها أو تحميلها أو نسخها، لا ينتهك ولن ينتهك حقوق الملكية لأي طرف ثالث.",
+        "warrantyList2": "أنت منشئ ومالك مساهماتك أو لديك التراخيص والحقوق والموافقات والإفراجات والأذونات اللازمة لاستخدامها وتخويلنا نحن والخدمات والمستخدمين الآخرين للخدمات باستخدام مساهماتك.",
+        "warrantyList3": "لديك الموافقة الكتابية والإفراج و/أو الإذن من كل شخص يمكن التعرف عليه في مساهماتك.",
+        "warrantyList4": "مساهماتك ليست كاذبة أو غير دقيقة أو مضللة.",
+        "warrantyList5": "مساهماتك ليست إعلانات أو مواد ترويجية أو مخططات هرمية أو رسائل متسلسلة أو رسائل غير مرغوب فيها أو رسائل جماعية أو أشكال أخرى من الاستدراج غير المرغوب فيها أو غير المصرح بها.",
+        "warrantyList6": "مساهماتك ليست فاحشة أو بذيئة أو خليعة أو قذرة أو عنيفة أو مضايِقة أو تشهيرية أو افترائية أو مسيئة بشكل آخر.",
+        "warrantyList7": "مساهماتك لا تسخر من أو تحقّر أو تهين أو تروّع أو تسيء إلى أي شخص.",
+        "warrantyList8": "لا تُستخدم مساهماتك لمضايقة أو تهديد أي شخص آخر أو للترويج للعنف ضد شخص معين أو فئة من الأشخاص.",
+        "warrantyList9": "مساهماتك لا تنتهك أي قانون أو لائحة أو قاعدة سارية.",
+        "warrantyList10": "مساهماتك لا تنتهك حقوق الخصوصية أو النشر لأي طرف ثالث.",
+        "conclusion": "أي استخدام للخدمات ينتهك ما سبق يشكّل انتهاكًا لهذه الشروط القانونية وقد يؤدي، من بين أمور أخرى، إلى إنهاء أو تعليق حقوقك في استخدام الخدمات."
+      },
+      "contributionLicense": {
+        "title": "ترخيص المساهمة",
+        "paragraph1": "بنشرك لمساهماتك في أي جزء من الخدمات، فإنك تمنحنا تلقائيًا، وتقر وتضمن أن لديك الحق في منحنا، ترخيصًا غير مقيَّد وغير محدود ولا رجعة فيه ودائم وغير حصري وقابل للتحويل وخالٍ من الإتاوات ومدفوع بالكامل وعالمي، لاستضافة واستخدام ونسخ وإعادة إنتاج والكشف عن وبيع وإعادة بيع ونشر وبث وإعادة تسمية وأرشفة وتخزين وتخبئة والأداء والعرض علنًا وإعادة التنسيق والترجمة والنقل والاقتباس (كليًا أو جزئيًا) وتوزيع مساهماتك.",
+        "paragraph2": "سيُطبَّق هذا الترخيص على أي شكل أو وسيلة أو تقنية معروفة الآن أو مطوَّرة لاحقًا، ويشمل استخدامنا لاسمك واسم شركتك واسم امتيازك، حسب الاقتضاء، وأي علامات تجارية أو علامات خدمة أو أسماء تجارية أو شعارات وصور شخصية وتجارية تقدّمها.",
+        "paragraph3": "أنت تتنازل عن جميع الحقوق المعنوية في مساهماتك، وتضمن أن الحقوق المعنوية لم تُطالَب بها في مساهماتك بشكل آخر.",
+        "paragraph4": "نحن لا نطالب بأي ملكية على مساهماتك. تحتفظ بالملكية الكاملة لجميع مساهماتك وأي حقوق ملكية فكرية أو حقوق ملكية أخرى مرتبطة بمساهماتك."
+      },
+      "socialMedia": {
+        "title": "وسائل التواصل الاجتماعي",
+        "paragraph1": "كجزء من وظائف الخدمات، قد تربط حسابك بحسابات عبر الإنترنت لديك مع مزوّدي خدمة طرف ثالث (يُشار إلى كل حساب من هذه الحسابات باسم \\\"حساب طرف ثالث\\\") إما عن طريق: (1) تقديم معلومات تسجيل الدخول لحساب طرف ثالث الخاص بك عبر الخدمات؛ أو (2) السماح لنا بالوصول إلى حساب طرف ثالث الخاص بك، وفق ما تسمح به الشروط والأحكام المعمول بها التي تحكم استخدامك لكل حساب طرف ثالث.",
+        "paragraph2": "بمنحنا الوصول إلى أي حسابات طرف ثالث، فإنك تفهم أنه:",
+        "list1": "قد نصل إلى وننشر ونخزّن أي محتوى قدّمته وخزّنته في حساب طرف ثالث الخاص بك بحيث يكون متاحًا على وعبر الخدمات من خلال حسابك.",
+        "list2": "قد نرسل إلى ونستقبل من حساب طرف ثالث الخاص بك معلومات إضافية بقدر إشعارك عند ربط حسابك بحساب طرف ثالث."
+      },
+      "thirdPartyWebsites": {
+        "title": "مواقع ومحتوى الطرف الثالث",
+        "paragraph1": "قد تحتوي الخدمات (أو قد يتم إرسالها إليك عبر الموقع) على روابط لمواقع أخرى (\"مواقع الطرف الثالث\") بالإضافة إلى مقالات وصور ونصوص ورسومات وصور وتصاميم وموسيقى وصوت وفيديو ومعلومات وتطبيقات وبرمجيات ومحتوى أو عناصر أخرى تخص أو تنشأ من أطراف ثالثة (\"محتوى الطرف الثالث\").",
+        "paragraph2": "لا يتم التحقق من مواقع ومحتوى الطرف الثالث هذه أو مراقبتها أو فحصها من حيث الدقة أو الملاءمة أو الاكتمال من قِبلنا، ولسنا مسؤولين عن أي مواقع طرف ثالث يتم الوصول إليها عبر الخدمات أو أي محتوى طرف ثالث منشور على أو متاح من خلال أو مثبَّت من الخدمات.",
+        "paragraph3": "أنت توافق وتقر بأننا لا نصادق على المنتجات أو الخدمات المعروضة على مواقع الطرف الثالث وتُبرئنا من أي ضرر ناتج عن شرائك لمثل هذه المنتجات أو الخدمات. بالإضافة إلى ذلك، تُبرئنا من أي خسائر تتكبدها أو أضرار تلحق بك مرتبطة بأو ناتجة بأي شكل من محتوى الطرف الثالث أو أي اتصال بمواقع الطرف الثالث."
+      },
+      "servicesManagement": {
+        "title": "إدارة الخدمات",
+        "intro": "نحتفظ بالحق، دون التزام، في:",
+        "list1": "مراقبة الخدمات للكشف عن انتهاكات هذه الشروط القانونية",
+        "list2": "اتخاذ إجراء قانوني مناسب ضد أي شخص ينتهك، وفق تقديرنا المطلق، القانون أو هذه الشروط القانونية",
+        "list3": "رفض أو تقييد الوصول إلى أو الحد من توفر أو تعطيل أي من مساهماتك أو أي جزء منها",
+        "list4": "إزالة أي ملفات ومحتوى من الخدمات أو تعطيلها بأي شكل آخر إذا كانت مفرطة الحجم أو تشكّل عبئًا على أنظمتنا بأي شكل من الأشكال",
+        "list5": "إدارة الخدمات بأي شكل آخر مصمم لحماية حقوقنا وممتلكاتنا وتسهيل التشغيل السليم للخدمات"
+      },
+      "privacyPolicy": {
+        "title": "سياسة الخصوصية",
+        "paragraph1": "نحن نهتم بخصوصية البيانات وأمانها. الرجاء مراجعة سياسة الخصوصية الخاصة بنا على libra.agentic-lab.io/privacy. باستخدامك للخدمات، فإنك توافق على الالتزام بسياسة الخصوصية الخاصة بنا، التي تُعتبر جزءًا من هذه الشروط القانونية.",
+        "paragraph2": "يرجى العلم أنه بينما تُقدَّم خدماتنا عبر شبكة حافة عالمية لتحقيق أفضل أداء، يتم تخزين جميع بيانات المستخدم في الولايات المتحدة. إذا كنت تصل إلى الخدمات من أي منطقة أخرى في العالم بقوانين أو متطلبات أخرى تحكم جمع البيانات الشخصية أو استخدامها أو الكشف عنها تختلف عن القوانين المعمول بها في الولايات المتحدة، فإنه من خلال استمرارك في استخدام الخدمات، فإنك تقر بأن بياناتك ستُخزَّن في الولايات المتحدة، وتوافق صراحةً على تخزين ومعالجة بياناتك في الولايات المتحدة."
+      },
+      "copyrightInfringements": {
+        "title": "انتهاكات حقوق النشر",
+        "paragraph1": "نحن نحترم حقوق الملكية الفكرية للآخرين. إذا كنت تعتقد أن أي مادة متاحة على أو من خلال الخدمات تنتهك حقوق النشر التي تملكها أو تتحكم بها، فالرجاء إبلاغنا فورًا باستخدام معلومات الاتصال المقدَّمة أدناه (\"إشعار\").",
+        "paragraph2": "سيُرسَل نسخة من إشعارك إلى الشخص الذي نشر أو خزّن المادة المذكورة في الإشعار. يرجى العلم أنه وفقًا للقانون المعمول به، قد تكون مسؤولًا عن الأضرار إذا قدّمت تحريفات جوهرية في إشعار. لذا، إذا لم تكن متأكدًا من أن المادة الموجودة على أو المرتبطة بالخدمات تنتهك حقوق النشر الخاصة بك، فيجب عليك التفكير أولًا في التواصل مع محامٍ."
+      },
+      "termTermination": {
+        "title": "المدة والإنهاء",
+        "paragraph1": "ستظل هذه الشروط القانونية سارية المفعول بالكامل طالما أنك تستخدم الخدمات. دون الحد من أي بند آخر من هذه الشروط القانونية، نحتفظ بالحق، وفق تقديرنا المطلق ودون إشعار أو مسؤولية، في رفض الوصول إلى واستخدام الخدمات (بما في ذلك حظر عناوين IP معينة)، لأي شخص لأي سبب أو دون سبب، بما في ذلك على سبيل المثال لا الحصر انتهاك أي إقرار أو ضمان أو تعهد وارد في هذه الشروط القانونية أو أي قانون أو لائحة سارية.",
+        "paragraph2": "إذا أنهينا أو علّقنا حسابك لأي سبب، فيُحظر عليك التسجيل وإنشاء حساب جديد باسمك أو باسم مزيَّف أو مستعار أو اسم أي طرف ثالث، حتى لو كنت تتصرف نيابة عن الطرف الثالث. بالإضافة إلى إنهاء أو تعليق حسابك، نحتفظ بالحق في اتخاذ إجراء قانوني مناسب، بما في ذلك على سبيل المثال لا الحصر السعي للانتصاف المدني والجنائي والزجري."
+      },
+      "modificationsInterruptions": {
+        "title": "التعديلات والانقطاعات",
+        "paragraph1": "نحتفظ بالحق في تغيير أو تعديل أو إزالة محتوى الخدمات في أي وقت أو لأي سبب وفق تقديرنا المطلق دون إشعار. لن نكون مسؤولين تجاهك أو تجاه أي طرف ثالث عن أي تعديل أو تغيير في السعر أو تعليق أو توقف الخدمات.",
+        "paragraph2": "لا يمكننا ضمان توفر الخدمات في جميع الأوقات. قد نواجه مشاكل في الأجهزة أو البرمجيات أو مشاكل أخرى أو نحتاج إلى إجراء صيانة تتعلق بالخدمات، مما يؤدي إلى انقطاعات أو تأخيرات أو أخطاء. نحتفظ بالحق في تغيير أو مراجعة أو تحديث أو تعليق أو إيقاف أو تعديل الخدمات بأي شكل آخر في أي وقت أو لأي سبب دون إشعارك."
+      },
+      "governingLaw": {
+        "title": "القانون الحاكم",
+        "paragraph1": "تخضع هذه الشروط القانونية وتُفسَّر وفقًا للقوانين المعمول بها. سيتم حل أي نزاعات ناشئة عن هذه الشروط القانونية من خلال القنوات القانونية المناسبة."
+      },
+      "disputeResolution": {
+        "title": "حل النزاعات",
+        "informalNegotiationsTitle": "المفاوضات غير الرسمية",
+        "informalNegotiationsParagraph": "لتسريع الحل والتحكم في تكلفة أي نزاع أو خلاف أو مطالبة متعلقة بهذه الشروط القانونية (كل منها \"نزاع\" ومجتمعة \"النزاعات\") يقدّمها إما أنت أو نحن (فرديًا \"طرف\" ومجتمعة \"الأطراف\")، توافق الأطراف على السعي أولًا للتفاوض بشأن أي نزاع بشكل غير رسمي لمدة لا تقل عن ثلاثين (30) يومًا قبل بدء التحكيم.",
+        "bindingArbitrationTitle": "التحكيم الملزم",
+        "bindingArbitrationParagraph": "سيتم حل أي نزاع ناشئ عن أو مرتبط بهذه الشروط القانونية من خلال القنوات القانونية المناسبة وإجراءات حل النزاعات المعمول بها.",
+        "restrictionsTitle": "القيود",
+        "restrictionsParagraph": "توافق الأطراف على أن يقتصر أي تحكيم على النزاع بين الأطراف بشكل فردي. إلى أقصى حد يسمح به القانون، (أ) لا يجوز دمج أي تحكيم مع أي إجراء آخر؛ (ب) لا يوجد حق أو سلطة لأي نزاع أن يُحكَّم على أساس دعوى جماعية؛ (ج) لا يوجد حق أو سلطة لأي نزاع أن يُرفَع بصفة تمثيلية مزعومة نيابة عن الجمهور العام أو أي أشخاص آخرين."
+      },
+      "corrections": {
+        "title": "التصحيحات",
+        "paragraph1": "قد تحتوي المعلومات الموجودة على الخدمات على أخطاء مطبعية أو عدم دقة أو حذف، بما في ذلك الأوصاف والأسعار والتوفر ومعلومات أخرى متنوعة. نحتفظ بالحق في تصحيح أي أخطاء أو عدم دقة أو حذف وتغيير أو تحديث المعلومات على الخدمات في أي وقت، دون إشعار مسبق."
+      },
+      "disclaimer": {
+        "title": "إخلاء المسؤولية",
+        "content": "تُقدَّم الخدمات على أساس \"كما هي\" و\"كما هي متاحة\". أنت توافق على أن استخدامك للخدمات سيكون على مسؤوليتك وحدك. إلى أقصى حد يسمح به القانون، نتنصل من جميع الضمانات، الصريحة أو الضمنية، فيما يتعلق بالخدمات واستخدامك لها، بما في ذلك على سبيل المثال لا الحصر الضمانات الضمنية للتسويق والملاءمة لغرض معين وعدم الانتهاك. لا نقدّم أي ضمانات أو إقرارات حول دقة أو اكتمال محتوى الخدمات أو محتوى أي مواقع أو تطبيقات جوال مرتبطة بالخدمات، ولن نتحمل أي مسؤولية عن أي (1) أخطاء أو عدم دقة في المحتوى والمواد، (2) إصابة شخصية أو ضرر بالممتلكات، من أي طبيعة كانت، ناتجة عن وصولك إلى الخدمات واستخدامها، (3) أي وصول غير مصرح به إلى أو استخدام لخوادمنا الآمنة و/أو أي وجميع المعلومات الشخصية و/أو المالية المخزَّنة فيها، (4) أي انقطاع أو توقف للنقل من أو إلى الخدمات، (5) أي أخطاء برمجية أو فيروسات أو أحصنة طروادة أو ما شابه قد تُنقَل إلى أو عبر الخدمات من قِبل أي طرف ثالث، و/أو (6) أي أخطاء أو حذف في أي محتوى ومواد أو لأي خسارة أو ضرر من أي نوع نتيجة استخدام أي محتوى منشور أو مُرسَل أو متاح بأي شكل آخر عبر الخدمات. نحن لا نضمن أو نصادق أو نكفل أو نتحمل المسؤولية عن أي منتج أو خدمة يُعلَن عنها أو تُعرَض من قِبل طرف ثالث من خلال الخدمات أو أي موقع مرتبط أو أي موقع أو تطبيق جوال يظهر في أي إعلان أو غيره، ولن نكون طرفًا في أو بأي شكل مسؤولين عن مراقبة أي معاملة بينك وبين أي مزوّدي منتجات أو خدمات من طرف ثالث. كما هو الحال مع شراء منتج أو خدمة عبر أي وسيط أو في أي بيئة، يجب عليك استخدام حكمك السليم وتوخي الحذر عند الاقتضاء."
+      },
+      "limitationsLiability": {
+        "title": "حدود المسؤولية",
+        "content": "لن نكون نحن أو مديرونا أو موظفونا أو وكلاؤنا مسؤولين بأي حال من الأحوال تجاهك أو تجاه أي طرف ثالث عن أي أضرار مباشرة أو غير مباشرة أو تبعية أو نموذجية أو عرضية أو خاصة أو عقابية، بما في ذلك خسارة الأرباح أو خسارة الإيرادات أو فقدان البيانات أو أضرار أخرى ناتجة عن استخدامك للخدمات، حتى لو تم إخطارنا باحتمالية حدوث مثل هذه الأضرار. بغض النظر عن أي شيء يخالف ذلك الوارد هنا، ستقتصر مسؤوليتنا تجاهك عن أي سبب كان وبغض النظر عن شكل الإجراء، في جميع الأوقات، على المبلغ المدفوع، إن وجد، منك إلينا خلال فترة الشهر (1) الواحد السابقة لنشوء أي سبب للدعوى. لا تسمح بعض قوانين الولايات الأمريكية والقوانين الدولية بالحد من الضمانات الضمنية أو استبعاد أو تحديد أضرار معينة. إذا كانت هذه القوانين تنطبق عليك، فقد لا تنطبق عليك بعض أو كل إخلاءات المسؤولية أو الحدود المذكورة أعلاه، وقد يكون لديك حقوق إضافية."
+      },
+      "indemnification": {
+        "title": "التعويض",
+        "paragraph1": "أنت توافق على الدفاع عنا وتعويضنا وإبراء ذمتنا، بما في ذلك شركاتنا التابعة والفرعية وجميع مسؤولينا ووكلائنا وشركائنا وموظفينا، من وضد أي خسارة أو ضرر أو مسؤولية أو مطالبة أو طلب، بما في ذلك أتعاب المحاماة المعقولة والنفقات، من قِبل أي طرف ثالث بسبب أو ناشئ عن:",
+        "list1": "مساهماتك",
+        "list2": "استخدام الخدمات",
+        "list3": "انتهاك هذه الشروط القانونية",
+        "list4": "أي انتهاك لإقراراتك وضماناتك المنصوص عليها في هذه الشروط القانونية",
+        "list5": "انتهاكك لحقوق طرف ثالث، بما في ذلك على سبيل المثال لا الحصر حقوق الملكية الفكرية",
+        "list6": "أي فعل ضار متعمد تجاه أي مستخدم آخر للخدمات تواصلت معه عبر الخدمات",
+        "paragraph2": "بغض النظر عما سبق، نحتفظ بالحق، على نفقتك، في تولي الدفاع الحصري والتحكم في أي مسألة تكون ملزمًا بتعويضنا عنها، وتوافق على التعاون، على نفقتك، مع دفاعنا عن هذه المطالبات."
+      },
+      "userData": {
+        "title": "بيانات المستخدم",
+        "paragraph1": "سنحتفظ ببعض البيانات التي ترسلها إلى الخدمات بغرض إدارة أداء الخدمات، بالإضافة إلى البيانات المتعلقة باستخدامك للخدمات.",
+        "paragraph2": "على الرغم من أننا نجري نسخًا احتياطية روتينية منتظمة للبيانات، إلا أنك المسؤول الوحيد عن جميع البيانات التي ترسلها أو المتعلقة بأي نشاط قمت به باستخدام الخدمات. أنت توافق على أننا لن نتحمل أي مسؤولية تجاهك عن أي فقدان أو تلف لأي بيانات من هذا القبيل، وأنت تتنازل بموجب هذا عن أي حق في اتخاذ إجراء ضدنا ناشئ عن أي فقدان أو تلف لهذه البيانات."
+      },
+      "electronicCommunications": {
+        "title": "الاتصالات والمعاملات والتوقيعات الإلكترونية",
+        "paragraph1": "زيارة الخدمات وإرسال رسائل البريد الإلكتروني إلينا وإكمال النماذج عبر الإنترنت تشكّل اتصالات إلكترونية. أنت توافق على تلقي الاتصالات الإلكترونية، وتوافق على أن جميع الاتفاقيات والإشعارات والإفصاحات والاتصالات الأخرى التي نقدّمها إليك إلكترونيًا، عبر البريد الإلكتروني وعلى الخدمات، تفي بأي متطلب قانوني بأن يكون هذا الاتصال مكتوبًا.",
+        "paragraph2": "أنت توافق بموجب هذا على استخدام التوقيعات والعقود والطلبات والسجلات الإلكترونية، وعلى التسليم الإلكتروني للإشعارات والسياسات وسجلات المعاملات التي تُبدأ أو تُكمَل من قِبلنا أو عبر الخدمات.",
+        "paragraph3": "أنت تتنازل بموجب هذا عن أي حقوق أو متطلبات بموجب أي قوانين أو لوائح أو قواعد أو مراسيم أو قوانين أخرى في أي ولاية قضائية تتطلب توقيعًا أصليًا أو تسليمًا أو الاحتفاظ بسجلات غير إلكترونية، أو للمدفوعات أو منح ائتمانات بأي وسيلة أخرى غير الوسائل الإلكترونية."
+      },
+      "californiaUsers": {
+        "title": "مستخدمو وسكان كاليفورنيا",
+        "paragraph1": "إذا لم يتم حل أي شكوى معنا بشكل مُرضٍ، يمكنك التواصل مع وحدة مساعدة الشكاوى التابعة لقسم خدمات المستهلك في إدارة شؤون المستهلك بكاليفورنيا كتابيًا على العنوان 1625 North Market Blvd., Suite N 112, Sacramento, California 95834 أو هاتفيًا على (800) 952-5210 أو (916) 445-1254."
+      },
+      "miscellaneous": {
+        "title": "أحكام متنوعة",
+        "paragraph1": "تشكّل هذه الشروط القانونية وأي سياسات أو قواعد تشغيل ننشرها على الخدمات أو فيما يتعلق بالخدمات الاتفاقية والتفاهم الكاملين بينك وبيننا. لن يُعتبر عدم ممارستنا أو إنفاذنا لأي حق أو بند من هذه الشروط القانونية تنازلًا عن هذا الحق أو البند.",
+        "paragraph2": "تُطبَّق هذه الشروط القانونية إلى أقصى حد يسمح به القانون. يجوز لنا التنازل عن أي أو كل حقوقنا والتزاماتنا للآخرين في أي وقت. لن نكون مسؤولين عن أي خسارة أو ضرر أو تأخير أو فشل في التصرف ناتج عن أي سبب خارج عن سيطرتنا المعقولة.",
+        "paragraph3": "إذا تقرر أن أي بند أو جزء من بند في هذه الشروط القانونية غير قانوني أو باطل أو غير قابل للتنفيذ، فإن ذلك البند أو جزء البند يُعتبر قابلًا للفصل عن هذه الشروط القانونية ولا يؤثر على صحة وقابلية إنفاذ أي بنود متبقية.",
+        "paragraph4": "لا توجد علاقة مشروع مشترك أو شراكة أو توظيف أو وكالة بينك وبيننا نتيجة لهذه الشروط القانونية أو استخدام الخدمات. أنت توافق على أن هذه الشروط القانونية لن تُفسَّر ضدنا بحكم صياغتنا لها.",
+        "paragraph5": "أنت تتنازل بموجب هذا عن أي وجميع الدفوع التي قد تكون لديك بناءً على الشكل الإلكتروني لهذه الشروط القانونية وعدم توقيع الأطراف عليها."
+      }
+    },
+    "contact": {
+      "title": "تواصل معنا",
+      "description": "لحل شكوى بخصوص الخدمات أو للحصول على مزيد من المعلومات حول استخدام الخدمات، الرجاء التواصل معنا على:",
+      "companyName": "Libra AI"
+    }
+  },
+  "hero_examples_title": "أمثلة أفكار التطبيقات",
+  "hero_examples_subtitle": "انقر على أي مثال لتطبيقه"
+}

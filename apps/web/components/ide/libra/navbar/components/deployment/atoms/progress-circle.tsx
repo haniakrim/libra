@@ -21,6 +21,7 @@
 'use client'
 
 import { cn } from '@libra/ui/lib/utils'
+import * as m from '@/paraglide/messages'
 
 interface ProgressCircleProps {
   progress: number
@@ -35,43 +36,43 @@ export function ProgressCircle({
   size = 120,
   strokeWidth = 6,
   showPercentage = true,
-  className
+  className,
 }: ProgressCircleProps) {
   const radius = (size - strokeWidth) / 2
   const circumference = radius * 2 * Math.PI
   const strokeDasharray = `${(progress / 100) * circumference} ${circumference}`
-  
+
   return (
     <div className={cn('relative inline-flex', className)}>
       {/* Simplified outer glow effect */}
       <div
-        className="absolute -inset-4 rounded-full bg-primary/20 blur-xl animate-pulse"
-        aria-hidden="true"
+        className='absolute -inset-4 rounded-full bg-primary/20 blur-xl animate-pulse'
+        aria-hidden='true'
       />
 
       {/* Optimized SVG Progress Circle */}
-      <div className="relative" style={{ willChange: 'transform' }}>
+      <div className='relative' style={{ willChange: 'transform' }}>
         <svg
           width={size}
           height={size}
-          className="transform -rotate-90"
-          role="progressbar"
-          aria-label={`部署进度: ${progress}%`}
+          className='transform -rotate-90'
+          role='progressbar'
+          aria-label={m['ide.deployment.status.deploymentProgressLabel']({ progress })}
           aria-valuenow={progress}
           aria-valuemin={0}
           aria-valuemax={100}
         >
-          <title>部署进度指示器</title>
+          <title>{m['ide.deployment.status.deploymentProgressIndicator']()}</title>
 
           {/* Background circle */}
           <circle
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            fill="none"
-            stroke="currentColor"
+            fill='none'
+            stroke='currentColor'
             strokeWidth={strokeWidth - 2}
-            className="text-muted/20"
+            className='text-muted/20'
           />
 
           {/* Progress circle with optimized animation */}
@@ -79,30 +80,28 @@ export function ProgressCircle({
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            fill="none"
-            stroke="url(#progressGradient)"
+            fill='none'
+            stroke='url(#progressGradient)'
             strokeWidth={strokeWidth}
-            strokeLinecap="round"
+            strokeLinecap='round'
             strokeDasharray={strokeDasharray}
-            className="transition-all duration-1000 ease-out drop-shadow-lg"
+            className='transition-all duration-1000 ease-out drop-shadow-lg'
             style={{ willChange: 'stroke-dasharray' }}
           />
 
           {/* Simplified gradient definition */}
           <defs>
-            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="var(--primary)" />
-              <stop offset="100%" stopColor="var(--brand)" />
+            <linearGradient id='progressGradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+              <stop offset='0%' stopColor='var(--primary)' />
+              <stop offset='100%' stopColor='var(--brand)' />
             </linearGradient>
           </defs>
         </svg>
 
         {/* Center content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <div className='absolute inset-0 flex flex-col items-center justify-center'>
           {showPercentage && (
-            <span className="text-2xl font-bold text-foreground">
-              {progress}%
-            </span>
+            <span className='text-2xl font-bold text-foreground'>{progress}%</span>
           )}
         </div>
       </div>

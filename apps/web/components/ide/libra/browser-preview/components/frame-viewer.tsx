@@ -20,9 +20,9 @@
 
 'use client'
 
-import { forwardRef, useCallback, useEffect, useState, useRef } from 'react'
-import { AlertTriangle } from 'lucide-react'
 import { cn } from '@libra/ui/lib/utils'
+import { AlertTriangle } from 'lucide-react'
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import * as m from '@/paraglide/messages'
 import PreviewLoader from './preview-loader'
 
@@ -76,7 +76,7 @@ export const FrameViewer = forwardRef<HTMLIFrameElement, FrameViewerProps>(
 
         // Remove cache-busting and temporary parameters
         const tempParams = ['_retry', '_t', '_refresh']
-        tempParams.forEach(param => {
+        tempParams.forEach((param) => {
           params1.delete(param)
           params2.delete(param)
         })
@@ -89,25 +89,28 @@ export const FrameViewer = forwardRef<HTMLIFrameElement, FrameViewerProps>(
     }, [])
 
     // Create enhanced URL with cache-busting parameter only when retrying
-    const enhancedSrc = useCallback((originalSrc: string | null) => {
-      if (!originalSrc) return null
+    const enhancedSrc = useCallback(
+      (originalSrc: string | null) => {
+        if (!originalSrc) return null
 
-      // Only add cache-busting parameters during retries, not on normal URL changes
-      if (retryCount > 0) {
-        try {
-          const url = new URL(originalSrc)
-          // Add cache-busting parameter only for retries
-          url.searchParams.set('_retry', retryCount.toString())
-          url.searchParams.set('_t', Date.now().toString())
-          return url.toString()
-        } catch {
-          return originalSrc
+        // Only add cache-busting parameters during retries, not on normal URL changes
+        if (retryCount > 0) {
+          try {
+            const url = new URL(originalSrc)
+            // Add cache-busting parameter only for retries
+            url.searchParams.set('_retry', retryCount.toString())
+            url.searchParams.set('_t', Date.now().toString())
+            return url.toString()
+          } catch {
+            return originalSrc
+          }
         }
-      }
 
-      // For normal URL changes, return as-is
-      return originalSrc
-    }, [retryCount])
+        // For normal URL changes, return as-is
+        return originalSrc
+      },
+      [retryCount]
+    )
 
     // Handle URL changes more intelligently
     useEffect(() => {
@@ -146,12 +149,12 @@ export const FrameViewer = forwardRef<HTMLIFrameElement, FrameViewerProps>(
     const handleRetry = useCallback(() => {
       if (retryCount >= MAX_RETRIES) {
         setHasError(true)
-        setErrorMessage(m["browserPreview.frameViewer.loadError"]({ src: src || '' }))
+        setErrorMessage(m['browserPreview.frameViewer.loadError']({ src: src || '' }))
         setIsContentLoaded(true)
         return
       }
 
-      setRetryCount(prev => prev + 1)
+      setRetryCount((prev) => prev + 1)
       setHasError(false)
       setErrorMessage('')
       setIsContentLoaded(false)
@@ -198,7 +201,7 @@ export const FrameViewer = forwardRef<HTMLIFrameElement, FrameViewerProps>(
         setHasError(true)
         setIsContentLoaded(true)
         setFadeOutLoading(false)
-        setErrorMessage(m["browserPreview.frameViewer.loadError"]({ src: src || '' }))
+        setErrorMessage(m['browserPreview.frameViewer.loadError']({ src: src || '' }))
       }
     }, [src, retryCount, handleRetry])
 
@@ -251,24 +254,25 @@ export const FrameViewer = forwardRef<HTMLIFrameElement, FrameViewerProps>(
       >
         <AlertTriangle className='text-warning-fg mb-4 h-12 w-12 dark:text-warning-fg' />
         <h3 className='font-medium text-fg-default dark:text-fg-default mb-2 text-lg'>
-          {m["browserPreview.frameViewer.loadFailed"]()}
+          {m['browserPreview.frameViewer.loadFailed']()}
         </h3>
         <p className='text-fg-muted dark:text-fg-muted mb-2'>{errorMessage}</p>
         <p className='text-fg-subtle dark:text-fg-subtle text-sm mb-4'>
-          {m["browserPreview.frameViewer.checkUrl"]()}
+          {m['browserPreview.frameViewer.checkUrl']()}
         </p>
         {retryCount < MAX_RETRIES && (
           <button
-            type="button"
+            type='button'
             onClick={handleRetry}
             className='px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors'
           >
-            重试加载 ({retryCount}/{MAX_RETRIES})
+            {m['ide.deployment.retryLoading']({ retryCount, maxRetries: MAX_RETRIES })}
           </button>
         )}
         {retryCount >= MAX_RETRIES && (
           <p className='text-fg-subtle dark:text-fg-subtle text-xs'>
-              The maximum number of retries has been reached. Please check your network connection or refresh the page.
+            The maximum number of retries has been reached. Please check your network connection or
+            refresh the page.
           </p>
         )}
       </div>
@@ -287,7 +291,7 @@ export const FrameViewer = forwardRef<HTMLIFrameElement, FrameViewerProps>(
             isContentLoaded && 'opacity-100',
             className
           )}
-          title={m["browserPreview.frameViewer.title"]()}
+          title={m['browserPreview.frameViewer.title']()}
         />
 
         {/* Preview loading overlay */}

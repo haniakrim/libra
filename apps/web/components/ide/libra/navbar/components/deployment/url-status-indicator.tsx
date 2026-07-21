@@ -20,11 +20,11 @@
 
 'use client'
 
-import { AlertTriangle } from 'lucide-react'
 import { cn } from '@libra/ui/lib/utils'
+import { AlertTriangle } from 'lucide-react'
+import * as m from '@/paraglide/messages'
 import { DeploymentStatus } from '../../types/deployment'
 import { DeploymentStatusBadge } from './deployment-status-badge'
-import * as m from '@/paraglide/messages'
 
 interface UrlStatusIndicatorProps {
   status: DeploymentStatus
@@ -36,36 +36,32 @@ interface UrlStatusIndicatorProps {
 const getStatusMessage = (status: DeploymentStatus): string => {
   switch (status) {
     case DeploymentStatus.PREVIEW:
-      return m["ide.deployment.dialog.urlNotAccessibleYet"]()
+      return m['ide.deployment.dialog.urlNotAccessibleYet']()
     case DeploymentStatus.PREPARING:
     case DeploymentStatus.DEPLOYING:
-      return m["ide.deployment.dialog.urlNotAccessibleYet"]()
+      return m['ide.deployment.dialog.urlNotAccessibleYet']()
     case DeploymentStatus.DEPLOYED:
     case DeploymentStatus.LIVE:
     case DeploymentStatus.EXISTING:
-      return m["ide.deployment.dialog.urlAccessibleNow"]()
+      return m['ide.deployment.dialog.urlAccessibleNow']()
     case DeploymentStatus.FAILED:
-      return m["ide.deployment.dialog.deploymentFailedUrlNotAccessible"]()
+      return m['ide.deployment.dialog.deploymentFailedUrlNotAccessible']()
     default:
-      return m["ide.deployment.dialog.urlNotAccessibleYet"]()
+      return m['ide.deployment.dialog.urlNotAccessibleYet']()
   }
 }
 
-
-
 const isUrlAccessible = (status: DeploymentStatus): boolean => {
-  return [
-    DeploymentStatus.DEPLOYED,
-    DeploymentStatus.LIVE,
-    DeploymentStatus.EXISTING
-  ].includes(status)
+  return [DeploymentStatus.DEPLOYED, DeploymentStatus.LIVE, DeploymentStatus.EXISTING].includes(
+    status
+  )
 }
 
 export function UrlStatusIndicator({
   status,
   className,
   showWarning = true,
-  showStatusBadge = false
+  showStatusBadge = false,
 }: UrlStatusIndicatorProps) {
   const statusMessage = getStatusMessage(status)
   const accessible = isUrlAccessible(status)
@@ -78,14 +74,12 @@ export function UrlStatusIndicator({
   return (
     <div className={cn('space-y-2', className)}>
       {/* Simplified Status Badge */}
-      {showStatusBadge && (
-        <DeploymentStatusBadge status={status} size="sm" />
-      )}
+      {showStatusBadge && <DeploymentStatusBadge status={status} size='sm' />}
 
       {/* Simplified Warning Message */}
       {showWarning && !accessible && (
-        <div className="flex items-center gap-2 p-2 rounded border bg-muted/50 text-muted-foreground text-xs">
-          <AlertTriangle className="h-3 w-3 flex-shrink-0" />
+        <div className='flex items-center gap-2 p-2 rounded border bg-muted/50 text-muted-foreground text-xs'>
+          <AlertTriangle className='h-3 w-3 flex-shrink-0' />
           <span>{statusMessage}</span>
         </div>
       )}

@@ -65,7 +65,7 @@ export function useLoadingState(initialState: LoadingState = 'idle'): UseLoading
     setSuccess,
     setError,
     setIdle,
-    reset
+    reset,
   }
 }
 
@@ -99,30 +99,33 @@ export function useAsyncOperation<T = any>(
   const [error, setError] = useState<Error | null>(null)
   const [result, setResult] = useState<T | null>(null)
 
-  const execute = useCallback(async (operation: () => Promise<T>): Promise<T | undefined> => {
-    try {
-      loadingState.setLoading()
-      setError(null)
-      setResult(null)
+  const execute = useCallback(
+    async (operation: () => Promise<T>): Promise<T | undefined> => {
+      try {
+        loadingState.setLoading()
+        setError(null)
+        setResult(null)
 
-      const result = await operation()
-      
-      setResult(result)
-      loadingState.setSuccess()
-      options.onSuccess?.(result)
-      
-      return result
-    } catch (err) {
-      const error = err instanceof Error ? err : new Error(String(err))
-      setError(error)
-      loadingState.setError()
-      options.onError?.(error)
-      
-      throw error
-    } finally {
-      options.onFinally?.()
-    }
-  }, [loadingState, options])
+        const result = await operation()
+
+        setResult(result)
+        loadingState.setSuccess()
+        options.onSuccess?.(result)
+
+        return result
+      } catch (err) {
+        const error = err instanceof Error ? err : new Error(String(err))
+        setError(error)
+        loadingState.setError()
+        options.onError?.(error)
+
+        throw error
+      } finally {
+        options.onFinally?.()
+      }
+    },
+    [loadingState, options]
+  )
 
   const reset = useCallback(() => {
     loadingState.reset()
@@ -138,7 +141,7 @@ export function useAsyncOperation<T = any>(
     isError: loadingState.isError,
     error,
     result,
-    reset
+    reset,
   }
 }
 
@@ -164,15 +167,13 @@ interface UseMultipleLoadingStatesReturn {
 /**
  * Hook for managing multiple loading states (e.g., for different operations in the same component)
  */
-export function useMultipleLoadingStates(
-  keys: string[]
-): UseMultipleLoadingStatesReturn {
+export function useMultipleLoadingStates(keys: string[]): UseMultipleLoadingStatesReturn {
   const [states, setStates] = useState<Record<string, LoadingState>>(() =>
     keys.reduce((acc, key) => ({ ...acc, [key]: 'idle' }), {})
   )
 
   const updateState = useCallback((key: string, newState: LoadingState) => {
-    setStates(prev => ({ ...prev, [key]: newState }))
+    setStates((prev) => ({ ...prev, [key]: newState }))
   }, [])
 
   const setLoading = useCallback((key: string) => updateState(key, 'loading'), [updateState])
@@ -180,15 +181,16 @@ export function useMultipleLoadingStates(
   const setError = useCallback((key: string) => updateState(key, 'error'), [updateState])
   const setIdle = useCallback((key: string) => updateState(key, 'idle'), [updateState])
 
-  const reset = useCallback((key?: string) => {
-    if (key) {
-      updateState(key, 'idle')
-    } else {
-      setStates(prev => 
-        Object.keys(prev).reduce((acc, k) => ({ ...acc, [k]: 'idle' }), {})
-      )
-    }
-  }, [updateState])
+  const reset = useCallback(
+    (key?: string) => {
+      if (key) {
+        updateState(key, 'idle')
+      } else {
+        setStates((prev) => Object.keys(prev).reduce((acc, k) => ({ ...acc, [k]: 'idle' }), {}))
+      }
+    },
+    [updateState]
+  )
 
   const getState = useCallback((key: string) => states[key] || 'idle', [states])
   const isLoading = useCallback((key: string) => states[key] === 'loading', [states])
@@ -196,9 +198,9 @@ export function useMultipleLoadingStates(
   const isError = useCallback((key: string) => states[key] === 'error', [states])
 
   const stateValues = Object.values(states)
-  const isAnyLoading = stateValues.some(state => state === 'loading')
-  const isAllSuccess = stateValues.every(state => state === 'success')
-  const isAnyError = stateValues.some(state => state === 'error')
+  const isAnyLoading = stateValues.some((state) => state === 'loading')
+  const isAllSuccess = stateValues.every((state) => state === 'success')
+  const isAnyError = stateValues.some((state) => state === 'error')
 
   return {
     states,
@@ -213,6 +215,6 @@ export function useMultipleLoadingStates(
     getState,
     isLoading,
     isSuccess,
-    isError
+    isError,
   }
 }

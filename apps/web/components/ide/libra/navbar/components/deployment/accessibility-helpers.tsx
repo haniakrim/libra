@@ -20,8 +20,9 @@
 
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { cn } from '@libra/ui/lib/utils'
+import { useEffect, useRef } from 'react'
+import * as m from '@/paraglide/messages'
 
 /**
  * Screen reader only text component
@@ -37,7 +38,7 @@ export function ScreenReaderOnly({ children, className, id }: ScreenReaderOnlyPr
     <span
       id={id}
       className={cn(
-        "sr-only absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0",
+        'sr-only absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0',
         className
       )}
     >
@@ -56,18 +57,14 @@ interface LiveRegionProps {
   className?: string
 }
 
-export function LiveRegion({ 
-  children, 
-  politeness = 'polite', 
+export function LiveRegion({
+  children,
+  politeness = 'polite',
   atomic = false,
-  className 
+  className,
 }: LiveRegionProps) {
   return (
-    <div
-      aria-live={politeness}
-      aria-atomic={atomic}
-      className={cn("sr-only", className)}
-    >
+    <div aria-live={politeness} aria-atomic={atomic} className={cn('sr-only', className)}>
       {children}
     </div>
   )
@@ -95,17 +92,19 @@ export function ProgressAnnouncer({ progress, stage, isDeploying }: ProgressAnno
       let announcement = ''
 
       if (progressChanged) {
-        announcement = `部署进度：${progress}%。`
+        announcement = m['ide.deployment.status.progressAnnouncement']({ progress })
       }
 
       if (stageChanged) {
-        announcement += `当前阶段：${stage}。`
+        announcement += m['ide.deployment.status.currentStageAnnouncement']({ stage })
       }
 
       // Add estimated time for better UX
       if (progress > 0 && progress < 100) {
         const estimatedMinutes = Math.ceil((100 - progress) / 10)
-        announcement += `预计还需 ${estimatedMinutes} 分钟。`
+        announcement += m['ide.deployment.status.estimatedMinutesAnnouncement']({
+          estimatedMinutes,
+        })
       }
 
       if (announceRef.current) {
@@ -118,7 +117,7 @@ export function ProgressAnnouncer({ progress, stage, isDeploying }: ProgressAnno
   }, [progress, stage, isDeploying])
 
   return (
-    <LiveRegion politeness="polite">
+    <LiveRegion politeness='polite'>
       <div ref={announceRef} />
     </LiveRegion>
   )
@@ -142,11 +141,9 @@ export function StatusAnnouncer({ status, message }: StatusAnnouncerProps) {
   }, [status])
 
   return (
-    <LiveRegion politeness="assertive">
+    <LiveRegion politeness='assertive'>
       {status !== previousStatus.current && (
-        <div>
-          {message || `Deployment status changed to: ${status}`}
-        </div>
+        <div>{message || `Deployment status changed to: ${status}`}</div>
       )}
     </LiveRegion>
   )
@@ -163,14 +160,14 @@ export function useFocusManagement(isOpen: boolean) {
     if (isOpen) {
       // Store the previously focused element
       previousActiveElement.current = document.activeElement as HTMLElement
-      
+
       // Focus the container or first focusable element
       const container = containerRef.current
       if (container) {
         const firstFocusable = container.querySelector(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         ) as HTMLElement
-        
+
         if (firstFocusable) {
           firstFocusable.focus()
         } else {
@@ -199,11 +196,11 @@ interface KeyboardNavigationProps {
   className?: string
 }
 
-export function KeyboardNavigation({ 
-  children, 
-  onEscape, 
-  onEnter, 
-  className 
+export function KeyboardNavigation({
+  children,
+  onEscape,
+  onEnter,
+  className,
 }: KeyboardNavigationProps) {
   const handleKeyDown = (event: React.KeyboardEvent) => {
     switch (event.key) {
@@ -223,11 +220,7 @@ export function KeyboardNavigation({
   }
 
   return (
-    <div
-      onKeyDown={handleKeyDown}
-      className={className}
-      tabIndex={-1}
-    >
+    <div onKeyDown={handleKeyDown} className={className} tabIndex={-1}>
       {children}
     </div>
   )
@@ -242,12 +235,12 @@ interface AccessibleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEle
   children: React.ReactNode
 }
 
-export function AccessibleButton({ 
-  isLoading, 
-  loadingText, 
-  children, 
+export function AccessibleButton({
+  isLoading,
+  loadingText,
+  children,
   disabled,
-  ...props 
+  ...props
 }: AccessibleButtonProps) {
   return (
     <button
@@ -277,12 +270,12 @@ interface AccessibleProgressProps {
   className?: string
 }
 
-export function AccessibleProgress({ 
-  value, 
-  max = 100, 
-  label, 
+export function AccessibleProgress({
+  value,
+  max = 100,
+  label,
   description,
-  className 
+  className,
 }: AccessibleProgressProps) {
   const progressId = useRef(`progress-${Math.random().toString(36).substr(2, 9)}`)
   const labelId = useRef(`${progressId.current}-label`)
@@ -291,35 +284,33 @@ export function AccessibleProgress({
   return (
     <div className={className}>
       {label && (
-        <div id={labelId.current} className="text-sm font-medium mb-2">
+        <div id={labelId.current} className='text-sm font-medium mb-2'>
           {label}
         </div>
       )}
       {description && (
-        <div id={descId.current} className="text-xs text-muted-foreground mb-2">
+        <div id={descId.current} className='text-xs text-muted-foreground mb-2'>
           {description}
         </div>
       )}
       <div
-        role="progressbar"
+        role='progressbar'
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}
         aria-labelledby={label ? labelId.current : undefined}
         aria-describedby={description ? descId.current : undefined}
-        className="w-full bg-muted/50 rounded-full h-3 overflow-hidden shadow-inner"
+        className='w-full bg-muted/50 rounded-full h-3 overflow-hidden shadow-inner'
       >
         <div
-          className="bg-gradient-to-r from-primary to-primary/80 h-3 rounded-full transition-all duration-700 ease-out relative"
+          className='bg-gradient-to-r from-primary to-primary/80 h-3 rounded-full transition-all duration-700 ease-out relative'
           style={{ width: `${(value / max) * 100}%` }}
         >
           {/* Animated shimmer effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+          <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse' />
         </div>
       </div>
-      <ScreenReaderOnly>
-        {Math.round((value / max) * 100)}% complete
-      </ScreenReaderOnly>
+      <ScreenReaderOnly>{Math.round((value / max) * 100)}% complete</ScreenReaderOnly>
     </div>
   )
 }
@@ -386,7 +377,10 @@ export function useKeyboardNavigation(
       }
 
       // Handle Arrow key navigation
-      if (enableArrowKeys && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+      if (
+        enableArrowKeys &&
+        ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)
+      ) {
         const focusableElements = Array.from(
           container.querySelectorAll<HTMLElement>(
             'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -419,8 +413,6 @@ export function useKeyboardNavigation(
   }, [containerRef, enableArrowKeys, enableTabTrapping, onEscape, autoFocus])
 }
 
-
-
 /**
  * Enhanced ARIA announcer for complex state changes
  */
@@ -449,12 +441,7 @@ export function useAriaAnnouncer() {
   }
 
   const AnnouncerComponent = () => (
-    <div
-      ref={announceRef}
-      aria-live="polite"
-      aria-atomic="true"
-      className="sr-only"
-    />
+    <div ref={announceRef} aria-live='polite' aria-atomic='true' className='sr-only' />
   )
 
   return { announce, AnnouncerComponent }

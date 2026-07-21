@@ -18,16 +18,16 @@
  *
  */
 
-import { useCallback, useEffect, useState } from 'react'
 import { toast } from '@libra/ui/components/sonner'
+import { useCallback, useEffect, useState } from 'react'
 import * as m from '@/paraglide/messages'
 
 // 元素选择器状态枚举
 export enum ElementSelectorState {
   INACTIVE = 'inactive',
-  ACTIVATING = 'activating', 
+  ACTIVATING = 'activating',
   ACTIVE = 'active',
-  SELECTING = 'selecting'
+  SELECTING = 'selecting',
 }
 
 // 选中元素的类型定义
@@ -66,7 +66,7 @@ export const useElementSelector = ({
   onStateChange,
   onElementSelect,
   onElementRemove,
-  onToggle
+  onToggle,
 }: UseElementSelectorProps = {}) => {
   // 基础状态
   const [isActive, setIsActive] = useState(initialActive)
@@ -90,15 +90,15 @@ export const useElementSelector = ({
     if (newActiveState) {
       // 激活选择模式
       setIsActivating(true)
-      
+
       try {
         // 模拟激活过程（可以在这里添加实际的激活逻辑）
-        await new Promise(resolve => setTimeout(resolve, 300))
-        
+        await new Promise((resolve) => setTimeout(resolve, 300))
+
         setIsActive(true)
-        toast.success(m['chatPanel.elementSelector.activatedSuccess']?.() || '元素选择模式已激活')
+        toast.success(m['chatPanel.elementSelector.activatedSuccess']())
       } catch (error) {
-        toast.error(m['chatPanel.elementSelector.activationFailed']?.() || '激活元素选择模式失败')
+        toast.error(m['chatPanel.elementSelector.activationFailed']())
         console.error('Failed to activate element selector:', error)
       } finally {
         setIsActivating(false)
@@ -106,61 +106,70 @@ export const useElementSelector = ({
     } else {
       // 停用选择模式
       setIsActive(false)
-      toast.info(m['chatPanel.elementSelector.deactivated']?.() || '元素选择模式已停用')
+      toast.info(m['chatPanel.elementSelector.deactivated']())
     }
 
     onToggle?.(newActiveState)
   }, [isActive, onToggle])
 
   // 添加选中元素
-  const addSelectedElement = useCallback((element: Omit<SelectedElement, 'timestamp'>) => {
-    if (selectedElements.length >= maxSelections) {
-      toast.warning(m['chatPanel.elementSelector.maxSelectionsReached']?.({ max: maxSelections }) || 
-        `最多只能选择 ${maxSelections} 个元素`)
-      return false
-    }
-
-    const newElement: SelectedElement = {
-      ...element,
-      timestamp: Date.now()
-    }
-
-    setSelectedElements(prev => {
-      // 检查是否已经选择了相同元素
-      const exists = prev.some(el => el.id === element.id)
-      if (exists) {
-        toast.info(m['chatPanel.elementSelector.elementAlreadySelected']?.() || '该元素已被选择')
-        return prev
+  const addSelectedElement = useCallback(
+    (element: Omit<SelectedElement, 'timestamp'>) => {
+      if (selectedElements.length >= maxSelections) {
+        toast.warning(m['chatPanel.elementSelector.maxSelectionsReached']({ max: maxSelections }))
+        return false
       }
 
-      const updated = [...prev, newElement]
-      onElementSelect?.(newElement)
-      toast.success(m['chatPanel.elementSelector.elementAdded']?.({
-        tagName: element.tagName
-      }) || `已选择 ${element.tagName} 元素`)
-      
-      return updated
-    })
+      const newElement: SelectedElement = {
+        ...element,
+        timestamp: Date.now(),
+      }
 
-    return true
-  }, [selectedElements.length, maxSelections, onElementSelect])
+      setSelectedElements((prev) => {
+        // 检查是否已经选择了相同元素
+        const exists = prev.some((el) => el.id === element.id)
+        if (exists) {
+          toast.info(m['chatPanel.elementSelector.elementAlreadySelected']())
+          return prev
+        }
+
+        const updated = [...prev, newElement]
+        onElementSelect?.(newElement)
+        toast.success(
+          m['chatPanel.elementSelector.elementAdded']({
+            tagName: element.tagName,
+          })
+        )
+
+        return updated
+      })
+
+      return true
+    },
+    [selectedElements.length, maxSelections, onElementSelect]
+  )
 
   // 移除选中元素
-  const removeSelectedElement = useCallback((elementId: string) => {
-    setSelectedElements(prev => {
-      const elementToRemove = prev.find(el => el.id === elementId)
-      if (!elementToRemove) return prev
+  const removeSelectedElement = useCallback(
+    (elementId: string) => {
+      setSelectedElements((prev) => {
+        const elementToRemove = prev.find((el) => el.id === elementId)
+        if (!elementToRemove) return prev
 
-      const updated = prev.filter(el => el.id !== elementId)
-      onElementRemove?.(elementId)
-      
-      toast.success(m['chatPanel.elementSelector.elementRemoved']?.({
-        tagName: elementToRemove.tagName
-      }) || `已移除 ${elementToRemove.tagName} 元素`)
-      
-      return updated
-    })
-  }, [onElementRemove])
+        const updated = prev.filter((el) => el.id !== elementId)
+        onElementRemove?.(elementId)
+
+        toast.success(
+          m['chatPanel.elementSelector.elementRemoved']({
+            tagName: elementToRemove.tagName,
+          })
+        )
+
+        return updated
+      })
+    },
+    [onElementRemove]
+  )
 
   // 清除所有选中元素
   const clearSelectedElements = useCallback(() => {
@@ -168,22 +177,20 @@ export const useElementSelector = ({
     if (count === 0) return
 
     setSelectedElements([])
-    toast.success(m['chatPanel.elementSelector.allElementsCleared']?.({ count }) || 
-      `已清除 ${count} 个选中元素`)
+    toast.success(m['chatPanel.elementSelector.allElementsCleared']({ count }))
   }, [selectedElements.length])
 
   // 获取状态描述文本
   const getStateDescription = useCallback(() => {
     switch (currentState) {
       case ElementSelectorState.INACTIVE:
-        return m['chatPanel.elementSelector.stateInactive']?.() || '点击开始选择元素'
+        return m['chatPanel.elementSelector.stateInactive']()
       case ElementSelectorState.ACTIVATING:
-        return m['chatPanel.elementSelector.stateActivating']?.() || '正在启动选择模式...'
+        return m['chatPanel.elementSelector.stateActivating']()
       case ElementSelectorState.ACTIVE:
-        return m['chatPanel.elementSelector.stateActive']?.() || '点击页面元素进行选择'
+        return m['chatPanel.elementSelector.stateActive']()
       case ElementSelectorState.SELECTING:
-        return m['chatPanel.elementSelector.stateSelecting']?.({ count: selectedElements.length }) || 
-          `已选择 ${selectedElements.length} 个元素`
+        return m['chatPanel.elementSelector.stateSelecting']({ count: selectedElements.length })
       default:
         return ''
     }
@@ -199,7 +206,7 @@ export const useElementSelector = ({
     if (currentState === ElementSelectorState.ACTIVE) {
       const timeout = setTimeout(() => {
         if (selectedElements.length === 0 && isActive) {
-          toast.info(m['chatPanel.elementSelector.autoDeactivated']?.() || '选择模式已自动停用')
+          toast.info(m['chatPanel.elementSelector.autoDeactivated']())
           setIsActive(false)
           onToggle?.(false)
         }
@@ -217,17 +224,17 @@ export const useElementSelector = ({
     selectedCount: selectedElements.length,
     isActivating,
     canSelectMore: selectedElements.length < maxSelections,
-    
+
     // 操作方法
     toggleSelector,
     addSelectedElement,
     removeSelectedElement,
     clearSelectedElements,
-    
+
     // 辅助方法
     getStateDescription,
-    
+
     // 配置
-    maxSelections
+    maxSelections,
   }
 }

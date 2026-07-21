@@ -20,9 +20,9 @@
 
 'use client'
 
-import React, { useMemo } from 'react'
-import { Shield, Zap, RefreshCw } from 'lucide-react'
 import { cn } from '@libra/ui/lib/utils'
+import { RefreshCw, Shield, Zap } from 'lucide-react'
+import React, { useMemo } from 'react'
 import * as m from '@/paraglide/messages'
 
 interface FeatureStatus {
@@ -39,9 +39,24 @@ interface FeatureStatusBarProps {
 
 // Simplified default features with neutral colors
 const getDefaultFeatures = (): FeatureStatus[] => [
-  { label: m["ide.deployment.features.sslEnabled"](), color: 'neutral', active: true, icon: Shield },
-  { label: m["ide.deployment.features.cdnAccelerated"](), color: 'neutral', active: true, icon: Zap },
-  { label: m["ide.deployment.features.realTimeSync"](), color: 'neutral', active: true, icon: RefreshCw }
+  {
+    label: m['ide.deployment.features.sslEnabled'](),
+    color: 'neutral',
+    active: true,
+    icon: Shield,
+  },
+  {
+    label: m['ide.deployment.features.cdnAccelerated'](),
+    color: 'neutral',
+    active: true,
+    icon: Zap,
+  },
+  {
+    label: m['ide.deployment.features.realTimeSync'](),
+    color: 'neutral',
+    active: true,
+    icon: RefreshCw,
+  },
 ]
 
 const colorMap = {
@@ -49,7 +64,7 @@ const colorMap = {
   green: 'bg-green-500',
   blue: 'bg-blue-500',
   purple: 'bg-purple-500',
-  orange: 'bg-orange-500'
+  orange: 'bg-orange-500',
 }
 
 // Memoized feature item component for better performance
@@ -60,14 +75,14 @@ const FeatureItem = React.memo<{
   const IconComponent = feature.icon
 
   return (
-    <div key={`feature-${feature.label}-${index}`} className="flex items-center gap-2">
+    <div key={`feature-${feature.label}-${index}`} className='flex items-center gap-2'>
       {IconComponent ? (
         <IconComponent
           className={cn(
             'w-4 h-4',
             feature.active ? colorMap[feature.color].replace('bg-', 'text-') : 'text-muted'
           )}
-          aria-hidden="true"
+          aria-hidden='true'
         />
       ) : (
         <div
@@ -75,13 +90,10 @@ const FeatureItem = React.memo<{
             'w-2 h-2 rounded-full',
             feature.active ? colorMap[feature.color] : 'bg-muted'
           )}
-          aria-hidden="true"
+          aria-hidden='true'
         />
       )}
-      <span className={cn(
-        'text-muted-foreground',
-        feature.active && 'text-foreground'
-      )}>
+      <span className={cn('text-muted-foreground', feature.active && 'text-foreground')}>
         {feature.label}
       </span>
     </div>
@@ -90,18 +102,15 @@ const FeatureItem = React.memo<{
 
 FeatureItem.displayName = 'FeatureItem'
 
-export const FeatureStatusBar = React.memo<FeatureStatusBarProps>(({
-  features,
-  className
-}) => {
+export const FeatureStatusBar = React.memo<FeatureStatusBarProps>(({ features, className }) => {
   // Memoize default features to prevent recreation
   const defaultFeatures = useMemo(() => getDefaultFeatures(), [])
   const finalFeatures = features || defaultFeatures
 
   return (
     <div className={cn('deployment-card p-4', className)}>
-      <div className="flex items-center justify-between text-sm">
-        <div className="flex items-center gap-4 flex-wrap">
+      <div className='flex items-center justify-between text-sm'>
+        <div className='flex items-center gap-4 flex-wrap'>
           {finalFeatures.map((feature, index) => (
             <FeatureItem
               key={`feature-${feature.label}-${index}`}

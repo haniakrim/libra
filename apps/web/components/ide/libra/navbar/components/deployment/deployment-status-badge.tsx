@@ -20,18 +20,10 @@
 
 'use client'
 
-import { 
-  Eye, 
-  Loader2, 
-  CheckCircle, 
-  Globe, 
-  XCircle, 
-  Clock,
-  type LucideIcon 
-} from 'lucide-react'
 import { cn } from '@libra/ui/lib/utils'
-import { DeploymentStatus } from '../../types/deployment'
+import { CheckCircle, Clock, Eye, Globe, Loader2, type LucideIcon, XCircle } from 'lucide-react'
 import * as m from '@/paraglide/messages'
+import { DeploymentStatus } from '../../types/deployment'
 
 interface DeploymentStatusBadgeProps {
   status: DeploymentStatus
@@ -56,70 +48,71 @@ const getStatusConfig = (status: DeploymentStatus): StatusConfig => {
     case DeploymentStatus.PREVIEW:
       return {
         icon: Eye,
-        label: m["ide.deployment.dialog.deploymentStatusPreview"](),
-        bgColor: 'bg-muted/50',
-        textColor: 'text-muted-foreground',
-        borderColor: 'border-muted',
-        iconColor: 'text-muted-foreground'
-      }
-    case DeploymentStatus.PREPARING:
-      return {
-        icon: Clock,
-        label: m["ide.deployment.dialog.deploymentStatusPreparing"](),
+        label: m['ide.deployment.dialog.deploymentStatusPreview'](),
         bgColor: 'bg-muted/50',
         textColor: 'text-muted-foreground',
         borderColor: 'border-muted',
         iconColor: 'text-muted-foreground',
-        animated: true
+      }
+    case DeploymentStatus.PREPARING:
+      return {
+        icon: Clock,
+        label: m['ide.deployment.dialog.deploymentStatusPreparing'](),
+        bgColor: 'bg-muted/50',
+        textColor: 'text-muted-foreground',
+        borderColor: 'border-muted',
+        iconColor: 'text-muted-foreground',
+        animated: true,
       }
     case DeploymentStatus.DEPLOYING:
       return {
         icon: Loader2,
-        label: m["ide.deployment.dialog.deploymentStatusDeploying"](),
+        label: m['ide.deployment.dialog.deploymentStatusDeploying'](),
         bgColor: 'bg-primary/10',
         textColor: 'text-primary',
         borderColor: 'border-primary/20',
         iconColor: 'text-primary',
-        animated: true
+        animated: true,
       }
     case DeploymentStatus.DEPLOYED:
     case DeploymentStatus.LIVE:
       return {
         icon: CheckCircle,
-        label: status === DeploymentStatus.LIVE
-          ? m["ide.deployment.dialog.deploymentStatusLive"]()
-          : m["ide.deployment.dialog.deploymentStatusDeployed"](),
+        label:
+          status === DeploymentStatus.LIVE
+            ? m['ide.deployment.dialog.deploymentStatusLive']()
+            : m['ide.deployment.dialog.deploymentStatusDeployed'](),
         bgColor: 'bg-green-50 dark:bg-green-900/20',
         textColor: 'text-green-700 dark:text-green-300',
         borderColor: 'border-green-200 dark:border-green-800',
-        iconColor: 'text-green-600 dark:text-green-400'
+        iconColor: 'text-green-600 dark:text-green-400',
       }
     case DeploymentStatus.FAILED:
       return {
         icon: XCircle,
-        label: m["ide.deployment.dialog.deploymentStatusFailed"](),
+        label: m['ide.deployment.dialog.deploymentStatusFailed'](),
         bgColor: 'bg-destructive/10',
         textColor: 'text-destructive',
         borderColor: 'border-destructive/20',
-        iconColor: 'text-destructive'
+        iconColor: 'text-destructive',
       }
     case DeploymentStatus.EXISTING:
       return {
         icon: Globe,
-        label: m["ide.deployment.dialog.deploymentStatusExisting"](),
+        label: m['ide.deployment.dialog.deploymentStatusExisting'](),
         bgColor: 'bg-green-50 dark:bg-green-900/20',
         textColor: 'text-green-700 dark:text-green-300',
         borderColor: 'border-green-200 dark:border-green-800',
-        iconColor: 'text-green-600 dark:text-green-400'
+        iconColor: 'text-green-600 dark:text-green-400',
       }
     default:
       return {
         icon: Eye,
-        label: m["ide.deployment.dialog.deploymentStatusPreview"](),
+        label: m['ide.deployment.dialog.deploymentStatusPreview'](),
         bgColor: 'bg-muted/50',
         textColor: 'text-muted-foreground',
         borderColor: 'border-muted',
-        iconColor: 'text-muted-foreground'
+        iconColor: 'text-muted-foreground',
       }
   }
 }
@@ -130,19 +123,19 @@ const getSizeClasses = (size: 'sm' | 'md' | 'lg') => {
       return {
         container: 'px-2 py-1 text-xs',
         icon: 'h-3 w-3',
-        gap: 'gap-1'
+        gap: 'gap-1',
       }
     case 'lg':
       return {
         container: 'px-4 py-2 text-base',
         icon: 'h-5 w-5',
-        gap: 'gap-2'
+        gap: 'gap-2',
       }
     default: // md
       return {
         container: 'px-3 py-1.5 text-sm',
         icon: 'h-4 w-4',
-        gap: 'gap-1.5'
+        gap: 'gap-1.5',
       }
   }
 }
@@ -152,7 +145,7 @@ export function DeploymentStatusBadge({
   className,
   size = 'md',
   showIcon = true,
-  showText = true
+  showText = true,
 }: DeploymentStatusBadgeProps) {
   const config = getStatusConfig(status)
   const sizeClasses = getSizeClasses(size)
@@ -169,7 +162,7 @@ export function DeploymentStatusBadge({
         sizeClasses.gap,
         className
       )}
-      role="status"
+      role='status'
       aria-label={config.label}
     >
       {showIcon && (
@@ -180,14 +173,10 @@ export function DeploymentStatusBadge({
             config.animated && status === DeploymentStatus.DEPLOYING && 'animate-spin',
             config.animated && status === DeploymentStatus.PREPARING && 'animate-pulse'
           )}
-          aria-hidden="true"
+          aria-hidden='true'
         />
       )}
-      {showText && (
-        <span className="font-medium">
-          {config.label}
-        </span>
-      )}
+      {showText && <span className='font-medium'>{config.label}</span>}
     </div>
   )
 }
