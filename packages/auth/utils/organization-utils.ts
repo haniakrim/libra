@@ -25,7 +25,7 @@ import {
   member,
   organization as organizationTable,
   user,
-} from '../db'
+} from '@libra/auth/db'
 
 /**
  * Get the user's active organization.

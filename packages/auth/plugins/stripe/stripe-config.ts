@@ -21,7 +21,7 @@
 import type { GenericEndpointContext, Session, User } from 'better-auth'
 import type { Subscription } from '@libra/better-auth-stripe'
 import { eq } from 'drizzle-orm'
-import { getAuthDb, member, plan } from '../../db'
+import { getAuthDb, member, plan } from '@libra/auth/db'
 import {
   handlePriceCreatedOrUpdated,
   handlePriceDeleted,

@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: AGPL-3.0-only
- * index.ts
+ * index.workerd.ts
  * Copyright (C) 2025 Nextify Limited
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,13 +18,20 @@
  *
  */
 
+// Cloudflare Workers ("workerd" esbuild condition) build of ./db. Resolved
+// instead of index.ts by opennextjs-cloudflare (useWorkerdCondition, on by
+// default) via the "workerd" key in package.json's "./db" export map.
+// It never imports selfhost.ts, so 'bun:sqlite' — which doesn't exist
+// outside Bun — is unreachable from this build's module graph entirely,
+// instead of merely unreached at runtime. Keep this file's shape in sync
+// with index.ts's non-self-hosted branch.
+
 import {getCloudflareContext} from "@opennextjs/cloudflare";
 import {drizzle} from "drizzle-orm/d1";
 import type {DrizzleD1Database} from "drizzle-orm/d1";
 import {isSelfHosted} from "@libra/common";
 import {schema} from "./schema";
 import {getRedisKv} from "./kv-shim";
-import {getSelfHostedAuthDb} from "./selfhost";
 
 export async function getCache() {
     if (isSelfHosted()) {
@@ -35,21 +42,13 @@ export async function getCache() {
     return (env as any).CACHE;
 }
 
-// Return type is pinned to the D1 shape so callers (e.g. packages/api routers)
-// see one stable type regardless of runtime backend. The self-hosted SQLite
-// instance supports the same query-builder surface used anywhere in this
-// codebase (select/insert/update/where/...) — it only lacks D1's `batch()`,
-// which nothing here calls.
 export async function getAuthDb(): Promise<DrizzleD1Database<typeof schema>> {
-    // Determine environment: disable logger in production, enable in non-production
     const isProduction = (process.env['ENVIRONMENT'] as string) === 'production';
 
     if (isSelfHosted()) {
-        const dbPath = process.env.AUTH_DB_PATH;
-        if (!dbPath) {
-            throw new Error('AUTH_DB_PATH is required when SELF_HOSTED=true');
-        }
-        return getSelfHostedAuthDb(dbPath, isProduction);
+        throw new Error(
+            'SELF_HOSTED=true is not supported on the Cloudflare Workers deployment target'
+        );
     }
 
     // Retrieves Cloudflare-specific context, including environment variables and bindings

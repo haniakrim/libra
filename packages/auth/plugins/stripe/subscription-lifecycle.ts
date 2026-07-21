@@ -31,7 +31,7 @@ import { PLAN_TYPES } from '../../utils/subscription-limits'
 import { getDbAsync } from '@libra/db'
 import { project } from '@libra/db/schema/project-schema'
 import { and, eq, desc, sql, inArray } from 'drizzle-orm'
-import { getAuthDb, member } from '../../db'
+import { getAuthDb, member } from '@libra/auth/db'
 import { log } from '@libra/common'
 
 /**

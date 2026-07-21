@@ -22,7 +22,7 @@ import { tryCatch } from '@libra/common'
 import { createId } from '@paralleldrive/cuid2'
 import { eq } from 'drizzle-orm'
 import type { Stripe } from 'stripe'
-import { getAuthDb, plan } from '../../db'
+import { getAuthDb, plan } from '@libra/auth/db'
 
 /**
  * Parse limit information from product metadata

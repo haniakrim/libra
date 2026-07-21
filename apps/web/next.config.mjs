@@ -18,6 +18,7 @@
  *
  */
 
+import { fileURLToPath } from "node:url";
 import { paraglideWebpackPlugin } from "@inlang/paraglide-js";
 import {initOpenNextCloudflareForDev} from "@opennextjs/cloudflare";
 
@@ -83,6 +84,20 @@ const nextConfig = {
                 cookieDomain: process.env.NODE_ENV === 'production' ? '.libra.agentic-lab.io' : 'localhost'
             })
     		);
+
+    		// The Cloudflare/OpenNext build target never runs self-hosted, so
+    		// force @libra/auth/db to its "workerd" variant here too — package.json
+    		// exports conditions only take effect for opennextjs-cloudflare's
+    		// second-pass esbuild bundling, which runs on already-webpack-flattened
+    		// output where the 'bun:sqlite' import is already inlined as a literal
+    		// require. This alias makes webpack (the first pass) pick the
+    		// bun:sqlite-free file, so it's never in the graph at either stage.
+    		if (process.env.SELF_HOSTED !== 'true') {
+    			config.resolve.alias['@libra/auth/db$'] = fileURLToPath(
+    				new URL('../../packages/auth/db/index.workerd.ts', import.meta.url)
+    			);
+    		}
+
     		return config;
     },
     serverExternalPackages: ["@prisma/client", ".prisma/client", "postgres", "@libsql/isomorphic-ws", "jose", "ioredis"],

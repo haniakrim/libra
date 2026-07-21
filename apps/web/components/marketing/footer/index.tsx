@@ -19,12 +19,11 @@
  */
 
 import { cn } from '@libra/ui/lib/utils'
+import Image from 'next/image'
 import type { ReactNode } from 'react'
-import { Logo } from '@/components/common/logo/LogoImage'
 import { Footer, FooterBottom, FooterColumn, FooterContent } from '@/components/ui/footer'
 import { siteConfig } from '@/configs/site'
 import * as m from '@/paraglide/messages'
-import { TextGif } from '../../ui/text-gif'
 
 interface FooterLink {
   text: string
@@ -40,7 +39,6 @@ interface FooterColumnProps {
 
 interface FooterProps {
   logo?: ReactNode
-  name?: string
   columns?: FooterColumnProps[]
   copyright?: string
   policies?: FooterLink[]
@@ -48,8 +46,15 @@ interface FooterProps {
 }
 
 export default function FooterSection({
-  logo = <Logo />,
-  name = 'Libra AI',
+  logo = (
+    <Image
+      src='/images/brand/libra-header-logo.png'
+      alt='Libra AI'
+      width={192}
+      height={40}
+      className='h-8 w-auto'
+    />
+  ),
   columns = [
     {
       id: 'product',
@@ -82,12 +87,7 @@ export default function FooterSection({
         <Footer>
           <FooterContent>
             <FooterColumn className='col-span-12 sm:col-span-6 md:col-span-3 lg:col-span-1'>
-              <div className='flex items-center gap-1'>
-                {logo}
-                <h3 className='text-lg sm:text-xl font-bold'>
-                  <TextGif text={name} weight='bold' />
-                </h3>
-              </div>
+              <div className='flex items-center gap-1'>{logo}</div>
             </FooterColumn>
             {columns.map((column) => (
               <FooterColumn key={column.id}>

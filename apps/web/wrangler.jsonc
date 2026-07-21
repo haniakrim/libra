@@ -79,7 +79,7 @@
   "hyperdrive": [
     {
       "binding": "HYPERDRIVE",
-      "id": "c00328e4ab70457fb86356e1e325ef7d",
+      "id": "0568bed457e14b3b9db400adca779f2b",
       "localConnectionString": "postgresql://postgres:postgres@libra:5432/libra"
     }
   ],

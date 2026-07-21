@@ -18,7 +18,7 @@
  *
  */
 
-import { getAuthDb, eq, user } from '../db';
+import { getAuthDb, eq, user } from '@libra/auth/db';
 import {
   sendWelcomeEmail as sendWelcomeEmailTemplate,
   sendCancellationEmail as sendCancellationEmailTemplate,

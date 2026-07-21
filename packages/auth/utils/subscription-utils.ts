@@ -19,7 +19,7 @@
  */
 
 import { eq } from 'drizzle-orm'
-import { getAuthDb, subscription } from '../db'
+import { getAuthDb, subscription } from '@libra/auth/db'
 
 // Get user subscription from database
 export async function getSubscription(userId: string) {

@@ -19,6 +19,7 @@
     },
     "./db": {
       "types": "./db/index.ts",
+      "workerd": "./db/index.workerd.ts",
       "default": "./db/index.ts"
     },
     "./db/schema/*": {

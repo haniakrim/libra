@@ -19,7 +19,7 @@
  */
 
 import { eq } from 'drizzle-orm'
-import { getAuthDb, plan } from '../../db'
+import { getAuthDb, plan } from '@libra/auth/db'
 import { createOrUpdateSubscriptionLimit } from '../../utils/subscription-limits'
 
 export const onSubscriptionUpdate = async ({ event, subscription }: any) => {

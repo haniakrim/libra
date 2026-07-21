@@ -22,7 +22,7 @@ import { tryCatch } from '@libra/common'
 import { createId } from '@paralleldrive/cuid2'
 import { eq, or } from 'drizzle-orm'
 import type { Stripe } from 'stripe'
-import { getAuthDb, plan, price } from '../../db'
+import { getAuthDb, plan, price } from '@libra/auth/db'
 import { stripeClient } from '../shared/types'
 
 /**

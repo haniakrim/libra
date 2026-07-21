@@ -19,7 +19,7 @@
  */
 
 import { eq, and } from 'drizzle-orm'
-import { getAuthDb } from '../db'
+import { getAuthDb } from '@libra/auth/db'
 import { user, member } from '../db/schema/auth-schema'
 import { log } from '@libra/common'
 
