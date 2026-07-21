@@ -19,34 +19,24 @@
  */
 
 'use client'
+import { ComposioIntegrationsGrid } from '@/components/dashboard/integrations/composio-integrations-grid'
 import { GitHubIntegrationCard } from '@/components/dashboard/integrations/github-integration-card'
 import * as m from '@/paraglide/messages'
 
 export default function IntegrationsPage() {
   return (
-    <div className="container mx-auto py-8 px-4 max-w-4xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">{m['dashboard.integrations.title']()}</h1>
-        <p className="text-muted-foreground mt-2">
-          {m['dashboard.integrations.subtitle']()}
-        </p>
+    <div className='container mx-auto py-8 px-4 max-w-4xl'>
+      <div className='mb-8'>
+        <h1 className='text-3xl font-bold tracking-tight'>{m['dashboard.integrations.title']()}</h1>
+        <p className='text-muted-foreground mt-2'>{m['dashboard.integrations.subtitle']()}</p>
       </div>
 
-      <div className="grid gap-6">
+      <div className='grid gap-6'>
         <GitHubIntegrationCard />
 
-        {/* Placeholder for future integrations */}
-        <div className="opacity-60">
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div className="flex flex-col space-y-1.5 p-6">
-              <h3 className="text-2xl font-semibold leading-none tracking-tight text-muted-foreground">
-                {m['dashboard.integrations.coming_soon.title']()}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {m['dashboard.integrations.coming_soon.description']()}
-              </p>
-            </div>
-          </div>
+        <div>
+          <h2 className='text-xl font-semibold tracking-tight mb-4'>More Integrations</h2>
+          <ComposioIntegrationsGrid />
         </div>
       </div>
     </div>
