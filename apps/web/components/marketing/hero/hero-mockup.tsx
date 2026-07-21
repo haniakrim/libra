@@ -24,26 +24,18 @@ import Glow from '@libra/ui/components/glow'
 import { Mockup, MockupFrame } from '@libra/ui/components/mockup'
 import type { ReactNode } from 'react'
 import { memo } from 'react'
-import Screenshot from '@/components/ui/screenshot'
+import { HeroAppPreview } from './components/hero-app-preview'
 
 interface HeroMockupProps {
   mockup?: ReactNode | false
 }
 
 /**
- * Default app screenshot configuration
+ * Default app preview — a themed component (not a raster screenshot) so
+ * its colors come from the shared design tokens and stay in sync with
+ * theme changes automatically.
  */
-const defaultMockup = (
-  <Screenshot
-    srcLight='/app-light.png'
-    srcDark='/app-dark.png'
-    alt='Libra AI  UI  screenshot'
-    width={1248}
-    height={765}
-    className='w-full dark:brightness-[0.72] dark:contrast-[0.95]'
-    priority={false}
-  />
-)
+const defaultMockup = <HeroAppPreview />
 
 /**
  * Bottom app showcase area of the Hero component
