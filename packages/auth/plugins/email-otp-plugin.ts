@@ -49,17 +49,14 @@ export const emailOTPPlugin = emailOTP({
       template = React.createElement(EmailVerificationTemplate, { otp })
       subject = emailSubjects['email-verification']
     }
-    console.log('[email-otp] Sending verification OTP', { email, type, from: emailEnv.RESEND_FROM })
     try {
-      const result = await resend.emails.send({
+      await resend.emails.send({
         from: emailEnv.RESEND_FROM,
         to: [email],
         subject,
         react: template as any,
       })
-      console.log('[email-otp] Resend send result', { email, type, result })
     } catch (error) {
-      console.error('[email-otp] Failed to send verification OTP', { email, type, error })
       throw error
     }
   },

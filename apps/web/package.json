@@ -7,7 +7,7 @@
     "prebuild": "paraglide-js compile --project ./project.inlang --outdir ./paraglide",
     "build": "paraglide-js compile --project ./project.inlang --outdir ./paraglide && dotenv -e ../../.env -- next build",
     "clean": "rm -rf ",
-    "dev": "bun with-env next dev --turbo -p 3000",
+    "dev": "dotenv -e ../../.env -e .env.local -o -- next dev --turbo -p 3000",
     "test": "bun with-env vitest",
     "test:watch": "bun with-env vitest watch",
     "with-env": "dotenv -e ../../.env --",

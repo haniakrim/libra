@@ -66,9 +66,7 @@ export default function FooterSection({
     {
       id: 'contact',
       title: m['footer.contact'](),
-      links: [
-        { id: 'twitter', text: m['footer.twitter'](), href: siteConfig.links.twitter },
-      ],
+      links: [{ id: 'twitter', text: m['footer.twitter'](), href: siteConfig.links.twitter }],
     },
   ],
   copyright = m['footer.copyright_nextify'](),

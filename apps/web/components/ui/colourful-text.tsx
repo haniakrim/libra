@@ -23,7 +23,21 @@ import { motion } from 'motion/react'
 import React from 'react'
 
 export function ColourfulText({ text }: { text: string }) {
-  const colors = [
+  // Light mode: warm brand palette; dark mode: Tron cyan palette
+  const lightColors = [
+    'rgb(215, 120, 40)',
+    'rgb(210, 100, 30)',
+    'rgb(225, 135, 50)',
+    'rgb(200, 90, 25)',
+    'rgb(235, 150, 60)',
+    'rgb(205, 110, 35)',
+    'rgb(220, 125, 45)',
+    'rgb(190, 85, 20)',
+    'rgb(230, 140, 55)',
+    'rgb(215, 115, 38)',
+  ]
+
+  const darkColors = [
     'rgb(0, 240, 255)',
     'rgb(0, 220, 230)',
     'rgb(0, 200, 210)',
@@ -36,11 +50,44 @@ export function ColourfulText({ text }: { text: string }) {
     'rgb(0, 235, 245)',
   ]
 
+  const [isDark, setIsDark] = React.useState(() => {
+    if (typeof document === 'undefined') return false
+    return (
+      document.documentElement.classList.contains('dark') ||
+      window.matchMedia?.('(prefers-color-scheme: dark)').matches ||
+      false
+    )
+  })
+  const colors = isDark ? darkColors : lightColors
+
   const [currentColors, setCurrentColors] = React.useState(colors)
   const [count, setCount] = React.useState(0)
   const [isHydrated, setIsHydrated] = React.useState(false)
 
+  // Keep current color palette in sync with the active theme
   React.useEffect(() => {
+    setCurrentColors(colors)
+  }, [colors])
+
+  React.useEffect(() => {
+    // Detect theme on mount and listen for changes
+    const updateTheme = () => {
+      const isDarkMode =
+        document.documentElement.classList.contains('dark') ||
+        window.matchMedia?.('(prefers-color-scheme: dark)').matches ||
+        false
+      setIsDark(isDarkMode)
+    }
+    updateTheme()
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = () => updateTheme()
+    mediaQuery.addEventListener('change', handleChange)
+
+    // Watch for class changes on html element
+    const observer = new MutationObserver(() => updateTheme())
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+
     // Set hydrated state first to avoid hydration mismatch
     setIsHydrated(true)
 
@@ -58,7 +105,11 @@ export function ColourfulText({ text }: { text: string }) {
       setCount((prev) => prev + 1)
     }, 5000)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      mediaQuery.removeEventListener('change', handleChange)
+      observer.disconnect()
+    }
   }, [])
 
   // Don't render animations until hydrated to prevent mismatch
@@ -68,7 +119,6 @@ export function ColourfulText({ text }: { text: string }) {
 
   return text.split('').map((char, index) => (
     <motion.span
-      // biome-ignore lint/suspicious/noArrayIndexKey: Index is stable for this use case
       key={`${char}-${count}-${index}`}
       initial={{
         y: 0,
@@ -84,7 +134,7 @@ export function ColourfulText({ text }: { text: string }) {
         duration: 0.5,
         delay: index * 0.05,
       }}
-      className='inline-block whitespace-pre font-sans tracking-tight [text-shadow:0_0_8px_oklch(85%_0.15_200_/_0.55)]'
+      className='inline-block whitespace-pre font-sans tracking-tight [text-shadow:0_0_8px_color-mix(in_oklch,var(--brand)_55%,transparent)] dark:[text-shadow:0_0_8px_oklch(85%_0.15_200_/_0.55)]'
     >
       {char}
     </motion.span>

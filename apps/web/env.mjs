@@ -18,8 +18,11 @@
  *
  */
 
+import { isDevelopment } from '@libra/common'
 import { createEnv } from '@t3-oss/env-nextjs'
 import { z } from 'zod'
+
+const stripeKeySchema = isDevelopment() ? z.string().optional() : z.string().min(1)
 
 export const env = createEnv({
   server: {
@@ -55,8 +58,8 @@ export const env = createEnv({
     REASONING_ENABLED: z.boolean().optional(),
     CLOUDFLARE_AIGATEWAY_NAME: z.string().optional(),
     CLOUDFLARE_ACCOUNT_ID: z.string().optional(),
-    STRIPE_SECRET_KEY: z.string().min(1),
-    STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    STRIPE_SECRET_KEY: stripeKeySchema,
+    STRIPE_WEBHOOK_SECRET: stripeKeySchema,
     DATABASE_ID: z.string().min(1),
     CLOUDFLARE_API_TOKEN: z.string().min(1),
     TURNSTILE_SECRET_KEY: z.string().min(1),

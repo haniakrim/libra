@@ -20,10 +20,22 @@
 
 import { Stripe } from 'stripe'
 import { env } from '../env.mjs'
+import { isDevelopment, log } from '@libra/common'
+
+const rawStripeKey = env.STRIPE_SECRET_KEY
+const isPlaceholder = !rawStripeKey || rawStripeKey.startsWith('HITL_REQUIRED')
+
+if (isPlaceholder) {
+  if (isDevelopment()) {
+    log.auth('warn', 'STRIPE_SECRET_KEY is missing or a placeholder; Stripe plugin disabled for local development', {
+      operation: 'stripe_init',
+    })
+  }
+}
 
 // Initialize Stripe client (will only be used if the plugin is added)
-export const stripeClient = env.STRIPE_SECRET_KEY
-  ? new Stripe(env.STRIPE_SECRET_KEY, {
+export const stripeClient = !isPlaceholder
+  ? new Stripe(rawStripeKey, {
       apiVersion: '2025-08-27.basil',
       httpClient: Stripe.createFetchHttpClient(),
       typescript: true,

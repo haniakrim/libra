@@ -55,8 +55,16 @@ const LogoSvg = ({ size, className, alt }: LogoSvgProps) => (
 export const Logo = () => {
   return (
     <div className='h-[56px] aspect-square flex items-center justify-center text-[var(--brand)]'>
-      <LogoSvg size={56} alt={m['logo.alt']()} className='block dark:hidden object-contain transition-opacity duration-300' />
-      <LogoSvg size={56} alt={m['logo.alt']()} className='hidden dark:block object-contain transition-opacity duration-300' />
+      <LogoSvg
+        size={56}
+        alt={m['logo.alt']()}
+        className='block dark:hidden object-contain transition-opacity duration-300'
+      />
+      <LogoSvg
+        size={56}
+        alt={m['logo.alt']()}
+        className='hidden dark:block object-contain transition-opacity duration-300'
+      />
     </div>
   )
 }
@@ -64,8 +72,16 @@ export const Logo = () => {
 export const LogoLarge = () => {
   return (
     <div className='h-[112px] aspect-square flex items-center justify-center text-[var(--brand)]'>
-      <LogoSvg size={112} alt={m['logo.alt']()} className='block dark:hidden object-contain transition-opacity duration-300' />
-      <LogoSvg size={112} alt={m['logo.alt']()} className='hidden dark:block object-contain transition-opacity duration-300' />
+      <LogoSvg
+        size={112}
+        alt={m['logo.alt']()}
+        className='block dark:hidden object-contain transition-opacity duration-300'
+      />
+      <LogoSvg
+        size={112}
+        alt={m['logo.alt']()}
+        className='hidden dark:block object-contain transition-opacity duration-300'
+      />
     </div>
   )
 }
@@ -73,8 +89,16 @@ export const LogoLarge = () => {
 export const LogoHero = () => {
   return (
     <div className='h-[84px] aspect-square flex items-center justify-center text-[var(--brand)]'>
-      <LogoSvg size={72} alt={m['logo.alt']()} className='block dark:hidden object-contain transition-opacity duration-300' />
-      <LogoSvg size={72} alt={m['logo.alt']()} className='hidden dark:block object-contain transition-opacity duration-300' />
+      <LogoSvg
+        size={72}
+        alt={m['logo.alt']()}
+        className='block dark:hidden object-contain transition-opacity duration-300'
+      />
+      <LogoSvg
+        size={72}
+        alt={m['logo.alt']()}
+        className='hidden dark:block object-contain transition-opacity duration-300'
+      />
     </div>
   )
 }
