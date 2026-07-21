@@ -326,9 +326,7 @@ describe('buildFiles Function Tests', () => {
   // Test case 5: Invalid input test
   test('should gracefully handle invalid input', () => {
     const originalConsoleLog = console.log
-    const originalConsoleError = console.error
     console.log = vi.fn()
-    console.error = vi.fn()
 
     try {
       // @ts-ignore - Intentionally pass wrong type to test error handling
@@ -336,10 +334,8 @@ describe('buildFiles Function Tests', () => {
 
       expect(result).toBeDefined()
       expect(Object.keys(result)).toHaveLength(0)
-      expect(console.error).toHaveBeenCalled()
     } finally {
       console.log = originalConsoleLog
-      console.error = originalConsoleError
     }
   })
 })

@@ -19,18 +19,8 @@
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { getDbAsync } from '@libra/db'
 import { checkAndRefreshAnnualQuota, checkRefreshAndDeductQuota } from '../annual-quota-refresh'
-
-// Mock dependencies
-vi.mock('@libra/db', () => ({
-  getProjectDb: vi.fn(),
-}))
-
-vi.mock('@libra/common', () => ({
-  log: {
-    subscription: vi.fn(),
-  },
-}))
 
 describe('Annual Quota Refresh', () => {
   beforeEach(() => {
@@ -44,17 +34,17 @@ describe('Annual Quota Refresh', () => {
     })
 
     it('should return false when no annual subscription found', async () => {
-      // Mock database to return no annual subscription
       const mockDb = {
+        execute: vi.fn().mockResolvedValue({ rows: [{ dbNow: new Date().toISOString() }] }),
         query: {
           subscriptionLimit: {
             findFirst: vi.fn().mockResolvedValue(null),
           },
         },
       }
-      
-      vi.mocked(require('@libra/db').getProjectDb).mockResolvedValue(mockDb)
-      
+
+      vi.mocked(getDbAsync).mockResolvedValue(mockDb as any)
+
       const result = await checkAndRefreshAnnualQuota('org-123')
       expect(result).toBe(false)
     })
@@ -63,12 +53,12 @@ describe('Annual Quota Refresh', () => {
   describe('checkRefreshAndDeductQuota', () => {
     it('should return false for invalid organization ID', async () => {
       const result = await checkRefreshAndDeductQuota('', 'aiNums', 1)
-      expect(result).toEqual({ success: false })
+      expect(result).toEqual({ success: false, reason: 'invalid' })
     })
 
     it('should handle all quota types', async () => {
       const quotaTypes = ['aiNums', 'enhanceNums', 'uploadLimit', 'deployLimit', 'projectNums'] as const
-      
+
       for (const quotaType of quotaTypes) {
         const result = await checkRefreshAndDeductQuota('org-123', quotaType, 1)
         expect(result).toHaveProperty('success')
@@ -76,16 +66,3 @@ describe('Annual Quota Refresh', () => {
     })
   })
 })
-
-// Integration test example (commented out - requires actual database)
-/*
-describe('Annual Quota Refresh Integration', () => {
-  it('should refresh quota for annual subscription after 1 month', async () => {
-    // This test would require:
-    // 1. Setting up test database
-    // 2. Creating annual subscription with lastQuotaRefresh > 1 month ago
-    // 3. Calling checkAndRefreshAnnualQuota
-    // 4. Verifying quota was refreshed and lastQuotaRefresh updated
-  })
-})
-*/

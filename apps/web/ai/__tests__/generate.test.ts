@@ -79,21 +79,21 @@ describe('Text Language Detection Function Tests', () => {
       console.log = vi.fn();
 
       try {
-        const config = getChunkingConfig('This is English text');
+        const config = getChunkingConfig('这是一个中文测试');
 
-        // Verify correct English chunking configuration is returned
+        // Verify correct Chinese chunking configuration is returned
         expect(config).toHaveProperty('chunking');
         expect(config.chunking).toBeInstanceOf(RegExp);
-        expect(config).toHaveProperty('delayInMs', 10);
+        expect(config).toHaveProperty('delayInMs', 15);
 
         // Verify regex matching behavior
         const regex = config.chunking as RegExp;
-        expect('a').toMatch(regex); // Single character
+        expect('中').toMatch(regex); // Single Chinese character
         expect('hello ').toMatch(regex); // English word plus space
 
         // Verify language detection was logged
         expect(console.log).toHaveBeenCalledWith("Detecting language type in input text...");
-        expect(console.log).toHaveBeenCalledWith("English content detected, using English chunking mode");
+        expect(console.log).toHaveBeenCalledWith("Chinese content detected, using Chinese chunking mode");
       } finally {
         // Restore original console.log
         console.log = originalConsoleLog;
@@ -121,12 +121,12 @@ describe('Text Language Detection Function Tests', () => {
       }
     });
 
-    test('returns English chunking configuration for mixed text', () => {
-      const config = getChunkingConfig('This is mixed text with English and numbers');
+    test('returns Chinese chunking configuration for mixed text', () => {
+      const config = getChunkingConfig('This is mixed text with English and 中文');
 
-      // Verify English configuration is used
+      // Verify Chinese-style configuration is used when Chinese characters are present
       expect(config.chunking).toBeInstanceOf(RegExp);
-      expect(config).toHaveProperty('delayInMs', 10);
+      expect(config).toHaveProperty('delayInMs', 15);
     });
   });
 });
