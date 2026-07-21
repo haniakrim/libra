@@ -29,10 +29,41 @@ import { test, expect } from '@playwright/test'
  * RESEND_API_KEY are configured, because better-auth's emailOtp plugin requires
  * a working email provider to send real OTPs.
  *
- * Cloudflare Turnstile test keys are used locally so the CAPTCHA auto-passes.
+ * Cloudflare Turnstile is stubbed in the browser so the CAPTCHA auto-passes
+ * in local/headless environments without calling the real Cloudflare endpoint.
  */
 test.describe('Email OTP login flow', () => {
   test.beforeEach(async ({ page }) => {
+    // Stub the Cloudflare Turnstile API script so the widget immediately
+    // reports success and enables the email submit button.
+    await page.route('**/turnstile/v0/api.js*', async (route, request) => {
+      const url = new URL(request.url())
+      const onload = url.searchParams.get('onload') || 'onloadTurnstileCallback'
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/javascript; charset=utf-8',
+        body: `(function(){
+          const widgets = new Map();
+          window.turnstile = {
+            render: (container, options) => {
+              const id = 'test-turnstile-widget';
+              widgets.set(id, options);
+              Promise.resolve().then(() => {
+                if (typeof options === 'object' && options.callback) options.callback('test-token');
+              });
+              return id;
+            },
+            reset: () => {},
+            remove: (id) => widgets.delete(id),
+            getResponse: () => 'test-token',
+            isExpired: () => false,
+            execute: () => {},
+          };
+          if (typeof window['${onload}'] === 'function') window['${onload}']();
+        })();`,
+      })
+    })
+
     // Intercept the OTP send endpoint and return a mock success so the UI
     // can transition to the OTP form without a real email provider.
     await page.route('**/api/auth/email-otp/send-verification-otp', async (route) => {
@@ -51,25 +82,26 @@ test.describe('Email OTP login flow', () => {
     const emailInput = page.getByRole('textbox', { name: /email/i })
     await expect(emailInput).toBeVisible()
 
-    // 2. Fill a valid email and wait for Turnstile to auto-verify with the local test key.
+    // 2. Fill a valid email and wait for the stubbed Turnstile widget to verify.
     await emailInput.fill('local-test@example.com')
-    const continueButton = page.getByRole('button', { name: /continue/i })
-    await expect(continueButton).toBeEnabled({ timeout: 15000 })
+
+    const submitButton = page.getByRole('button', { name: /send me my link/i })
+    await expect(submitButton).toBeEnabled({ timeout: 15000 })
 
     // 3. Submit the email form.
-    await continueButton.click()
+    await submitButton.click()
 
     // 4. OTP step appears.
     await expect(page.getByText(/verification code/i)).toBeVisible()
     await expect(page.getByText('local-test@example.com')).toBeVisible()
 
     // 5. Fill a 6-digit OTP and ensure verify is enabled.
-    // The input-otp component exposes a single hidden input that accepts the code.
-    const otpInput = page.locator('input[inputmode="numeric"][maxlength="6"]')
-    await expect(otpInput).toBeVisible()
+    // input-otp exposes a single hidden input tagged with [data-input-otp].
+    const otpInput = page.locator('input[data-input-otp]')
+    await expect(otpInput).toBeAttached()
     await otpInput.fill('123456')
 
-    const verifyButton = page.getByRole('button', { name: /verify/i })
+    const verifyButton = page.getByRole('button', { name: /verify and sign in/i })
     await expect(verifyButton).toBeEnabled()
 
     // NOTE: We stop short of clicking "Verify" because that calls the real

@@ -73,7 +73,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>
             <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-                {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={true}/>}
+                {process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_DISABLE_RQ_DEVTOOLS && <ReactQueryDevtools initialIsOpen={true}/>}
                 {props.children}
             </TRPCProvider>
         </QueryClientProvider>
