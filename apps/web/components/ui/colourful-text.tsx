@@ -61,7 +61,6 @@ export function ColourfulText({ text }: { text: string }) {
   const colors = isDark ? darkColors : lightColors
 
   const [currentColors, setCurrentColors] = React.useState(colors)
-  const [count, setCount] = React.useState(0)
   const [isHydrated, setIsHydrated] = React.useState(false)
 
   // Keep current color palette in sync with the active theme
@@ -102,7 +101,6 @@ export function ColourfulText({ text }: { text: string }) {
         })
         return shuffled
       })
-      setCount((prev) => prev + 1)
     }, 5000)
 
     return () => {
@@ -117,12 +115,15 @@ export function ColourfulText({ text }: { text: string }) {
     return <span className='inline-block whitespace-pre font-sans tracking-tight'>{text}</span>
   }
 
+  // Stable per-index key: the color/blur/y cycle re-triggers because the
+  // `animate` target values change on each interval tick, not because the
+  // span remounts. Remounting (a key keyed on `count`) forced the parent
+  // h1 — which combines text-wrap:balance, drop-shadow, and bg-clip-text —
+  // to reflow every cycle, which is what caused the stray-glyph flicker to
+  // its left (Chromium repaint artifact during that forced re-layout).
   return text.split('').map((char, index) => (
     <motion.span
-      key={`${char}-${count}-${index}`}
-      initial={{
-        y: 0,
-      }}
+      key={`${char}-${index}`}
       animate={{
         color: currentColors[index % currentColors.length],
         y: [0, -3, 0],
