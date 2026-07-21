@@ -2,6 +2,18 @@
 
 ## 2026-07-21
 
+### Postgres credential rotation (security)
+- The generated `POSTGRES_PASSWORD` was accidentally echoed into an agent-session transcript via `tail`. Treated as compromised per standard practice even though the DB is internal-only (not published, VPS-network-scoped).
+- Rotated: new password generated entirely server-side (`openssl rand -hex 24` inside the SSH session — never appears in any local command text or output), `ALTER ROLE libra WITH PASSWORD ...` applied directly, `.env.production` (VPS + local + `apps/web`) rewritten to match, `web`/`postgres` containers recreated to pick up the new credential.
+- Verified: real TCP password auth against the new password (`psql -h 127.0.0.1` from inside the postgres container, not the trusted local socket), Postgres data volume intact (recreate preserved the volume, only the container was replaced), `/`, `/login`, `/api/auth/get-session` all still return HTTP 200 post-rotation, other VPS services (`traefik`, `mip`, `agent-os-*`) unaffected.
+- Session audit: no other secrets were echoed in this session's output — Turnstile secret key and GitHub client ID were deliberately redacted when checked; the Turnstile *site* key shown is a `NEXT_PUBLIC_*` value, public by design, not a secret.
+
+### Broken hero screenshot + off-theme animations fixed on the live VPS deploy
+- Root cause of the broken "Libra AI UI screenshot" (and every other `next/image` on the self-hosted deploy): the custom `imageLoader.ts` rewrites image URLs to Cloudflare's edge-only `/cdn-cgi/image/...` resize path, which only exists when Cloudflare's proxy sits in front of the domain. The VPS deploy sits behind plain Traefik, so every image 404'd. Fixed by setting the loader's existing (already-coded) escape hatch — `DISABLE_CLOUDFLARE_IMAGE_OPTIMIZATION=true` and `NEXT_PUBLIC_DISABLE_CLOUDFLARE_IMAGE_OPTIMIZATION=true` in `.env.production` — no code change needed.
+- `ParticlesBackground`: dark-mode particle color was amber/gold (`#FDBA72FF`), not the Tron theme. Changed to `#00EAF4FF`, the exact sRGB conversion of the `--primary` brand token (`oklch(85% 0.15 200)`).
+- Nav wordmark ("Libra" next to the logo icon) used `TextGif`, a rainbow animated GIF (`/logo-background.gif`) clipped to text with a CSS `hue-rotate` filter attempting to push it toward cyan — `hue-rotate` preserves relative hue spread, so it still rendered as a multi-color rainbow in dark mode. Swapped to the existing `ColourfulText` component, whose dark-mode palette is already genuine Tron cyan.
+- Rebuilt and redeployed on the VPS; verified `/app-dark.png` and the live pages all return HTTP 200.
+
 ### First production deploy — VPS self-host (Docker + Traefik)
 - Deployed `apps/web` to the VPS (`72.62.190.235`) at `https://libra.agentic-lab.io`, live behind the box's existing Traefik (Let's Encrypt, shared with `mip` and `agent-os-*` — none of those touched).
 - Added a `SELF_HOSTED=true` code path (see commits `bf99a4d`, `35d288d`, `d294029`) so apps/web can run as a plain Docker container instead of a Cloudflare Worker: Postgres direct connection, Bun's built-in `bun:sqlite` for the auth DB (D1's SQLite dialect, same schema/migrations — better-sqlite3 does not load under Bun, see oven-sh/bun#4290), and a Redis-backed shim standing in for the KV/CACHE bindings. Zero change to the Cloudflare/OpenNext path.
