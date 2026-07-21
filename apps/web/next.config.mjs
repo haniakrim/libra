@@ -32,6 +32,14 @@ const withBundleAnalyzer = (await import('@next/bundle-analyzer')).default({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Self-hosted Docker build already gates on a separate `tsc --noEmit` +
+    // lint pass before the image builds — skip Next's redundant in-build
+    // type-check/lint here, which otherwise doubles build time/memory on
+    // constrained hosts. Cloudflare/OpenNext build path is untouched.
+    ...(process.env.SELF_HOSTED === 'true' ? {
+        typescript: { ignoreBuildErrors: true },
+        eslint: { ignoreDuringBuilds: true },
+    } : {}),
     reactStrictMode: true,
     transpilePackages: ["@libra/ui", "@libra/auth", "@libra/db", "@libra/api", "@libra/common"
         , "@libra/better-auth-cloudflare", "@libra/email","@libra/better-auth-stripe","@libra/shikicode"
@@ -72,7 +80,7 @@ const nextConfig = {
     		);
     		return config;
     },
-    serverExternalPackages: ["@prisma/client", ".prisma/client", "postgres", "@libsql/isomorphic-ws", "jose"],
+    serverExternalPackages: ["@prisma/client", ".prisma/client", "postgres", "@libsql/isomorphic-ws", "jose", "ioredis"],
 }
 
 export default withBundleAnalyzer(nextConfig)

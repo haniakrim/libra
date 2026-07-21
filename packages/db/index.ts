@@ -19,6 +19,7 @@
  */
 
 import { getCloudflareContext } from '@opennextjs/cloudflare'
+import { isSelfHosted } from '@libra/common'
 import { drizzle as drizzleNode } from 'drizzle-orm/node-postgres'
 import pg, {Client} from 'pg'
 import { cache } from 'react'
@@ -32,7 +33,7 @@ export const schema = { ...projectSchema, ...components }
 
 export const getDbAsync = async () => {
   let connectionString: string | undefined
-  if ((process.env['NODE_ENV'] as string) === 'development') {
+  if ((process.env['NODE_ENV'] as string) === 'development' || isSelfHosted()) {
     connectionString = env.POSTGRES_URL
   } else {
     const { env: cfEnv } = await getCloudflareContext({ async: true })
@@ -82,8 +83,8 @@ export async function getDbForHono(c: HonoDbContext) {
   let connectionString: string | undefined
   const nodeEnv: string = c.env.NODE_ENV || 'production'
 
-  // Development environment: prioritize direct PostgreSQL connection
-  if (nodeEnv === 'development') {
+  // Development/self-hosted environment: prioritize direct PostgreSQL connection
+  if (nodeEnv === 'development' || isSelfHosted()) {
     // Try multiple sources for POSTGRES_URL in development
     connectionString = c.env?.POSTGRES_URL
   } else {
@@ -121,8 +122,8 @@ export async function getDbForWorkflow(env: any) {
   let connectionString: string | undefined
   const nodeEnv: string = env.NODE_ENV || 'production'
 
-  // Development environment: prioritize direct PostgreSQL connection
-  if (nodeEnv === 'development') {
+  // Development/self-hosted environment: prioritize direct PostgreSQL connection
+  if (nodeEnv === 'development' || isSelfHosted()) {
     // Try multiple sources for POSTGRES_URL in development
     connectionString = env?.POSTGRES_URL
   } else {

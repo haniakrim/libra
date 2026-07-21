@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "paraglide-js compile --project ./project.inlang --outdir ./paraglide",
     "build": "paraglide-js compile --project ./project.inlang --outdir ./paraglide && dotenv -e ../../.env -- next build",
+    "start": "next start -p 3000",
     "clean": "rm -rf ",
     "dev": "dotenv -e ../../.env -e .env.local -o -- next dev --turbo -p 3000",
     "test": "bun with-env vitest",
@@ -41,6 +42,7 @@
     "@libra/db": "*",
     "@libra/email": "*",
     "@libra/sandbox": "*",
+    "ioredis": "^5.4.2",
     "@libra/shikicode": "*",
     "@libra/templates": "*",
     "@libra/ui": "*",

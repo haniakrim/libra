@@ -1,0 +1,17 @@
+**/node_modules
+.git
+**/.next
+**/.turbo
+**/dist
+**/build
+**/.wrangler
+**/.svelte-kit
+**/coverage
+**/.screenshots
+**/test-results
+**/playwright-report
+**/.vercel
+.claude
+.claude-flow
+*.log
+.DS_Store

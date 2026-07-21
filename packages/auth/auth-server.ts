@@ -18,23 +18,115 @@
  *
  */
 
-import { withCloudflare } from '@libra/better-auth-cloudflare'
+import { withCloudflare, createKVStorage } from '@libra/better-auth-cloudflare'
 // Declare global KV binding
 import { stripe } from '@libra/better-auth-stripe'
-import { log, isDevelopment } from '@libra/common'
+import { log, isDevelopment, isSelfHosted } from '@libra/common'
 import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { betterAuth, type Session } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { admin, bearer, emailOTP, organization } from 'better-auth/plugins'
 import { authRoles } from './admin-roles'
 import { emailHarmony } from 'better-auth-harmony'
-import { getAuthDb } from './db'
+import { getAuthDb, getCache } from './db'
 import { env as envs } from './env.mjs'
 import { getActiveOrganization, plugins } from './plugins'
 import { getAdminUserIds } from './env.mjs'
 
-// Runtime auth builder using Cloudflare D1 and KV
+// Shared betterAuth() options for both the Cloudflare (D1+KV) and self-hosted
+// (SQLite+Redis) runtime paths — keeps session hooks, social providers,
+// trusted origins, and plugins defined in exactly one place.
+function sharedAuthOptions() {
+  return {
+    databaseHooks: {
+      session: {
+        create: {
+          before: async (session: Session) => {
+            try {
+              const organization = await getActiveOrganization(session.userId)
+
+              log.auth('info', 'Session created successfully', {
+                userId: session.userId,
+                organizationId: organization.id,
+                operation: 'session_create',
+              })
+
+              return {
+                data: {
+                  ...session,
+                  activeOrganizationId: organization.id,
+                },
+              }
+            } catch (error) {
+              log.auth(
+                'error',
+                'Failed to create session',
+                {
+                  userId: session.userId,
+                  operation: 'session_create',
+                },
+                error as Error
+              )
+              throw error
+            }
+          },
+        },
+      },
+    },
+    socialProviders: {
+      github: {
+        clientId: envs.BETTER_GITHUB_CLIENT_ID as string,
+        clientSecret: envs.BETTER_GITHUB_CLIENT_SECRET as string,
+      },
+    },
+    // Enable cross-subdomain cookies for libra.agentic-lab.io and subdomains
+    ...(isDevelopment() ? {} : {
+      advanced: {
+        crossSubDomainCookies: {
+          enabled: true,
+          domain: '.libra.agentic-lab.io',
+        },
+      },
+      // Configure trusted origins for cross-subdomain authentication
+      trustedOrigins: [
+        'https://libra.agentic-lab.io',
+        'https://cdn.libra.agentic-lab.io',
+        'https://deploy.libra.agentic-lab.io',
+        'https://dispatcher.libra.agentic-lab.io',
+        'https://auth.libra.agentic-lab.io',
+        'https://api.libra.agentic-lab.io',
+        'https://docs.libra.agentic-lab.io',
+        'https://web.libra.agentic-lab.io',
+        // Development origins
+        'http://localhost:3000',
+        'http://localhost:3004',
+        'http://localhost:3008',
+        'http://localhost:3007',
+      ],
+    }),
+    plugins: plugins,
+    rateLimit: {
+      window: 60,
+      max: 100,
+    },
+  }
+}
+
+// Runtime auth builder — Cloudflare (D1+KV) by default, SQLite+Redis when
+// SELF_HOSTED=true (VPS/Docker deploy, no getCloudflareContext() call at all).
 async function authBuilder() {
+  if (isSelfHosted()) {
+    const dbInstance = await getAuthDb()
+    const cache = await getCache()
+    return betterAuth({
+      autoDetectIpAddress: true,
+      geolocationTracking: true,
+      database: drizzleAdapter(dbInstance as any, { provider: 'sqlite' }),
+      secondaryStorage: createKVStorage(cache as any),
+      ...sharedAuthOptions(),
+    } as any)
+  }
+
   const dbInstance = await getAuthDb()
   const { env } = await getCloudflareContext({ async: true })
   return betterAuth(
@@ -43,7 +135,7 @@ async function authBuilder() {
         autoDetectIpAddress: true,
         geolocationTracking: true,
         d1: {
-          db: dbInstance,
+          db: dbInstance as any,
           options: {
             // usePlural: true,
             // debugLogs: true,
@@ -53,79 +145,7 @@ async function authBuilder() {
         // @ts-ignore
         kv: env.KV,
       },
-      {
-        databaseHooks: {
-          session: {
-            create: {
-              before: async (session: Session) => {
-                try {
-                  const organization = await getActiveOrganization(session.userId)
-
-                  log.auth('info', 'Session created successfully', {
-                    userId: session.userId,
-                    organizationId: organization.id,
-                    operation: 'session_create',
-                  })
-
-                  return {
-                    data: {
-                      ...session,
-                      activeOrganizationId: organization.id,
-                    },
-                  }
-                } catch (error) {
-                  log.auth(
-                    'error',
-                    'Failed to create session',
-                    {
-                      userId: session.userId,
-                      operation: 'session_create',
-                    },
-                    error as Error
-                  )
-                  throw error
-                }
-              },
-            },
-          },
-        },
-        socialProviders: {
-          github: {
-            clientId: envs.BETTER_GITHUB_CLIENT_ID as string,
-            clientSecret: envs.BETTER_GITHUB_CLIENT_SECRET as string,
-          },
-        },
-        // Enable cross-subdomain cookies for libra.agentic-lab.io and subdomains
-        ...(isDevelopment() ? {} : {
-          advanced: {
-            crossSubDomainCookies: {
-              enabled: true,
-              domain: '.libra.agentic-lab.io',
-            },
-          },
-          // Configure trusted origins for cross-subdomain authentication
-          trustedOrigins: [
-            'https://libra.agentic-lab.io',
-            'https://cdn.libra.agentic-lab.io',
-            'https://deploy.libra.agentic-lab.io',
-            'https://dispatcher.libra.agentic-lab.io',
-            'https://auth.libra.agentic-lab.io',
-            'https://api.libra.agentic-lab.io',
-            'https://docs.libra.agentic-lab.io',
-            'https://web.libra.agentic-lab.io',
-            // Development origins
-            'http://localhost:3000',
-            'http://localhost:3004',
-            'http://localhost:3008',
-            'http://localhost:3007',
-          ],
-        }),
-        plugins: plugins ,
-        rateLimit: {
-          window: 60,
-          max: 100,
-        },
-      }
+      sharedAuthOptions()
     )
   )
 }

@@ -92,7 +92,7 @@ function FetchMonitor() {
     const activeRequests = new Set<string>();
     
     // Override global fetch
-    window.fetch = function(...args) {
+    window.fetch = function(this: typeof window, ...args: Parameters<typeof fetch>) {
       const url = args[0] instanceof Request ? args[0].url : String(args[0]);
       const requestId = `${url}_${Date.now()}`;
       
@@ -125,8 +125,8 @@ function FetchMonitor() {
           
           throw error;
         });
-    };
-    
+    } as typeof fetch;
+
     // Cleanup function
     return () => {
       window.fetch = originalFetch;

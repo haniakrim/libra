@@ -724,6 +724,14 @@ export function isProduction(): boolean {
 }
 
 /**
+ * Check if running self-hosted (VPS/Docker) instead of on Cloudflare Workers.
+ * Gates the local-Postgres/SQLite/Redis fallback paths in packages/db and packages/auth.
+ */
+export function isSelfHosted(): boolean {
+  return process.env.SELF_HOSTED === 'true'
+}
+
+/**
  * Get environment name
  */
 export function getEnvironment(): string {

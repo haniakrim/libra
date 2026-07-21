@@ -72,6 +72,7 @@ export {
   formatDuration,
   isDevelopment,
   isProduction,
+  isSelfHosted,
   getEnvironment,
   isValidUrl,
   retryWithBackoff,

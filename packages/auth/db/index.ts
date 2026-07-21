@@ -18,21 +18,50 @@
  *
  */
 
+/// <reference path="./bun-sqlite.d.ts" />
+
 import {getCloudflareContext} from "@opennextjs/cloudflare";
 import {drizzle} from "drizzle-orm/d1";
+import type {DrizzleD1Database} from "drizzle-orm/d1";
+import {isSelfHosted} from "@libra/common";
 import {schema} from "./schema";
+import {getRedisKv} from "./kv-shim";
 
 export async function getCache() {
+    if (isSelfHosted()) {
+        return getRedisKv();
+    }
     // Retrieves Cloudflare-specific context, including environment variables and bindings
     const {env} = await getCloudflareContext({async: true});
     return (env as any).CACHE;
 }
 
-export async function getAuthDb() {
-    // Retrieves Cloudflare-specific context, including environment variables and bindings
-    const {env} = await getCloudflareContext({async: true});
+// Return type is pinned to the D1 shape so callers (e.g. packages/api routers)
+// see one stable type regardless of runtime backend. The self-hosted SQLite
+// instance supports the same query-builder surface used anywhere in this
+// codebase (select/insert/update/where/...) — it only lacks D1's `batch()`,
+// which nothing here calls.
+export async function getAuthDb(): Promise<DrizzleD1Database<typeof schema>> {
     // Determine environment: disable logger in production, enable in non-production
     const isProduction = (process.env['ENVIRONMENT'] as string) === 'production';
+
+    if (isSelfHosted()) {
+        const dbPath = process.env.AUTH_DB_PATH;
+        if (!dbPath) {
+            throw new Error('AUTH_DB_PATH is required when SELF_HOSTED=true');
+        }
+        // bun:sqlite is Bun's built-in SQLite driver — better-sqlite3's native
+        // addon does not load under Bun (dlopen refuses; see
+        // https://github.com/oven-sh/bun/issues/4290), so this is the
+        // supported path for a Bun runtime rather than a preference.
+        const { Database } = await import('bun:sqlite');
+        const { drizzle: drizzleSqlite } = await import('drizzle-orm/bun-sqlite');
+        const db = drizzleSqlite(new Database(dbPath), { schema, logger: !isProduction });
+        return db as unknown as DrizzleD1Database<typeof schema>;
+    }
+
+    // Retrieves Cloudflare-specific context, including environment variables and bindings
+    const {env} = await getCloudflareContext({async: true});
 
     // Initialize Drizzle with your D1 binding (e.g., "DB" or "DATABASE" from wrangler.toml)
     return drizzle((env as any).DATABASE, {
