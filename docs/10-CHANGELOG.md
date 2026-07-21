@@ -17,6 +17,17 @@
 - Verified a real login on `http://localhost:3000`: email → OTP → `/dashboard` with user/org populated.
 - No production deploy or push performed. Commit `30f0970` (local-dev env guards) already contains the required changes.
 
+### E2E and visual verification on localhost
+- `apps/web` TypeScript (`tsc --noEmit`) passes.
+- Root `bun run typecheck` passes (13 packages, 8 cached).
+- `bun run lint` passes for `@libra/ui`.
+- `bun run test --run` in `apps/web` passes: 5 files, 20 tests.
+- Playwright E2E suite passes: `login-email-otp.spec.ts` walks the email → OTP form flow using an in-browser Turnstile stub and a mocked `/api/auth/email-otp/send-verification-otp` endpoint.
+- Added `NEXT_PUBLIC_DISABLE_RQ_DEVTOOLS` guard in `apps/web/trpc/client.tsx` and `apps/web/playwright.config.ts` so React Query devtools don't open during test runs.
+- Captured light/dark full-page landing screenshots and light/dark login screenshots in `.screenshots/`; dark landing shows the Tron grid across all sections.
+- Security check: no hardcoded secrets/API keys in modified code; `.env.local` is untracked; no tracked `.env` files.
+- Commits `a1b28d8` and `3335680` pushed to `fork/main`. No production deploy.
+
 ## 2026-07-20
 
 ### Phase 1 — production env audit
