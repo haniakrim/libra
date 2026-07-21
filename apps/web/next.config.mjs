@@ -21,8 +21,13 @@
 import { paraglideWebpackPlugin } from "@inlang/paraglide-js";
 import {initOpenNextCloudflareForDev} from "@opennextjs/cloudflare";
 
-// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
-initOpenNextCloudflareForDev();
+// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`.
+// Self-hosted (Docker/VPS) never uses getCloudflareContext(), and this spawns
+// a wrangler subprocess that writes logs to $HOME — which the container's
+// non-root runtime user doesn't have, crashing `next start` on boot.
+if (process.env.SELF_HOSTED !== 'true') {
+    initOpenNextCloudflareForDev();
+}
 
 // Dynamic import for bundle analyzer to handle ESM/CommonJS compatibility
 const withBundleAnalyzer = (await import('@next/bundle-analyzer')).default({

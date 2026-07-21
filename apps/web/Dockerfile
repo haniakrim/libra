@@ -31,6 +31,7 @@ WORKDIR /repo
 ENV NODE_ENV=production
 ENV SELF_HOSTED=true
 ENV HOSTNAME=0.0.0.0
+ENV HOME=/data
 RUN mkdir -p /data && chown -R libra:libra /data
 COPY --from=builder --chown=libra:libra /repo/node_modules ./node_modules
 COPY --from=builder --chown=libra:libra /repo/package.json ./package.json
