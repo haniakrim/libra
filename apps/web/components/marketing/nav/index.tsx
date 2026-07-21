@@ -23,12 +23,11 @@ import { Navbar as NavbarComponent, NavbarLeft, NavbarRight } from '@libra/ui/co
 import { Sheet, SheetContent, SheetTrigger } from '@libra/ui/components/sheet'
 import { cn } from '@libra/ui/lib/utils'
 import { Menu } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { Logo } from '@/components/common/logo/LogoImage'
 import { ModeToggle } from '@/components/common/mode-toggle'
 import { LanguageSwitcher } from '@/components/language-switcher'
-import { ColourfulText } from '@/components/ui/colourful-text'
 import { siteConfig } from '@/configs/site'
 import * as m from '@/paraglide/messages'
 import Navigation from './navigation'
@@ -94,11 +93,15 @@ export default function Navbar({
           <NavbarLeft>
             <div className='flex items-center gap-2'>
               <Link href={homeUrl}>
-                <div className='flex items-center gap-1 justify-center rounded-xl'>
-                  <Logo />
-                  <span className='text-2xl font-bold font-sansTight sm:text-3xl lg:text-4xl'>
-                    <ColourfulText text={name} />
-                  </span>
+                <div className='flex items-center justify-center rounded-xl'>
+                  <Image
+                    src='/images/brand/libra-header-logo.png'
+                    alt={name}
+                    width={192}
+                    height={40}
+                    priority
+                    className='h-8 w-auto sm:h-9 lg:h-10'
+                  />
                 </div>
               </Link>
             </div>
