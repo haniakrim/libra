@@ -23,6 +23,9 @@
 @theme inline {
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-gold-muted: var(--gold-muted);
   --color-light: var(--light);
   --color-light-foreground: var(--light-foreground);
   --color-background: var(--background);

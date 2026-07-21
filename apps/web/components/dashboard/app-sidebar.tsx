@@ -35,8 +35,8 @@ import {
 } from 'lucide-react'
 import type * as React from 'react'
 import { useEffect, useState } from 'react'
+import { MdForum } from 'react-icons/md'
 import * as m from '@/paraglide/messages'
-import { MdForum } from "react-icons/md"
 import Github from '../logos/github'
 import { NavMain } from './nav-main'
 import { NavSecondary } from './nav-secondary'
@@ -165,22 +165,22 @@ const getNavMainItems = (userRole?: string) => {
 const getNavSecondaryItems = () => [
   {
     title: m['dashboard.sidebar.navigation.docs'](),
-    url: 'https://docs.libra.agentic-lab.io',
+    url: '/docs',
     icon: FileIcon,
   },
   {
     title: m['dashboard.sidebar.navigation.github'](),
-    url: 'https://github.com/nextify-limited/libra',
+    url: 'https://github.com/haniakrim/libra',
     icon: Github,
   },
   {
     title: m['dashboard.sidebar.navigation.support'](),
-    url: 'https://forum.libra.agentic-lab.io',
+    url: '/support',
     icon: MdForum,
   },
   {
     title: m['dashboard.sidebar.navigation.help'](),
-    url: 'https://forum.libra.agentic-lab.io/c/9-category/9',
+    url: '/help',
     icon: HelpCircleIcon,
   },
 ]
